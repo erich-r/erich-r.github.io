@@ -38,7 +38,7 @@ h1,h2,h3{
         width: 100%;
     }
     .title-info{
-        font-size: 200%;
+        font-size: 130%;
 
     }
     .project-title, .topic-title{
@@ -176,4 +176,8 @@ transition: opacity 500ms ease-in;
     position: fixed;
     bottom: 1.5%;
     right:1.5%;
+}
+
+.course{
+    font-size: 180%;
 }
