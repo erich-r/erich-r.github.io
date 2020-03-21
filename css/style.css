@@ -1,9 +1,11 @@
 body{
     font-family: Roboto;
+    background-color: #2A2E39;
+    color:white;
 }
 
 h1,h2,h3{
-    color:rgb(16, 143, 194);
+    color:#eb6d4c;
 }
 *, *:after, *::before {
 	-webkit-box-sizing: border-box;
