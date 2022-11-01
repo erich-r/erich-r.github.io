@@ -1,0 +1,16 @@
+<header class="section-header">
+    <h2>Work Experiences</h2>
+</header>
+{% for work in site.work-experiences %}
+
+<div class="item">
+    
+    <h3 class="item-title">{{work.name}}</h3>
+    <h4 class="item-title-details">{{work.where}} - {{work.city}} • {{work.from}} - {{work.to}}</h4>
+
+    <p class="item-description">
+        {{work.content | markdownify}}
+    </p>
+
+</div>
+{% endfor %}

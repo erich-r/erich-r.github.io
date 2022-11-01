@@ -1,0 +1,120 @@
+html{
+  background: $bg-color;
+}
+body {
+  font-family: "Open Sans", sans-serif;
+  margin:0;
+  color:$text-color
+}
+
+h1,h2,h3,h4{
+  font-family: "Montserrat";
+}
+
+.contact{
+  line-height: 48px;
+  background-color: red;
+  margin: 1.5rem auto ;
+  width: 200px;
+  border-radius: 5px;
+  background-color: $primary;
+  text-decoration: none;
+  color: $text-color;
+  font-size: $contact-button-text-size;
+  transition: all 0.2s ease;
+}
+
+.contact:hover{
+  background-color: $text-color;
+  color: $bg-color
+}
+
+.title-header{
+  font-weight: 700;
+  font-size: 3rem;
+  letter-spacing: -.15rem;
+  font-family: "Montserrat";
+  
+}
+
+.header-content-info{
+  border-top: 4px solid $primary;
+  padding:.2rem;
+}
+
+.header-content-info > h2{
+  margin: 0;
+}
+
+.header-content-info{
+  border-bottom: 2px solid $primary;
+}
+
+a{background-color: transparent;}
+
+a:hover > svg >path{
+fill:$text-color;
+}
+
+a:hover > svg > path{
+  transition: all 0.2s ease;
+
+}
+
+.header-content-info  h2 {
+  font-weight: 400;
+}
+
+.section-header{
+  padding: .2rem 0 .4rem;
+  border-top: 4px solid $primary;
+  border-bottom: 2px solid $primary;
+  margin-bottom: 1.5rem;
+}
+.section-header h2{
+  font-weight: 900;
+  font-size: 2rem;
+  letter-spacing: -0.05rem;
+  margin:0;
+}
+
+.item-title{
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: -0.05rem;
+  margin:0 0 .75rem
+}
+
+.item-title-details{
+  margin:0 0 .75rem
+}
+
+.item{
+  margin-bottom: 2rem;
+}
+
+.footer{
+  border-top: 4px solid $primary;
+}
+
+.footer-line{
+  margin:0
+}
+
+@media screen and (max-width:500px) {
+  .header-content-info{
+      
+      padding: 10px 0;
+  }
+
+  .header-content-info > h2{
+    margin: 0 0 10px;
+  }
+
+  .icons-content{
+    border-top: 2px solid $primary;
+    padding: 10px 0 0;
+    position:relative;
+  }
+}
+

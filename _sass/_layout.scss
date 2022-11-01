@@ -1,0 +1,59 @@
+.content-wrapper{
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 0 24px
+}
+
+.title-header{
+    text-align: center;
+}
+
+.header-content-info{
+    display:flex;
+    align-items: center;
+}
+
+.header-content-info > .icons-content{
+    margin-left: auto;
+}
+
+.icon-link{
+    padding: 0 5px;
+    text-decoration: none;
+}
+
+.contact{
+    display: block;
+    text-align: center;
+}
+
+.icons-content{
+    display: flex;
+}
+
+.icon{
+    height: 28px;
+}
+
+.footer{
+    display: block;
+    
+    text-align: center;
+    padding-top: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+@media screen and (max-width:500px) {
+    .header-content-info{
+        display: block;
+        text-align: center;
+    }
+    
+    .icons-content{
+        justify-content: center;
+        
+    }
+    
+    
+}
+

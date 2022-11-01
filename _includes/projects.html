@@ -1,0 +1,17 @@
+<header class="section-header">
+    <h2>Projects</h2>
+</header>
+{% for project in site.projects %}
+
+<div class="item">
+    
+    <h3 class="item-title">{{project.name}}</h3>
+    <h4 class="item-title-details">{{project.course_name}} • {{project.completition_date}}</h4>
+
+    <p class="item-description">
+        {{project.content | markdownify}}
+    </p>
+
+</div>
+{% endfor %}
+
