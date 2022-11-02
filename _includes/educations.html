@@ -12,7 +12,12 @@
 
     <p class="item-description">
         {{education.content | markdownify}}
-    </p><span>{% if education.finished == 0 %}Current {% endif %}GPA: {{education.gpa}}</span>
+    </p><span>
+        {% if education.to == "Present" %}
+            <strong>Current GPA</strong>: {{education.gpa}} 
+        {% else %}
+            <strong>Final Grade</strong>: {{education.grade}}
+        {% endif %}</span>
 
 </div>
 {% endfor %}

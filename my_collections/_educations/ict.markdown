@@ -1,12 +1,11 @@
 ---
-
+sitemap: false
 course_name: Bachelor’s degree in Interfaces and Comunication Technologies
 university: University of Trento
 from: 2018
 to: 2021
-gpa: 4.0
-finished: 1
-
+gpa: 4.0/4.0
+grade: 105/110
 ---
 
 Main courses: 

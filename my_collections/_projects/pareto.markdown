@@ -1,5 +1,6 @@
 ---
 
+sitemap: false
 name: DarkrAI, a Pareto ε-greedy policy
 course_name: Bio-inspired Artificial Intelligence
 completition_date: Aug 2022

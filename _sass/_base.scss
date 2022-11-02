@@ -14,19 +14,20 @@ h1,h2,h3,h4{
 
 .contact{
   line-height: 48px;
-  background-color: red;
   margin: 1.5rem auto ;
   width: 200px;
   border-radius: 5px;
-  background-color: $primary;
+  background-color: $bg-color;
   text-decoration: none;
   color: $text-color;
   font-size: $contact-button-text-size;
   transition: all 0.2s ease;
+  border-color: $primary;
+  border-style: solid;
 }
 
 .contact:hover{
-  background-color: $text-color;
+  background-color: $primary;
   color: $bg-color
 }
 
@@ -54,10 +55,11 @@ h1,h2,h3,h4{
 a{background-color: transparent;}
 
 a:hover > svg >path{
-fill:$text-color;
+fill:#2459ce;
 }
 
-a:hover > svg > path{
+a > svg > path{
+  fill:$primary;
   transition: all 0.2s ease;
 
 }

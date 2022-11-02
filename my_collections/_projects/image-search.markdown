@@ -1,5 +1,6 @@
 ---
 
+sitemap: false
 name: Image Search Engine
 course_name: (Introduction to) Machine Learning
 completition_date: May 2022
