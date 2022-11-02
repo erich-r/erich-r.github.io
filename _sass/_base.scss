@@ -22,12 +22,10 @@ h1,h2,h3,h4{
   color: $text-color;
   font-size: $contact-button-text-size;
   transition: all 0.2s ease;
-  border-color: $primary;
-  border-style: solid;
 }
 
 .contact:hover{
-  background-color: $primary;
+  background-color: $text-color;
   color: $bg-color
 }
 
@@ -55,7 +53,7 @@ h1,h2,h3,h4{
 a{background-color: transparent;}
 
 a:hover > svg >path{
-fill:#2459ce;
+fill:$text-color;
 }
 
 a > svg > path{
