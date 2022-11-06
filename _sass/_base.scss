@@ -50,7 +50,7 @@ h1,h2,h3,h4{
   border-bottom: 2px solid $primary;
 }
 
-a{background-color: transparent;}
+a{background-color: transparent; color:$text-color}
 
 a:hover > svg >path{
 fill:$text-color;
@@ -98,8 +98,9 @@ a > svg > path{
   border-top: 4px solid $primary;
 }
 
-.footer-line{
-  margin:0
+a:hover{
+  border-bottom: none;
+  color: #9c9c9c;
 }
 
 @media screen and (max-width:500px) {
