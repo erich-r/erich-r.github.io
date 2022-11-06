@@ -18,8 +18,12 @@
 }
 
 .icon-link{
-    padding: 0 5px;
+    display: contents;
     text-decoration: none;
+}
+.icon-link > svg{
+    padding: 0 5px;
+
 }
 
 .contact{
