@@ -11,6 +11,11 @@
     <p class="item-description">
         {{work.content | markdownify}}
     </p>
+    <div class="tags">
 
+        {% for tag in work.tags %}
+        <span class="chip">{{tag}}</span>
+        {% endfor %}
+    </div>
 </div>
 {% endfor %}

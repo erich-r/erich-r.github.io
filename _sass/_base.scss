@@ -103,7 +103,31 @@ a:hover{
   color: #9c9c9c;
 }
 
+.tags{
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: -5px;
+  width:75%;
+}
+
+.chip {
+  margin: 0 5px;
+  margin-top:5px;
+  background: $primary;
+  padding: 2px 20px;
+  border-radius: 32px;
+  cursor: pointer;
+  &.chip:hover {
+    background: $text-color;
+    color:$bg-color
+  }
+}
+
 @media screen and (max-width:500px) {
+
+  .tags{
+    width: 100%;
+  }
   .header-content-info{
       
       padding: 10px 0;

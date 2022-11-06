@@ -12,6 +12,12 @@
         {{project.content | markdownify}}
     </p>
 
+    <div class="tags">
+        {% for tag in project.tags %}
+        <span class="chip">{{tag}}</span>
+        {% endfor %}
+    </div>
+
 </div>
 {% endfor %}
 
