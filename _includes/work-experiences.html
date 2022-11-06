@@ -1,7 +1,9 @@
 <header class="section-header">
     <h2>Work Experiences</h2>
 </header>
-{% for work in site.work-experiences %}
+{% assign works = site.work-experiences | sort: id %}
+
+{% for work in works limit: 2 %}
 
 <div class="item">
     

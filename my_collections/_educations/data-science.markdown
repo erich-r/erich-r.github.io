@@ -1,5 +1,6 @@
 ---
 sitemap: false
+id: 2
 course_name: Master of Science in Data Science
 university: University of Trento
 from: 2021

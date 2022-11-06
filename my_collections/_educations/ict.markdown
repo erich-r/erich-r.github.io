@@ -1,5 +1,6 @@
 ---
 sitemap: false
+id: 1
 course_name: Bachelor’s degree in Interfaces and Comunication Technologies
 university: University of Trento
 from: 2018

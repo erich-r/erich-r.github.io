@@ -2,8 +2,9 @@
 <header class="section-header">
     <h2>Education</h2>
 </header>
+{% assign educations = site.educations | sort: id %}
 
-{% for education in site.educations %}
+{% for education in educations limit: 2 %}
 
 <div class="item">
     

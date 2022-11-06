@@ -1,9 +1,11 @@
 ---
 
 sitemap: false
+id: 1
 name: Image Search Engine
 course_name: (Introduction to) Machine Learning
 completition_date: May 2022
+final_mark: 30/30
 tags: ["Python","PyTorch","Git"]
 ---
 

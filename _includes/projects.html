@@ -1,7 +1,8 @@
 <header class="section-header">
     <h2>Projects</h2>
 </header>
-{% for project in site.projects %}
+{% assign my_projects = site.projects | sort: id | reverse %}
+{% for project in my_projects limit:2 %}
 
 <div class="item">
     
@@ -11,7 +12,7 @@
     <p class="item-description">
         {{project.content | markdownify}}
     </p>
-
+    <p class="project-mark"><strong>Final mark</strong>: {{project.final_mark}}</p>
     <div class="tags">
         {% for tag in project.tags %}
         <span class="chip">{{tag}}</span>
