@@ -9,4 +9,4 @@ final_mark: 30/30 Cum Laude
 tags: [Python,R,Git]
 ---
 
-During this project we trained an agent for playing Pokémon battles starting from the classic Reinforcement Learning setup. We restricted the pool of possible next states using a Genetic Algorithm.
+During this project we trained an agent for playing Pokémon battles starting from the classic Reinforcement Learning setup. We restricted the pool of possible next states using a Genetic Algorithm. The project report is available at this [link](https://raw.githubusercontent.com/Simone-Alghisi/pareto-epsilon-greedy-RL/master/report/main.pdf).
