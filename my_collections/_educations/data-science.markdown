@@ -4,9 +4,9 @@ id: 2
 course_name: Master of Science in Data Science
 university: University of Trento
 from: 2021
-to: Present
+to: 2023
 gpa: 4.0/4.0
-grade: null
+grade: 110/110 Cum Laude
 
 ---
 
