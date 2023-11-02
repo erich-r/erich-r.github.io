@@ -1,7 +1,7 @@
 ---
 
 sitemap: false
-id: 3
+item_id: 3
 name: Trentino Education
 course_name: Knowledge and Graph Engineering
 completition_date: Dec 2022

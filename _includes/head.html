@@ -5,16 +5,7 @@
   
     <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
   
-
-    <!-- Google font typography settings - defined in _config.yml -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link  href='https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:400,300,800,700&display=swap' rel='preload' as="style" onload="this.onload=null;this.rel='stylesheet'" type='text/css'>
-    <noscript>
-      <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:400,300,800,700&display=swap'
-      rel="stylesheet"
-        type="text/css"
-    />
-    </noscript>
+  
     
     <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
   

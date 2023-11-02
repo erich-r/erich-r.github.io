@@ -1,0 +1,17 @@
+<header class="section-header">
+    <h2>Publications</h2>
+</header>
+{% assign my_publications = site.publications | sort:"item_id" | reverse %}
+{% for pub in my_publications limit:2 %}
+
+<div class="item">
+    
+    <h3 class="item-title"><a href={{pub.link}}>{{pub.name}}</a></h3>
+    <h4 class="item-title-details">{{pub.context}} • {{pub.publish_date}}</h4>
+
+    <p class="item-description">
+        {{pub.content | markdownify}}
+    </p>
+</div>
+{% endfor %}
+

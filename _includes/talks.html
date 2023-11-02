@@ -1,0 +1,12 @@
+<header class="section-header">
+    <h2>Talks</h2>
+</header>
+{% assign my_talks = site.talks | sort:"item_id" | reverse %}
+{% for talk in my_talks limit:2 %}
+
+<div class="item">
+    <h3 class="item-title">{{talk.name}}</h3>
+    <h4 class="item-title-details">{{talk.congress}} @ {{talk.location}} • {{talk.year}}</h4>
+</div>
+{% endfor %}
+

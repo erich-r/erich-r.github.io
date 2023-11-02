@@ -2,23 +2,23 @@
 <header class="section-header">
     <h2>Education</h2>
 </header>
-{% assign educations = site.educations | sort: id %}
+{% assign educations = site.educations | sort:"item_id" | reverse %}
 
-{% for education in educations limit: 2 %}
+{% for education in educations %}
 
 <div class="item">
-    
     <h3 class="item-title">{{education.course_name}}</h3>
     <h4 class="item-title-details">{{education.university}} • {{education.from}} - {{education.to}}</h4>
 
     <p class="item-description">
         {{education.content | markdownify}}
     </p><span>
-        {% if education.to == "Present" %}
-            <strong>Current GPA</strong>: {{education.gpa}} 
-        {% else %}
-            <strong>Final Grade</strong>: {{education.grade}}
-        {% endif %}</span>
-
+        {% if education.gpa != null or education.grade != null %}
+            {% if education.to == "Present" %}
+                <strong>Current GPA</strong>: {{education.gpa}} 
+            {% else %}
+                <strong>Final Grade</strong>: {{education.grade}}
+            {% endif %}</span>
+        {% endif %}
 </div>
 {% endfor %}

@@ -59,6 +59,10 @@ collections:
     output: true
   work-experiences:
     output: true
+  publications:
+    output: true
+  talks:
+    output: true
 
 sass:
   sass_dir: _sass

@@ -11,7 +11,7 @@
             <h1 class="title-header">Erich Robbi</h1>
             <div class="header-content">
                 <div class="header-content-info">
-                    <h2>Data Scientist</h2>
+                    <h2>Ph.D. Student </h2>
                     <div class="icons-content">
                         <a class="icon-link" aria-label="Github" href="https://github.com/erich-r">
                             
@@ -47,25 +47,31 @@
                     </div>
                 </div>
                 <div class="summary">
-                    <p>I am a data scientist who enjoys discovering and applying data to solve complicated challenges. 
-                        As a highly driven and enthusiastic individual, I constantly strive for excellence in whatever I do.
-                        <br>I am also a good team player who is always eager to learn collaboratively.</p>
+                    <p>
+                        I am now enrolled as a PhD student at the <a href="http://sml.disi.unitn.it/">Structured Machine Learning Group</a>, actively participating in the TANGO project under the supervision of 
+                        <a href="https://disi.unitn.it/~passerini/index.html">Andrea Passerini</a>. 
+                        I am mostly interested in the field of Hybrid Decision Making and Explainable Artificial Intelligence.</p>
                    
                 </div>
-                <a class="contact" href="mailto:erich.robbi@studenti.unitn.it">Contact Me</a>
+                <a class="contact" href="mailto:erich.robbi@unitn.it">Contact Me</a>
             </div>
         </header>
 
-
+        <section class="content-section">
+            {% include educations.html %}
+            </section>
         <section class="content-section">
             {% include work-experiences.html %}
         </section>
         <section class="content-section">
-        {% include educations.html %}
+            {% include publications.html %}
         </section>
         <section class="content-section">
-        {% include projects.html %}
+            {% include talks.html %}
         </section>
+        <!-- <section class="content-section">
+        {% include projects.html %}
+        </section> -->
     </div>
 
     {% include footer.html %}
