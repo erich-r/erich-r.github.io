@@ -1,5 +1,5 @@
 <header class="section-header">
-    <h2>Publications</h2>
+    <h2>Latest Publications</h2>
 </header>
 {% assign my_publications = site.publications | sort:"item_id" | reverse %}
 {% for pub in my_publications limit:2 %}
@@ -14,4 +14,4 @@
     </p>
 </div>
 {% endfor %}
-
+<a id="more" href="https://scholar.google.com/citations?user=OTYjP1EAAAAJ&hl=it">More publications</a>

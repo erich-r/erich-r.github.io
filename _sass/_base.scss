@@ -153,3 +153,10 @@ a[href]:not(.contact) {
   padding-right:20px;
   background-size: 15px;
 }
+
+a#more[href] {
+  background:url("../icons/arrow.svg") no-repeat right center;
+  padding-right:20px;
+  background-size: 15px;
+}
+

@@ -5,7 +5,7 @@ name: Junior Researcher and Technologist
 where: Fondazione Bruno Kessler
 city: Trento
 from: Jan 2023
-to: Present
+to: Dec 2023
 tags: ["Python","PyTorch"]
 ---
 
