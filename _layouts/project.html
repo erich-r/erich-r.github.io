@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    {% include head.html %}
+
+    <body>
+    <div class="project-wrapper" id="top">
+        <a class="project-back" href="{{ '/' | relative_url }}#projects">&larr; Back to Projects</a>
+
+        <header class="project-header">
+            {% if page.venue %}<div class="project-venue">{{ page.venue }}</div>{% endif %}
+            <h1 class="project-title">{{ page.title | default: page.name }}</h1>
+            {% if page.course_name or page.completition_date %}
+            <h2 class="project-subtitle">{{ page.course_name }}{% if page.course_name and page.completition_date %} • {% endif %}{{ page.completition_date }}</h2>
+            {% endif %}
+
+            {% if page.authors %}
+            <div class="project-authors">
+                {% for author in page.authors %}{% if author.url %}<a href="{{ author.url }}">{{ author.name }}</a>{% else %}<span>{{ author.name }}</span>{% endif %}{% unless forloop.last %}, {% endunless %}{% endfor %}
+            </div>
+            {% endif %}
+
+            {% if page.links %}
+            <div class="project-links">
+                {% if page.links.paper %}<a class="project-btn" href="{{ page.links.paper }}">Paper</a>{% endif %}
+                {% if page.links.code %}<a class="project-btn" href="{{ page.links.code }}">Code</a>{% endif %}
+                {% if page.links.demo %}<a class="project-btn" href="{{ page.links.demo }}">Demo</a>{% endif %}
+                {% if page.links.video %}<a class="project-btn" href="{{ page.links.video }}">Video</a>{% endif %}
+            </div>
+            {% endif %}
+        </header>
+
+        {% if page.teaser %}
+        <div class="project-media">
+            {% if page.teaser_image %}
+            <img src="{{ page.teaser_image | relative_url }}" alt="{{ page.teaser_caption | default: page.title }}">
+            {% else %}
+            <div class="media-placeholder" data-type="image">
+                <span class="media-placeholder-label">Image placeholder</span>
+            </div>
+            {% endif %}
+            {% if page.teaser_caption %}<p class="media-caption">{{ page.teaser_caption }}</p>{% endif %}
+        </div>
+        {% endif %}
+
+        <div class="project-content">
+            {{ content }}
+        </div>
+
+        {% if page.tags %}
+        <div class="tags">
+            {% for tag in page.tags %}
+            <span class="chip">{{ tag }}</span>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+
+    {% include footer.html %}
+</body>
+</html>

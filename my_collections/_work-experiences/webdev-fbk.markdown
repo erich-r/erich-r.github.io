@@ -1,6 +1,6 @@
 ---
 sitemap: false
-id: 1
+item_id: 1
 name: Web Developer Internship
 where: Fondazione Bruno Kessler
 city: Trento

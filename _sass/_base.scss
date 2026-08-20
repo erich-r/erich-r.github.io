@@ -1,11 +1,76 @@
 
+:root {
+  --bg-color: #{$bg-color};
+  --primary: #{$primary};
+  --secondary: #{$secondary};
+  --text-color: #{$text-color};
+  --icon-color: #{$icon-color};
+  --link-icon: url("../icons/link.svg");
+  --arrow-icon: url("../icons/arrow.svg");
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #{$bg-color-dark};
+    --primary: #{$primary-dark};
+    --secondary: #{$secondary-dark};
+    --text-color: #{$text-color-dark};
+    --icon-color: #{$icon-color-dark};
+    --link-icon: url("../icons/link-dark.svg");
+    --arrow-icon: url("../icons/arrow-dark.svg");
+  }
+}
+
 html{
-  background: $bg-color;
+  background: var(--bg-color);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html{
+    scroll-behavior: smooth;
+  }
+}
+
+.content-section{
+  scroll-margin-top: 4.5rem;
+}
+
+.section-nav{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: .5rem 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: .9rem 0;
+  margin-bottom: 1.5rem;
+  background: var(--bg-color);
+  border-top: 4px solid var(--primary);
+  border-bottom: 2px solid var(--primary);
+}
+
+.section-nav a{
+  font-family: "Montserrat";
+  font-weight: 700;
+  font-size: .85rem;
+  letter-spacing: .03rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--text-color);
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.section-nav a:hover{
+  color: var(--icon-color);
+  border-bottom-color: var(--primary);
 }
 body {
   font-family: "Open Sans", sans-serif;
   margin:0;
-  color:$text-color
+  color: var(--text-color)
 }
 
 h1,h2,h3,h4{
@@ -17,16 +82,16 @@ h1,h2,h3,h4{
   margin: 1.5rem auto ;
   width: 200px;
   border-radius: 5px;
-  background-color: $bg-color;
+  background-color: var(--bg-color);
   text-decoration: none;
-  color: $text-color;
+  color: var(--text-color);
   font-size: $contact-button-text-size;
   transition: all 0.2s ease;
 }
 
 .contact:hover{
-  background-color: $text-color;
-  color: $bg-color
+  background-color: var(--text-color);
+  color: var(--bg-color)
 }
 
 .title-header{
@@ -34,11 +99,11 @@ h1,h2,h3,h4{
   font-size: 3rem;
   letter-spacing: -.15rem;
   font-family: "Montserrat";
-  
+  margin-top: 0;
 }
 
 .header-content-info{
-  border-top: 4px solid $primary;
+  border-top: 4px solid var(--primary);
   padding:.2rem;
 }
 
@@ -47,17 +112,17 @@ h1,h2,h3,h4{
 }
 
 .header-content-info{
-  border-bottom: 2px solid $primary;
+  border-bottom: 2px solid var(--primary);
 }
 
-a{background-color: transparent; color:$text-color}
+a{background-color: transparent; color: var(--text-color)}
 
 a:hover > svg >path{
-fill:$text-color;
+fill: var(--text-color);
 }
 
 a > svg > path{
-  fill:$primary;
+  fill: var(--icon-color);
   transition: all 0.2s ease;
 
 }
@@ -68,8 +133,8 @@ a > svg > path{
 
 .section-header{
   padding: .2rem 0 .4rem;
-  border-top: 4px solid $primary;
-  border-bottom: 2px solid $primary;
+  border-top: 4px solid var(--primary);
+  border-bottom: 2px solid var(--primary);
   margin-bottom: 1.5rem;
 }
 .section-header h2{
@@ -90,36 +155,74 @@ a > svg > path{
   margin:0 0 .75rem
 }
 
+.item-venue{
+  font-family: "Montserrat";
+  font-weight: 700;
+  font-size: .85rem;
+  letter-spacing: .01rem;
+  color: var(--secondary);
+  margin: 0 0 .2rem;
+}
+
+.item-meta{
+  font-size: .8rem;
+  color: var(--icon-color);
+  margin: 0 0 .75rem;
+}
+
 .item{
   margin-bottom: 2rem;
 }
 
+.item-description{
+  line-height: 1.6;
+}
+
+.item-description ul,
+.item-description ol{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item-authors-label{
+  display: block;
+  font-family: "Montserrat";
+  font-weight: 700;
+  font-size: .7rem;
+  letter-spacing: .08rem;
+  text-transform: uppercase;
+  color: var(--icon-color);
+  margin: 0 0 .2rem;
+}
+
 .footer{
-  border-top: 4px solid $primary;
+  border-top: 4px solid var(--primary);
 }
 
 a:hover{
   border-bottom: none;
-  color: #9c9c9c;
+  color: var(--icon-color);
 }
 
 .tags{
   display: flex;
   flex-wrap: wrap;
   margin-top: -5px;
+  padding-bottom: 5px;
   width:75%;
 }
 
 .chip {
   margin: 0 5px;
   margin-top:5px;
-  background: $primary;
+  background: var(--primary);
   padding: 2px 20px;
   border-radius: 32px;
   cursor: pointer;
   &.chip:hover {
-    background: $text-color;
-    color:$bg-color
+    background: var(--text-color);
+    color: var(--bg-color)
   }
 }
 
@@ -133,7 +236,7 @@ a:hover{
     width: 100%;
   }
   .header-content-info{
-      
+
       padding: 10px 0;
   }
 
@@ -142,21 +245,27 @@ a:hover{
   }
 
   .icons-content{
-    border-top: 2px solid $primary;
+    border-top: 2px solid var(--primary);
     padding: 10px 0 0;
     position:relative;
   }
 }
 
 a[href]:not(.contact) {
-  background:url("../icons/link.svg") no-repeat right center;
+  background: var(--link-icon) no-repeat right center;
+  padding-right:20px;
+  background-size: 10px;
+  text-decoration: none;
+}
+
+a#more[href] {
+  background: var(--arrow-icon) no-repeat right center;
   padding-right:20px;
   background-size: 15px;
 }
 
-a#more[href] {
-  background:url("../icons/arrow.svg") no-repeat right center;
-  padding-right:20px;
-  background-size: 15px;
+.section-nav a[href]{
+  background: none;
+  padding-right: 0;
 }
 

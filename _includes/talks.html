@@ -7,6 +7,9 @@
 <div class="item">
     <h3 class="item-title">{{talk.name}}</h3>
     <h4 class="item-title-details">{{talk.congress}} @ {{talk.location}} • {{talk.year}}</h4>
+    <p class="item-description">
+        {{talk.content | markdownify}}
+    </p>
 </div>
 {% endfor %}
 

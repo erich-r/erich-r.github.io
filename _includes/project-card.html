@@ -1,0 +1,19 @@
+<div class="item" data-tags="{{ include.project.tags | join: '|' }}">
+    <h3 class="item-title">{% if include.project.layout %}<a href="{{ include.project.url | relative_url }}">{{ include.project.name }}</a>{% else %}{{ include.project.name }}{% endif %}</h3>
+    <p class="item-venue">{{ include.project.course_name }}</p>
+    <p class="item-meta">{{ include.project.completition_date }}</p>
+
+    {% unless include.hide_description %}
+    <div class="item-description">
+        {% if include.project.layout %}{{ include.project.summary | markdownify }}{% else %}{{ include.project.content | markdownify }}{% endif %}
+    </div>
+    {% endunless %}
+    {% if include.project.final_mark %}
+    <p class="project-mark"><strong>Final mark</strong>: {{ include.project.final_mark }}</p>
+    {% endif %}
+    <div class="tags">
+        {% for tag in include.project.tags %}
+        <span class="chip">{{ tag }}</span>
+        {% endfor %}
+    </div>
+</div>

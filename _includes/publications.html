@@ -5,13 +5,15 @@
 {% for pub in my_publications limit:2 %}
 
 <div class="item">
-    
-    <h3 class="item-title"><a href={{pub.link}}>{{pub.name}}</a></h3>
-    <h4 class="item-title-details">{{pub.context}} • {{pub.publish_date}}</h4>
 
-    <p class="item-description">
+    <h3 class="item-title"><a href={{pub.link}}>{{pub.name}}</a></h3>
+    <p class="item-venue">{{pub.context}}</p>
+    <p class="item-meta">{% if pub.location %}{{ pub.location }} · {% endif %}{{pub.publish_date}}</p>
+
+    <div class="item-description">
+        <span class="item-authors-label">Authors</span>
         {{pub.content | markdownify}}
-    </p>
+    </div>
 </div>
 {% endfor %}
-<a id="more" href="https://scholar.google.com/citations?user=OTYjP1EAAAAJ&hl=it">More publications</a>
+<a id="more" href="{{ '/publications/' | relative_url }}">View all publications</a>

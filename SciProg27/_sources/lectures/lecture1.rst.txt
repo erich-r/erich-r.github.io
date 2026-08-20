@@ -1,0 +1,9 @@
+Lecture 1 - Python Basics
+=========
+
+.. raw:: html
+
+   <meta http-equiv="refresh" content="0; url=../_static/lectures/lecture1.pdf">
+
+   If you are not redirected automatically,
+:download:`click here <../_static/lectures/lecture1.pdf>`.

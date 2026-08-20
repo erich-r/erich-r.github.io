@@ -1,0 +1,317 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Installation\n",
+    "\n",
+    "## Getting the tools\n",
+    "\n",
+    "You will need to install several pieces of software to get a working Python 3 programming environment. In this section we will install everything that we are going to need in the next few weeks. \n",
+    "\n",
+    "There are many ways to write and execute Python code:\n",
+    "\n",
+    "* [Python interpreter](https://www.python.org/) (command line)\n",
+    "* [Visual Studio Code](https://code.visualstudio.com/) (editor, good debugger)\n",
+    "* [Jupyter](https://jupyter.org/) (notebook, good for experimentation and writing reports)\n",
+    "* [Google Colab](https://colab.research.google.com/) (online, sort-of collaborative)\n",
+    "* [Python Tutor](http://www.pythontutor.com/visualize.html#mode=edit) (online, visual debugger, only for short code)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "\n",
+    "Python 3 is available for Windows, Mac and Linux. Python3 alone is often not enough, and you will need to install extra system-specific libraries + editors like Jupyter or Visual Studio Code\n",
+    "\n",
+    "To avoid hassles, I suggest installing Python through Miniconda and using Visual Studio Code as the main code-editor.\n",
+    "\n",
+    "Below there are the steps to follow:\n",
+    "\n",
+    "1. Install [Miniconda](https://www.anaconda.com/docs/getting-started/miniconda/system-requirements), which provides a minimal Python environment managed by Conda, with little manual setup required.\n",
+    "\n",
+    "2. Install Visual Studio Code, which is available for all platforms. You can read about it [here](https://code.visualstudio.com/). Downloads for all platforms can be found [here](https://code.visualstudio.com/Download) \n",
+    "\n",
+    "3. Install [Python extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-python.python)  by Microsoft\n",
+    "\n",
+    "<img src=\"images/ext.png\" width=\"500\">"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Creating and Using a Python environment with Miniconda\n",
+    "\n",
+    "Once Miniconda is installed, it is recommended to create a separate Python environment for each project. This keeps the dependencies of different projects isolated and avoids conflicts between Python packages.\n",
+    "\n",
+    "1. Open **Anaconda Prompt** on Windows, or a **Terminal** on Mac/Linux.\n",
+    "\n",
+    "2. Create a new environment with Python installed. For example, to create an environment called `sciprog` with Python 3.11:\n",
+    "\n",
+    "   ```bash\n",
+    "   conda create -n sciprog python=3.11\n",
+    "   ```\n",
+    "\n",
+    "3. Activate the environment:\n",
+    "\n",
+    "   ```bash\n",
+    "   conda activate sciprog\n",
+    "   ```\n",
+    "   **Remember to always activate the environment before working!** \n",
+    "\n",
+    "   You should now see `(sciprog)` at the beginning of your terminal prompt, indicating that the environment is active.\n",
+    "\n",
+    "4. You can check that Python is correctly installed by running:\n",
+    "\n",
+    "   ```bash\n",
+    "   python --version\n",
+    "   ```\n",
+    "\n",
+    "5. When you are finished working, you can deactivate the environment with:\n",
+    "\n",
+    "   ```bash\n",
+    "   conda deactivate\n",
+    "   ```\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Visual Studio Code\n",
+    "\n",
+    "[Visual Studio Code](https://code.visualstudio.com/)  is an Integrated Development Editor (IDE) for text files. It can handle many languages, Python included  (python programs are text files ending in `.py`).\n",
+    "\n",
+    "Features:\n",
+    "\n",
+    "- open source\n",
+    "- lightweight\n",
+    "- used by many developers\n",
+    "- Python plugin is not the best, but works enough for us\n",
+    "\n",
+    "Once you open the IDE Visual Studio Code you will see the welcome screen:\n",
+    "\n",
+    "![](images/code.png)\n",
+    "\n",
+    "You can find useful information on this tool [here](https://code.visualstudio.com/docs#vscode). Please spend some time having a look at that page."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Once you are done with it you can close this window pressing on the \"x\". \n",
+    "\n",
+    "First thing to do is to set the python interpreter to use. Click on View --> Command Palette and type \"Python\" in the text search space. \n",
+    "\n",
+    "\n",
+    "Select **Python: Select Workspace Interpreter** as shown in the picture below.\n",
+    "\n",
+    "![python interpreter](images/interp.png)\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Finally, select the Python version you want to use i.e. Python3 (if you have Miniconda, it should automatically use your Miniconda environment)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "\n",
+    "Now you can click on **Open Folder** to create a new folder to place all the scripts you are going to create. You can call it something like \"exercises\". \n",
+    "\n",
+    "Next you can create a new file, `example1.py` (.py extension stands for python).\n",
+    "\n",
+    "Visual Studio Code will understand that you are writing Python code and will help you with valid syntax for your program."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Add the following text to your example1.py file:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "a: 10  b: 33  a/b= 0.30303030303030304\n"
+     ]
+    }
+   ],
+   "source": [
+    "\"\"\"\n",
+    "This is the first example of Python script.\n",
+    "\"\"\"\n",
+    "a = 10 # variable a\n",
+    "b = 33 # variable b\n",
+    "c = a / b # variable c holds the ratio\n",
+    "\n",
+    "# Let's print the result to screen.\n",
+    "print(\"a:\", a, \" b:\", b, \" a/b=\", c)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "A couple of things worth nothing. \n",
+    "\n",
+    "The first three lines opened and closed by `\"\"\"` are some text describing the content of the script. Moreover, comments are proceeded by the hash key (#) and they are just ignored by the python interpreter.\n",
+    "\n",
+    " **Please remember to comment your code, as it helps readability and will make your life easier when you have to modify or just understand the code you wrote some time in the past!**  \n",
+    "\n",
+    "Also notice that Visual Studio Code will help you writing your Python scripts. For example, when you start writing the **print** line it will complete the code for you (**if the Pylint extension is installed**), suggesting the functions that match the letters written. \n",
+    "\n",
+    "This useful feature is called *code completion* and, alongside suggesting possible matches, it also visualizes the parameters the function needs. Here is an example:\n",
+    "\n",
+    "![code completion](images/lint.png)\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Save the file (`Ctrl+S` as shortcut). \n",
+    "\n",
+    "It is convenient to ask the IDE to highlight potential *syntactic* problems found in the code. You can toggle this function on/off by clicking on **View --> Problems**. The *Problems* panel should look like this\n",
+    "\n",
+    "![problems](images/problem_print.png)\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Note that `printt` is actually underlined in red, meaning that there is an error which will cause the interpreter to stop the execution with a failure. \n",
+    "\n",
+    "**Please remember that before running any piece of code all errors must be fixed!**"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "![pythonrun](images/run_int.png)\n",
+    "\n",
+    "Upon clicking on *Run Python File in Terminal* a terminal panel should pop up in the lower section of the coding panel and the result shown above should be reported.\n",
+    "\n",
+    "Saving script files like the `example1.py` above is also handy because they can be invoked several times (later on we will learn how to get inputs from the command line to make them more useful...). \n",
+    "\n",
+    "To do so, you just need to call the python intepreter passing the script file as parameter. From the folder containing the `example1.py` script:\n",
+    "\n",
+    "```python3 example1.py```\n",
+    "\n",
+    "will in fact return:\n",
+    "\n",
+    "a: 10  b: 33  a/b= 0.30303030303030304\n",
+    "\n",
+    "Before ending this section, let me add another note on errors. \n",
+    "\n",
+    "The IDE will diligently point you out *syntactic* warnings and errors (i.e. errors/warnings concerning the structure of the written code like name of functions, number and type of parameters, etc.) but it will not detect *semantic* or *runtime* errors (i.e. connected to the meaning of your code or to the value of your variables). \n",
+    "These sort of errors will most probably make your code crash or may result in unexpected results/behaviours. In the next section we will introduce the debugger, which is a useful tool to help detecting these errors. \n",
+    "\n",
+    "Before getting into that, consider the following lines of code (do not focus on the *import* line, this is only to load the mathematics module and use its method *sqrt*):"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "A: 16  B: 4.0  C: 20.0\n"
+     ]
+    },
+    {
+     "ename": "ValueError",
+     "evalue": "math domain error",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[31m---------------------------------------------------------------------------\u001b[39m",
+      "\u001b[31mValueError\u001b[39m                                Traceback (most recent call last)",
+      "\u001b[36mCell\u001b[39m\u001b[36m \u001b[39m\u001b[32mIn[2]\u001b[39m\u001b[32m, line 11\u001b[39m\n\u001b[32m      7\u001b[39m B = math.sqrt(A)\n\u001b[32m      8\u001b[39m C = \u001b[32m5\u001b[39m*B\n\u001b[32m      9\u001b[39m print(\u001b[33m\"A:\"\u001b[39m, A, \u001b[33m\" B:\"\u001b[39m, B, \u001b[33m\" C:\"\u001b[39m, C)\n\u001b[32m     10\u001b[39m \n\u001b[32m---> \u001b[39m\u001b[32m11\u001b[39m D = math.sqrt(A-C) \u001b[38;5;66;03m# whoops, A-C is now -4!!!\u001b[39;00m\n\u001b[32m     12\u001b[39m print(D)\n",
+      "\u001b[31mValueError\u001b[39m: math domain error"
+     ]
+    }
+   ],
+   "source": [
+    "\"\"\"\n",
+    "Runtime error example, compute square root of numbers\n",
+    "\"\"\"\n",
+    "import math \n",
+    "\n",
+    "A = 16\n",
+    "B = math.sqrt(A)\n",
+    "C = 5*B\n",
+    "print(\"A:\", A, \" B:\", B, \" C:\", C)\n",
+    "\n",
+    "D = math.sqrt(A-C) # whoops, A-C is now -4!!!\n",
+    "print(D)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "If you add that code to a Python file (e.g. `sqrt_example.py`), you save it and you try to execute it, you should get an error message as reported above. \n",
+    "You can see that the interpreter has happily printed off the value of A,B and C but then stumbled into an error at line 9 (math domain error) when trying to compute $\\sqrt{A-C} = \\sqrt{-4}$, because the `sqrt` method of the math module cannot be applied to negative values (i.e. it works in the domain of real numbers).\n",
+    "\n",
+    "\n",
+    "*Please take some time to familiarize with Visual Studio Code (creating files, saving files etc.) as in the next practicals we will take this ability for granted.*"
+   ]
+  }
+ ],
+ "metadata": {
+  "celltoolbar": "Edit Metadata",
+  "kernelspec": {
+   "display_name": "sciprog",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.11.11"
+  },
+  "toc": {
+   "base_numbering": 1,
+   "nav_menu": {},
+   "number_sections": false,
+   "sideBar": true,
+   "skip_h1_title": false,
+   "title_cell": "Table of Contents",
+   "title_sidebar": "Contents",
+   "toc_cell": false,
+   "toc_position": {},
+   "toc_section_display": true,
+   "toc_window_display": true
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}

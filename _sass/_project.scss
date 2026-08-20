@@ -1,0 +1,259 @@
+.project-wrapper{
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.project-back{
+  display: inline-block;
+  margin: 1.5rem 0 0;
+  font-family: "Montserrat";
+  font-weight: 700;
+  font-size: .8rem;
+  letter-spacing: .03rem;
+  text-transform: uppercase;
+  color: var(--icon-color);
+  text-decoration: none;
+}
+
+.project-back:hover{
+  color: var(--text-color);
+}
+
+.project-header{
+  text-align: center;
+  padding: 1.5rem 0 2rem;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid var(--primary);
+}
+
+.project-venue{
+  font-family: "Montserrat";
+  font-weight: 700;
+  font-size: .8rem;
+  letter-spacing: .05rem;
+  text-transform: uppercase;
+  color: var(--secondary);
+}
+
+.project-title{
+  font-family: "Montserrat";
+  font-weight: 900;
+  font-size: 2.25rem;
+  letter-spacing: -.08rem;
+  margin: .5rem 0;
+}
+
+.project-subtitle{
+  color: var(--icon-color);
+  font-size: 1rem;
+  margin: 0 0 1rem;
+}
+
+.project-authors{
+  margin: 0 0 1.5rem;
+}
+
+.project-authors a{
+  color: var(--secondary);
+}
+
+.project-links{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: .75rem;
+  margin-top: 1rem;
+}
+
+.project-btn{
+  display: inline-flex;
+  align-items: center;
+  border-radius: 32px;
+  color: var(--text-color);
+  font-family: "Montserrat";
+  font-weight: 700;
+  font-size: .85rem;
+  text-decoration: none;
+  transition: all .2s ease;
+}
+
+a.project-btn[href]{
+  padding: .5rem 1.25rem;
+  background: var(--primary);
+}
+
+a.project-btn[href]:hover{
+  background: var(--text-color);
+  color: var(--bg-color);
+}
+
+.project-media{
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.project-media img{
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.media-placeholder{
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  border: 2px dashed var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--bg-color) 100%);
+  color: var(--icon-color);
+}
+
+.media-placeholder-label{
+  font-family: "Montserrat";
+  font-weight: 700;
+  font-size: .8rem;
+  letter-spacing: .05rem;
+  text-transform: uppercase;
+}
+
+.media-caption{
+  margin: .75rem 0 0;
+  font-size: .85rem;
+  font-style: italic;
+  color: var(--icon-color);
+}
+
+// Free-form content area: the whole page body (Markdown or raw HTML) lands
+// here, so these rules style plain elements rather than special classes —
+// write ## for a section, > for a pull-quote, ``` for code, <img>/<figure>
+// for media, and it all falls into place automatically.
+.project-content{
+  margin: 2rem 0;
+}
+
+.project-content > *:first-child{
+  margin-top: 0;
+}
+
+.project-content h2{
+  font-family: "Montserrat";
+  font-weight: 900;
+  font-size: 1.5rem;
+  letter-spacing: -.03rem;
+  border-top: 4px solid var(--primary);
+  padding-top: .6rem;
+  margin: 2.5rem 0 1rem;
+}
+
+.project-content h3{
+  font-family: "Montserrat";
+  font-weight: 700;
+  font-size: 1.15rem;
+  margin: 1.75rem 0 .75rem;
+}
+
+.project-content p{
+  margin: 0 0 1rem;
+  line-height: 1.6;
+}
+
+.project-content a{
+  color: var(--secondary);
+}
+
+.project-content ul,
+.project-content ol{
+  margin: 0 0 1rem;
+  padding-left: 1.25rem;
+}
+
+.project-content blockquote{
+  border-left: 4px solid var(--primary);
+  padding: 0 0 0 1.25rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+}
+
+.project-content blockquote p:last-child{
+  margin-bottom: 0;
+}
+
+.project-content pre{
+  background: var(--primary);
+  color: var(--text-color);
+  padding: 1rem 1.25rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-family: monospace;
+  font-size: .8rem;
+  margin: 1.5rem 0;
+}
+
+.project-content img{
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+  border-radius: 12px;
+}
+
+.project-content figure{
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.project-content figcaption{
+  margin-top: .75rem;
+  font-size: .85rem;
+  font-style: italic;
+  color: var(--icon-color);
+}
+
+// Optional helper: a centered, serif display block for a standalone
+// equation. Not LaTeX-rendered — just Unicode math + sub/sup, styled to
+// read as a formula without pulling in a MathJax/KaTeX dependency.
+.project-content .equation{
+  text-align: center;
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  letter-spacing: .01rem;
+  margin: 1.75rem 0;
+  padding: .5rem 1rem;
+  overflow-x: auto;
+  color: var(--text-color);
+}
+
+.project-content .equation sub,
+.project-content .equation sup{
+  font-style: normal;
+}
+
+// Optional helper: wrap two or more <figure> elements in this to lay
+// placeholders/images/gifs out side by side instead of stacked.
+.project-media-row{
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  margin: 2rem 0;
+}
+
+.project-media-row figure{
+  flex: 1 1 0;
+  min-width: 240px;
+  margin: 0;
+}
+
+a.project-back[href],
+.project-authors a[href]{
+  background: none;
+  padding-right: 0;
+}
+
+@media screen and (max-width: 500px){
+  .project-title{
+    font-size: 1.75rem;
+  }
+}

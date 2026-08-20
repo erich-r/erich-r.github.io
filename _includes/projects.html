@@ -3,22 +3,6 @@
 </header>
 {% assign my_projects = site.projects | sort:"item_id" | reverse %}
 {% for project in my_projects limit:2 %}
-
-<div class="item">
-    
-    <h3 class="item-title">{{project.name}}</h3>
-    <h4 class="item-title-details">{{project.course_name}} • {{project.completition_date}}</h4>
-
-    <p class="item-description">
-        {{project.content | markdownify}}
-    </p>
-    <p class="project-mark"><strong>Final mark</strong>: {{project.final_mark}}</p>
-    <div class="tags">
-        {% for tag in project.tags %}
-        <span class="chip">{{tag}}</span>
-        {% endfor %}
-    </div>
-
-</div>
+{% include project-card.html project=project %}
 {% endfor %}
-
+<a id="more" href="{{ '/projects/' | relative_url }}">View all projects</a>

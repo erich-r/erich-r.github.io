@@ -1,0 +1,45 @@
+/* Collapsible solution boxes, used via <details class="solution"> in notebook markdown cells */
+details.solution {
+  background-color: #f0f7ff;
+  border-left: 4px solid #2980b9;
+  border-radius: 4px;
+  padding: 0.6em 1em;
+  margin: 1em 0;
+}
+
+details.solution > summary {
+  cursor: pointer;
+  font-weight: bold;
+  color: #2980b9;
+}
+
+details.solution[open] > summary {
+  margin-bottom: 0.6em;
+}
+
+details.solution pre {
+  margin: 0.5em 0 0 0;
+}
+
+/* Dark mode (furo sets data-theme="dark", or "auto" + OS preference) */
+body[data-theme="dark"] details.solution,
+body[data-theme="auto"] details.solution {
+  background-color: #1c2b3a;
+  border-left-color: #5b9bd5;
+}
+
+body[data-theme="dark"] details.solution > summary,
+body[data-theme="auto"] details.solution > summary {
+  color: #7fb2e5;
+}
+
+@media (prefers-color-scheme: light) {
+  body[data-theme="auto"] details.solution {
+    background-color: #f0f7ff;
+    border-left-color: #2980b9;
+  }
+
+  body[data-theme="auto"] details.solution > summary {
+    color: #2980b9;
+  }
+}

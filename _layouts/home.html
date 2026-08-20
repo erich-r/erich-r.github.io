@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xml:lang="en"> <!-- cotto come una verza -->
+<html lang="en"> <!-- cotto come una verza -->
 
 
     {% include head.html %}
 
 
     <body>
-    <div class="content-wrapper" id="#top">
+    <div class="content-wrapper" id="top">
         <header class="header">
             <h1 class="title-header">Erich Robbi</h1>
             <div class="header-content">
@@ -60,21 +60,26 @@
             </div>
         </header>
 
-        <section class="content-section">
+        {% include nav.html %}
+
+        <section class="content-section" id="education">
             {% include educations.html %}
             </section>
-        <section class="content-section">
+        <section class="content-section" id="experience">
             {% include work-experiences.html %}
         </section>
-        <section class="content-section">
+        <section class="content-section" id="publications">
             {% include publications.html %}
         </section>
-        <section class="content-section">
+        <section class="content-section" id="projects">
+            {% include projects.html %}
+        </section>
+        <section class="content-section" id="teaching">
+            {% include teaching.html %}
+        </section>
+        <section class="content-section" id="talks">
             {% include talks.html %}
         </section>
-        <!-- <section class="content-section">
-        {% include projects.html %}
-        </section> -->
     </div>
 
     {% include footer.html %}

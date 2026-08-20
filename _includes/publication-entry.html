@@ -1,0 +1,5 @@
+<div class="item">
+    <h3 class="item-title"><a href="{{ include.pub.link }}">{{ include.pub.name }}</a></h3>
+    <p class="item-venue">{{ include.pub.context }}</p>
+    <p class="item-meta">{% if include.pub.location %}{{ include.pub.location }} · {% endif %}{{ include.pub.publish_date }}</p>
+</div>

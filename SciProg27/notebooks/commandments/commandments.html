@@ -1,0 +1,777 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html"><link rel="search" title="Search" href="../../search.html"><link rel="prev" title="Installation" href="../lectures/lecture0/installation.html">
+        <link rel="canonical" href="https://erich-r.github.io/SciProg27/notebooks/commandments/commandments.html">
+
+    <!-- Generated with Sphinx 9.0.4 and Furo 2025.12.19 -->
+        <title>Rules You Shall Not Break - SciProg 2027</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=c7d4a4fc" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">SciProg 2027</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  <span class="sidebar-brand-text">SciProg 2027</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/lecture0/installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Commandments</span></p>
+<ul class="current">
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Rules You Shall Not Break</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="Rules-You-Shall-Not-Break">
+<h1>Rules You Shall Not Break<a class="headerlink" href="#Rules-You-Shall-Not-Break" title="Link to this heading">#</a></h1>
+<p>The Supreme Committee for the Doctrine of Coding has ruled important Commandments you shall follow.</p>
+<p>If you accept their wise words, you shall become a true Python Jedi.</p>
+<div class="admonition warning">
+<p><strong>WARNING</strong>: if you don’t follow the Commandments, you will end up in <em>Debugging Hell</em>!</p>
+</div>
+<section id="I-COMMANDMENT">
+<h2>I COMMANDMENT<a class="headerlink" href="#I-COMMANDMENT" title="Link to this heading">#</a></h2>
+<div class="jupman-alert-principle"></div><div class="admonition note">
+<p><strong>You shall write Python code</strong></p>
+</div>
+<p>Who does not write Python code, does not learn Python</p>
+</section>
+<section id="II-COMMANDMENT">
+<h2>II COMMANDMENT<a class="headerlink" href="#II-COMMANDMENT" title="Link to this heading">#</a></h2>
+<div class="jupman-alert-principle"></div><div class="admonition note">
+<p><strong>Whenever you insert a variable in a</strong> <code class="docutils literal notranslate"><span class="pre">for</span></code> <strong>cycle, such variables must be new</strong></p>
+</div>
+<p>If you defined the variable before, you shall not reintroduce it in a <code class="docutils literal notranslate"><span class="pre">for</span></code>, because doing so might bring confusion in the minds of the readers.</p>
+<p>So avoid such sins:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">i</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>  <span class="c1"># sin, you lose variable i</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>   <span class="c1"># prints 2 and not 7  !!</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0
+1
+2
+2
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span>  <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>  <span class="c1"># debugging hell, you lose the i of external cycle</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>  <span class="c1"># prints 4 !!</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0
+1
+2
+3
+4
+4
+0
+1
+2
+3
+4
+4
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span> <span class="c1"># sin, you lose parameter i</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>  <span class="c1"># prints 2, not the 7 we passed!</span>
+
+<span class="n">f</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0
+1
+2
+2
+</pre></div></div>
+</div>
+</section>
+<section id="III-COMMANDMENT">
+<h2>III COMMANDMENT<a class="headerlink" href="#III-COMMANDMENT" title="Link to this heading">#</a></h2>
+<div class="jupman-alert-principle"></div><div class="admonition note">
+<p><strong>You shall never ever reassign function parameters</strong></p>
+</div>
+<p>Never perform any of these assignments, as you risk losing the parameter passed during function call:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">sin</span><span class="p">(</span><span class="n">my_int</span><span class="p">):</span>
+    <span class="n">my_int</span> <span class="o">=</span> <span class="mi">666</span>            <span class="c1"># you lost the 5 passed from external call!</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">my_int</span><span class="p">)</span>           <span class="c1"># prints 666</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+666
+</pre></div></div>
+</div>
+<p>Same reasoning can be applied to all other types:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">evil</span><span class="p">(</span><span class="n">my_string</span><span class="p">):</span>
+    <span class="n">my_string</span> <span class="o">=</span> <span class="s2">&quot;666&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">disgrace</span><span class="p">(</span><span class="n">my_list</span><span class="p">):</span>
+    <span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">666</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">delirium</span><span class="p">(</span><span class="n">my_dict</span><span class="p">):</span>
+    <span class="n">my_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;evil&quot;</span><span class="p">:</span><span class="mi">666</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>For the sole case when you have composite parameters like lists or dictionaries, you can write like below IF AND ONLY IF the function description requires to MODIFY the internal elements of the parameter (like for example sorting a list in-place or changing the field of a dictionary.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># MODIFY my_list in some way</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">allowed</span><span class="p">(</span><span class="n">my_list</span><span class="p">):</span>
+    <span class="n">my_list</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>     <span class="c1"># OK, function text requires it</span>
+
+<span class="n">outside</span> <span class="o">=</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">]</span>
+<span class="n">allowed</span><span class="p">(</span><span class="n">outside</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">outside</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[8, 5, 9]
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># MODIFY dictionary in some way</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">ok</span><span class="p">(</span><span class="n">dictionary</span><span class="p">):</span>
+    <span class="n">dictionary</span><span class="p">[</span><span class="s2">&quot;my field&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>       <span class="c1"># OK, function text requires it</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># MODIFY instance in some way</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">fine</span><span class="p">(</span><span class="n">class_instance</span><span class="p">):</span>
+    <span class="n">class_instance</span><span class="o">.</span><span class="n">my_field</span> <span class="o">=</span> <span class="mi">7</span>   <span class="c1"># OK, function text requires it</span>
+</pre></div>
+</div>
+</div>
+<p>On the other hand, if the function requires to RETURN a NEW object, you shall not fall into the temptation of modifying the input:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><br/><span></span><span class="c1"># RETURN a NEW sorted list</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">pain</span><span class="p">(</span><span class="n">my_list</span><span class="p">):</span>
+    <span class="n">my_list</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>    <span class="c1"># BAD, you are modifying the input list instead of creating a new one!</span>
+    <span class="k">return</span> <span class="n">my_list</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># RETURN a NEW list</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">crisis</span><span class="p">(</span><span class="n">my_list</span><span class="p">):</span>
+    <span class="n">my_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>    <span class="c1"># BAD, as above</span>
+    <span class="k">return</span> <span class="n">my_list</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># RETURN a NEW dictionary</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">torment</span><span class="p">(</span><span class="n">my_dict</span><span class="p">):</span>
+    <span class="n">my_dict</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">6</span>  <span class="c1"># BAD, you are modifying the input dictionary instead of creating a new one!</span>
+    <span class="k">return</span> <span class="n">my_dict</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># RETURN a NEW class instance</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">desperation</span><span class="p">(</span><span class="n">my_instance</span><span class="p">):</span>
+    <span class="n">my_instance</span><span class="o">.</span><span class="n">my_field</span> <span class="o">=</span> <span class="mi">6</span>  <span class="c1"># BAD, you are modifying the input object</span>
+                              <span class="c1">#      instead of creating a new one!</span>
+    <span class="k">return</span> <span class="n">my_instance</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="IV-COMMANDMENT">
+<h2>IV COMMANDMENT<a class="headerlink" href="#IV-COMMANDMENT" title="Link to this heading">#</a></h2>
+<div class="jupman-alert-principle"></div><div class="admonition note">
+<p><strong>You shall never ever reassign values to function calls or methods</strong></p>
+</div>
+<p><em>WRONG:</em></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">my_function</span><span class="p">()</span> <span class="o">=</span> <span class="mi">666</span>
+<span class="n">my_function</span><span class="p">()</span> <span class="o">=</span> <span class="s1">&#39;evil&#39;</span>
+<span class="n">my_function</span><span class="p">()</span> <span class="o">=</span> <span class="p">[</span><span class="mi">666</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><em>CORRECT:</em></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">my_fun</span><span class="p">()</span>
+<span class="n">z</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">z</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="n">d</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="n">d</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">6</span>
+</pre></div>
+</div>
+<p>Function calls like <code class="docutils literal notranslate"><span class="pre">my_function()</span></code> return calculations results and store them in a box in memory which is only created for the purposes of the call, and Python will not allow us to reuse it like it were a variabile.</p>
+<p>Whenever you see <code class="docutils literal notranslate"><span class="pre">name()</span></code> in the left part, it <em>cannot</em> be followed by the equality sign <code class="docutils literal notranslate"><span class="pre">=</span></code> (but it can be followed by two equals sign <code class="docutils literal notranslate"><span class="pre">==</span></code> if you are doing a comparison).</p>
+</section>
+<section id="V-COMMANDMENT">
+<h2>V COMMANDMENT<a class="headerlink" href="#V-COMMANDMENT" title="Link to this heading">#</a></h2>
+<div class="jupman-alert-principle"></div><div class="admonition note">
+<p><strong>You shall never ever redefine system functions</strong></p>
+</div>
+<p>Python has several system defined functions. For example <code class="docutils literal notranslate"><span class="pre">list</span></code> is a Python type: as such, you can use it for example as a function to convert some type to a list:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="s2">&quot;ciao&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;c&#39;, &#39;i&#39;, &#39;a&#39;, &#39;o&#39;]
+</pre></div></div>
+</div>
+<p>When you allow the forces of evil to take the best of you, you might be tempted to use reserved words like <code class="docutils literal notranslate"><span class="pre">list</span></code> as a variable for you own miserable purposes:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;my&#39;</span><span class="p">,</span> <span class="s1">&#39;pitiful&#39;</span><span class="p">,</span> <span class="s1">&#39;list&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<p>Python allows you to do so, but we do <strong>not</strong>, for the consequences are disastrous.</p>
+<p>For example, if you now attempt to use <code class="docutils literal notranslate"><span class="pre">list</span></code> for its intended purpose like casting to list, it won’t work anymore:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="s2">&quot;ciao&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+&lt;ipython-input-4-c63add832213&gt; in &lt;module&gt;()
+----&gt; 1 list(&quot;ciao&quot;)
+
+TypeError: &#39;list&#39; object is not callable
+</pre></div>
+</div>
+<p>In particular, we recommend to <strong>not redefine</strong> these precious functions:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">bool</span></code>, <code class="docutils literal notranslate"><span class="pre">int</span></code>,<code class="docutils literal notranslate"><span class="pre">float</span></code>,<code class="docutils literal notranslate"><span class="pre">tuple</span></code>,<code class="docutils literal notranslate"><span class="pre">str</span></code>,<code class="docutils literal notranslate"><span class="pre">list</span></code>,<code class="docutils literal notranslate"><span class="pre">set</span></code>,<code class="docutils literal notranslate"><span class="pre">dict</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max</span></code>, <code class="docutils literal notranslate"><span class="pre">min</span></code>, <code class="docutils literal notranslate"><span class="pre">sum</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">next</span></code>, <code class="docutils literal notranslate"><span class="pre">iter</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>, <code class="docutils literal notranslate"><span class="pre">dir</span></code>, <code class="docutils literal notranslate"><span class="pre">vars</span></code>,<code class="docutils literal notranslate"><span class="pre">help</span></code></p></li>
+</ul>
+</section>
+<section id="VI-COMMANDMENT">
+<h2>VI COMMANDMENT<a class="headerlink" href="#VI-COMMANDMENT" title="Link to this heading">#</a></h2>
+<div class="jupman-alert-principle"></div><div class="admonition note">
+<p><strong>You shall use</strong> <code class="docutils literal notranslate"><span class="pre">return</span></code> <strong>command only if you see written RETURN in function description!</strong></p>
+</div>
+<p>If there is no <code class="docutils literal notranslate"><span class="pre">return</span></code> in function description, the function is intended to return <code class="docutils literal notranslate"><span class="pre">None</span></code>. In this case you don’t even need to write <code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">None</span></code>, as Python will do it implicitly for you.</p>
+</section>
+<section id="VII-COMMANDMENT">
+<h2>VII COMMANDMENT<a class="headerlink" href="#VII-COMMANDMENT" title="Link to this heading">#</a></h2>
+<div class="jupman-alert-principle"></div><div class="admonition note">
+<p><strong>You shall also write on paper!</strong></p>
+</div>
+<p>If staring at the monitor doesn’t work, help yourself and draw a representation of the state sof the program. Tables, nodes, arrows, all can help figuring out a solution for the problem.</p>
+</section>
+<section id="VIII-COMMANDMENT">
+<h2>VIII COMMANDMENT<a class="headerlink" href="#VIII-COMMANDMENT" title="Link to this heading">#</a></h2>
+<div class="jupman-alert-principle"></div><div class="admonition note">
+<p><strong>You shall never ever reassing</strong> <code class="docutils literal notranslate"><span class="pre">self</span></code> <strong>!</strong></p>
+</div>
+<p>Never write horrors such as this:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MyClass</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">my_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;my_field&#39;</span><span class="p">:</span><span class="mi">666</span><span class="p">}</span>    <span class="c1"># SIN</span>
+</pre></div>
+</div>
+</div>
+<p>Since <code class="docutils literal notranslate"><span class="pre">self</span></code> is a kind of a dictionary, you might be tempted to write like above, but to external world it will bring no effect.</p>
+<p>For example, let’s suppose somebody from outside makes a call like this:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="o">=</span> <span class="n">MyClass</span><span class="p">()</span>
+<span class="n">mc</span><span class="o">.</span><span class="n">my_method</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>After the call <code class="docutils literal notranslate"><span class="pre">mc</span></code> will not point to <code class="docutils literal notranslate"><span class="pre">{'my_field':666}</span></code></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;__main__.MyClass at 0x7f4d9423b210&gt;
+</pre></div></div>
+</div>
+<p>and will not have <code class="docutils literal notranslate"><span class="pre">my_field</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span><span class="o">.</span><span class="n">my_field</span>
+<span class="o">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span>                            <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">26</span><span class="o">-</span><span class="mi">5</span><span class="n">c4e6630908d</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span><span class="p">()</span>
+<span class="o">----&gt;</span> <span class="mi">1</span> <span class="n">mc</span><span class="o">.</span><span class="n">my_field</span>
+
+<span class="ne">AttributeError</span><span class="p">:</span> <span class="s1">&#39;MyClass&#39;</span> <span class="nb">object</span> <span class="n">has</span> <span class="n">no</span> <span class="n">attribute</span> <span class="s1">&#39;my_field&#39;</span>
+</pre></div>
+</div>
+<p>Following the same reasoning, you shall never reassign <code class="docutils literal notranslate"><span class="pre">self</span></code> to lists or others things:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MyClass</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">my_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;evil&#39;</span><span class="p">]</span>     <span class="c1"># YET ANOTHER SIN</span>
+        <span class="bp">self</span> <span class="o">=</span> <span class="mi">666</span>          <span class="c1"># NO NO NO</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="IX-COMMANDMENT">
+<h2>IX COMMANDMENT<a class="headerlink" href="#IX-COMMANDMENT" title="Link to this heading">#</a></h2>
+<div class="jupman-alert-principle"></div><div class="admonition note">
+<p><strong>You shall test!</strong></p>
+</div>
+<p>Untested code <em>does not work</em> by definition.</p>
+</section>
+<section id="X-COMMANDMENT">
+<h2>X COMMANDMENT<a class="headerlink" href="#X-COMMANDMENT" title="Link to this heading">#</a></h2>
+<div class="jupman-alert-principle"></div><div class="admonition note">
+<p><strong>You shall never ever add nor remove elements from a sequence you are iterating with a</strong> <code class="docutils literal notranslate"><span class="pre">for</span></code> <strong>!</strong></p>
+</div>
+<p>Falling into such temptations <strong>would produce totally unpredictable behaviours</strong> (do you know the expression <em>pulling the rug out from under your feet ?</em> )</p>
+<p><strong>Do not add</strong>, because you risk walking on a tapis roulant that never turns off:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="s1">&#39;d&#39;</span><span class="p">,</span><span class="s1">&#39;e&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">my_list</span><span class="p">:</span>
+    <span class="n">my_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">el</span><span class="p">)</span>  <span class="c1"># YOU ARE CLOGGING COMPUTER MEMORY</span>
+</pre></div>
+</div>
+<p><strong>Do not remove</strong>, because you risk corrupting the natural order of things:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="s1">&#39;d&#39;</span><span class="p">,</span><span class="s1">&#39;e&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">my_list</span><span class="p">:</span>
+    <span class="n">my_list</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">el</span><span class="p">)</span>   <span class="c1"># VERY BAD IDEA</span>
+</pre></div>
+</div>
+</div>
+<p>Look at the code. You think we removed eveything, uh?</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_list</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;b&#39;, &#39;d&#39;]
+</pre></div></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">O_o'</span></code> Do not even try to make sense of such sorcery - nobody can, because it is related to Python internal implementation.</p>
+<p>Our version of Python gives this absurd result, yours may give another. Same applies for iteration on sets and dictionaries. <strong>You are warned</strong>.</p>
+<p><strong>If you really need to remove stuff from the sequence you are iterating on</strong>, use a <code class="docutils literal notranslate"><span class="pre">while</span></code> cycle or first make a copy of the original sequence.</p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          <a class="prev-page" href="../lectures/lecture0/installation.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Installation</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2026, Erich Robbi
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Rules You Shall Not Break</a><ul>
+<li><a class="reference internal" href="#I-COMMANDMENT">I COMMANDMENT</a></li>
+<li><a class="reference internal" href="#II-COMMANDMENT">II COMMANDMENT</a></li>
+<li><a class="reference internal" href="#III-COMMANDMENT">III COMMANDMENT</a></li>
+<li><a class="reference internal" href="#IV-COMMANDMENT">IV COMMANDMENT</a></li>
+<li><a class="reference internal" href="#V-COMMANDMENT">V COMMANDMENT</a></li>
+<li><a class="reference internal" href="#VI-COMMANDMENT">VI COMMANDMENT</a></li>
+<li><a class="reference internal" href="#VII-COMMANDMENT">VII COMMANDMENT</a></li>
+<li><a class="reference internal" href="#VIII-COMMANDMENT">VIII COMMANDMENT</a></li>
+<li><a class="reference internal" href="#IX-COMMANDMENT">IX COMMANDMENT</a></li>
+<li><a class="reference internal" href="#X-COMMANDMENT">X COMMANDMENT</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=d91ab2ad"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    </body>
+</html>

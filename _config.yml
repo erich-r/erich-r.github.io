@@ -19,7 +19,7 @@
 # in the templates via {{ site.myvariable }}.
 
 title: Erich Robbi's website
-email: erich.robbi@studenti.unitn.it
+email: erich.robbi@unitn.it
 description: >- # this means to ignore newlines until "baseurl:"
   My personal website that contains my projects, education, work experiences and my CV.
 baseurl: "" # the subpath of your site, e.g. /blog
@@ -50,6 +50,18 @@ plugins:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+
+# Jekyll ignores any file/folder starting with "_" by default, but Sphinx
+# (used to build SciProg27/) puts its CSS/JS/assets in folders like that.
+# Force those back in so they get copied into the built site.
+# NOTE: Jekyll's include matching is by basename, not full path, so these
+# apply anywhere in the source tree, not just under SciProg27/.
+include:
+  - _static
+  - _sources
+  - _images
+  - _downloads
+
 collections_dir: "my_collections"
 
 collections:
@@ -62,6 +74,8 @@ collections:
   publications:
     output: true
   talks:
+    output: true
+  teaching:
     output: true
 
 sass:

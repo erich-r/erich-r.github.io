@@ -1,6 +1,6 @@
 ---
 sitemap: false
-id: 2
+item_id: 2
 name: Junior Researcher and Technologist
 where: Fondazione Bruno Kessler
 city: Trento

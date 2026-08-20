@@ -1,0 +1,20 @@
+---
+layout: list
+title: All Publications
+back_label: Home
+back_anchor: publications
+permalink: /publications/
+---
+{% for group in site.data.publication_types %}
+{% assign pubs = site.publications | where: "type", group.key | sort: "publish_date" | reverse %}
+{% if pubs.size > 0 %}
+<header class="section-header">
+    <h2>{{ group.label }}</h2>
+</header>
+<div class="pub-group">
+{% for pub in pubs %}
+{% include publication-entry.html pub=pub %}
+{% endfor %}
+</div>
+{% endif %}
+{% endfor %}

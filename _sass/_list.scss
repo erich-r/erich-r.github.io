@@ -1,0 +1,81 @@
+.list-header{
+  margin: 2rem 0 1.5rem;
+}
+
+.list-title{
+  font-family: "Montserrat";
+  font-weight: 900;
+  font-size: 1.75rem;
+  letter-spacing: -.05rem;
+  margin: 0 0 .5rem;
+}
+
+.list-subtitle{
+  color: var(--icon-color);
+  margin: 0;
+  font-size: .9rem;
+}
+
+.pub-group{
+  margin-bottom: 1rem;
+}
+
+// Denser type scale for list pages (all-projects / all-publications) —
+// the homepage cards that share these classes are untouched.
+.list-page .section-header h2{
+  font-size: 1.5rem;
+}
+
+.list-page .item{
+  margin-bottom: 1.25rem;
+}
+
+.list-page .item-title{
+  font-size: 1.1rem;
+  margin: 0 0 .3rem;
+}
+
+.list-page .item-title-details{
+  font-size: .8rem;
+  margin: 0 0 .3rem;
+}
+
+.list-page .item-venue{
+  font-size: .75rem;
+  margin: 0 0 .15rem;
+}
+
+.list-page .item-meta{
+  font-size: .7rem;
+  margin: 0 0 .3rem;
+}
+
+.list-page .item-description{
+  font-size: .9rem;
+}
+
+.list-page .project-mark{
+  font-size: .85rem;
+}
+
+.list-page .chip{
+  font-size: .75rem;
+  padding: 1px 14px;
+}
+
+.filter-bar{
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin: 0 0 2rem;
+}
+
+.filter-chip{
+  border: none;
+  font-family: "Montserrat";
+}
+
+.filter-chip.active{
+  background: var(--secondary);
+  color: var(--bg-color);
+}

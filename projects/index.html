@@ -1,0 +1,53 @@
+---
+layout: list
+title: All Projects
+back_label: Home
+back_anchor: projects
+permalink: /projects/
+---
+{% assign all_projects = site.projects | sort: "item_id" | reverse %}
+
+{% assign all_tags = "" %}
+{% for project in all_projects %}
+{% for tag in project.tags %}
+{% unless all_tags contains tag %}{% assign all_tags = all_tags | append: tag | append: "||" %}{% endunless %}
+{% endfor %}
+{% endfor %}
+{% assign tag_list = all_tags | split: "||" | sort %}
+
+{% if tag_list.size > 0 %}
+<div class="filter-bar" id="tag-filter">
+    <button type="button" class="chip filter-chip active" data-filter="all">All</button>
+    {% for tag in tag_list %}
+    <button type="button" class="chip filter-chip" data-filter="{{ tag }}">{{ tag }}</button>
+    {% endfor %}
+</div>
+{% endif %}
+
+<div class="project-list">
+{% for project in all_projects %}
+{% include project-card.html project=project hide_description=true %}
+{% endfor %}
+</div>
+
+<script>
+(function () {
+    var buttons = document.querySelectorAll('#tag-filter .filter-chip');
+    var items = document.querySelectorAll('.project-list .item');
+    buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            buttons.forEach(function (b) { b.classList.remove('active'); });
+            btn.classList.add('active');
+            var filter = btn.getAttribute('data-filter');
+            items.forEach(function (item) {
+                if (filter === 'all') {
+                    item.style.display = '';
+                    return;
+                }
+                var tags = (item.getAttribute('data-tags') || '').split('|');
+                item.style.display = tags.indexOf(filter) !== -1 ? '' : 'none';
+            });
+        });
+    });
+})();
+</script>

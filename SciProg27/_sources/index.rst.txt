@@ -1,0 +1,92 @@
+Scientific Programming
+=======================
+
+The official website of the Scientific Programming course, part of the Data Science degree programme at the University of Trento, for the 2026/2027 academic year.
+
+Timetable and Lecture rooms
+---------------
+
+For the part A lab:
+
+* Tuesdays 16.30 - 18.30, room A201
+* Fridays 15.30 - 17.30, room A201
+
+Course Overview
+---------------
+
+Topics covered in this course include:
+
+* Datastructures
+* Controlflow
+* Functions
+* Recursion
+* Pandas
+* Numpy
+* OOP
+
+Learning Objectives
+-------------------
+
+By the end of the course, students should be able to:
+
+* Develop programs to solve problems
+* Analyze and visualize data
+* Write clear code
+* Apply computational techniques to real-world problems
+
+Lectures
+----------
+
+.. toctree::
+   :caption: Lectures
+   :maxdepth: 1
+
+   notebooks/lectures/lecture0/installation
+   notebooks/lectures/lecture1/index
+
+   
+.. Challenges
+.. ----------
+
+.. .. toctree::
+..    :caption: Challenge Yourself at Home
+..    :maxdepth: 1
+
+..    notebooks/challenges/challenges_basics.ipynb
+
+
+
+Commandments
+------------
+
+.. toctree::
+   :caption: Commandments
+   :maxdepth: 1
+
+   notebooks/commandments/commandments.ipynb
+
+Resources
+---------
+
+* `Install Python via Miniconda ***Recommended*** <https://www.anaconda.com/docs/getting-started/miniconda/system-requirements>`_
+
+Alternatively:
+
+* `Install Python on Windows <https://learn.microsoft.com/en-us/windows/dev-environment/python?tabs=winget>`_
+* `Install Python on Linux <https://docs.python-guide.org/starting/install3/linux/>`_
+* `Install Python on MacOS <https://docs.brew.sh/Homebrew-and-Python>`_
+
+Assessment
+----------
+
+TBD
+
+Acknowledgements
+----------
+
+This course incorporates materials by David Leoni, licensed under CC BY 4.0. Changes include formatting, restructuring, and updates for this course.
+
+Contact
+-------
+
+For questions about the course, please contact erich[dot]robbi[at]unitn[dot]it

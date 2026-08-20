@@ -3,8 +3,10 @@ sitemap: false
 item_id: 1
 name: Environmentally-Aware Bundle Recommendation Using the Choquet Integral
 publish_date: 2023
-context: PAIS
+context: Prestigious Applications of Intelligent Systems
+location: "Kraków, Poland"
+type: conference
 link: https://ebooks.iospress.nl/volumearticle/64571
 ---
 
-**Authors**: Marco Bronzini, Erich Robbi, Paolo Viappiani, Andrea Passerini
+Marco Bronzini, Erich Robbi, Paolo Viappiani, Andrea Passerini
