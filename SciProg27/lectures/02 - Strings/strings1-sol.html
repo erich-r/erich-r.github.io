@@ -1,0 +1,2172 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html"><link rel="search" title="Search" href="../../search.html"><link rel="next" title="Strings 2 - Operators" href="strings2-sol.html"><link rel="prev" title="02 - Strings" href="index.html">
+        <link rel="canonical" href="https://erich-r.github.io/SciProg27/lectures/02%20-%20Strings/strings1-sol.html">
+
+    <!-- Generated with Sphinx 9.0.4 and Furo 2025.12.19 -->
+        <title>Strings 1 - Introduction - SciProg 2027</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=e429fab1" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">SciProg 2027</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  <span class="sidebar-brand-text">SciProg 2027</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../00%20-%20Installation/installation.html">Installation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../01%20-%20Basics/index.html">01 - Basics</a><input aria-label="Toggle navigation of 01 - Basics" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../01%20-%20Basics/basics1-ints-sol.html">Python Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01%20-%20Basics/basics2-bools-sol.html">Python Basics - Booleans</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01%20-%20Basics/basics3-floats-sol.html">Python Basics - Float</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">02 - Strings</a><input aria-label="Toggle navigation of 02 - Strings" checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Strings 1 - Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="strings2-sol.html">Strings 2 - Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="strings3-sol.html">Strings 3 - Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="strings4-sol.html">Strings 4 - Search Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../03%20-%20Lists/index.html">03 - Lists</a><input aria-label="Toggle navigation of 03 - Lists" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../03%20-%20Lists/lists1-sol.html">Lists 1 - Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03%20-%20Lists/lists2-sol.html">Lists 2 - operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03%20-%20Lists/lists3-sol.html">Lists 3 - Basic methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03%20-%20Lists/lists4-sol.html">Lists 4 - Search methods</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../04%20-%20Tuples/index.html">04 - Tuples</a><input aria-label="Toggle navigation of 04 - Tuples" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../04%20-%20Tuples/tuples1-sol.html">Tuples</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../05%20-%20Sets/index.html">05 - Sets</a><input aria-label="Toggle navigation of 05 - Sets" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../05%20-%20Sets/sets1-sol.html">Sets</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../06%20-%20Dictionaries/index.html">06 - Dictionaries</a><input aria-label="Toggle navigation of 06 - Dictionaries" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../06%20-%20Dictionaries/dictionaries1-sol.html">Dictionaries 1 - Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06%20-%20Dictionaries/dictionaries2-sol.html">Dictionaries 2 - operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06%20-%20Dictionaries/dictionaries3-sol.html">Dictionaries 3 - Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06%20-%20Dictionaries/dictionaries4-sol.html">Dictionaries 4 - special classes</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../07%20-%20Control%20flow/index.html">07 - Control flow</a><input aria-label="Toggle navigation of 07 - Control flow" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/for1-sol.html">For loops - Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/for2-sol.html">For loops - Iterating Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/for3-sol.html">For loops - Iterating Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/for4-sol.html">For loops - Iterating Tuples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/for5-sol.html">For loops - Iterating Sets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/for6-sol.html">For loops - Iterating Dictionaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/for7-sol.html">For loops - Nested Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/if1-sol.html">If Else statements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/sequences1-sol.html">Sequences and comprehensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/while1-sol.html">While loops 1 - introduction</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Challenge Yourself at Home</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/01%20-%20Basics/basics4-chal.html">Python Basics - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/02%20-%20Strings/strings5-chal.html">Strings - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/03%20-%20Lists/lists5-chal.html">Lists - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/04%20-%20Tuples/tuples2-chal.html">Tuples - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/05%20-%20Sets/sets2-chal.html">Sets - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/06%20-%20Dictionaries/dictionaries5-chal.html">Dictionaries - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/07%20-%20Control%20flow/for8-chal.html">For Loops - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/07%20-%20Control%20flow/if2-chal.html">If Else - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/07%20-%20Control%20flow/sequences2-chal.html">Sequences - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/07%20-%20Control%20flow/while2-chal.html">While loops - Challenges</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Commandments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../commandments/commandments.html">Rules You Shall Not Break</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="Strings-1---Introduction">
+<h1>Strings 1 - Introduction<a class="headerlink" href="#Strings-1---Introduction" title="Link to this heading">#</a></h1>
+<p>Strings are <em>immutable</em> character sequences, and one of the basic Python types. In this notebook we will see how to manipulate them.</p>
+<section id="What-to-do">
+<h2>What to do<a class="headerlink" href="#What-to-do" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Unzip <a class="reference external" href="../_static/generated/strings.zip">exercises zip</a> in a folder, you should obtain something like this:</p></li>
+</ol>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>strings
+    strings1.ipynb
+    strings1-sol.ipynb
+    strings2.ipynb
+    strings2-sol.ipynb
+    strings3.ipynb
+    strings3-sol.ipynb
+    strings4.ipynb
+    strings4-sol.ipynb
+    strings5-chal.ipynb
+</pre></div>
+</div>
+<div class="admonition warning">
+<p><strong>WARNING: to correctly visualize the notebook, it MUST be in an unzipped folder !</strong></p>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>open Visual Studio Code from that folder and open the notebook <code class="docutils literal notranslate"><span class="pre">strings1.ipynb</span></code></p></li>
+<li><p>Go on reading the exercises file, sometimes you will find paragraphs marked <strong>Exercises</strong> which will ask to write Python commands in the following cells.</p></li>
+</ol>
+</section>
+<section id="Creating-strings">
+<h2>Creating strings<a class="headerlink" href="#Creating-strings" title="Link to this heading">#</a></h2>
+<p>There are several ways to define a string.</p>
+<p><strong>Double quotes, in one line</strong></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="s2">&quot;my first string, in double quotes&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+my first string, in double quotes
+</pre></div></div>
+</div>
+<p><strong>Single quotes, in one line</strong></p>
+<p>This way is equivalent to previous one.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="s1">&#39;my second string, in single quotes&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+my second string, in single quotes
+</pre></div></div>
+</div>
+<p><strong>Between double quotes, on many lines</strong></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;my third string</span>
+<span class="s2">in triple double quotes</span>
+<span class="s2">so I can put it</span>
+
+<span class="s2">on many rows&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+my third string
+in triple double quotes
+so I can put it
+
+on many rows
+</pre></div></div>
+</div>
+<p><strong>Three single quotes, many lines</strong></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;my fourth string,</span>
+<span class="s1">in triple single quotes</span>
+<span class="s1">also can be put</span>
+
+<span class="s1">on many lines</span>
+<span class="s1">&#39;&#39;&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+my fourth string,
+in triple single quotes
+also can be put
+
+on many lines
+
+</pre></div></div>
+</div>
+</section>
+<section id="Printing---the-cells">
+<h2>Printing - the cells<a class="headerlink" href="#Printing---the-cells" title="Link to this heading">#</a></h2>
+<p>To print a string we can use the function <code class="docutils literal notranslate"><span class="pre">print</span></code>:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+hello
+</pre></div></div>
+</div>
+<p>Note that apices are <em>not</em> reported in printed output.</p>
+<p>If we write the string without the <code class="docutils literal notranslate"><span class="pre">print</span></code>, we will see the apices indeed:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;hello&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;hello&#39;
+</pre></div></div>
+</div>
+<p>What happens if we write the string with double quotes?</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;hello&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;hello&#39;
+</pre></div></div>
+</div>
+<p>Notice that by default the notebook shows single apices.</p>
+<p>The same applies if we assign a string to a variable:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;hello&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+hello
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;hello&#39;
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;hello&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+hello
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;hello&#39;
+</pre></div></div>
+</div>
+</section>
+<section id="The-empty-string">
+<h2>The empty string<a class="headerlink" href="#The-empty-string" title="Link to this heading">#</a></h2>
+<p>The string of zero length is represented with two double quotes <code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code> or two single apices <code class="docutils literal notranslate"><span class="pre">''</span></code></p>
+<p>Note that even if write two double quotes, Jupter shows a string beginning and ending with single apices:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;&#39;
+</pre></div></div>
+</div>
+<p>The same applies if we associate an empty string to a variable:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;&#39;
+</pre></div></div>
+</div>
+<p>Note that even if we ask Jupyter to use <code class="docutils literal notranslate"><span class="pre">print</span></code>, we won’t see anything:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+</pre></div></div>
+</div>
+</section>
+<section id="Printing-many-strings">
+<h2>Printing many strings<a class="headerlink" href="#Printing-many-strings" title="Link to this heading">#</a></h2>
+<p>For printing many strings on a single line there are different ways, let’s start from the most simple with <code class="docutils literal notranslate"><span class="pre">print</span></code>:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;hello&quot;</span>
+<span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;Python&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>   <span class="c1"># note that in the printed characters Python inserted a space:</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+hello Python
+</pre></div></div>
+</div>
+<p>We can add to <code class="docutils literal notranslate"><span class="pre">print</span></code> as many parameters we want, which can also be mixed with other types like numbers:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;hello&quot;</span>
+<span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;Python&quot;</span>
+<span class="n">z</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+hello Python 3
+</pre></div></div>
+</div>
+</section>
+<section id="Length-of-a-string">
+<h2>Length of a string<a class="headerlink" href="#Length-of-a-string" title="Link to this heading">#</a></h2>
+<p>To obtain the length of a string (or any sequence in general), we can use the function <code class="docutils literal notranslate"><span class="pre">len</span></code>:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="s2">&quot;ciao&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+4
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>   <span class="c1"># empty string</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>   <span class="c1"># empty string</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0
+</pre></div></div>
+</div>
+<p><strong>QUESTION</strong>: Can we write something like this?</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;len&quot;</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>ANSWER</strong>: no, <code class="docutils literal notranslate"><span class="pre">&quot;len&quot;</span></code> between quotes will be interpreted as a string, not as a function, so Python will complain telling us we cannot apply a string to another string. Try to see which error appears by rewriting the expression below:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here</span>
+
+<span class="c1">#&quot;len&quot;(&quot;hello&quot;)</span>
+</pre></div>
+</div>
+</div>
+<p><strong>QUESTION</strong>: can we write something like this? What does it produce? an error? a number? which one?</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="s2">&quot;len(&#39;hello&#39;)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>ANSWER</strong>: it returns the number <code class="docutils literal notranslate"><span class="pre">12</span></code>: by putting the Python code <code class="docutils literal notranslate"><span class="pre">len('hello')</span></code> among double quotes, it became a string like any other. So by writing <code class="docutils literal notranslate"><span class="pre">len(&quot;len('hello')&quot;)</span></code> we count how long the string <code class="docutils literal notranslate"><span class="pre">&quot;len('hello')&quot;</span></code> is.</p>
+<p><strong>QUESTION</strong>: What do we obtain if we write like this?</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">((((((</span><span class="s2">&quot;ciao&quot;</span><span class="p">))))))</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>an error</p></li>
+<li><p>the length of the string</p></li>
+<li><p>something else</p></li>
+</ol>
+<p><strong>ANSWER</strong>: The second: <code class="docutils literal notranslate"><span class="pre">&quot;ciao&quot;</span></code> is an expression, as such we can enclose it in as many parenthesis as we want.</p>
+<p><strong>Counting escape sequences</strong>: Note that some particular sequences called <em>escape sequences</em> like for example <code class="docutils literal notranslate"><span class="pre">\t</span></code> occupy less space of what it seems (with <code class="docutils literal notranslate"><span class="pre">len</span></code> they count as 1), but if we print them they will occupy even more than 2 !!</p>
+<p>Let’s see an example (in the next paragraph we will delve into the details):</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="s1">&#39;a</span><span class="se">\t</span><span class="s1">b&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+3
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;a</span><span class="se">\t</span><span class="s1">b&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+a       b
+</pre></div></div>
+</div>
+</section>
+<section id="Printing---escape-sequences">
+<h2>Printing - escape sequences<a class="headerlink" href="#Printing---escape-sequences" title="Link to this heading">#</a></h2>
+<p>Some characters sequences called <em>escape sequences</em> are special because instead of showing characters, they force the printing to do particular things like line feed or inserting extra spaces. These sequences are always preceded by the <em>backslash</em> character <code class="docutils literal notranslate"><span class="pre">\</span></code>:</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Description</p></th>
+<th class="head"><p><em>Escape</em> sequence</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Linefeed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">\n</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Tabulation <em>(ASCII tab)</em></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">\t</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="Example---line-feed">
+<h3>Example - line feed<a class="headerlink" href="#Example---line-feed" title="Link to this heading">#</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;hello</span><span class="se">\n</span><span class="s2">world&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+hello
+world
+</pre></div></div>
+</div>
+<p>Note the line feed happens only when we use <code class="docutils literal notranslate"><span class="pre">print</span></code>, if instead we directly put the string into the cell we will see it verbatim:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;ciao</span><span class="se">\n</span><span class="s2">mondo&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;ciao\nmondo&#39;
+</pre></div></div>
+</div>
+<p>In a string you can put as many escape sequences as you like:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Today is</span><span class="se">\n</span><span class="s2">a great day</span><span class="se">\n</span><span class="s2">isn&#39;t it?&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Today is
+a great day
+isn&#39;t it?
+</pre></div></div>
+</div>
+</section>
+<section id="Example---tabulation">
+<h3>Example - tabulation<a class="headerlink" href="#Example---tabulation" title="Link to this heading">#</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;hello</span><span class="se">\t</span><span class="s2">world&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+hello   world
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;hello</span><span class="se">\t</span><span class="s2">world</span><span class="se">\t</span><span class="s2">with</span><span class="se">\t</span><span class="s2">many</span><span class="se">\t</span><span class="s2">tabs&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+hello   world   with    many    tabs
+</pre></div></div>
+</div>
+<p><strong>EXERCISE</strong>: Since <em>escape sequences</em> are special, we might ask ourselves how long they are. Use the function <code class="docutils literal notranslate"><span class="pre">len</span></code> to print the string length. Do you notice anything strange?</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">'ab\ncd'</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'ab\tcd'</span></code></p></li>
+</ul>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="s1">&#39;ab</span><span class="se">\n</span><span class="s1">cd&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="s1">&#39;ab</span><span class="se">\t</span><span class="s1">cd&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</details><p><strong>EXERCISE</strong>: Try selecting the character sequence printed in the previous cell with the mouse. What do you obtain? A space sequence, or a single tabulation character? Note this can vary according to the program that actually printed the string.</p>
+<p><strong>EXERCISE</strong>: find a SINGLE string which printed with <code class="docutils literal notranslate"><span class="pre">print</span></code> is shown as follows:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>This    is
+an
+
+apparently  simple      challenge
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>USE ONLY</strong> combinations of <code class="docutils literal notranslate"><span class="pre">\t</span></code> and <code class="docutils literal notranslate"><span class="pre">\n</span></code></p></li>
+<li><p><strong>DON’T</strong> use spaces</p></li>
+<li><p>start and end the string with a single apex</p></li>
+</ul>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;This</span><span class="se">\t</span><span class="s1">is</span><span class="se">\n</span><span class="s1">an</span><span class="se">\n\n</span><span class="s1">apparently</span><span class="se">\t</span><span class="s1">simple</span><span class="se">\t\t</span><span class="s1">challenge&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details><p><strong>EXERCISE</strong>: try to find a string which printed with <code class="docutils literal notranslate"><span class="pre">print</span></code> is shown as follows:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>At  te
+n
+
+    t   ion
+    please!
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>USE ONLY</strong> combinations of <code class="docutils literal notranslate"><span class="pre">\t</span></code> and <code class="docutils literal notranslate"><span class="pre">\n</span></code></p></li>
+<li><p><strong>DON’T</strong> use any space</p></li>
+<li><p><strong>DON’T</strong> use triple quotes</p></li>
+</ul>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;At</span><span class="se">\t</span><span class="s2">te</span><span class="se">\n</span><span class="s2">n</span><span class="se">\n\n\t</span><span class="s2">t</span><span class="se">\t</span><span class="s2">ion</span><span class="se">\n\t</span><span class="s2">please!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details><p><strong>Special characters</strong>: if we want special characters like the single apex <code class="docutils literal notranslate"><span class="pre">'</span></code> or double quotes <code class="docutils literal notranslate"><span class="pre">&quot;</span></code> inside a string, we must create a so-called <em>escape sequence</em>, that is, we must first write the <em>backslash</em> character <code class="docutils literal notranslate"><span class="pre">\</span></code> and then follow it with the special character we’re interested in:</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Description</p></th>
+<th class="head"><p>Escape sequence</p></th>
+<th class="head"><p>Printed result</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Single apex</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">\'</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">'</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Double quote</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">\&quot;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Backslash</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">\\</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">\</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Example</strong></p>
+<p>Let’s print a string containing a single apex <code class="docutils literal notranslate"><span class="pre">'</span></code> and a double quote <code class="docutils literal notranslate"><span class="pre">&quot;</span></code>:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_string</span> <span class="o">=</span> <span class="s2">&quot;This way I put </span><span class="se">\&#39;</span><span class="s2">apices</span><span class="se">\&#39;</span><span class="s2"> e </span><span class="se">\&quot;</span><span class="s2">double quotes</span><span class="se">\&quot;</span><span class="s2"> in strings&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">my_string</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+This way I put &#39;apices&#39; e &#34;double quotes&#34; in strings
+</pre></div></div>
+</div>
+<p>If a string begins with double quotes, inside we can freely use single apices, even without <em>backslash</em> <code class="docutils literal notranslate"><span class="pre">\</span></code>:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There&#39;s no problem&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+There&#39;s no problem
+</pre></div></div>
+</div>
+<p>If the string begins with single apices, we can freely use double quotes even without the <em>backslash</em> <code class="docutils literal notranslate"><span class="pre">\</span></code>:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;It Is So &quot;If You Think So&quot;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+It Is So &#34;If You Think So&#34;
+</pre></div></div>
+</div>
+<p><strong>EXERCISE</strong>: Find a string to print with <code class="docutils literal notranslate"><span class="pre">print</span></code> which shows the following sequence:</p>
+<ul class="simple">
+<li><p>the string MUST start and finish with single apices <code class="docutils literal notranslate"><span class="pre">'</span></code></p></li>
+</ul>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>This &quot;genius&quot; of strings wants to /\\/ trick me \//\ with atrocious exercises O_o&#39;
+</pre></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;This &quot;genius&quot; of strings wants to /</span><span class="se">\\\\</span><span class="s1">/ trick me </span><span class="se">\\</span><span class="s1">//</span><span class="se">\\</span><span class="s1"> with atrocious exercises O_o</span><span class="se">\&#39;</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+</section>
+<section id="Encodings">
+<h2>Encodings<a class="headerlink" href="#Encodings" title="Link to this heading">#</a></h2>
+<section id="ASCII-characters">
+<h3>ASCII characters<a class="headerlink" href="#ASCII-characters" title="Link to this heading">#</a></h3>
+<p>When using strings in your daily programs you typically don’t need to care much how characters are physically represented as bits in memory, but sometimes it does matter. The representation is called <em>encoding</em> and must be taken into account in particular when you read stuff from external sources such as files and websites.</p>
+<p>The most famous and used character encoding is <a class="reference external" href="https://en.wikipedia.org/wiki/ASCII">ASCII</a> (American Standard Code for Information Interchange), which offers 127 slots made by basic printable characters from English alphabet (<code class="docutils literal notranslate"><span class="pre">a</span></code>-<code class="docutils literal notranslate"><span class="pre">z</span></code>, <code class="docutils literal notranslate"><span class="pre">A</span></code>-<code class="docutils literal notranslate"><span class="pre">Z</span></code>, punctuation like <code class="docutils literal notranslate"><span class="pre">.;,!</span></code> and characters like <code class="docutils literal notranslate"><span class="pre">(</span></code>, <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> …) and control sequences (like <code class="docutils literal notranslate"><span class="pre">\t</span></code>, <code class="docutils literal notranslate"><span class="pre">\n</span></code>)</p>
+<ul class="simple">
+<li><p>See <a class="reference external" href="https://en.wikipedia.org/wiki/ASCII#Printable_characters">Printable characters</a> (Wikipedia)</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/C0_and_C1_control_codes#Basic_ASCII_control_codes">ASCII Control codes</a> (Wikipedia)</p></li>
+</ul>
+<p>Since original ASCII table lacks support for non-English languages (for example, it lacks Italian accented letters like <code class="docutils literal notranslate"><span class="pre">è</span></code>,<code class="docutils literal notranslate"><span class="pre">à</span></code>, …), many extensions were made to support other languages, for examples see <a class="reference external" href="https://en.wikipedia.org/wiki/Extended_ASCII">Extended ASCII</a> page on Wikipedia.</p>
+</section>
+<section id="Unicode-characters">
+<h3>Unicode characters<a class="headerlink" href="#Unicode-characters" title="Link to this heading">#</a></h3>
+<p>Whenever we need particular characters like ✪ which are not available on the keyboard, we can look at Unicode characters. <a class="reference external" href="http://www.fileformat.info/info/unicode/char/a.htm">There are a lot</a>, and we can often use them in Python 3 by simple copy-pasting. For example, if you go to <a class="reference external" href="https://www.fileformat.info/info/unicode/char/272a/index.htm">this page</a> you can copy-paste the character ✪. In other cases it might be so special it can’t even be correctly visualized, so in these cases you can
+use a more complex sequence in the format <code class="docutils literal notranslate"><span class="pre">\uxxxx</span></code> like this:</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Description</p></th>
+<th class="head"><p>Escape sequence</p></th>
+<th class="head"><p>Printed result</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Example star in a circle in format <code class="docutils literal notranslate"><span class="pre">\uxxxx</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">\u272A</span></code></p></td>
+<td><p>✪</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>EXERCISE</strong>: Search Google for <em>Unicode heart</em> and try printing a heart in Python, both by directly copy-pasting the character and by using the notation <code class="docutils literal notranslate"><span class="pre">\uxxxx</span></code></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;I ♥ Python, with copy-paste&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;I </span><span class="se">\u2665</span><span class="s2"> Python, also in format </span><span class="se">\\</span><span class="s2">uxxxx&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details><p><strong>Unicode references</strong>: Unicode can be a complex topic we just mentioned, if you ever need to deal with complex character sets like japanese or heterogenous text encodings here a couple of references you should read:</p>
+<ul class="simple">
+<li><p>first part on Unicode encoding <a class="reference external" href="https://diveintopython3.net/strings.html">from Strings chapter from book Dive into Python 3</a></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/howto/unicode.html">Python 3 Unicode</a> documentation</p></li>
+</ul>
+</section>
+</section>
+<section id="Strings-are-immutable">
+<h2>Strings are immutable<a class="headerlink" href="#Strings-are-immutable" title="Link to this heading">#</a></h2>
+<p>Strings are <em>immutable</em> objects, so once they are created you cannot change them anymore. This might appear retrictive, but it’s not so tragic, because we still have available these alternatives:</p>
+<ul class="simple">
+<li><p>generate a new string composed from other strings</p></li>
+<li><p>if we have a variable to which we assigned a string, we can assign another string to that variable</p></li>
+</ul>
+<p>Let’s generate a new string starting from previous ones, for example by joining two of them with the operator <code class="docutils literal notranslate"><span class="pre">+</span></code></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;hello&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;world&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;hello&#39;
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;helloworld&#39;
+</pre></div></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">+</span></code> operation, when executed among strings, it joins them by creating a NEW string. This means that the association to <code class="docutils literal notranslate"><span class="pre">x</span></code> it didn’t change at all, the only modification we can observe will be the variable <code class="docutils literal notranslate"><span class="pre">y</span></code> which is now associated to the string <code class="docutils literal notranslate"><span class="pre">'helloworld</span></code>. Try making sure of this in <a class="reference external" href="%22https://pythontutor.com/%22">Python Tutor</a> by repeatdly clicking on <em>Next</em> button</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;hello&#39;</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;world&#39;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+hello
+helloworld
+</pre></div></div>
+</div>
+<section id="Reassign-variables">
+<h3>Reassign variables<a class="headerlink" href="#Reassign-variables" title="Link to this heading">#</a></h3>
+<p>Other variations to memory state can be obtained by reassigning the variables, for example:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;hello&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;world&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">y</span>        <span class="c1"># we assign to x the same string contained in y</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;world&#39;
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;world&#39;
+</pre></div></div>
+</div>
+<p>If a string is created and at some point no variables point to it, Python automatically takes care to eliminate it from the memory. In the case above, the string <code class="docutils literal notranslate"><span class="pre">hello</span></code> is never actually changed: at some point no variable is associated with it anymore and so Python eliminates the string from the memory. Have a look at what happens in Python Tutor</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># check this on Python Tutor</span>
+<span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;hello&#39;</span>
+<span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;world&#39;</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">y</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Reassign-a-variable-to-itself">
+<h3>Reassign a variable to itself<a class="headerlink" href="#Reassign-a-variable-to-itself" title="Link to this heading">#</a></h3>
+<p>We may ask ourselves what happens when we write something like this:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[58]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;hello&#39;</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[59]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+hello
+</pre></div></div>
+</div>
+<p>No big changes, the assignment of <code class="docutils literal notranslate"><span class="pre">x</span></code> remained the same without alterations.</p>
+<p>But what happens if to the right of the <code class="docutils literal notranslate"><span class="pre">=</span></code> we put a more complex formula?</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[60]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;hello&#39;</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;world&#39;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+helloworld
+</pre></div></div>
+</div>
+<p>Let’s try to carefully understand what happened.</p>
+<p>In the first line, Python generated the string <code class="docutils literal notranslate"><span class="pre">'hello'</span></code> and assigned it to the variable <code class="docutils literal notranslate"><span class="pre">x</span></code>. So far, nothing extraordinary.</p>
+<p>Then, in the second line, Python did two things:</p>
+<ol class="arabic simple">
+<li><p>it calculated the result of the expression <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">+</span> <span class="pre">'world'</span></code>, by generating a NEW string <code class="docutils literal notranslate"><span class="pre">helloworld</span></code></p></li>
+<li><p>it assigned the generated string <code class="docutils literal notranslate"><span class="pre">helloworld</span></code> to the variable <code class="docutils literal notranslate"><span class="pre">x</span></code></p></li>
+</ol>
+<p>It is fundamental to understand that whenever a reassignment is performed both passages occurs, so it’s worth repeating them:</p>
+<ul class="simple">
+<li><p>FIRST the result of the expression to the right of <code class="docutils literal notranslate"><span class="pre">=</span></code> is calculated (so when the old value of <code class="docutils literal notranslate"><span class="pre">x</span></code> is still available)</p></li>
+<li><p>THEN the result is associated to the variable to the left of <code class="docutils literal notranslate"><span class="pre">=</span></code> symbol</p></li>
+</ul>
+<p>If we check out what happens in Python Tutor, this double passage is executed in a single shot</p>
+<p><strong>EXERCISE</strong>: Write some code that changes memory state in such a way so that in the end the following is printed:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>z =  This
+w =  was
+x =  a problem
+y =  was
+s =  This was a problem
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>to write the code, USE ONLY the symbols <code class="docutils literal notranslate"><span class="pre">=</span></code>,<code class="docutils literal notranslate"><span class="pre">+</span></code>,<code class="docutils literal notranslate"><span class="pre">z</span></code>,<code class="docutils literal notranslate"><span class="pre">w</span></code>,<code class="docutils literal notranslate"><span class="pre">x</span></code>,<code class="docutils literal notranslate"><span class="pre">y</span></code>,<code class="docutils literal notranslate"><span class="pre">s</span></code> AND NOTHING ELSE</p></li>
+<li><p>feel free to use as many lines of code as you deem necessary</p></li>
+<li><p>feel free to use any symbol as many times you deem necessary</p></li>
+</ul>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># these variables are given</span>
+
+<span class="n">z</span> <span class="o">=</span> <span class="s2">&quot;This&quot;</span>
+<span class="n">w</span> <span class="o">=</span> <span class="s1">&#39;is&#39;</span>
+<span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;a problem&#39;</span>
+<span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;was&#39;</span>
+<span class="n">s</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span>
+
+<span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># these variables are given</span>
+
+<span class="n">z</span> <span class="o">=</span> <span class="s2">&quot;This&quot;</span>
+<span class="n">w</span> <span class="o">=</span> <span class="s1">&#39;is&#39;</span>
+<span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;a problem&#39;</span>
+<span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;was&#39;</span>
+<span class="n">s</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span>
+
+<span class="n">w</span> <span class="o">=</span> <span class="n">y</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="n">z</span> <span class="o">+</span> <span class="n">s</span> <span class="o">+</span> <span class="n">y</span> <span class="o">+</span> <span class="n">s</span> <span class="o">+</span> <span class="n">x</span>
+</pre></div>
+</div>
+</div>
+</details><div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;z = &quot;</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;w = &quot;</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x = &quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;y = &quot;</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;s = &quot;</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+z =  This
+w =  was
+x =  a problem
+y =  was
+s =  This was a problem
+</pre></div></div>
+</div>
+</section>
+</section>
+<section id="Strings-and-numbers">
+<h2>Strings and numbers<a class="headerlink" href="#Strings-and-numbers" title="Link to this heading">#</a></h2>
+<p>Python strings have the type <code class="docutils literal notranslate"><span class="pre">str</span></code>:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[64]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="s2">&quot;hello world&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[64]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+str
+</pre></div></div>
+</div>
+<p>In strings we can insert characters which represent digits:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[65]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The character 5 represents the digit five, the character 3 represents the digit three&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+The character 5 represents the digit five, the character 3 represents the digit three
+</pre></div></div>
+</div>
+<p>Obviously, we can also substitute a sequence of digits, to obtain something which looks like a number:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[66]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The sequence of characters 7583 represents the number seven thousand five hundred eighty-three&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+The sequence of characters 7583 represents the number seven thousand five hundred eighty-three
+</pre></div></div>
+</div>
+<p>Having said that, we can ask ourselves how Python behaves when we have a <em>string</em> which contains <em>only</em> a sequence of characters which represents a number, like for example <code class="docutils literal notranslate"><span class="pre">'254'</span></code></p>
+<p>Can we use <code class="docutils literal notranslate"><span class="pre">254</span></code> (which we wrote like it were a string) also as if it were a number? For example, can we sum <code class="docutils literal notranslate"><span class="pre">3</span></code> to it?</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;254&#39;</span> <span class="o">+</span> <span class="mi">3</span>
+
+<span class="o">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span>                                 <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">29</span><span class="o">-</span><span class="n">d39aa62a7e3d</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">----&gt;</span> <span class="mi">1</span> <span class="s2">&quot;254&quot;</span> <span class="o">+</span> <span class="mi">3</span>
+
+<span class="ne">TypeError</span><span class="p">:</span> <span class="n">can</span> <span class="n">only</span> <span class="n">concatenate</span> <span class="nb">str</span> <span class="p">(</span><span class="ow">not</span> <span class="s2">&quot;int&quot;</span><span class="p">)</span> <span class="n">to</span> <span class="nb">str</span>
+</pre></div>
+</div>
+<p>As you see, Python immediately complains, because we are trying to mix different types.</p>
+<p><strong>SO:</strong></p>
+<ul class="simple">
+<li><p>by writing <code class="docutils literal notranslate"><span class="pre">'254'</span></code> between apices we create a <em>string</em> of type <code class="docutils literal notranslate"><span class="pre">str</span></code></p></li>
+<li><p>by writing <code class="docutils literal notranslate"><span class="pre">254</span></code> we create a <em>number</em> of type <code class="docutils literal notranslate"><span class="pre">int</span></code></p></li>
+</ul>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[67]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="s1">&#39;254&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[67]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+str
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[68]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="mi">254</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[68]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+int
+</pre></div></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title"><strong>BEWARE OF</strong> <code class="docutils literal notranslate"><span class="pre">print</span></code> <strong>!!</strong></p>
+<p>If you try to print a string which only contains digits, Python will show it without apices, and this might mislead you about its true nature !!</p>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[69]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;254&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+254
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[70]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">254</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+254
+</pre></div></div>
+</div>
+<p><em>Only in notebooks,</em> to show constants, variables or results of calculations, as <code class="docutils literal notranslate"><span class="pre">print</span></code> alternative you can directly insert a formula in the cell. In this case we are simply showing a constant, and whenever it is a string you will see apices:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[71]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;254&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[71]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;254&#39;
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[72]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">254</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[72]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+254
+</pre></div></div>
+</div>
+<p>The same reasoning applies also to variables:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[73]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;254&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[74]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[74]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;254&#39;
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[75]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="mi">254</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[76]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[76]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+254
+</pre></div></div>
+</div>
+<p>So, <em>only in notebooks,</em> when you need to show a constant, a variable or a calculation often it’s more convenient to directly write it in the cell without using <code class="docutils literal notranslate"><span class="pre">print</span></code>.</p>
+</section>
+<section id="Conversions---from-string-to-number">
+<h2>Conversions - from string to number<a class="headerlink" href="#Conversions---from-string-to-number" title="Link to this heading">#</a></h2>
+<p>Let’s go back to the problem of summing <code class="docutils literal notranslate"><span class="pre">'254'</span> <span class="pre">+</span> <span class="pre">3</span></code>. The first one is a string, the second a number. If they were both numbers the sum would surely work:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[77]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">254</span> <span class="o">+</span> <span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[77]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+257
+</pre></div></div>
+</div>
+<p>So we can try to convert the string <code class="docutils literal notranslate"><span class="pre">'254'</span></code> into an authentic integer. To do it, we can use <code class="docutils literal notranslate"><span class="pre">int</span></code> as if it were a function, and pass as argument the string to be converted:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[78]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span><span class="p">(</span><span class="s1">&#39;254&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[78]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+257
+</pre></div></div>
+</div>
+<div class="admonition warning">
+<p><strong>WARNING: strings and numbers are immutable !!</strong></p>
+</div>
+<p>This means that by writing <code class="docutils literal notranslate"><span class="pre">int('254')'</span></code> a <em>new</em> number is generated without minimally affecting the string <code class="docutils literal notranslate"><span class="pre">'254'</span></code> from where we started from. Let’s see am example:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[79]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;254&#39;</span>     <span class="c1"># assign to variable x the string &#39;254&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[80]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>    <span class="c1"># assign to variable y the number obtained by converting &#39;254&#39; in int</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[81]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span>             <span class="c1"># variable x is now assigned to string &#39;254&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[81]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;254&#39;
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[82]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span>             <span class="c1"># in y now there is a number instead (note we don&#39;t have apices here)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[82]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+254
+</pre></div></div>
+</div>
+<p>It might be useful to see again the example in Python Tutor</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;254&quot;</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">y</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+257
+</pre></div></div>
+</div>
+<p><strong>EXERCISE</strong>: Try to convert a string which represents an ill-formed number (for example a number with inside a character: <code class="docutils literal notranslate"><span class="pre">'43K12'</span></code>) into an <code class="docutils literal notranslate"><span class="pre">int</span></code>. What happens?</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span><span class="p">(</span><span class="s2">&quot;43K12&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="Conversions---from-number-to-string">
+<h2>Conversions - from number to string<a class="headerlink" href="#Conversions---from-number-to-string" title="Link to this heading">#</a></h2>
+<p>Any object can be converted to string by using <code class="docutils literal notranslate"><span class="pre">str</span></code> as if it were a function and by passing the object to convert. Let’s try then to convert a number into a string.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[85]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">str</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[85]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;5&#39;
+</pre></div></div>
+</div>
+<p>note the apices in the result, which show we actually obtained a string.</p>
+<p>If by chance we want to obtain a string which is the concatenation of objects of different types we need to be careful:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;Workdays in a week are &#39;</span> <span class="o">+</span> <span class="n">x</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+
+<span class="o">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span>                                 <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">154</span><span class="o">-</span><span class="mi">5951</span><span class="n">bd3aa528</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+      <span class="mi">1</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="o">----&gt;</span> <span class="mi">2</span> <span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;Workdays in a week are &#39;</span> <span class="o">+</span> <span class="n">x</span>
+      <span class="mi">3</span> <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+
+<span class="ne">TypeError</span><span class="p">:</span> <span class="n">can</span> <span class="n">only</span> <span class="n">concatenate</span> <span class="nb">str</span> <span class="p">(</span><span class="ow">not</span> <span class="s2">&quot;int&quot;</span><span class="p">)</span> <span class="n">to</span> <span class="nb">str</span>
+</pre></div>
+</div>
+<p>A way to circumvent the problem (even if not the most convenient) is to convert into string each of the objects we’re using in the concatenation:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[86]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mf">1.6</span>
+<span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;This week I&#39;ve been jogging &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; times running at an average speed of &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; km/h&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+This week I&#39;ve been jogging 3 times running at an average speed of 1.6 km/h
+</pre></div></div>
+</div>
+<p><strong>QUESTION</strong>: Having said that, after executing the code in previous cell, variable <code class="docutils literal notranslate"><span class="pre">x</span></code> is going to be associated to a <em>number</em> or a <em>string</em> ?</p>
+<p>If you have doubts, use Python Tutor.</p>
+<p><strong>ANSWER</strong>: numbers, like strings, are immutable. So by calling the function <code class="docutils literal notranslate"><span class="pre">str(x)</span></code> it is impossible for the number <code class="docutils literal notranslate"><span class="pre">5</span></code> associated to <code class="docutils literal notranslate"><span class="pre">x</span></code> to be changed in any way. <code class="docutils literal notranslate"><span class="pre">str(x)</span></code> will simply generate a NEW string <code class="docutils literal notranslate"><span class="pre">'5'</span></code> which will then be used in the concatenation.</p>
+</section>
+<section id="Formatting-strings">
+<h2>Formatting strings<a class="headerlink" href="#Formatting-strings" title="Link to this heading">#</a></h2>
+<p>Concatenating strings with plus sign like above is cumbersome and error prone. There are several better solutions, for a thorough review we refer to <a class="reference external" href="https://realpython.com/python-formatted-output/">Real Python</a> website.</p>
+<section id="Formatting-with-%">
+<h3>Formatting with <code class="docutils literal notranslate"><span class="pre">%</span></code><a class="headerlink" href="#Formatting-with-%" title="Link to this heading">#</a></h3>
+<p>Here we now see how to format strings with the <code class="docutils literal notranslate"><span class="pre">%</span></code> operator. This solution is not the best one, but it’s widely used and supported in all Python versions, so we adopted it throughout the book:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[87]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="s2">&quot;I jumped </span><span class="si">%s</span><span class="s2"> times&quot;</span> <span class="o">%</span> <span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[87]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;I jumped 3 times&#39;
+</pre></div></div>
+</div>
+<p>Notice we put a so-called <em>place-holder</em> <code class="docutils literal notranslate"><span class="pre">%s</span></code> inside the string, which tells Python to replace it with a variable. To feed Python the variable, <em>after</em> the string we have to put a <code class="docutils literal notranslate"><span class="pre">%</span></code> symbol followed by the variable, in this case <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+<p>If we want to place more than one variable, we just add more <code class="docutils literal notranslate"><span class="pre">%s</span></code> place-holders and after the external <code class="docutils literal notranslate"><span class="pre">%</span></code> we place the required variables in round parenthesis, separating them with commas:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[88]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="s2">&quot;I jumped </span><span class="si">%s</span><span class="s2"> times and did </span><span class="si">%s</span><span class="s2"> sprints&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[88]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;I jumped 3 times and did 5 sprints&#39;
+</pre></div></div>
+</div>
+<p>We can put as many variables as we want, also non-numerical ones:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[89]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">prize</span> <span class="o">=</span> <span class="s1">&#39;Best Athlet in Town&#39;</span>
+<span class="s2">&quot;I jumped </span><span class="si">%s</span><span class="s2"> times, did </span><span class="si">%s</span><span class="s2"> sprints and won the prize &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">prize</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[89]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#34;I jumped 3 times, did 5 sprints and won the prize &#39;Best Athlet in Town&#39;&#34;
+</pre></div></div>
+</div>
+</section>
+<section id="Formatting-with-f-strings">
+<h3>Formatting with f-strings<a class="headerlink" href="#Formatting-with-f-strings" title="Link to this heading">#</a></h3>
+<p>f-strings allow to directly insert expressions between curly brackets {} into the string. To signal Python to calculate and convert the expressions into strings, the string must be preceded by the f letter. Note the moment you add the f your editor should show the expressions between curly brackets with a different color.</p>
+<p><strong>Warning</strong>: f-strings are only available since Python <span class="math notranslate nohighlight">\(\geq 3.6\)</span></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[90]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;King of Great Britain&quot;</span>
+<span class="n">start</span> <span class="o">=</span> <span class="mi">1760</span>
+<span class="n">end</span> <span class="o">=</span> <span class="mi">1801</span>
+
+<span class="n">s1</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Giorge III was </span><span class="si">{</span><span class="n">title</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2"> from </span><span class="si">{</span><span class="n">start</span><span class="si">}</span><span class="s2"> until </span><span class="si">{</span><span class="n">end</span><span class="si">}</span><span class="s2">.&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span>
+
+<span class="n">s2</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;He ruled for </span><span class="si">{</span><span class="n">end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="si">}</span><span class="s2"> years.&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Giorge III was KING OF GREAT BRITAIN from 1760 until 1801.
+He ruled for 41 years.
+</pre></div></div>
+</div>
+</section>
+<section id="Exercise---supercars">
+<h3>Exercise - supercars<a class="headerlink" href="#Exercise---supercars" title="Link to this heading">#</a></h3>
+<p>You’ve got some money, so you decide to buy two models of supercars. Since you already know accidents are on the way, for each model you will buy as many cars as there are characters in each model name.</p>
+<p>Write some code which stores in the string <code class="docutils literal notranslate"><span class="pre">s</span></code> the number of cars you will buy into the strings:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sa</span></code> formatted with <code class="docutils literal notranslate"><span class="pre">%s</span></code> placeholders</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sb</span></code> formatted as f-string</p></li>
+</ul>
+<p>Example - given:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">car1</span> <span class="o">=</span> <span class="s1">&#39;Jaguar&#39;</span>
+<span class="n">car2</span> <span class="o">=</span> <span class="s1">&#39;Ferrari&#39;</span>
+</pre></div>
+</div>
+<p>After your code, it should show:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s1</span>
+<span class="go">&#39;I will buy 6 Jaguar and 7 Ferrari supercars&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s2</span>
+<span class="go">&#39;I will buy 6 Jaguar and 7 Ferrari supercars&#39;</span>
+</pre></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">car1</span><span class="p">,</span> <span class="n">car2</span> <span class="o">=</span> <span class="s1">&#39;Jaguar&#39;</span><span class="p">,</span><span class="s1">&#39;Ferrari&#39;</span>        <span class="c1"># I will buy 6 Jaguar and 7 Ferrari supercars</span>
+<span class="c1">#car1, car2 = &#39;Porsche&#39;,&#39;Lamborghini&#39;  # I will buy 7 Porsche and 11 Lamborghini supercars</span>
+
+<span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">car1</span><span class="p">,</span> <span class="n">car2</span> <span class="o">=</span> <span class="s1">&#39;Jaguar&#39;</span><span class="p">,</span><span class="s1">&#39;Ferrari&#39;</span>        <span class="c1"># I will buy 6 Jaguar and 7 Ferrari supercars</span>
+<span class="c1">#car1, car2 = &#39;Porsche&#39;,&#39;Lamborghini&#39;  # I will buy 7 Porsche and 11 Lamborghini supercars</span>
+
+<span class="n">sa</span> <span class="o">=</span> <span class="s2">&quot;I will buy </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2"> and </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2"> supercars&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">car1</span><span class="p">),</span> <span class="n">car1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">car2</span><span class="p">),</span> <span class="n">car2</span><span class="p">)</span>
+<span class="n">sb</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;I will buy </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">car1</span><span class="p">)</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">car1</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">car2</span><span class="p">)</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">car2</span><span class="si">}</span><span class="s2"> supercars&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sa</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sb</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+</section>
+<section id="Continue">
+<h2>Continue<a class="headerlink" href="#Continue" title="Link to this heading">#</a></h2>
+<p>Go on with <a class="reference internal" href="strings2-sol.html"><span class="doc">Strings 2 - Operators</span></a></p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="strings2-sol.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Strings 2 - Operators</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="index.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">02 - Strings</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2026, Erich Robbi
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Strings 1 - Introduction</a><ul>
+<li><a class="reference internal" href="#What-to-do">What to do</a></li>
+<li><a class="reference internal" href="#Creating-strings">Creating strings</a></li>
+<li><a class="reference internal" href="#Printing---the-cells">Printing - the cells</a></li>
+<li><a class="reference internal" href="#The-empty-string">The empty string</a></li>
+<li><a class="reference internal" href="#Printing-many-strings">Printing many strings</a></li>
+<li><a class="reference internal" href="#Length-of-a-string">Length of a string</a></li>
+<li><a class="reference internal" href="#Printing---escape-sequences">Printing - escape sequences</a><ul>
+<li><a class="reference internal" href="#Example---line-feed">Example - line feed</a></li>
+<li><a class="reference internal" href="#Example---tabulation">Example - tabulation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#Encodings">Encodings</a><ul>
+<li><a class="reference internal" href="#ASCII-characters">ASCII characters</a></li>
+<li><a class="reference internal" href="#Unicode-characters">Unicode characters</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#Strings-are-immutable">Strings are immutable</a><ul>
+<li><a class="reference internal" href="#Reassign-variables">Reassign variables</a></li>
+<li><a class="reference internal" href="#Reassign-a-variable-to-itself">Reassign a variable to itself</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#Strings-and-numbers">Strings and numbers</a></li>
+<li><a class="reference internal" href="#Conversions---from-string-to-number">Conversions - from string to number</a></li>
+<li><a class="reference internal" href="#Conversions---from-number-to-string">Conversions - from number to string</a></li>
+<li><a class="reference internal" href="#Formatting-strings">Formatting strings</a><ul>
+<li><a class="reference internal" href="#Formatting-with-%">Formatting with <code class="docutils literal notranslate"><span class="pre">%</span></code></a></li>
+<li><a class="reference internal" href="#Formatting-with-f-strings">Formatting with f-strings</a></li>
+<li><a class="reference internal" href="#Exercise---supercars">Exercise - supercars</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#Continue">Continue</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=d91ab2ad"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    </body>
+</html>

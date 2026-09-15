@@ -1,0 +1,10 @@
+06 - Dictionaries
+=================
+
+.. toctree::
+   :maxdepth: 1
+
+   dictionaries1-sol
+   dictionaries2-sol
+   dictionaries3-sol
+   dictionaries4-sol

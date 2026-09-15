@@ -1,0 +1,17 @@
+07 - Control flow
+=================
+
+.. toctree::
+   :maxdepth: 1
+   
+   if1-sol
+   for1-sol
+   for2-sol
+   for3-sol
+   for4-sol
+   for5-sol
+   for6-sol
+   for7-sol
+   while1-sol
+   sequences1-sol
+   

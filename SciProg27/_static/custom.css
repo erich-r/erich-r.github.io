@@ -43,3 +43,58 @@ body[data-theme="auto"] details.solution > summary {
     color: #2980b9;
   }
 }
+
+/* Python Tutor embed (jupman.pytut()): its own bundled CSS lays the code
+   pane and the memory-allocation panel out as two side-by-side table
+   cells, together often wider than the docs content column. Stack them
+   vertically instead -- the code pane alone (550px) fits comfortably, and
+   the memory panel gets the full column width to itself below it.
+   This only changes `display` (a pure reflow, not a scale/transform): its
+   pointer arrows are positioned by an old bundled jsPlumb via
+   getBoundingClientRect() when the widget first renders, and since this
+   CSS is already active by then, jsPlumb measures wherever the browser
+   actually placed things -- no separate JS timing or double-scaling risk
+   like a post-hoc `transform: scale()` would have. */
+.pytutorVisualizer table.visualizer,
+.pytutorVisualizer table.visualizer > tbody,
+.pytutorVisualizer table.visualizer > tbody > tr {
+  display: block;
+}
+
+.pytutorVisualizer td.vizLayoutTd {
+  display: block;
+  width: auto !important;
+}
+
+.pytutorVisualizer td#vizLayoutTdFirst {
+  margin-bottom: 1em;
+}
+
+/* #codAndNav (the code pane) is jQuery-UI `.resizable()`'d with a fixed
+   550px inline width and a drag handle on its right edge, sized to
+   negotiate space against the memory panel that used to sit beside it.
+   Stacked, there's nothing to negotiate with -- let it fill the row and
+   drop the now-meaningless handle (hiding it also disables dragging it,
+   since jQuery UI's resize is triggered from that handle element). */
+.pytutorVisualizer #codAndNav {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box;
+}
+
+.pytutorVisualizer #codAndNav > .ui-resizable-handle {
+  display: none !important;
+}
+
+/* Fallback for any diagram still wider than the column even stacked
+   (e.g. many heap objects side by side within the memory panel). */
+.output_area.rendered_html:has(.pytutorVisualizer) {
+  overflow-x: auto;
+  max-width: 100%;
+  background: #fff;
+  color-scheme: light;
+  border: 1px solid var(--color-background-border);
+  border-radius: 4px;
+  padding: 1em;
+  margin: 1em 0;
+}

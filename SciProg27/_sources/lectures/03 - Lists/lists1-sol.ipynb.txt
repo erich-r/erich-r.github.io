@@ -1,0 +1,2127 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "\n",
+    "# Lists 1 - Introduction\n",
+    "\n",
+    "\n",
+    "## [Download exercises zip](../_static/generated/lists.zip)\n",
+    "\n",
+    "A Python list is a **mutable** sequence of heterogeneous elements, in which we can put the objects we want. The order in which we put them is preserved."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## What to do\n",
+    "\n",
+    "1. Unzip [exercises zip](../_static/generated/lists.zip) in a folder, you should obtain something like this:\n",
+    "\n",
+    "```\n",
+    "lists\n",
+    "    lists1.ipynb    \n",
+    "    lists1-sol.ipynb         \n",
+    "    lists2.ipynb\n",
+    "    lists2-sol.ipynb\n",
+    "    lists3.ipynb\n",
+    "    lists3-sol.ipynb    \n",
+    "    lists4.ipynb\n",
+    "    lists4-sol.ipynb   \n",
+    "    lists5-chal.ipynb\n",
+    "    jupman.py         \n",
+    "```\n",
+    "\n",
+    "<div class=\"alert alert-warning\">\n",
+    "\n",
+    "**WARNING: to correctly visualize the notebook, it MUST be in an unzipped folder !**\n",
+    "</div>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "2. open Jupyter Notebook from that folder. Two things should open, first a console and then a browser. The browser should show a file list: navigate the list and open the notebook `lists1.ipynb`\n",
+    "\n",
+    "3. Go on reading the exercises file, sometimes you will find paragraphs marked **Exercises** which will ask to write Python commands in the following cells. "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Shortcut keys:\n",
+    "\n",
+    "- to execute Python code inside a Jupyter cell, press `Control + Enter`\n",
+    "\n",
+    "- to execute Python code inside a Jupyter cell AND select next cell, press `Shift + Enter`\n",
+    "\n",
+    "- to execute Python code inside a Jupyter cell AND a create a new cell aftwerwards, press `Alt + Enter`\n",
+    "\n",
+    "- If the notebooks look stuck, try to select `Kernel -> Restart`"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Creating lists\n",
+    "\n",
+    "We can create a list by specifying the elements it contains between square brackets, separating them with a comma.\n",
+    "\n",
+    "For example, in this list we insert the numbers `7`, `4` e `9`:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[7, 4, 9]"
+      ]
+     },
+     "execution_count": 1,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "[7,4,9] "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Like all Python objects, we can associate them to a variable, in this case we create a new one we call `my_list`:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "my_list = [7,4,9] "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[7, 4, 9]"
+      ]
+     },
+     "execution_count": 3,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "my_list"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Let's see what happens in memory, and compare strings representation with lists representation:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# WARNING: before using the function jupman.pytut() which follows, \n",
+    "#          it is necessary to first execute this cell with Shift+Enter\n",
+    "#          it's sufficient to execute it only once\n",
+    "\n",
+    "\n",
+    "import sys\n",
+    "sys.path.append('../')\n",
+    "import jupman"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "        \n",
+       "        <script src=\"../_static/js/pytutor-embed.bundle.min.js\" type=\"application/javascript\"></script>\n",
+       "    \n",
+       "        <style>\n",
+       "        @import \"../_static/css/jupman.css\";\n",
+       "        </style>\n",
+       "     \n",
+       "        <script id=\"json-jm-fc14f04d8d07816ef68f28198b262f33-7\" type=\"application/json\" >\n",
+       "            {\"code\": \" \\nmy_string = \\\"prova\\\"\\n\\nmy_list = [7,4,9]\", \"trace\": [{\"line\": 2, \"event\": \"step_line\", \"func_name\": \"<module>\", \"globals\": {}, \"ordered_globals\": [], \"stack_to_render\": [], \"heap\": {}, \"stdout\": \"\"}, {\"line\": 4, \"event\": \"step_line\", \"func_name\": \"<module>\", \"globals\": {\"my_string\": \"prova\"}, \"ordered_globals\": [\"my_string\"], \"stack_to_render\": [], \"heap\": {}, \"stdout\": \"\"}, {\"line\": 4, \"event\": \"return\", \"func_name\": \"<module>\", \"globals\": {\"my_string\": \"prova\", \"my_list\": [\"REF\", 1]}, \"ordered_globals\": [\"my_string\", \"my_list\"], \"stack_to_render\": [], \"heap\": {\"1\": [\"LIST\", 7, 4, 9]}, \"stdout\": \"\"}]}\n",
+       "        </script>\n",
+       "        <div id=\"jm-fc14f04d8d07816ef68f28198b262f33-7\" class=\"pytutorVisualizer\"> </div>\n",
+       "                        \n",
+       "        <script>\n",
+       "        \n",
+       "        (function(){\n",
+       "            console.log(\"jupman.py embedded javascript: adding Python tutor visualizer...\")\n",
+       "            \n",
+       "            var trace = JSON.parse(document.getElementById('json-jm-fc14f04d8d07816ef68f28198b262f33-7').innerHTML);                                        \n",
+       "            // NOTE: id without #\n",
+       "                    \n",
+       "            addVisualizerToPage(trace, 'jm-fc14f04d8d07816ef68f28198b262f33-7',{'embeddedMode' : false,\n",
+       "                                             'disableHeapNesting': true,\n",
+       "                                             'visualizerIdOverride':'viz-jm-fc14f04d8d07816ef68f28198b262f33-7'})  \n",
+       "            \n",
+       "            \n",
+       "            // set overflow for pytuts - need to do in python as css \n",
+       "            // does not allow parent selection\n",
+       "            var pytuts = $('.pytutorVisualizer')\n",
+       "            pytuts.closest('div.output_html.rendered_html.output_result')\n",
+       "                    .css('overflow-x', 'visible')\n",
+       "        \n",
+       "            //pytuts.closest('div.output_html.rendered_html.output_result')\n",
+       "            //      .css('background-color','red')                \n",
+       "            \n",
+       "        })()\n",
+       "        </script>\n",
+       "                \n",
+       "    \n",
+       "    <div style=\"text-align:center; font-size:0.9em\"> <a href=\"https://pythontutor.com/visualize.html#mode=edit\" target=\"_blank\">Python Tutor</a> visualization</div> \n",
+       "    "
+      ],
+      "text/plain": [
+       "<IPython.core.display.HTML object>"
+      ]
+     },
+     "execution_count": 5,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "my_string = \"prova\"\n",
+    "\n",
+    "my_list = [7,4,9]\n",
+    "\n",
+    "jupman.pytut()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We suddenly note a relevant difference. The string remained in the azure region where associations among variables and values usually stay. From variable `my_list` we see instead an arrow departing to a new yellow memory region, which is created as soon the execution reaches the row where the list is defined.\n",
+    "\n",
+    "Later we will analyze more in detail the consequences of this."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "In a list the same elements may appear many times:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "numbers = [1,2,3,1,3]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[1, 2, 3, 1, 3]"
+      ]
+     },
+     "execution_count": 7,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "numbers"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We can put any element, for example strings:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "fruits = [\"apple\", \"pear\", \"peach\", \"strawberry\", \"cherry\"] "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "['apple', 'pear', 'peach', 'strawberry', 'cherry']"
+      ]
+     },
+     "execution_count": 9,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "fruits"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We can also mix the object types contained in a list, for example we can have integers and strings:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "mix = [\"table\", 4 ,\"chair\", 8, 5, 1, \"chair\"]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "In Python Tutor it will be shown like this:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "        \n",
+       "        <script src=\"../_static/js/pytutor-embed.bundle.min.js\" type=\"application/javascript\"></script>\n",
+       "    \n",
+       "        <style>\n",
+       "        @import \"../_static/css/jupman.css\";\n",
+       "        </style>\n",
+       "     \n",
+       "        <script id=\"json-jm-42340939c7ad14e17378b23dcf7b6b39-13\" type=\"application/json\" >\n",
+       "            {\"code\": \" \\nmix = [\\\"table\\\", 5 , 4, \\\"chair\\\", 8, \\\"chair\\\"]\", \"trace\": [{\"line\": 2, \"event\": \"step_line\", \"func_name\": \"<module>\", \"globals\": {}, \"ordered_globals\": [], \"stack_to_render\": [], \"heap\": {}, \"stdout\": \"\"}, {\"line\": 2, \"event\": \"return\", \"func_name\": \"<module>\", \"globals\": {\"mix\": [\"REF\", 1]}, \"ordered_globals\": [\"mix\"], \"stack_to_render\": [], \"heap\": {\"1\": [\"LIST\", \"table\", 5, 4, \"chair\", 8, \"chair\"]}, \"stdout\": \"\"}]}\n",
+       "        </script>\n",
+       "        <div id=\"jm-42340939c7ad14e17378b23dcf7b6b39-13\" class=\"pytutorVisualizer\"> </div>\n",
+       "                        \n",
+       "        <script>\n",
+       "        \n",
+       "        (function(){\n",
+       "            console.log(\"jupman.py embedded javascript: adding Python tutor visualizer...\")\n",
+       "            \n",
+       "            var trace = JSON.parse(document.getElementById('json-jm-42340939c7ad14e17378b23dcf7b6b39-13').innerHTML);                                        \n",
+       "            // NOTE: id without #\n",
+       "                    \n",
+       "            addVisualizerToPage(trace, 'jm-42340939c7ad14e17378b23dcf7b6b39-13',{'embeddedMode' : false,\n",
+       "                                             'disableHeapNesting': true,\n",
+       "                                             'visualizerIdOverride':'viz-jm-42340939c7ad14e17378b23dcf7b6b39-13'})  \n",
+       "            \n",
+       "            \n",
+       "            // set overflow for pytuts - need to do in python as css \n",
+       "            // does not allow parent selection\n",
+       "            var pytuts = $('.pytutorVisualizer')\n",
+       "            pytuts.closest('div.output_html.rendered_html.output_result')\n",
+       "                    .css('overflow-x', 'visible')\n",
+       "        \n",
+       "            //pytuts.closest('div.output_html.rendered_html.output_result')\n",
+       "            //      .css('background-color','red')                \n",
+       "            \n",
+       "        })()\n",
+       "        </script>\n",
+       "                \n",
+       "    \n",
+       "    <div style=\"text-align:center; font-size:0.9em\"> <a href=\"https://pythontutor.com/visualize.html#mode=edit\" target=\"_blank\">Python Tutor</a> visualization</div> \n",
+       "    "
+      ],
+      "text/plain": [
+       "<IPython.core.display.HTML object>"
+      ]
+     },
+     "execution_count": 11,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "mix = [\"table\", 5 , 4, \"chair\", 8, \"chair\"]\n",
+    "\n",
+    "jupman.pytut()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "For convenience we can also write the list on many rows (the spaces in this case do not count, only remember to terminate rows with commas `,`)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "mix = [\"table\",\n",
+    "       5 , \n",
+    "       4,\n",
+    "       \"chair\",\n",
+    "       8,\n",
+    "       \"chair\"]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "**EXERCISE**: try writing the list above WITHOUT putting a comma after the `5`, which error appears?"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# write here\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Empty list\n",
+    "\n",
+    "There are two ways to create an empty list.\n",
+    "\n",
+    "\n",
+    "1) with square brackets:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "my_empty_list = []"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[]"
+      ]
+     },
+     "execution_count": 15,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "my_empty_list"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "2) Or with `list()`:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 16,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "another_empty_list = list()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 17,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[]"
+      ]
+     },
+     "execution_count": 17,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "another_empty_list"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<div class=\"div alert alert-warning\">\n",
+    "\n",
+    "**WARNING**: When you create an empty list (independently from the used notation), a NEW region in memory is allocated to place the list.\n",
+    "</div>\n",
+    "\n",
+    "Let's see what this means with Python Tutor:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 18,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "        \n",
+       "        <script src=\"../_static/js/pytutor-embed.bundle.min.js\" type=\"application/javascript\"></script>\n",
+       "    \n",
+       "        <style>\n",
+       "        @import \"../_static/css/jupman.css\";\n",
+       "        </style>\n",
+       "     \n",
+       "        <script id=\"json-jm-2d32aab6c5d59e06a18f7b3e5bdc51fa-20\" type=\"application/json\" >\n",
+       "            {\"code\": \" \\na = []\\nb = []\", \"trace\": [{\"line\": 2, \"event\": \"step_line\", \"func_name\": \"<module>\", \"globals\": {}, \"ordered_globals\": [], \"stack_to_render\": [], \"heap\": {}, \"stdout\": \"\"}, {\"line\": 3, \"event\": \"step_line\", \"func_name\": \"<module>\", \"globals\": {\"a\": [\"REF\", 1]}, \"ordered_globals\": [\"a\"], \"stack_to_render\": [], \"heap\": {\"1\": [\"LIST\"]}, \"stdout\": \"\"}, {\"line\": 3, \"event\": \"return\", \"func_name\": \"<module>\", \"globals\": {\"a\": [\"REF\", 1], \"b\": [\"REF\", 2]}, \"ordered_globals\": [\"a\", \"b\"], \"stack_to_render\": [], \"heap\": {\"1\": [\"LIST\"], \"2\": [\"LIST\"]}, \"stdout\": \"\"}]}\n",
+       "        </script>\n",
+       "        <div id=\"jm-2d32aab6c5d59e06a18f7b3e5bdc51fa-20\" class=\"pytutorVisualizer\"> </div>\n",
+       "                        \n",
+       "        <script>\n",
+       "        \n",
+       "        (function(){\n",
+       "            console.log(\"jupman.py embedded javascript: adding Python tutor visualizer...\")\n",
+       "            \n",
+       "            var trace = JSON.parse(document.getElementById('json-jm-2d32aab6c5d59e06a18f7b3e5bdc51fa-20').innerHTML);                                        \n",
+       "            // NOTE: id without #\n",
+       "                    \n",
+       "            addVisualizerToPage(trace, 'jm-2d32aab6c5d59e06a18f7b3e5bdc51fa-20',{'embeddedMode' : false,\n",
+       "                                             'disableHeapNesting': true,\n",
+       "                                             'visualizerIdOverride':'viz-jm-2d32aab6c5d59e06a18f7b3e5bdc51fa-20'})  \n",
+       "            \n",
+       "            \n",
+       "            // set overflow for pytuts - need to do in python as css \n",
+       "            // does not allow parent selection\n",
+       "            var pytuts = $('.pytutorVisualizer')\n",
+       "            pytuts.closest('div.output_html.rendered_html.output_result')\n",
+       "                    .css('overflow-x', 'visible')\n",
+       "        \n",
+       "            //pytuts.closest('div.output_html.rendered_html.output_result')\n",
+       "            //      .css('background-color','red')                \n",
+       "            \n",
+       "        })()\n",
+       "        </script>\n",
+       "                \n",
+       "    \n",
+       "    <div style=\"text-align:center; font-size:0.9em\"> <a href=\"https://pythontutor.com/visualize.html#mode=edit\" target=\"_blank\">Python Tutor</a> visualization</div> \n",
+       "    "
+      ],
+      "text/plain": [
+       "<IPython.core.display.HTML object>"
+      ]
+     },
+     "execution_count": 18,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "a = []\n",
+    "b = []\n",
+    "\n",
+    "jupman.pytut()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Note two arrows appeared, which point to **different** memory regions. The same would have happend by initializing the lists with some elements:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 19,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "        \n",
+       "        <script src=\"../_static/js/pytutor-embed.bundle.min.js\" type=\"application/javascript\"></script>\n",
+       "    \n",
+       "        <style>\n",
+       "        @import \"../_static/css/jupman.css\";\n",
+       "        </style>\n",
+       "     \n",
+       "        <script id=\"json-jm-56849eed5655071a4ed1441ab7f20666-21\" type=\"application/json\" >\n",
+       "            {\"code\": \" \\nla = [8,6,7]\\nlb = [9,5,6,4]\", \"trace\": [{\"line\": 2, \"event\": \"step_line\", \"func_name\": \"<module>\", \"globals\": {}, \"ordered_globals\": [], \"stack_to_render\": [], \"heap\": {}, \"stdout\": \"\"}, {\"line\": 3, \"event\": \"step_line\", \"func_name\": \"<module>\", \"globals\": {\"la\": [\"REF\", 1]}, \"ordered_globals\": [\"la\"], \"stack_to_render\": [], \"heap\": {\"1\": [\"LIST\", 8, 6, 7]}, \"stdout\": \"\"}, {\"line\": 3, \"event\": \"return\", \"func_name\": \"<module>\", \"globals\": {\"la\": [\"REF\", 1], \"lb\": [\"REF\", 2]}, \"ordered_globals\": [\"la\", \"lb\"], \"stack_to_render\": [], \"heap\": {\"1\": [\"LIST\", 8, 6, 7], \"2\": [\"LIST\", 9, 5, 6, 4]}, \"stdout\": \"\"}]}\n",
+       "        </script>\n",
+       "        <div id=\"jm-56849eed5655071a4ed1441ab7f20666-21\" class=\"pytutorVisualizer\"> </div>\n",
+       "                        \n",
+       "        <script>\n",
+       "        \n",
+       "        (function(){\n",
+       "            console.log(\"jupman.py embedded javascript: adding Python tutor visualizer...\")\n",
+       "            \n",
+       "            var trace = JSON.parse(document.getElementById('json-jm-56849eed5655071a4ed1441ab7f20666-21').innerHTML);                                        \n",
+       "            // NOTE: id without #\n",
+       "                    \n",
+       "            addVisualizerToPage(trace, 'jm-56849eed5655071a4ed1441ab7f20666-21',{'embeddedMode' : false,\n",
+       "                                             'disableHeapNesting': true,\n",
+       "                                             'visualizerIdOverride':'viz-jm-56849eed5655071a4ed1441ab7f20666-21'})  \n",
+       "            \n",
+       "            \n",
+       "            // set overflow for pytuts - need to do in python as css \n",
+       "            // does not allow parent selection\n",
+       "            var pytuts = $('.pytutorVisualizer')\n",
+       "            pytuts.closest('div.output_html.rendered_html.output_result')\n",
+       "                    .css('overflow-x', 'visible')\n",
+       "        \n",
+       "            //pytuts.closest('div.output_html.rendered_html.output_result')\n",
+       "            //      .css('background-color','red')                \n",
+       "            \n",
+       "        })()\n",
+       "        </script>\n",
+       "                \n",
+       "    \n",
+       "    <div style=\"text-align:center; font-size:0.9em\"> <a href=\"https://pythontutor.com/visualize.html#mode=edit\" target=\"_blank\">Python Tutor</a> visualization</div> \n",
+       "    "
+      ],
+      "text/plain": [
+       "<IPython.core.display.HTML object>"
+      ]
+     },
+     "execution_count": 19,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "la = [8,6,7]\n",
+    "lb = [9,5,6,4]\n",
+    "\n",
+    "jupman.pytut()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We would have two lists in different memory regions also by placing identical elements inside the lists:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 20,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "        \n",
+       "        <script src=\"../_static/js/pytutor-embed.bundle.min.js\" type=\"application/javascript\"></script>\n",
+       "    \n",
+       "        <style>\n",
+       "        @import \"../_static/css/jupman.css\";\n",
+       "        </style>\n",
+       "     \n",
+       "        <script id=\"json-jm-b250e653739c170e197eb2ec88b779f4-22\" type=\"application/json\" >\n",
+       "            {\"code\": \" \\nla = [8,6,7]\\nlb = [8,6,7]\", \"trace\": [{\"line\": 2, \"event\": \"step_line\", \"func_name\": \"<module>\", \"globals\": {}, \"ordered_globals\": [], \"stack_to_render\": [], \"heap\": {}, \"stdout\": \"\"}, {\"line\": 3, \"event\": \"step_line\", \"func_name\": \"<module>\", \"globals\": {\"la\": [\"REF\", 1]}, \"ordered_globals\": [\"la\"], \"stack_to_render\": [], \"heap\": {\"1\": [\"LIST\", 8, 6, 7]}, \"stdout\": \"\"}, {\"line\": 3, \"event\": \"return\", \"func_name\": \"<module>\", \"globals\": {\"la\": [\"REF\", 1], \"lb\": [\"REF\", 2]}, \"ordered_globals\": [\"la\", \"lb\"], \"stack_to_render\": [], \"heap\": {\"1\": [\"LIST\", 8, 6, 7], \"2\": [\"LIST\", 8, 6, 7]}, \"stdout\": \"\"}]}\n",
+       "        </script>\n",
+       "        <div id=\"jm-b250e653739c170e197eb2ec88b779f4-22\" class=\"pytutorVisualizer\"> </div>\n",
+       "                        \n",
+       "        <script>\n",
+       "        \n",
+       "        (function(){\n",
+       "            console.log(\"jupman.py embedded javascript: adding Python tutor visualizer...\")\n",
+       "            \n",
+       "            var trace = JSON.parse(document.getElementById('json-jm-b250e653739c170e197eb2ec88b779f4-22').innerHTML);                                        \n",
+       "            // NOTE: id without #\n",
+       "                    \n",
+       "            addVisualizerToPage(trace, 'jm-b250e653739c170e197eb2ec88b779f4-22',{'embeddedMode' : false,\n",
+       "                                             'disableHeapNesting': true,\n",
+       "                                             'visualizerIdOverride':'viz-jm-b250e653739c170e197eb2ec88b779f4-22'})  \n",
+       "            \n",
+       "            \n",
+       "            // set overflow for pytuts - need to do in python as css \n",
+       "            // does not allow parent selection\n",
+       "            var pytuts = $('.pytutorVisualizer')\n",
+       "            pytuts.closest('div.output_html.rendered_html.output_result')\n",
+       "                    .css('overflow-x', 'visible')\n",
+       "        \n",
+       "            //pytuts.closest('div.output_html.rendered_html.output_result')\n",
+       "            //      .css('background-color','red')                \n",
+       "            \n",
+       "        })()\n",
+       "        </script>\n",
+       "                \n",
+       "    \n",
+       "    <div style=\"text-align:center; font-size:0.9em\"> <a href=\"https://pythontutor.com/visualize.html#mode=edit\" target=\"_blank\">Python Tutor</a> visualization</div> \n",
+       "    "
+      ],
+      "text/plain": [
+       "<IPython.core.display.HTML object>"
+      ]
+     },
+     "execution_count": 20,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "la = [8,6,7]\n",
+    "lb = [8,6,7]\n",
+    "\n",
+    "jupman.pytut()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Things get complicated when we start using assignment operations:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 21,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "la = [8,6,7]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 22,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "lb = [9,5,6,4]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 23,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "lb = la"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "By writing `lb = la`, we told Python to 'forget' the previous assignment of `lb` to `[9,5,6,4]`, and instead to associate `lb`  to the same value associated to `la`, that is `[8,6,7]`. Thus, in memory we will see an arrow departing from `lb` and arriving into `[8,6,7]`, and the memory region where the list `[9,5,6,4]` was placed will be removed (won't be associated to any variable anymore). Let's see what happens with Python Tutor:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 24,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "        \n",
+       "        <script src=\"../_static/js/pytutor-embed.bundle.min.js\" type=\"application/javascript\"></script>\n",
+       "    \n",
+       "        <style>\n",
+       "        @import \"../_static/css/jupman.css\";\n",
+       "        </style>\n",
+       "     \n",
+       "        <script id=\"json-jm-6d3ed62c7cdd69cbf2a809da1e082bc4-26\" type=\"application/json\" >\n",
+       "            {\"code\": \" \\nla = [8,6,7]\\nlb = [9,5,6,4]\\nlb = la\", \"trace\": [{\"line\": 2, \"event\": \"step_line\", \"func_name\": \"<module>\", \"globals\": {}, \"ordered_globals\": [], \"stack_to_render\": [], \"heap\": {}, \"stdout\": \"\"}, {\"line\": 3, \"event\": \"step_line\", \"func_name\": \"<module>\", \"globals\": {\"la\": [\"REF\", 1]}, \"ordered_globals\": [\"la\"], \"stack_to_render\": [], \"heap\": {\"1\": [\"LIST\", 8, 6, 7]}, \"stdout\": \"\"}, {\"line\": 4, \"event\": \"step_line\", \"func_name\": \"<module>\", \"globals\": {\"la\": [\"REF\", 1], \"lb\": [\"REF\", 2]}, \"ordered_globals\": [\"la\", \"lb\"], \"stack_to_render\": [], \"heap\": {\"1\": [\"LIST\", 8, 6, 7], \"2\": [\"LIST\", 9, 5, 6, 4]}, \"stdout\": \"\"}, {\"line\": 4, \"event\": \"return\", \"func_name\": \"<module>\", \"globals\": {\"la\": [\"REF\", 1], \"lb\": [\"REF\", 1]}, \"ordered_globals\": [\"la\", \"lb\"], \"stack_to_render\": [], \"heap\": {\"1\": [\"LIST\", 8, 6, 7]}, \"stdout\": \"\"}]}\n",
+       "        </script>\n",
+       "        <div id=\"jm-6d3ed62c7cdd69cbf2a809da1e082bc4-26\" class=\"pytutorVisualizer\"> </div>\n",
+       "                        \n",
+       "        <script>\n",
+       "        \n",
+       "        (function(){\n",
+       "            console.log(\"jupman.py embedded javascript: adding Python tutor visualizer...\")\n",
+       "            \n",
+       "            var trace = JSON.parse(document.getElementById('json-jm-6d3ed62c7cdd69cbf2a809da1e082bc4-26').innerHTML);                                        \n",
+       "            // NOTE: id without #\n",
+       "                    \n",
+       "            addVisualizerToPage(trace, 'jm-6d3ed62c7cdd69cbf2a809da1e082bc4-26',{'embeddedMode' : false,\n",
+       "                                             'disableHeapNesting': true,\n",
+       "                                             'visualizerIdOverride':'viz-jm-6d3ed62c7cdd69cbf2a809da1e082bc4-26'})  \n",
+       "            \n",
+       "            \n",
+       "            // set overflow for pytuts - need to do in python as css \n",
+       "            // does not allow parent selection\n",
+       "            var pytuts = $('.pytutorVisualizer')\n",
+       "            pytuts.closest('div.output_html.rendered_html.output_result')\n",
+       "                    .css('overflow-x', 'visible')\n",
+       "        \n",
+       "            //pytuts.closest('div.output_html.rendered_html.output_result')\n",
+       "            //      .css('background-color','red')                \n",
+       "            \n",
+       "        })()\n",
+       "        </script>\n",
+       "                \n",
+       "    \n",
+       "    <div style=\"text-align:center; font-size:0.9em\"> <a href=\"https://pythontutor.com/visualize.html#mode=edit\" target=\"_blank\">Python Tutor</a> visualization</div> \n",
+       "    "
+      ],
+      "text/plain": [
+       "<IPython.core.display.HTML object>"
+      ]
+     },
+     "execution_count": 24,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "la = [8,6,7]\n",
+    "lb = [9,5,6,4]\n",
+    "lb = la\n",
+    "\n",
+    "jupman.pytut()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Exercise - list swaps\n",
+    "\n",
+    "Try swapping the lists associated to variables `la` and `lb` by using only assignments and **without creating new lists**. If you want, you can overwrite a third variable `lc`. Verify what happes with Python Tutor.\n",
+    "\n",
+    "* your code must work for any value of `la`, `lb` and `lc`\n",
+    "\n",
+    "Example - given:\n",
+    "\n",
+    "```python\n",
+    "la = [9,6,1]\n",
+    "lb = [2,3,4,3,5]\n",
+    "lc = None\n",
+    "```\n",
+    "After your code, it must result:\n",
+    "\n",
+    "```python\n",
+    ">>> print(la)\n",
+    "[2,3,4,3,5]\n",
+    ">>> print(lb)\n",
+    "[9,6,1]\n",
+    "```"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "la = [9,6,1]\n",
+    "lb = [2,3,4,3,5]\n",
+    "lc = None\n",
+    "\n",
+    "# write here"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<details class=\"solution\">\n<summary>Show solution</summary>"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "la = [9,6,1]\n",
+    "lb = [2,3,4,3,5]\n",
+    "lc = None\n",
+    "\n",
+    "lc = la\n",
+    "la = lb\n",
+    "lb = lc\n",
+    "\n",
+    "print(la)\n",
+    "print(lb)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "</details>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Tables\n",
+    "\n",
+    "A list can also contain other lists:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 26,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "table = [  ['a','b','c'],  ['d','e','f']  ]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Typically, whenver we have structures like this, it's convenient to displace them on many rows (it's not mandatory but improves clarity):"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 27,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "table = [                 # start external big list\n",
+    "          ['a','b','c'],    # internal list 1\n",
+    "          ['d','e','f']     # internal list 2\n",
+    "        ]                 # end external big list"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 28,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[['a', 'b', 'c'], ['d', 'e', 'f']]"
+      ]
+     },
+     "execution_count": 28,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "table"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Let's see how it's shown in Python Tutor:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 29,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "        \n",
+       "        <script src=\"../_static/js/pytutor-embed.bundle.min.js\" type=\"application/javascript\"></script>\n",
+       "    \n",
+       "        <style>\n",
+       "        @import \"../_static/css/jupman.css\";\n",
+       "        </style>\n",
+       "     \n",
+       "        <script id=\"json-jm-f6a0298c766139180a267d15ec75e8a9-31\" type=\"application/json\" >\n",
+       "            {\"code\": \" \\ntable = [  \\n          ['a','b','c'],  \\n          ['d','e','f']  \\n        ]\", \"trace\": [{\"line\": 3, \"event\": \"step_line\", \"func_name\": \"<module>\", \"globals\": {}, \"ordered_globals\": [], \"stack_to_render\": [], \"heap\": {}, \"stdout\": \"\"}, {\"line\": 4, \"event\": \"step_line\", \"func_name\": \"<module>\", \"globals\": {}, \"ordered_globals\": [], \"stack_to_render\": [], \"heap\": {}, \"stdout\": \"\"}, {\"line\": 2, \"event\": \"step_line\", \"func_name\": \"<module>\", \"globals\": {}, \"ordered_globals\": [], \"stack_to_render\": [], \"heap\": {}, \"stdout\": \"\"}, {\"line\": 2, \"event\": \"return\", \"func_name\": \"<module>\", \"globals\": {\"table\": [\"REF\", 1]}, \"ordered_globals\": [\"table\"], \"stack_to_render\": [], \"heap\": {\"1\": [\"LIST\", [\"REF\", 2], [\"REF\", 3]], \"2\": [\"LIST\", \"a\", \"b\", \"c\"], \"3\": [\"LIST\", \"d\", \"e\", \"f\"]}, \"stdout\": \"\"}]}\n",
+       "        </script>\n",
+       "        <div id=\"jm-f6a0298c766139180a267d15ec75e8a9-31\" class=\"pytutorVisualizer\"> </div>\n",
+       "                        \n",
+       "        <script>\n",
+       "        \n",
+       "        (function(){\n",
+       "            console.log(\"jupman.py embedded javascript: adding Python tutor visualizer...\")\n",
+       "            \n",
+       "            var trace = JSON.parse(document.getElementById('json-jm-f6a0298c766139180a267d15ec75e8a9-31').innerHTML);                                        \n",
+       "            // NOTE: id without #\n",
+       "                    \n",
+       "            addVisualizerToPage(trace, 'jm-f6a0298c766139180a267d15ec75e8a9-31',{'embeddedMode' : false,\n",
+       "                                             'disableHeapNesting': true,\n",
+       "                                             'visualizerIdOverride':'viz-jm-f6a0298c766139180a267d15ec75e8a9-31'})  \n",
+       "            \n",
+       "            \n",
+       "            // set overflow for pytuts - need to do in python as css \n",
+       "            // does not allow parent selection\n",
+       "            var pytuts = $('.pytutorVisualizer')\n",
+       "            pytuts.closest('div.output_html.rendered_html.output_result')\n",
+       "                    .css('overflow-x', 'visible')\n",
+       "        \n",
+       "            //pytuts.closest('div.output_html.rendered_html.output_result')\n",
+       "            //      .css('background-color','red')                \n",
+       "            \n",
+       "        })()\n",
+       "        </script>\n",
+       "                \n",
+       "    \n",
+       "    <div style=\"text-align:center; font-size:0.9em\"> <a href=\"https://pythontutor.com/visualize.html#mode=edit\" target=\"_blank\">Python Tutor</a> visualization</div> \n",
+       "    "
+      ],
+      "text/plain": [
+       "<IPython.core.display.HTML object>"
+      ]
+     },
+     "execution_count": 29,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "table = [  \n",
+    "          ['a','b','c'],  \n",
+    "          ['d','e','f']  \n",
+    "        ]\n",
+    "\n",
+    "jupman.pytut()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "As we previously said, in a list we can put the elements we want, so we can mix lists with different dimensions, strings, numbers and so on:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 30,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "so_much = [ \n",
+    "            ['hello',3,'world'],\n",
+    "            'a string',\n",
+    "            [9,5,6,7,3,4],\n",
+    "            8,\n",
+    "          ]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 31,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[['hello', 3, 'world'], 'a string', [9, 5, 6, 7, 3, 4], 8]\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(so_much)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Let's see how it appears in Python Tutor:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 32,
+   "metadata": {
+    "scrolled": false
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "        \n",
+       "        <script src=\"../_static/js/pytutor-embed.bundle.min.js\" type=\"application/javascript\"></script>\n",
+       "    \n",
+       "        <style>\n",
+       "        @import \"../_static/css/jupman.css\";\n",
+       "        </style>\n",
+       "     \n",
+       "        <script id=\"json-jm-469a41b8024d59fcd461eb902ea2c9a9-34\" type=\"application/json\" >\n",
+       "            {\"code\": \" \\nso_much = [ \\n             ['hello',3,'world'],\\n             'a string',\\n             [9,5,6,7,3,4],\\n             8,\\n          ]\", \"trace\": [{\"line\": 3, \"event\": \"step_line\", \"func_name\": \"<module>\", \"globals\": {}, \"ordered_globals\": [], \"stack_to_render\": [], \"heap\": {}, \"stdout\": \"\"}, {\"line\": 4, \"event\": \"step_line\", \"func_name\": \"<module>\", \"globals\": {}, \"ordered_globals\": [], \"stack_to_render\": [], \"heap\": {}, \"stdout\": \"\"}, {\"line\": 5, \"event\": \"step_line\", \"func_name\": \"<module>\", \"globals\": {}, \"ordered_globals\": [], \"stack_to_render\": [], \"heap\": {}, \"stdout\": \"\"}, {\"line\": 6, \"event\": \"step_line\", \"func_name\": \"<module>\", \"globals\": {}, \"ordered_globals\": [], \"stack_to_render\": [], \"heap\": {}, \"stdout\": \"\"}, {\"line\": 2, \"event\": \"step_line\", \"func_name\": \"<module>\", \"globals\": {}, \"ordered_globals\": [], \"stack_to_render\": [], \"heap\": {}, \"stdout\": \"\"}, {\"line\": 2, \"event\": \"return\", \"func_name\": \"<module>\", \"globals\": {\"so_much\": [\"REF\", 1]}, \"ordered_globals\": [\"so_much\"], \"stack_to_render\": [], \"heap\": {\"1\": [\"LIST\", [\"REF\", 2], \"a string\", [\"REF\", 3], 8], \"2\": [\"LIST\", \"hello\", 3, \"world\"], \"3\": [\"LIST\", 9, 5, 6, 7, 3, 4]}, \"stdout\": \"\"}]}\n",
+       "        </script>\n",
+       "        <div id=\"jm-469a41b8024d59fcd461eb902ea2c9a9-34\" class=\"pytutorVisualizer\"> </div>\n",
+       "                        \n",
+       "        <script>\n",
+       "        \n",
+       "        (function(){\n",
+       "            console.log(\"jupman.py embedded javascript: adding Python tutor visualizer...\")\n",
+       "            \n",
+       "            var trace = JSON.parse(document.getElementById('json-jm-469a41b8024d59fcd461eb902ea2c9a9-34').innerHTML);                                        \n",
+       "            // NOTE: id without #\n",
+       "                    \n",
+       "            addVisualizerToPage(trace, 'jm-469a41b8024d59fcd461eb902ea2c9a9-34',{'embeddedMode' : false,\n",
+       "                                             'disableHeapNesting': true,\n",
+       "                                             'visualizerIdOverride':'viz-jm-469a41b8024d59fcd461eb902ea2c9a9-34'})  \n",
+       "            \n",
+       "            \n",
+       "            // set overflow for pytuts - need to do in python as css \n",
+       "            // does not allow parent selection\n",
+       "            var pytuts = $('.pytutorVisualizer')\n",
+       "            pytuts.closest('div.output_html.rendered_html.output_result')\n",
+       "                    .css('overflow-x', 'visible')\n",
+       "        \n",
+       "            //pytuts.closest('div.output_html.rendered_html.output_result')\n",
+       "            //      .css('background-color','red')                \n",
+       "            \n",
+       "        })()\n",
+       "        </script>\n",
+       "                \n",
+       "    \n",
+       "    <div style=\"text-align:center; font-size:0.9em\"> <a href=\"https://pythontutor.com/visualize.html#mode=edit\" target=\"_blank\">Python Tutor</a> visualization</div> \n",
+       "    "
+      ],
+      "text/plain": [
+       "<IPython.core.display.HTML object>"
+      ]
+     },
+     "execution_count": 32,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "so_much = [ \n",
+    "             ['hello',3,'world'],\n",
+    "             'a string',\n",
+    "             [9,5,6,7,3,4],\n",
+    "             8,\n",
+    "          ]\n",
+    "\n",
+    "jupman.pytut()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Question - list creation\n",
+    "\n",
+    "Have a look at these two pieces of code. For each case, try thinking how they might be represented in memory and then verify with Python Tutor.\n",
+    "\n",
+    "- could there be a difference?\n",
+    "- how many memory cells will be allocated in total?\n",
+    "- how many arrows will you see?"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "```python\n",
+    "# first case\n",
+    "lb = [\n",
+    "       [8,6,7],\n",
+    "       [8,6,7],\n",
+    "       [8,6,7],\n",
+    "       [8,6,7],       \n",
+    "     ]\n",
+    "```\n",
+    "\n",
+    "```python\n",
+    "# second case\n",
+    "la = [8,6,7]\n",
+    "lb = [\n",
+    "       la,\n",
+    "       la,\n",
+    "       la,\n",
+    "       la\n",
+    "     ]\n",
+    "```\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 33,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "        \n",
+       "        <script src=\"../_static/js/pytutor-embed.bundle.min.js\" type=\"application/javascript\"></script>\n",
+       "    \n",
+       "        <style>\n",
+       "        @import \"../_static/css/jupman.css\";\n",
+       "        </style>\n",
+       "     \n",
+       "        <script id=\"json-jm-74c135b61d4a8869cf9903d1562301e0-35\" type=\"application/json\" >\n",
+       "            {\"code\": \" \\n# first case\\nlb = [\\n       [8,6,7],\\n       [8,6,7],\\n       [8,6,7],\\n       [8,6,7],       \\n     ]\", \"trace\": [{\"line\": 4, \"event\": \"step_line\", \"func_name\": \"<module>\", \"globals\": {}, \"ordered_globals\": [], \"stack_to_render\": [], \"heap\": {}, \"stdout\": \"\"}, {\"line\": 5, \"event\": \"step_line\", \"func_name\": \"<module>\", \"globals\": {}, \"ordered_globals\": [], \"stack_to_render\": [], \"heap\": {}, \"stdout\": \"\"}, {\"line\": 6, \"event\": \"step_line\", \"func_name\": \"<module>\", \"globals\": {}, \"ordered_globals\": [], \"stack_to_render\": [], \"heap\": {}, \"stdout\": \"\"}, {\"line\": 7, \"event\": \"step_line\", \"func_name\": \"<module>\", \"globals\": {}, \"ordered_globals\": [], \"stack_to_render\": [], \"heap\": {}, \"stdout\": \"\"}, {\"line\": 3, \"event\": \"step_line\", \"func_name\": \"<module>\", \"globals\": {}, \"ordered_globals\": [], \"stack_to_render\": [], \"heap\": {}, \"stdout\": \"\"}, {\"line\": 3, \"event\": \"return\", \"func_name\": \"<module>\", \"globals\": {\"lb\": [\"REF\", 1]}, \"ordered_globals\": [\"lb\"], \"stack_to_render\": [], \"heap\": {\"1\": [\"LIST\", [\"REF\", 2], [\"REF\", 3], [\"REF\", 4], [\"REF\", 5]], \"2\": [\"LIST\", 8, 6, 7], \"3\": [\"LIST\", 8, 6, 7], \"4\": [\"LIST\", 8, 6, 7], \"5\": [\"LIST\", 8, 6, 7]}, \"stdout\": \"\"}]}\n",
+       "        </script>\n",
+       "        <div id=\"jm-74c135b61d4a8869cf9903d1562301e0-35\" class=\"pytutorVisualizer\"> </div>\n",
+       "                        \n",
+       "        <script>\n",
+       "        \n",
+       "        (function(){\n",
+       "            console.log(\"jupman.py embedded javascript: adding Python tutor visualizer...\")\n",
+       "            \n",
+       "            var trace = JSON.parse(document.getElementById('json-jm-74c135b61d4a8869cf9903d1562301e0-35').innerHTML);                                        \n",
+       "            // NOTE: id without #\n",
+       "                    \n",
+       "            addVisualizerToPage(trace, 'jm-74c135b61d4a8869cf9903d1562301e0-35',{'embeddedMode' : false,\n",
+       "                                             'disableHeapNesting': true,\n",
+       "                                             'visualizerIdOverride':'viz-jm-74c135b61d4a8869cf9903d1562301e0-35'})  \n",
+       "            \n",
+       "            \n",
+       "            // set overflow for pytuts - need to do in python as css \n",
+       "            // does not allow parent selection\n",
+       "            var pytuts = $('.pytutorVisualizer')\n",
+       "            pytuts.closest('div.output_html.rendered_html.output_result')\n",
+       "                    .css('overflow-x', 'visible')\n",
+       "        \n",
+       "            //pytuts.closest('div.output_html.rendered_html.output_result')\n",
+       "            //      .css('background-color','red')                \n",
+       "            \n",
+       "        })()\n",
+       "        </script>\n",
+       "                \n",
+       "    \n",
+       "    <div style=\"text-align:center; font-size:0.9em\"> <a href=\"https://pythontutor.com/visualize.html#mode=edit\" target=\"_blank\">Python Tutor</a> visualization</div> \n",
+       "    "
+      ],
+      "text/plain": [
+       "<IPython.core.display.HTML object>"
+      ]
+     },
+     "execution_count": 33,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "# first case\n",
+    "lb = [\n",
+    "       [8,6,7],\n",
+    "       [8,6,7],\n",
+    "       [8,6,7],\n",
+    "       [8,6,7],       \n",
+    "     ]\n",
+    "jupman.pytut()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 34,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "        \n",
+       "        <script src=\"../_static/js/pytutor-embed.bundle.min.js\" type=\"application/javascript\"></script>\n",
+       "    \n",
+       "        <style>\n",
+       "        @import \"../_static/css/jupman.css\";\n",
+       "        </style>\n",
+       "     \n",
+       "        <script id=\"json-jm-1822cd608637606fa08d0b813b84fa16-36\" type=\"application/json\" >\n",
+       "            {\"code\": \" \\n# second case\\n\\nla = [8,6,7]\\nlb = [\\n       la,\\n       la,\\n       la,\\n       la\\n     ]\", \"trace\": [{\"line\": 4, \"event\": \"step_line\", \"func_name\": \"<module>\", \"globals\": {}, \"ordered_globals\": [], \"stack_to_render\": [], \"heap\": {}, \"stdout\": \"\"}, {\"line\": 6, \"event\": \"step_line\", \"func_name\": \"<module>\", \"globals\": {\"la\": [\"REF\", 1]}, \"ordered_globals\": [\"la\"], \"stack_to_render\": [], \"heap\": {\"1\": [\"LIST\", 8, 6, 7]}, \"stdout\": \"\"}, {\"line\": 7, \"event\": \"step_line\", \"func_name\": \"<module>\", \"globals\": {\"la\": [\"REF\", 1]}, \"ordered_globals\": [\"la\"], \"stack_to_render\": [], \"heap\": {\"1\": [\"LIST\", 8, 6, 7]}, \"stdout\": \"\"}, {\"line\": 8, \"event\": \"step_line\", \"func_name\": \"<module>\", \"globals\": {\"la\": [\"REF\", 1]}, \"ordered_globals\": [\"la\"], \"stack_to_render\": [], \"heap\": {\"1\": [\"LIST\", 8, 6, 7]}, \"stdout\": \"\"}, {\"line\": 9, \"event\": \"step_line\", \"func_name\": \"<module>\", \"globals\": {\"la\": [\"REF\", 1]}, \"ordered_globals\": [\"la\"], \"stack_to_render\": [], \"heap\": {\"1\": [\"LIST\", 8, 6, 7]}, \"stdout\": \"\"}, {\"line\": 5, \"event\": \"step_line\", \"func_name\": \"<module>\", \"globals\": {\"la\": [\"REF\", 1]}, \"ordered_globals\": [\"la\"], \"stack_to_render\": [], \"heap\": {\"1\": [\"LIST\", 8, 6, 7]}, \"stdout\": \"\"}, {\"line\": 5, \"event\": \"return\", \"func_name\": \"<module>\", \"globals\": {\"la\": [\"REF\", 1], \"lb\": [\"REF\", 2]}, \"ordered_globals\": [\"la\", \"lb\"], \"stack_to_render\": [], \"heap\": {\"1\": [\"LIST\", 8, 6, 7], \"2\": [\"LIST\", [\"REF\", 1], [\"REF\", 1], [\"REF\", 1], [\"REF\", 1]]}, \"stdout\": \"\"}]}\n",
+       "        </script>\n",
+       "        <div id=\"jm-1822cd608637606fa08d0b813b84fa16-36\" class=\"pytutorVisualizer\"> </div>\n",
+       "                        \n",
+       "        <script>\n",
+       "        \n",
+       "        (function(){\n",
+       "            console.log(\"jupman.py embedded javascript: adding Python tutor visualizer...\")\n",
+       "            \n",
+       "            var trace = JSON.parse(document.getElementById('json-jm-1822cd608637606fa08d0b813b84fa16-36').innerHTML);                                        \n",
+       "            // NOTE: id without #\n",
+       "                    \n",
+       "            addVisualizerToPage(trace, 'jm-1822cd608637606fa08d0b813b84fa16-36',{'embeddedMode' : false,\n",
+       "                                             'disableHeapNesting': true,\n",
+       "                                             'visualizerIdOverride':'viz-jm-1822cd608637606fa08d0b813b84fa16-36'})  \n",
+       "            \n",
+       "            \n",
+       "            // set overflow for pytuts - need to do in python as css \n",
+       "            // does not allow parent selection\n",
+       "            var pytuts = $('.pytutorVisualizer')\n",
+       "            pytuts.closest('div.output_html.rendered_html.output_result')\n",
+       "                    .css('overflow-x', 'visible')\n",
+       "        \n",
+       "            //pytuts.closest('div.output_html.rendered_html.output_result')\n",
+       "            //      .css('background-color','red')                \n",
+       "            \n",
+       "        })()\n",
+       "        </script>\n",
+       "                \n",
+       "    \n",
+       "    <div style=\"text-align:center; font-size:0.9em\"> <a href=\"https://pythontutor.com/visualize.html#mode=edit\" target=\"_blank\">Python Tutor</a> visualization</div> \n",
+       "    "
+      ],
+      "text/plain": [
+       "<IPython.core.display.HTML object>"
+      ]
+     },
+     "execution_count": 34,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "# second case\n",
+    "\n",
+    "la = [8,6,7]\n",
+    "lb = [\n",
+    "       la,\n",
+    "       la,\n",
+    "       la,\n",
+    "       la\n",
+    "     ]\n",
+    "jupman.pytut()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "**ANSWER**: In the first case, we have a 'big list' associated to the variable `lb` which contains `4` sublists each of 3 elements. Each sublist is created as new, so in total in memory we end up with  4 cells of the big list `lb` + (4 sublists * 3 cells each) = 16 cells\n",
+    "\n",
+    "In the second case we have instead always the 'big list' associated to the variable `lb` of 4 cells, but inside it contains some pointers to the same identical list `la`. So the total number of occupied cells is 4 cells of big list `lb` + (1 sublist * 3 cells) = 7 cells"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Exercise - domino\n",
+    "\n",
+    "In your neighborhood a super domino match is being held: since the first prize is a card to get 10 pies made my mythical Grandmother Severina you decide to put serious effort.\n",
+    "\n",
+    "You start thinking about how to train and decide to start matching the tiles in the correct way:\n",
+    "\n",
+    "```python\n",
+    "tile1 = [1,3]\n",
+    "tile3 = [1,5]\n",
+    "tile2 = [3,9]\n",
+    "tile5 = [9,7]\n",
+    "tile4 = [8,2]\n",
+    "```\n",
+    "\n",
+    "Given these tiles, generate a list which will contain two lists: in the first one insert a possible sequence of chained tiles; in the second one put the tiles which were left excluded from the first one sequence.\n",
+    "\n",
+    "Example:\n",
+    "\n",
+    "```python\n",
+    "[  [ [1, 3], [3, 9], [9, 7] ],   [ [1, 5], [8, 2]  ]  ]\n",
+    "```\n",
+    "\n",
+    "* **DO NOT write numbers**\n",
+    "* **USE** only lists of variables"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "tile1 = [1,3]\n",
+    "tile2 = [3,2]\n",
+    "tile3 = [1,5]\n",
+    "tile4 = [2,4]\n",
+    "tile5 = [3,3]\n",
+    "tile6 = [5,4]\n",
+    "tile7 = [1,2]\n",
+    "\n",
+    "# write here"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<details class=\"solution\">\n<summary>Show solution</summary>"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "tile1 = [1,3]\n",
+    "tile2 = [3,2]\n",
+    "tile3 = [1,5]\n",
+    "tile4 = [2,4]\n",
+    "tile5 = [3,3]\n",
+    "tile6 = [5,4]\n",
+    "tile7 = [1,2]\n",
+    "\n",
+    "sequence = [tile1, tile5, tile2, tile4]\n",
+    "remained = [tile3, tile6, tile7]\n",
+    "print([sequence, remained])"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "</details>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Exercise - create lists 2\n",
+    "\n",
+    "Insert some values in the lists `la`, `lb` such that\n",
+    "\n",
+    "```python\n",
+    "print([[la,la],[lb,la]])\n",
+    "```\n",
+    "\n",
+    "prints\n",
+    "\n",
+    "```\n",
+    "[[[8, 4], [8, 4]], [[4, 8, 4], [8, 4]]]\n",
+    "```\n",
+    "\n",
+    "* **Insert only NUMBERS**\n",
+    "* Observe in Python Tutor how arrows are represented\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 36,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[[[], []], [[], []]]\n"
+     ]
+    }
+   ],
+   "source": [
+    "la = []  # insert numbers\n",
+    "lb = []  # insert numbers\n",
+    "\n",
+    "print([[la,la],[lb,la]])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# write here\n",
+    "\n",
+    "print([[la,la],[lb,la]])"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<details class=\"solution\">\n<summary>Show solution</summary>"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "la = [8,4]\n",
+    "lb = [4,8,4]\n",
+    "\n",
+    "print([[la,la],[lb,la]])"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "</details>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Exercise - create lists 3\n",
+    "\n",
+    "Insert some values as elements of the lists  `la`, `lb` e `lc` such that\n",
+    "\n",
+    "```python\n",
+    "print([[lb,lb,[lc,la]],lc])\n",
+    "```\n",
+    "\n",
+    "prints\n",
+    "\n",
+    "```\n",
+    "[[[8, [7, 7]], [8, [7, 7]], [[8, 7], [8, 5]]], [8, 7]]\n",
+    "```\n",
+    "\n",
+    "* **insert only NUMBERS or NEW LISTS OF NUMBERS**\n",
+    "* Observe in Python Tutor are arrows are represented"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 38,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[[[], [], [[], []]], []]\n"
+     ]
+    }
+   ],
+   "source": [
+    "\n",
+    "la = []  # insert elements  (numbers or lists of numbers)\n",
+    "lb = []  # insert elements  (numbers or lists of numbers)\n",
+    "lc = []  # insert elements  (numbers or lists of numbers)\n",
+    "\n",
+    "print([[lb,lb,[lc,la]],lc])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# write here\n",
+    "\n",
+    "print([[lb,lb,[lc,la]],lc])"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<details class=\"solution\">\n<summary>Show solution</summary>"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "la = [8,5]\n",
+    "lb = [8,[7,7]]\n",
+    "lc = [8,7]\n",
+    "\n",
+    "print([[lb,lb,[lc,la]],lc])"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "</details>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Exercise - create lists 4\n",
+    "\n",
+    "Insert some values in the lists `la`, `lb` such that\n",
+    "\n",
+    "```python\n",
+    "print([[la,lc,la], lb])\n",
+    "```\n",
+    "\n",
+    "prints\n",
+    "\n",
+    "```\n",
+    "[[[3, 2], [[3, 2], [8, [3, 2]]], [3, 2]], [8, [3, 2]]]\n",
+    "```\n",
+    "\n",
+    "* **insert only NUMBERS or VARIABLES** `la`,`lb` or `lc`\n",
+    "* Observe in Python Tutor how arrows are represented"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 40,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[[[], [], []], []]\n"
+     ]
+    }
+   ],
+   "source": [
+    "la = []  # insert numbers or variables la, lb, lc\n",
+    "lb = []  # insert numbers or variables la, lb, lc\n",
+    "lc = []  # insert numbers or variables la, lb, lc\n",
+    "\n",
+    "print([[la,lc,la], lb])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# write here\n",
+    "\n",
+    "print([[la,lc,la], lb])"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<details class=\"solution\">\n<summary>Show solution</summary>"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "la = [3,2]\n",
+    "lb = [8,la]\n",
+    "lc = [la,lb]\n",
+    "\n",
+    "print([[la,lc,la], lb])"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "</details>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Convert sequences into lists"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "`list` may also be used to convert any sequence into a NEW list. A sequence type we've already seen are strings, so we can check what happens when we use `list` like if it were a function, by passing a string as parameter:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 42,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "['t', 'r', 'a', 'i', 'n']"
+      ]
+     },
+     "execution_count": 42,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "list(\"train\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We obtained a list in which each element is made of a character from the original string."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "What happens if we call instead `list` on another list?"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 43,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[7, 9, 5, 6]"
+      ]
+     },
+     "execution_count": 43,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "list( [7,9,5,6] )"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Apparently, nothing particular, we obtained a list with the same start elements. But is it really the same list? Let's have a better look with Python Tutor:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 44,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "        \n",
+       "        <script src=\"../_static/js/pytutor-embed.bundle.min.js\" type=\"application/javascript\"></script>\n",
+       "    \n",
+       "        <style>\n",
+       "        @import \"../_static/css/jupman.css\";\n",
+       "        </style>\n",
+       "     \n",
+       "        <script id=\"json-jm-b13a1d918079434f3425d5768bdec6ad-46\" type=\"application/json\" >\n",
+       "            {\"code\": \" \\nla = [7,9,5,6] \\n\\nlb = list( la )\", \"trace\": [{\"line\": 2, \"event\": \"step_line\", \"func_name\": \"<module>\", \"globals\": {}, \"ordered_globals\": [], \"stack_to_render\": [], \"heap\": {}, \"stdout\": \"\"}, {\"line\": 4, \"event\": \"step_line\", \"func_name\": \"<module>\", \"globals\": {\"la\": [\"REF\", 1]}, \"ordered_globals\": [\"la\"], \"stack_to_render\": [], \"heap\": {\"1\": [\"LIST\", 7, 9, 5, 6]}, \"stdout\": \"\"}, {\"line\": 4, \"event\": \"return\", \"func_name\": \"<module>\", \"globals\": {\"la\": [\"REF\", 1], \"lb\": [\"REF\", 2]}, \"ordered_globals\": [\"la\", \"lb\"], \"stack_to_render\": [], \"heap\": {\"1\": [\"LIST\", 7, 9, 5, 6], \"2\": [\"LIST\", 7, 9, 5, 6]}, \"stdout\": \"\"}]}\n",
+       "        </script>\n",
+       "        <div id=\"jm-b13a1d918079434f3425d5768bdec6ad-46\" class=\"pytutorVisualizer\"> </div>\n",
+       "                        \n",
+       "        <script>\n",
+       "        \n",
+       "        (function(){\n",
+       "            console.log(\"jupman.py embedded javascript: adding Python tutor visualizer...\")\n",
+       "            \n",
+       "            var trace = JSON.parse(document.getElementById('json-jm-b13a1d918079434f3425d5768bdec6ad-46').innerHTML);                                        \n",
+       "            // NOTE: id without #\n",
+       "                    \n",
+       "            addVisualizerToPage(trace, 'jm-b13a1d918079434f3425d5768bdec6ad-46',{'embeddedMode' : false,\n",
+       "                                             'disableHeapNesting': true,\n",
+       "                                             'visualizerIdOverride':'viz-jm-b13a1d918079434f3425d5768bdec6ad-46'})  \n",
+       "            \n",
+       "            \n",
+       "            // set overflow for pytuts - need to do in python as css \n",
+       "            // does not allow parent selection\n",
+       "            var pytuts = $('.pytutorVisualizer')\n",
+       "            pytuts.closest('div.output_html.rendered_html.output_result')\n",
+       "                    .css('overflow-x', 'visible')\n",
+       "        \n",
+       "            //pytuts.closest('div.output_html.rendered_html.output_result')\n",
+       "            //      .css('background-color','red')                \n",
+       "            \n",
+       "        })()\n",
+       "        </script>\n",
+       "                \n",
+       "    \n",
+       "    <div style=\"text-align:center; font-size:0.9em\"> <a href=\"https://pythontutor.com/visualize.html#mode=edit\" target=\"_blank\">Python Tutor</a> visualization</div> \n",
+       "    "
+      ],
+      "text/plain": [
+       "<IPython.core.display.HTML object>"
+      ]
+     },
+     "execution_count": 44,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "la = [7,9,5,6] \n",
+    "\n",
+    "lb = list( la )\n",
+    "\n",
+    "jupman.pytut()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We note a NEW memory region was created with the same elements of `la`."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Exercise - gulp\n",
+    "\n",
+    "Given a string with mixed uppercase and lowercase characters, write some code which creates a list containing as first element a list with characters from the string lowercased and as second element a list containing all the uppercased characters\n",
+    "\n",
+    "* your code must work with any string\n",
+    "* if you don't remember the string methods, [look here](../02%20-%20Strings/strings3-sol.ipynb)\n",
+    "\n",
+    "Example - given:\n",
+    "\n",
+    "```python\n",
+    "s = 'GuLp'\n",
+    "```\n",
+    "\n",
+    "your code must print:\n",
+    "\n",
+    "```\n",
+    "[['g', 'u', 'l', 'p'], ['G', 'U', 'L', 'P']]\n",
+    "```\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "s = 'GuLp'\n",
+    "\n",
+    "# write here"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<details class=\"solution\">\n<summary>Show solution</summary>"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "s = 'GuLp'\n",
+    "\n",
+    "print([list(s.lower()), list(s.upper())])"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "</details>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "**QUESTION**: This code:\n",
+    "\n",
+    "- produces an error or assigns something to `x` ?\n",
+    "- After its execution, how many lists remain in memory?\n",
+    "- Can we shorten it?"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "```python\n",
+    "s = \"marathon\"\n",
+    "x = list(list(list(list(s))))\n",
+    "```"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "**ANSWER**: The code assigns the list `['m', 'a', 'r', 'a', 't', 'h', 'o', 'n']` to variable `x`. The first time\n",
+    "`list(s)` generates a NEW list `['m', 'a', 'r', 'a', 't', 'h', 'o', 'n']`. Successive calls to `list` take as input the just generated list and keep creating NEW lists with the same identical content. Since no produced list  except the last one is assigned to a variable, the intermediate ones are eliminated at the end of execution. We can thus safely shorten the code by writing:\n",
+    "\n",
+    "```python\n",
+    "s = \"marathon\"\n",
+    "x = list(s)\n",
+    "```"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "**QUESTION**: This code:\n",
+    "\n",
+    "- produces an error or assigns something to `x` ?\n",
+    "- After its execution, how many lists remain in memory?\n",
+    "\n",
+    "```python\n",
+    "s = \"chain\"\n",
+    "a = list(s)\n",
+    "b = list(a)\n",
+    "c = b\n",
+    "x = list(c)\n",
+    "```"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "**ANSWER**: Only 3 lists remain in memory, each containing 6 cells. This time the lists persist in memory because they are associated to variables `a`, `b` and `c`. We have 3 and not 4 lists because in instruction `c = b` the `c` variable is associated to the same identical memory region associated as variable `b`"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Exercise - garaga\n",
+    "\n",
+    "Given\n",
+    "\n",
+    "```python\n",
+    "sa = \"ga\"\n",
+    "sb = \"ra\"\n",
+    "la = ['ga']\n",
+    "lb = list(la)\n",
+    "```\n",
+    "\n",
+    "* Assign to `lc` a list built in such a way so that once printed produces:\n",
+    "\n",
+    "```python\n",
+    ">>> print(lc)\n",
+    "```\n",
+    "```python\n",
+    "[['g', 'a', 'r', 'a'], ['ga'], ['ga'], ['r', 'a', 'g', 'a']]\n",
+    "```\n",
+    "\n",
+    "* **in Python Tutor, ALL the arrows must point to a different memory region**"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 46,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[]\n"
+     ]
+    },
+    {
+     "data": {
+      "text/html": [
+       "        \n",
+       "        <script src=\"../_static/js/pytutor-embed.bundle.min.js\" type=\"application/javascript\"></script>\n",
+       "    \n",
+       "        <style>\n",
+       "        @import \"../_static/css/jupman.css\";\n",
+       "        </style>\n",
+       "     \n",
+       "        <script id=\"json-jm-75e382c7de90b594aa7382cd89b0819f-48\" type=\"application/json\" >\n",
+       "            {\"code\": \" \\nsa = \\\"ga\\\"\\nsb = \\\"ra\\\"\\nla = ['ga']\\nlb = list(la)\\n\\n# insert come code in the list\\nlc = []  \\n\\nprint(lc)\", \"trace\": [{\"line\": 2, \"event\": \"step_line\", \"func_name\": \"<module>\", \"globals\": {}, \"ordered_globals\": [], \"stack_to_render\": [], \"heap\": {}, \"stdout\": \"\"}, {\"line\": 3, \"event\": \"step_line\", \"func_name\": \"<module>\", \"globals\": {\"sa\": \"ga\"}, \"ordered_globals\": [\"sa\"], \"stack_to_render\": [], \"heap\": {}, \"stdout\": \"\"}, {\"line\": 4, \"event\": \"step_line\", \"func_name\": \"<module>\", \"globals\": {\"sa\": \"ga\", \"sb\": \"ra\"}, \"ordered_globals\": [\"sa\", \"sb\"], \"stack_to_render\": [], \"heap\": {}, \"stdout\": \"\"}, {\"line\": 5, \"event\": \"step_line\", \"func_name\": \"<module>\", \"globals\": {\"sa\": \"ga\", \"sb\": \"ra\", \"la\": [\"REF\", 1]}, \"ordered_globals\": [\"sa\", \"sb\", \"la\"], \"stack_to_render\": [], \"heap\": {\"1\": [\"LIST\", \"ga\"]}, \"stdout\": \"\"}, {\"line\": 8, \"event\": \"step_line\", \"func_name\": \"<module>\", \"globals\": {\"sa\": \"ga\", \"sb\": \"ra\", \"la\": [\"REF\", 1], \"lb\": [\"REF\", 2]}, \"ordered_globals\": [\"sa\", \"sb\", \"la\", \"lb\"], \"stack_to_render\": [], \"heap\": {\"1\": [\"LIST\", \"ga\"], \"2\": [\"LIST\", \"ga\"]}, \"stdout\": \"\"}, {\"line\": 10, \"event\": \"step_line\", \"func_name\": \"<module>\", \"globals\": {\"sa\": \"ga\", \"sb\": \"ra\", \"la\": [\"REF\", 1], \"lb\": [\"REF\", 2], \"lc\": [\"REF\", 3]}, \"ordered_globals\": [\"sa\", \"sb\", \"la\", \"lb\", \"lc\"], \"stack_to_render\": [], \"heap\": {\"1\": [\"LIST\", \"ga\"], \"2\": [\"LIST\", \"ga\"], \"3\": [\"LIST\"]}, \"stdout\": \"\"}, {\"line\": 10, \"event\": \"return\", \"func_name\": \"<module>\", \"globals\": {\"sa\": \"ga\", \"sb\": \"ra\", \"la\": [\"REF\", 1], \"lb\": [\"REF\", 2], \"lc\": [\"REF\", 3]}, \"ordered_globals\": [\"sa\", \"sb\", \"la\", \"lb\", \"lc\"], \"stack_to_render\": [], \"heap\": {\"1\": [\"LIST\", \"ga\"], \"2\": [\"LIST\", \"ga\"], \"3\": [\"LIST\"]}, \"stdout\": \"[]\\n\"}]}\n",
+       "        </script>\n",
+       "        <div id=\"jm-75e382c7de90b594aa7382cd89b0819f-48\" class=\"pytutorVisualizer\"> </div>\n",
+       "                        \n",
+       "        <script>\n",
+       "        \n",
+       "        (function(){\n",
+       "            console.log(\"jupman.py embedded javascript: adding Python tutor visualizer...\")\n",
+       "            \n",
+       "            var trace = JSON.parse(document.getElementById('json-jm-75e382c7de90b594aa7382cd89b0819f-48').innerHTML);                                        \n",
+       "            // NOTE: id without #\n",
+       "                    \n",
+       "            addVisualizerToPage(trace, 'jm-75e382c7de90b594aa7382cd89b0819f-48',{'embeddedMode' : false,\n",
+       "                                             'disableHeapNesting': true,\n",
+       "                                             'visualizerIdOverride':'viz-jm-75e382c7de90b594aa7382cd89b0819f-48'})  \n",
+       "            \n",
+       "            \n",
+       "            // set overflow for pytuts - need to do in python as css \n",
+       "            // does not allow parent selection\n",
+       "            var pytuts = $('.pytutorVisualizer')\n",
+       "            pytuts.closest('div.output_html.rendered_html.output_result')\n",
+       "                    .css('overflow-x', 'visible')\n",
+       "        \n",
+       "            //pytuts.closest('div.output_html.rendered_html.output_result')\n",
+       "            //      .css('background-color','red')                \n",
+       "            \n",
+       "        })()\n",
+       "        </script>\n",
+       "                \n",
+       "    \n",
+       "    <div style=\"text-align:center; font-size:0.9em\"> <a href=\"https://pythontutor.com/visualize.html#mode=edit\" target=\"_blank\">Python Tutor</a> visualization</div> \n",
+       "    "
+      ],
+      "text/plain": [
+       "<IPython.core.display.HTML object>"
+      ]
+     },
+     "execution_count": 46,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sa = \"ga\"\n",
+    "sb = \"ra\"\n",
+    "la = ['ga']\n",
+    "lb = list(la)\n",
+    "\n",
+    "# insert come code in the list\n",
+    "lc = []  \n",
+    "\n",
+    "print(lc)\n",
+    "jupman.pytut()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# write here\n",
+    "\n",
+    "print(lc)\n",
+    "jupman.pytut()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<details class=\"solution\">\n<summary>Show solution</summary>"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "sa = \"ga\"\n",
+    "sb = \"ra\"\n",
+    "la = ['ga']\n",
+    "lb = list(la)\n",
+    "lc = [list(sa + sb), list(la), list(lb), list(sb + sa) ]\n",
+    "\n",
+    "print(lc)\n",
+    "jupman.pytut()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "</details>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Continue\n\nGo on with [Lists 2 - operators](lists2-sol.ipynb)"
+   ]
+  }
+ ],
+ "metadata": {
+  "celltoolbar": "Edit Metadata",
+  "kernelspec": {
+   "display_name": "sciprog",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.11.11"
+  },
+  "toc": {
+   "base_numbering": 1,
+   "nav_menu": {},
+   "number_sections": false,
+   "sideBar": true,
+   "skip_h1_title": false,
+   "title_cell": "Table of Contents",
+   "title_sidebar": "Contents",
+   "toc_cell": false,
+   "toc_position": {
+    "height": "calc(100% - 180px)",
+    "left": "10px",
+    "top": "150px",
+    "width": "280px"
+   },
+   "toc_section_display": true,
+   "toc_window_display": true
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}

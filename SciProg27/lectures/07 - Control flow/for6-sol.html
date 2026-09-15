@@ -1,0 +1,1603 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html"><link rel="search" title="Search" href="../../search.html"><link rel="next" title="For loops - Nested Loops" href="for7-sol.html"><link rel="prev" title="For loops - Iterating Sets" href="for5-sol.html">
+        <link rel="canonical" href="https://erich-r.github.io/SciProg27/lectures/07%20-%20Control%20flow/for6-sol.html">
+
+    <!-- Generated with Sphinx 9.0.4 and Furo 2025.12.19 -->
+        <title>For loops - Iterating Dictionaries - SciProg 2027</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=e429fab1" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">SciProg 2027</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  <span class="sidebar-brand-text">SciProg 2027</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../00%20-%20Installation/installation.html">Installation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../01%20-%20Basics/index.html">01 - Basics</a><input aria-label="Toggle navigation of 01 - Basics" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../01%20-%20Basics/basics1-ints-sol.html">Python Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01%20-%20Basics/basics2-bools-sol.html">Python Basics - Booleans</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01%20-%20Basics/basics3-floats-sol.html">Python Basics - Float</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../02%20-%20Strings/index.html">02 - Strings</a><input aria-label="Toggle navigation of 02 - Strings" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../02%20-%20Strings/strings1-sol.html">Strings 1 - Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02%20-%20Strings/strings2-sol.html">Strings 2 - Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02%20-%20Strings/strings3-sol.html">Strings 3 - Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02%20-%20Strings/strings4-sol.html">Strings 4 - Search Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../03%20-%20Lists/index.html">03 - Lists</a><input aria-label="Toggle navigation of 03 - Lists" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../03%20-%20Lists/lists1-sol.html">Lists 1 - Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03%20-%20Lists/lists2-sol.html">Lists 2 - operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03%20-%20Lists/lists3-sol.html">Lists 3 - Basic methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03%20-%20Lists/lists4-sol.html">Lists 4 - Search methods</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../04%20-%20Tuples/index.html">04 - Tuples</a><input aria-label="Toggle navigation of 04 - Tuples" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../04%20-%20Tuples/tuples1-sol.html">Tuples</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../05%20-%20Sets/index.html">05 - Sets</a><input aria-label="Toggle navigation of 05 - Sets" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../05%20-%20Sets/sets1-sol.html">Sets</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../06%20-%20Dictionaries/index.html">06 - Dictionaries</a><input aria-label="Toggle navigation of 06 - Dictionaries" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../06%20-%20Dictionaries/dictionaries1-sol.html">Dictionaries 1 - Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06%20-%20Dictionaries/dictionaries2-sol.html">Dictionaries 2 - operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06%20-%20Dictionaries/dictionaries3-sol.html">Dictionaries 3 - Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06%20-%20Dictionaries/dictionaries4-sol.html">Dictionaries 4 - special classes</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">07 - Control flow</a><input aria-label="Toggle navigation of 07 - Control flow" checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="for1-sol.html">For loops - Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="for2-sol.html">For loops - Iterating Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="for3-sol.html">For loops - Iterating Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="for4-sol.html">For loops - Iterating Tuples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="for5-sol.html">For loops - Iterating Sets</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">For loops - Iterating Dictionaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="for7-sol.html">For loops - Nested Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="if1-sol.html">If Else statements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sequences1-sol.html">Sequences and comprehensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="while1-sol.html">While loops 1 - introduction</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Challenge Yourself at Home</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/01%20-%20Basics/basics4-chal.html">Python Basics - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/02%20-%20Strings/strings5-chal.html">Strings - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/03%20-%20Lists/lists5-chal.html">Lists - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/04%20-%20Tuples/tuples2-chal.html">Tuples - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/05%20-%20Sets/sets2-chal.html">Sets - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/06%20-%20Dictionaries/dictionaries5-chal.html">Dictionaries - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/07%20-%20Control%20flow/for8-chal.html">For Loops - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/07%20-%20Control%20flow/if2-chal.html">If Else - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/07%20-%20Control%20flow/sequences2-chal.html">Sequences - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/07%20-%20Control%20flow/while2-chal.html">While loops - Challenges</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Commandments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../commandments/commandments.html">Rules You Shall Not Break</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="For-loops---Iterating-Dictionaries">
+<h1>For loops - Iterating Dictionaries<a class="headerlink" href="#For-loops---Iterating-Dictionaries" title="Link to this heading">#</a></h1>
+<section id="Download-exercises-zip">
+<h2><a class="reference external" href="../_static/generated/for.zip">Download exercises zip</a><a class="headerlink" href="#Download-exercises-zip" title="Link to this heading">#</a></h2>
+<p>Given a dictionary, we can examinate the sequence of its keys, values or both with a <code class="docutils literal notranslate"><span class="pre">for</span></code> cycle.</p>
+</section>
+<section id="Iterating-keys">
+<h2>Iterating keys<a class="headerlink" href="#Iterating-keys" title="Link to this heading">#</a></h2>
+<p>To iterate <strong>only the keys</strong> it is sufficient to use the <code class="docutils literal notranslate"><span class="pre">in</span></code> operator:</p>
+<div class="admonition warning">
+<p><strong>WARNING</strong>: keys iteration order is <strong>not</strong> predictable !</p>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pastries</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;cream puff&#39;</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span>
+    <span class="s1">&#39;brioche&#39;</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span>
+    <span class="s1">&#39;donut&#39;</span><span class="p">:</span><span class="mi">2</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">pastries</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Found key   :&#39;</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  with value:&#39;</span><span class="p">,</span> <span class="n">pastries</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Found key   : cream puff
+  with value: 5
+Found key   : brioche
+  with value: 8
+Found key   : donut
+  with value: 2
+</pre></div></div>
+</div>
+<p>At each iteration, the declared variable <code class="docutils literal notranslate"><span class="pre">key</span></code> is assigned to a key taken from the dictionary, in an order we cannot predict.</p>
+</section>
+<section id="Iterating-key-value-pairs">
+<h2>Iterating key-value pairs<a class="headerlink" href="#Iterating-key-value-pairs" title="Link to this heading">#</a></h2>
+<p>We can also directly obtain both the key and the associated value with this notation:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">pastries</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Found key  :&#39;</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; with value:&#39;</span><span class="p">,</span> <span class="n">pastries</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Found key  : cream puff
+ with value: 5
+Found key  : brioche
+ with value: 8
+Found key  : donut
+ with value: 2
+</pre></div></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">.items()</span></code> return a list of key/value couples, and during each iteration a couple is assigned to the variable <code class="docutils literal notranslate"><span class="pre">key</span></code> and <code class="docutils literal notranslate"><span class="pre">value</span></code>.</p>
+</section>
+<section id="Iterating-values">
+<h2>Iterating values<a class="headerlink" href="#Iterating-values" title="Link to this heading">#</a></h2>
+<p>We can iterate the values calling the method <code class="docutils literal notranslate"><span class="pre">values()</span></code></p>
+<div class="admonition warning">
+<p><strong>WARNING</strong>: values iteration order is also <strong>not</strong> predictable !</p>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">pastries</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Found value&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Found value 5
+Found value 8
+Found value 2
+</pre></div></div>
+</div>
+</section>
+<section id="Questions---iteration">
+<h2>Questions - iteration<a class="headerlink" href="#Questions---iteration" title="Link to this heading">#</a></h2>
+<p>Look at the following code fragments , and for each try guessing the result it produces (or if it gives an error):</p>
+<div class="admonition warning">
+<p><strong>WARNING</strong>: Remember the order is IMPOSSIBLE to foresee, so the important bit is to guess all the printed stuff</p>
+</div>
+<ol class="arabic">
+<li><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">}:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">:</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="mi">3</span><span class="p">:</span><span class="s1">&#39;c&#39;</span><span class="p">}:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">diz</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">}</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">diz</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">diz</span><span class="p">])</span>
+</pre></div>
+</div>
+</li>
+<li><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">diz</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">}</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">diz</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">diz</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+</pre></div>
+</div>
+</li>
+<li><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">diz</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">}</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">diz</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">diz</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+</pre></div>
+</div>
+</li>
+<li><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">:</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="mi">3</span><span class="p">:</span><span class="s1">&#39;c&#39;</span><span class="p">}:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">:</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="mi">3</span><span class="p">:</span><span class="s1">&#39;c&#39;</span><span class="p">}</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">:</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="mi">3</span><span class="p">:</span><span class="s1">&#39;c&#39;</span><span class="p">}</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">:</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="mi">3</span><span class="p">:</span><span class="s1">&#39;c&#39;</span><span class="p">}</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="ow">in</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">:</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="mi">3</span><span class="p">:</span><span class="s1">&#39;c&#39;</span><span class="p">}</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="Questions---Are-they-equivalent?">
+<h2>Questions - Are they equivalent?<a class="headerlink" href="#Questions---Are-they-equivalent?" title="Link to this heading">#</a></h2>
+<p>Look at the following code fragments: each contains two parts, A and B. For each fragment, try guessing whether part A will print exactly the same result printed by code in part B</p>
+<ul class="simple">
+<li><p><strong>FIRST</strong> think about the answer</p></li>
+<li><p><strong>THEN</strong> try executing</p></li>
+</ul>
+<section id="Are-they-equivalent-?-postin">
+<h3>Are they equivalent ? postin<a class="headerlink" href="#Are-they-equivalent-?-postin" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">diz</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;p&#39;</span><span class="p">:</span><span class="s1">&#39;t&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;o&#39;</span><span class="p">:</span><span class="s1">&#39;i&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;s&#39;</span><span class="p">:</span><span class="s1">&#39;n&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;A:&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">diz</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">B:&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">diz</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="Are-they-equivalent-?-cortel">
+<h3>Are they equivalent ? cortel<a class="headerlink" href="#Are-they-equivalent-?-cortel" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">diz</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;c&#39;</span><span class="p">:</span><span class="s1">&#39;t&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;o&#39;</span><span class="p">:</span><span class="s1">&#39;e&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;r&#39;</span><span class="p">:</span><span class="s1">&#39;l&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;A:&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">p</span><span class="p">,</span><span class="n">q</span> <span class="ow">in</span> <span class="n">diz</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">B:&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">diz</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="Are-they-equivalent-?---gel">
+<h3>Are they equivalent ? - gel<a class="headerlink" href="#Are-they-equivalent-?---gel" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">diz</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;g&#39;</span><span class="p">:</span><span class="s1">&#39;l&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;e&#39;</span><span class="p">:</span><span class="s1">&#39;e&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;l&#39;</span><span class="p">:</span><span class="s1">&#39;g&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;A:&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">diz</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">B:&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">diz</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">z</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+<section id="Are-they-equivalent-?---giri">
+<h3>Are they equivalent ? - giri<a class="headerlink" href="#Are-they-equivalent-?---giri" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">diz</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;p&#39;</span><span class="p">:</span><span class="s1">&#39;g&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;e&#39;</span><span class="p">:</span><span class="s1">&#39;i&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;r&#39;</span><span class="p">:</span><span class="s1">&#39;r&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;i&#39;</span><span class="p">:</span><span class="s1">&#39;i&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;A:&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">p</span><span class="p">,</span><span class="n">q</span> <span class="ow">in</span> <span class="n">diz</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">p</span> <span class="o">==</span> <span class="n">q</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">B:&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">diz</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">diz</span><span class="p">[</span><span class="n">x</span><span class="p">]:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="Are-they-equivalent?---Found">
+<h3>Are they equivalent? - Found<a class="headerlink" href="#Are-they-equivalent?---Found" title="Link to this heading">#</a></h3>
+<p>First think if they are equivalent, then check with all the proposed values of <code class="docutils literal notranslate"><span class="pre">k</span></code>.</p>
+<div class="admonition warning">
+<p class="admonition-title"><strong>Be very careful about this exercise !</strong></p>
+<p>Getting this means having <em>really</em> understood dictionaries ;-)</p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="s1">&#39;w&#39;</span>
+<span class="c1">#k = &#39;h&#39;</span>
+<span class="c1">#k = &#39;y&#39;</span>
+<span class="c1">#k = &#39;z&#39;</span>
+
+<span class="n">dct</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="s1">&#39;s&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;h&#39;</span><span class="p">:</span><span class="s1">&#39;o&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;y&#39;</span><span class="p">:</span><span class="s1">&#39;?&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;A:&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">dct</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">k</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Found&#39;</span><span class="p">,</span> <span class="n">dct</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">B:&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">dct</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Found&#39;</span><span class="p">,</span> <span class="n">dct</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+</pre></div>
+</div>
+<p><strong>ANSWER</strong>: The two codes reported above are equivalent, with an important difference: code A will be executed in a time proportional to the dimension of <code class="docutils literal notranslate"><span class="pre">dct</span></code> (because it needs to go through all the dictionary), code B instead will be always executed in a short constant time which does <em>not</em> depend on the dimension of <code class="docutils literal notranslate"><span class="pre">dct</span></code>. Both the command <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">k</span> <span class="pre">in</span> <span class="pre">dct</span></code>, and the expression <code class="docutils literal notranslate"><span class="pre">dct[k]</span></code> (which retrieves the value associated to key <code class="docutils literal notranslate"><span class="pre">k</span></code>) are extremely fast.</p>
+<div class="admonition warning">
+<p class="admonition-title"><strong>WARNING: be sure to fully understand this point!</strong></p>
+<p>So many people write code as in part A, losing the main feature of dictionaries which is fast access. As long as data is small you may not notice, but when we have several megabytes of key/value couples you start feeling the time lost in pointless loops! For more you can read (or review) the <a class="reference internal" href="../06%20-%20Dictionaries/dictionaries2-sol.html#Fast-disorder"><span class="std std-ref">section Fast disorder</span></a> in the dictionaries tutorial.</p>
+</div>
+</section>
+</section>
+<section id="Iteration-exercises">
+<h2>Iteration exercises<a class="headerlink" href="#Iteration-exercises" title="Link to this heading">#</a></h2>
+<section id="Exercise---color-of-hearts">
+<h3>Exercise - color of hearts<a class="headerlink" href="#Exercise---color-of-hearts" title="Link to this heading">#</a></h3>
+<p>✪ Write some code which given a dictionary <code class="docutils literal notranslate"><span class="pre">suits</span></code>, for each suits prints its color.</p>
+<p>Example - given:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">suits</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;hearts&#39;</span><span class="p">:</span><span class="s1">&#39;red&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;spades&#39;</span><span class="p">:</span><span class="s1">&#39;black&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;diamonds&#39;</span><span class="p">:</span><span class="s1">&#39;red&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;clubs&#39;</span><span class="p">:</span><span class="s1">&#39;black&#39;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Prints:</p>
+<div class="admonition warning">
+<p class="admonition-title"><strong>WARNING</strong>: do not care about the order in which values are printed!</p>
+<p>On your computer you might see different results, the important bit is that all rows get printed.</p>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>The color of spades is black
+The color of diamonds is red
+The color of hearts is red
+The color of clubs is black
+</pre></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">suits</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;hearts&#39;</span><span class="p">:</span><span class="s1">&#39;red&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;spades&#39;</span><span class="p">:</span><span class="s1">&#39;black&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;diamonds&#39;</span><span class="p">:</span><span class="s1">&#39;red&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;clubs&#39;</span><span class="p">:</span><span class="s1">&#39;black&#39;</span>
+<span class="p">}</span>
+
+<span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">suits</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;hearts&#39;</span><span class="p">:</span><span class="s1">&#39;red&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;spades&#39;</span><span class="p">:</span><span class="s1">&#39;black&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;diamonds&#39;</span><span class="p">:</span><span class="s1">&#39;red&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;clubs&#39;</span><span class="p">:</span><span class="s1">&#39;black&#39;</span>
+<span class="p">}</span>
+
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">suits</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The color of&#39;</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="n">suits</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="Exercise---jewels">
+<h3>Exercise - jewels<a class="headerlink" href="#Exercise---jewels" title="Link to this heading">#</a></h3>
+<p>✪ In the dictionary <code class="docutils literal notranslate"><span class="pre">jewels</span></code> some keys are equal to the respective values. Write some code which find such keys and prints them all.</p>
+<p>Example - given:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">jewels</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;rubies&#39;</span><span class="p">:</span> <span class="s1">&#39;jade&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;opals&#39;</span><span class="p">:</span><span class="s1">&#39;topazes&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;gems&#39;</span><span class="p">:</span><span class="s1">&#39;gems&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;diamonds&#39;</span><span class="p">:</span> <span class="s1">&#39;gems&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;rubies&#39;</span><span class="p">:</span><span class="s1">&#39;rubies&#39;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>prints:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>couple of equal elements: gems and gems
+couple of equal elements: rubies and rubies
+</pre></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">jewels</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;rubies&#39;</span><span class="p">:</span> <span class="s1">&#39;jade&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;opals&#39;</span><span class="p">:</span><span class="s1">&#39;topazes&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;gems&#39;</span><span class="p">:</span><span class="s1">&#39;gems&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;diamonds&#39;</span><span class="p">:</span> <span class="s1">&#39;gems&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;rubies&#39;</span><span class="p">:</span><span class="s1">&#39;rubies&#39;</span>
+<span class="p">}</span>
+
+<span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">jewels</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;rubies&#39;</span><span class="p">:</span> <span class="s1">&#39;jade&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;opals&#39;</span><span class="p">:</span><span class="s1">&#39;topazes&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;gems&#39;</span><span class="p">:</span><span class="s1">&#39;gems&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;diamonds&#39;</span><span class="p">:</span> <span class="s1">&#39;gems&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;rubies&#39;</span><span class="p">:</span><span class="s1">&#39;rubies&#39;</span>
+<span class="p">}</span>
+
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">jewels</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="n">v</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;couple of equal elements:&#39;</span><span class="p">,</span><span class="n">k</span><span class="p">,</span> <span class="s1">&#39;and&#39;</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="Exercise---powers">
+<h3>Exercise - powers<a class="headerlink" href="#Exercise---powers" title="Link to this heading">#</a></h3>
+<p>✪ Given a number <code class="docutils literal notranslate"><span class="pre">n</span></code>, write some code which creates a NEW dictionary <code class="docutils literal notranslate"><span class="pre">d</span></code> containing as keys the numbers from 1 a <code class="docutils literal notranslate"><span class="pre">n</span></code> INCLUDED, by associating keys to their squares.</p>
+<p>Example - given:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
+</pre></div>
+</div>
+<p>after your code, it must result:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="go">{1: 1, 2: 4, 3: 9, 4: 16, 5: 25}</span>
+</pre></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="o">*</span><span class="n">i</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="Exercise---flowers">
+<h3>Exercise - flowers<a class="headerlink" href="#Exercise---flowers" title="Link to this heading">#</a></h3>
+<p>✪ Given a list <code class="docutils literal notranslate"><span class="pre">flowers</span></code>, write some code which creates a NEW dictionary <code class="docutils literal notranslate"><span class="pre">is_cap</span></code> which associates to each flower <code class="docutils literal notranslate"><span class="pre">True</span></code> if the flower name is written all uppercase, and <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise</p>
+<ul class="simple">
+<li><p><strong>HINT</strong>: to verify whether a string is all uppercase, use <code class="docutils literal notranslate"><span class="pre">.isupper()</span></code> method</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">flowers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sunflower&#39;</span><span class="p">,</span><span class="s1">&#39;GILLYFLOWER&#39;</span><span class="p">,</span> <span class="s1">&#39;tulip&#39;</span><span class="p">,</span> <span class="s1">&#39;PASSION FLOWER&#39;</span><span class="p">,</span> <span class="s1">&#39;ROSE&#39;</span><span class="p">,</span> <span class="s1">&#39;violet&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>prints (they are in alphabetical order because we print with <code class="docutils literal notranslate"><span class="pre">pprint</span></code>):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; from pprint import pprint
+&gt;&gt;&gt; pprint(is_cap)
+{&#39;GILLYFLOWER&#39;: True,
+ &#39;PASSION FLOWER&#39;: True,
+ &#39;ROSE&#39;: True,
+ &#39;sunflower&#39;: False,
+ &#39;tulip&#39;: False,
+ &#39;violet&#39;: False}
+</pre></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">flowers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sunflower&#39;</span><span class="p">,</span><span class="s1">&#39;GILLYFLOWER&#39;</span><span class="p">,</span> <span class="s1">&#39;tulip&#39;</span><span class="p">,</span> <span class="s1">&#39;PASSION FLOWER&#39;</span><span class="p">,</span> <span class="s1">&#39;ROSE&#39;</span><span class="p">,</span> <span class="s1">&#39;violet&#39;</span><span class="p">]</span>
+
+<span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">flowers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sunflower&#39;</span><span class="p">,</span><span class="s1">&#39;GILLYFLOWER&#39;</span><span class="p">,</span> <span class="s1">&#39;tulip&#39;</span><span class="p">,</span> <span class="s1">&#39;PASSION FLOWER&#39;</span><span class="p">,</span> <span class="s1">&#39;ROSE&#39;</span><span class="p">,</span> <span class="s1">&#39;violet&#39;</span><span class="p">]</span>
+
+
+<span class="n">is_cap</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">flowers</span><span class="p">:</span>
+    <span class="n">is_cap</span><span class="p">[</span><span class="n">el</span><span class="p">]</span> <span class="o">=</span> <span class="n">el</span><span class="o">.</span><span class="n">isupper</span><span class="p">()</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pprint</span><span class="w"> </span><span class="kn">import</span> <span class="n">pprint</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">is_cap</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="Exercise---art">
+<h3>Exercise - art<a class="headerlink" href="#Exercise---art" title="Link to this heading">#</a></h3>
+<p>✪ An artist painted a series of works with different techiques. In the dictionary <code class="docutils literal notranslate"><span class="pre">prices</span></code> he writes the price of each technique. The artist intend to promote a series of exhibitions, and in each of them he will present a particular technique. Supposing for each technique he produced <code class="docutils literal notranslate"><span class="pre">q</span></code> paintings, show how much he will learn in each exhibition (suppose he sells everything).</p>
+<p>Example - given:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="mi">20</span>
+
+<span class="n">exhibitions</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;watercolor&#39;</span><span class="p">,</span> <span class="s1">&#39;oil&#39;</span><span class="p">,</span> <span class="s1">&#39;mural&#39;</span><span class="p">,</span> <span class="s1">&#39;tempera&#39;</span><span class="p">,</span> <span class="s1">&#39;charcoal&#39;</span><span class="p">,</span><span class="s1">&#39;ink&#39;</span><span class="p">]</span>
+
+<span class="n">prices</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;watercolor&#39;</span><span class="p">:</span> <span class="mi">3000</span><span class="p">,</span>
+          <span class="s1">&#39;oil&#39;</span>       <span class="p">:</span> <span class="mi">6000</span><span class="p">,</span>
+          <span class="s1">&#39;mural&#39;</span>     <span class="p">:</span> <span class="mi">2000</span><span class="p">,</span>
+          <span class="s1">&#39;tempera&#39;</span>   <span class="p">:</span> <span class="mi">4000</span><span class="p">,</span>
+          <span class="s1">&#39;charcoal&#39;</span>  <span class="p">:</span> <span class="mi">7000</span><span class="p">,</span>
+          <span class="s1">&#39;ink&#39;</span>       <span class="p">:</span> <span class="mi">1000</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Prints - <strong>this time order matters!!</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Expected Income:
+  exhibition watercolor : 60000 €
+  exhibition oil : 120000 €
+  exhibition mural : 40000 €
+  exhibition tempera : 80000 €
+  exhibition charcoal : 140000 €
+  exhibition ink : 20000 €
+</pre></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="mi">20</span>
+
+<span class="n">exhibitions</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;watercolor&#39;</span><span class="p">,</span> <span class="s1">&#39;oil&#39;</span><span class="p">,</span> <span class="s1">&#39;mural&#39;</span><span class="p">,</span> <span class="s1">&#39;tempera&#39;</span><span class="p">,</span> <span class="s1">&#39;charcoal&#39;</span><span class="p">,</span><span class="s1">&#39;ink&#39;</span><span class="p">]</span>
+
+<span class="n">prices</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;watercolor&#39;</span><span class="p">:</span> <span class="mi">3000</span><span class="p">,</span>
+          <span class="s1">&#39;oil&#39;</span>       <span class="p">:</span> <span class="mi">6000</span><span class="p">,</span>
+          <span class="s1">&#39;mural&#39;</span>     <span class="p">:</span> <span class="mi">2000</span><span class="p">,</span>
+          <span class="s1">&#39;tempera&#39;</span>   <span class="p">:</span> <span class="mi">4000</span><span class="p">,</span>
+          <span class="s1">&#39;charcoal&#39;</span>  <span class="p">:</span> <span class="mi">7000</span><span class="p">,</span>
+          <span class="s1">&#39;ink&#39;</span>       <span class="p">:</span> <span class="mi">1000</span>
+<span class="p">}</span>
+
+<span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="mi">20</span>
+
+<span class="n">exhibitions</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;watercolor&#39;</span><span class="p">,</span> <span class="s1">&#39;oil&#39;</span><span class="p">,</span> <span class="s1">&#39;mural&#39;</span><span class="p">,</span> <span class="s1">&#39;tempera&#39;</span><span class="p">,</span> <span class="s1">&#39;charcoal&#39;</span><span class="p">,</span><span class="s1">&#39;ink&#39;</span><span class="p">]</span>
+
+<span class="n">prices</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;watercolor&#39;</span><span class="p">:</span> <span class="mi">3000</span><span class="p">,</span>
+          <span class="s1">&#39;oil&#39;</span>       <span class="p">:</span> <span class="mi">6000</span><span class="p">,</span>
+          <span class="s1">&#39;mural&#39;</span>     <span class="p">:</span> <span class="mi">2000</span><span class="p">,</span>
+          <span class="s1">&#39;tempera&#39;</span>   <span class="p">:</span> <span class="mi">4000</span><span class="p">,</span>
+          <span class="s1">&#39;charcoal&#39;</span>  <span class="p">:</span> <span class="mi">7000</span><span class="p">,</span>
+          <span class="s1">&#39;ink&#39;</span>       <span class="p">:</span> <span class="mi">1000</span>
+<span class="p">}</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Expected Income:&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">exhibitions</span><span class="p">)):</span>
+    <span class="n">technique</span> <span class="o">=</span> <span class="n">exhibitions</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  exhibition&#39;</span><span class="p">,</span> <span class="n">technique</span><span class="p">,</span> <span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">prices</span><span class="p">[</span><span class="n">technique</span><span class="p">]</span><span class="o">*</span><span class="n">q</span><span class="p">,</span>  <span class="s1">&#39;€&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="Exercise---stationery-stores">
+<h3>Exercise - stationery stores<a class="headerlink" href="#Exercise---stationery-stores" title="Link to this heading">#</a></h3>
+<p>✪ An owner of two stationery shops, in order to reorganize the stores wants to know the materials which are in common among the shops. Given two dictionaries <code class="docutils literal notranslate"><span class="pre">store1</span></code> and <code class="docutils literal notranslate"><span class="pre">store2</span></code> which associates objects to their quantity, write some code which finds all the keys in common and for each prints the sum of the found quantities.</p>
+<p>Example - given:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">store1</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;pens&#39;</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span>
+          <span class="s1">&#39;folders&#39;</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span>
+          <span class="s1">&#39;papers&#39;</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span>
+          <span class="s1">&#39;scissors&#39;</span><span class="p">:</span><span class="mi">40</span><span class="p">}</span>
+
+<span class="n">store2</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;pens&#39;</span><span class="p">:</span><span class="mi">80</span><span class="p">,</span>
+          <span class="s1">&#39;folders&#39;</span><span class="p">:</span><span class="mi">90</span><span class="p">,</span>
+          <span class="s1">&#39;goniometer&#39;</span><span class="p">:</span><span class="mi">130</span><span class="p">,</span>
+          <span class="s1">&#39;scissors&#39;</span><span class="p">:</span><span class="mi">110</span><span class="p">,</span>
+          <span class="s1">&#39;rulers&#39;</span><span class="p">:</span><span class="mi">120</span><span class="p">,</span>
+          <span class="p">}</span>
+</pre></div>
+</div>
+<p>prints (order is <strong>not</strong> important):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>materials in common:
+   pens : 90
+   folders : 110
+   scissors : 150
+</pre></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">store1</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;pens&#39;</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span>
+          <span class="s1">&#39;folders&#39;</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span>
+          <span class="s1">&#39;papers&#39;</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span>
+          <span class="s1">&#39;scissors&#39;</span><span class="p">:</span><span class="mi">40</span><span class="p">}</span>
+
+<span class="n">store2</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;pens&#39;</span><span class="p">:</span><span class="mi">80</span><span class="p">,</span>
+          <span class="s1">&#39;folders&#39;</span><span class="p">:</span><span class="mi">90</span><span class="p">,</span>
+          <span class="s1">&#39;goniometer&#39;</span><span class="p">:</span><span class="mi">130</span><span class="p">,</span>
+          <span class="s1">&#39;scissors&#39;</span><span class="p">:</span><span class="mi">110</span><span class="p">,</span>
+          <span class="s1">&#39;rulers&#39;</span><span class="p">:</span><span class="mi">120</span><span class="p">,</span>
+          <span class="p">}</span>
+<span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">store1</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;pens&#39;</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span>
+          <span class="s1">&#39;folders&#39;</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span>
+          <span class="s1">&#39;papers&#39;</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span>
+          <span class="s1">&#39;scissors&#39;</span><span class="p">:</span><span class="mi">40</span><span class="p">}</span>
+
+<span class="n">store2</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;pens&#39;</span><span class="p">:</span><span class="mi">80</span><span class="p">,</span>
+          <span class="s1">&#39;folders&#39;</span><span class="p">:</span><span class="mi">90</span><span class="p">,</span>
+          <span class="s1">&#39;goniometer&#39;</span><span class="p">:</span><span class="mi">130</span><span class="p">,</span>
+          <span class="s1">&#39;scissors&#39;</span><span class="p">:</span><span class="mi">110</span><span class="p">,</span>
+          <span class="s1">&#39;rulers&#39;</span><span class="p">:</span><span class="mi">120</span><span class="p">,</span>
+          <span class="p">}</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;materials in common:&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">store1</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">store2</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  &#39;</span><span class="p">,</span><span class="n">k</span><span class="p">,</span> <span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">store1</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">store2</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="Exercise---legumes">
+<h3>Exercise - legumes<a class="headerlink" href="#Exercise---legumes" title="Link to this heading">#</a></h3>
+<p>✪ A store has numbered shelves, each containing a number of legumes expressed in kilograms. We represent <code class="docutils literal notranslate"><span class="pre">store</span></code> as a list. There is also a <code class="docutils literal notranslate"><span class="pre">registry</span></code> available as a dictionary which associates to legume names the shelves number in which they are contained.</p>
+<p>Write some code which given a list of legume names, shows the sum of kilograms in the store for those legumes.</p>
+<p>Example - given:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">legumes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lentils&#39;</span><span class="p">,</span> <span class="s1">&#39;soy&#39;</span><span class="p">]</span>
+
+<span class="c1">#        0  1  2  3  4  5</span>
+<span class="n">store</span> <span class="o">=</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">70</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">50</span><span class="p">]</span>
+
+<span class="n">registry</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;peas&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span>
+            <span class="s1">&#39;soy&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
+            <span class="s1">&#39;chickpeas&#39;</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span>
+            <span class="s1">&#39;lentils&#39;</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span>
+            <span class="s1">&#39;broad beans&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span>
+            <span class="s1">&#39;beans&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>after your code, it must print (order does <strong>not</strong> matter):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Searching for lentils and soy ...
+Found 20 kg of lentils
+Found 90 kg of soy
+Total: 110 kg
+</pre></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">legumes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lentils&#39;</span><span class="p">,</span> <span class="s1">&#39;soy&#39;</span><span class="p">]</span>    <span class="c1"># 110</span>
+<span class="c1">#legumes = [&#39;beans&#39;, &#39;broad beans&#39;, &#39;chickpeas&#39;]   # 170</span>
+
+<span class="c1">#        0  1  2  3  4  5</span>
+<span class="n">store</span> <span class="o">=</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">70</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">50</span><span class="p">]</span>
+
+<span class="n">registry</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;peas&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span>
+            <span class="s1">&#39;soy&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
+            <span class="s1">&#39;chickpeas&#39;</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span>
+            <span class="s1">&#39;lentils&#39;</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span>
+            <span class="s1">&#39;broad beans&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span>
+            <span class="s1">&#39;beans&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">legumes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lentils&#39;</span><span class="p">,</span> <span class="s1">&#39;soy&#39;</span><span class="p">]</span>    <span class="c1"># 110</span>
+<span class="c1">#legumes = [&#39;beans&#39;, &#39;broad beans&#39;, &#39;chickpeas&#39;]   # 170</span>
+
+<span class="c1">#        0  1  2  3  4  5</span>
+<span class="n">store</span> <span class="o">=</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">70</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">50</span><span class="p">]</span>
+
+<span class="n">registry</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;peas&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span>
+            <span class="s1">&#39;soy&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
+            <span class="s1">&#39;chickpeas&#39;</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span>
+            <span class="s1">&#39;lentils&#39;</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span>
+            <span class="s1">&#39;broad beans&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span>
+            <span class="s1">&#39;beans&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Searching for&#39;</span><span class="p">,</span> <span class="s1">&#39; and &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">legumes</span><span class="p">),</span> <span class="s1">&#39;...&#39;</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">leg</span> <span class="ow">in</span> <span class="n">legumes</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Found&#39;</span><span class="p">,</span> <span class="n">store</span><span class="p">[</span><span class="n">registry</span><span class="p">[</span><span class="n">leg</span><span class="p">]],</span> <span class="s1">&#39;kg of&#39;</span><span class="p">,</span> <span class="n">leg</span><span class="p">)</span>
+    <span class="n">s</span> <span class="o">+=</span> <span class="n">store</span><span class="p">[</span><span class="n">registry</span><span class="p">[</span><span class="n">leg</span><span class="p">]]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Total:&#39;</span><span class="p">,</span><span class="n">s</span><span class="p">,</span> <span class="s1">&#39;kg&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="Exercise---smog">
+<h3>Exercise - smog<a class="headerlink" href="#Exercise---smog" title="Link to this heading">#</a></h3>
+<p>✪ Write some code which given two dictionaries <code class="docutils literal notranslate"><span class="pre">smog</span></code> and <code class="docutils literal notranslate"><span class="pre">prepositions</span></code> which associate places to respectively values of smog and prepositions, prints all the places telling the smog is excessive if the value is greater than 30, otherwise is tolerable.</p>
+<ul class="simple">
+<li><p><strong>NOTE</strong>: when printing the first preposition character must be capital: to transform the string you can use the method <code class="docutils literal notranslate"><span class="pre">.capitalize()</span></code></p></li>
+</ul>
+<p>Example - given:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">smog</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;streets&#39;</span>        <span class="p">:</span> <span class="mi">40</span><span class="p">,</span>
+        <span class="s1">&#39;cities&#39;</span>         <span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+        <span class="s1">&#39;intersections&#39;</span>  <span class="p">:</span> <span class="mi">90</span><span class="p">,</span>
+        <span class="s1">&#39;trains&#39;</span>         <span class="p">:</span> <span class="mi">15</span><span class="p">,</span>
+        <span class="s1">&#39;lakes&#39;</span>          <span class="p">:</span> <span class="mi">5</span>
+       <span class="p">}</span>
+
+<span class="n">propositions</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;streets&#39;</span>       <span class="p">:</span> <span class="s1">&#39;on&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;cities&#39;</span>        <span class="p">:</span> <span class="s1">&#39;in&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;lakes&#39;</span>         <span class="p">:</span> <span class="s1">&#39;at&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;trains&#39;</span>        <span class="p">:</span> <span class="s1">&#39;on&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;intersections&#39;</span> <span class="p">:</span> <span class="s1">&#39;at&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>prints (order <strong>does not</strong> matter):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>On streets the smog level is excessive
+In cities the smog level is tolerable
+At intersections the smog level is excessive
+On trains the smog level is tolerable
+At lakes the smog level is tolerable
+</pre></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">smog</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;streets&#39;</span>        <span class="p">:</span> <span class="mi">40</span><span class="p">,</span>
+        <span class="s1">&#39;cities&#39;</span>         <span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+        <span class="s1">&#39;intersections&#39;</span>  <span class="p">:</span> <span class="mi">90</span><span class="p">,</span>
+        <span class="s1">&#39;trains&#39;</span>         <span class="p">:</span> <span class="mi">15</span><span class="p">,</span>
+        <span class="s1">&#39;lakes&#39;</span>          <span class="p">:</span> <span class="mi">5</span>
+       <span class="p">}</span>
+
+<span class="n">prepositions</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;streets&#39;</span>       <span class="p">:</span> <span class="s1">&#39;on&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;cities&#39;</span>        <span class="p">:</span> <span class="s1">&#39;in&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;lakes&#39;</span>         <span class="p">:</span> <span class="s1">&#39;at&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;trains&#39;</span>        <span class="p">:</span> <span class="s1">&#39;on&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;intersections&#39;</span> <span class="p">:</span> <span class="s1">&#39;at&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">smog</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;streets&#39;</span>        <span class="p">:</span> <span class="mi">40</span><span class="p">,</span>
+        <span class="s1">&#39;cities&#39;</span>         <span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+        <span class="s1">&#39;intersections&#39;</span>  <span class="p">:</span> <span class="mi">90</span><span class="p">,</span>
+        <span class="s1">&#39;trains&#39;</span>         <span class="p">:</span> <span class="mi">15</span><span class="p">,</span>
+        <span class="s1">&#39;lakes&#39;</span>          <span class="p">:</span> <span class="mi">5</span>
+       <span class="p">}</span>
+
+<span class="n">prepositions</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;streets&#39;</span>       <span class="p">:</span> <span class="s1">&#39;on&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;cities&#39;</span>        <span class="p">:</span> <span class="s1">&#39;in&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;lakes&#39;</span>         <span class="p">:</span> <span class="s1">&#39;at&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;trains&#39;</span>        <span class="p">:</span> <span class="s1">&#39;on&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;intersections&#39;</span> <span class="p">:</span> <span class="s1">&#39;at&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">smog</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">smog</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">30</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">prepositions</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">capitalize</span><span class="p">(),</span><span class="n">x</span><span class="p">,</span> <span class="s2">&quot;the smog level is excessive&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">prepositions</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">capitalize</span><span class="p">(),</span><span class="n">x</span><span class="p">,</span><span class="s2">&quot;the smog level is tolerable&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="Exercise---sports">
+<h3>Exercise - sports<a class="headerlink" href="#Exercise---sports" title="Link to this heading">#</a></h3>
+<p>✪✪ Write some code which given a dictionary <code class="docutils literal notranslate"><span class="pre">sports</span></code> in which people are associated to the favourite sport, create a NEW dictionari <code class="docutils literal notranslate"><span class="pre">counts</span></code> in which associates each sport to the number of people that prefer it.</p>
+<p>Example - given:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Gianni&#39;</span><span class="p">:</span><span class="s1">&#39;soccer&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Paolo&#39;</span><span class="p">:</span><span class="s1">&#39;tennis&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Sara&#39;</span><span class="p">:</span><span class="s1">&#39;volleyball&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Elena&#39;</span><span class="p">:</span><span class="s1">&#39;tennis&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Roberto&#39;</span><span class="p">:</span><span class="s1">&#39;soccer&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Carla&#39;</span><span class="p">:</span><span class="s1">&#39;soccer&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>After your code, it must result:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+<span class="go">{&#39;tennis&#39;: 2, &#39;soccer&#39;: 3, &#39;volleyball&#39;: 1}</span>
+</pre></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Gianni&#39;</span><span class="p">:</span><span class="s1">&#39;soccer&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Paolo&#39;</span><span class="p">:</span><span class="s1">&#39;tennis&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Sara&#39;</span><span class="p">:</span><span class="s1">&#39;volleyball&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Elena&#39;</span><span class="p">:</span><span class="s1">&#39;tennis&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Roberto&#39;</span><span class="p">:</span><span class="s1">&#39;soccer&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Carla&#39;</span><span class="p">:</span><span class="s1">&#39;soccer&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Gianni&#39;</span><span class="p">:</span><span class="s1">&#39;soccer&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Paolo&#39;</span><span class="p">:</span><span class="s1">&#39;tennis&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Sara&#39;</span><span class="p">:</span><span class="s1">&#39;volleyball&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Elena&#39;</span><span class="p">:</span><span class="s1">&#39;tennis&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Roberto&#39;</span><span class="p">:</span><span class="s1">&#39;soccer&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Carla&#39;</span><span class="p">:</span><span class="s1">&#39;soccer&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">counts</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">sports</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">counts</span><span class="p">:</span>
+        <span class="n">counts</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">counts</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="Exercise---green-lizard">
+<h3>Exercise - green lizard<a class="headerlink" href="#Exercise---green-lizard" title="Link to this heading">#</a></h3>
+<p>✪✪ Write some code which given a set <code class="docutils literal notranslate"><span class="pre">search</span></code> of characters to find, counts for each how many are present in the string <code class="docutils literal notranslate"><span class="pre">text</span></code> and places the number in the dictionary <code class="docutils literal notranslate"><span class="pre">counts</span></code>.</p>
+<p>Example - given:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">search</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;i&#39;</span><span class="p">,</span><span class="s1">&#39;t&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">}</span>
+<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;A diurnal lizard of green and brown color A pattern may also be present in the form of dark slate grey streaks or spots. When found with a brown coloration, sometimes with lighter stripe down the back.&quot;</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="p">{}</span>
+</pre></div>
+</div>
+</div>
+<p>After your code it must result:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+<span class="go">{&#39;r&#39;: 5, &#39;i&#39;: 2, &#39;t&#39;: 0}</span>
+</pre></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">search</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;i&#39;</span><span class="p">,</span><span class="s1">&#39;t&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">}</span>
+<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;A diurnal lizard of green and brown color.&quot;</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">search</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;i&#39;</span><span class="p">,</span><span class="s1">&#39;t&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">}</span>
+<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;A diurnal lizard of green and brown color.&quot;</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="p">{}</span>
+
+
+<span class="c1"># solution 1, most efficient</span>
+<span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">search</span><span class="p">:</span>
+    <span class="n">counts</span><span class="p">[</span><span class="n">char</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">search</span><span class="p">:</span>
+        <span class="n">counts</span><span class="p">[</span><span class="n">char</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+
+<span class="c1"># solution 2, less efficient (scans text n times with count)</span>
+<span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">search</span><span class="p">:</span>
+    <span class="n">counts</span><span class="p">[</span><span class="n">char</span><span class="p">]</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">char</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+</section>
+<section id="Modifying-a-dictionary-during-iteration">
+<h2>Modifying a dictionary during iteration<a class="headerlink" href="#Modifying-a-dictionary-during-iteration" title="Link to this heading">#</a></h2>
+<p>Suppose you have a dictionary of provinces:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">provinces</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;tn&#39;</span><span class="p">:</span> <span class="s1">&#39;Trento&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;mi&#39;</span><span class="p">:</span><span class="s1">&#39;Milano&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;na&#39;</span><span class="p">:</span><span class="s1">&#39;Napoli&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>and you want to MODIFY it so that after your code the acronyms are added as capitalized:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">provinces</span><span class="p">)</span>
+<span class="go">{&#39;tn&#39;: &#39;Trento&#39;,</span>
+<span class="go"> &#39;mi&#39;:&#39;Milano&#39;,</span>
+<span class="go"> &#39;na&#39;:&#39;Napoli&#39;,</span>
+<span class="go"> &#39;TN&#39;: &#39;Trento&#39;,</span>
+<span class="go"> &#39;MI&#39;:&#39;Milano&#39;,</span>
+<span class="go"> &#39;NA&#39;:&#39;Napoli&#39;,</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<p>You might think to write something like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">provinces</span><span class="p">:</span>
+    <span class="n">provinces</span><span class="p">[</span><span class="n">key</span><span class="o">.</span><span class="n">upper</span><span class="p">()]</span> <span class="o">=</span> <span class="n">provinces</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>    <span class="c1"># WARNING !</span>
+</pre></div>
+</div>
+<p><strong>QUESTION</strong>: Do you see any problem?</p>
+<p><strong>ANSWER</strong>: if you go through a dictionary and in <em>the meanwhile</em> you keep adding pieces, there is a concrete risk we will never terminate examining the keys !</p>
+<p>So carefully read what follows:</p>
+<div class="jupman-alert-principle"></div><div class="admonition note">
+<p><a class="reference internal" href="../../commandments/commandments.html#X-COMMANDMENT"><span class="std std-ref">X COMMANDMENT</span></a>: <strong>You shall never ever add nor remove elements from a dictionary you are iterating with a</strong> <code class="docutils literal notranslate"><span class="pre">for</span></code> <strong>!</strong></p>
+</div>
+<p>In this case, if we try executing the code, we will get an explicit error:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">---------------------------------------------------------------------------</span>
+<span class="ne">RuntimeError</span>                              <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">26</span><span class="o">-</span><span class="mi">9</span><span class="n">b20900057e8</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span><span class="p">()</span>
+<span class="o">----&gt;</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">provinces</span><span class="p">:</span>
+      <span class="mi">2</span>     <span class="n">provinces</span><span class="p">[</span><span class="n">key</span><span class="o">.</span><span class="n">upper</span><span class="p">()]</span> <span class="o">=</span> <span class="n">provinces</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>    <span class="c1"># WARNING !</span>
+
+<span class="ne">RuntimeError</span><span class="p">:</span> <span class="n">dictionary</span> <span class="n">changed</span> <span class="n">size</span> <span class="n">during</span> <span class="n">iteration</span>
+</pre></div>
+</div>
+<p>but in other cases (like for example lists) modifying stuff <strong>may produce totally unpredictable behaviours</strong> (do you know the expression <em>pulling the rug out from under your feet ?</em> )</p>
+<p><strong>What about removing?</strong> We’ve seen adding is dangerous, but so is removing.</p>
+<p>Suppose we want to remove any couple having as value <code class="docutils literal notranslate"><span class="pre">'Trento'</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">provinces</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;tn&#39;</span><span class="p">:</span> <span class="s1">&#39;Trento&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;mi&#39;</span><span class="p">:</span><span class="s1">&#39;Milano&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;na&#39;</span><span class="p">:</span><span class="s1">&#39;Napoli&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>to obtain:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">provinces</span><span class="p">)</span>
+<span class="go">{&#39;mi&#39;:&#39;Milano&#39;,</span>
+<span class="go"> &#39;na&#39;:&#39;Napoli&#39;}</span>
+</pre></div>
+</div>
+<p>If we try executing something like this Python notices and raises an exception:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">provinces</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;tn&#39;</span><span class="p">:</span> <span class="s1">&#39;Trento&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;mi&#39;</span><span class="p">:</span><span class="s1">&#39;Milano&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;na&#39;</span><span class="p">:</span><span class="s1">&#39;Napoli&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">provinces</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">provinces</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Trento&#39;</span><span class="p">:</span>
+        <span class="k">del</span> <span class="n">provinces</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>   <span class="c1"># VERY BAD IDEA</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">---------------------------------------------------------------------------</span>
+<span class="ne">RuntimeError</span>                              <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">23</span><span class="o">-</span><span class="mi">5</span><span class="n">df0fd659120</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span><span class="p">()</span>
+      <span class="mi">5</span>     <span class="s1">&#39;na&#39;</span><span class="p">:</span><span class="s1">&#39;Napoli&#39;</span>
+      <span class="mi">6</span> <span class="p">}</span>
+<span class="o">----&gt;</span> <span class="mi">7</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">provinces</span><span class="p">:</span>
+      <span class="mi">8</span>     <span class="k">if</span> <span class="n">provinces</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Trento&#39;</span><span class="p">:</span>
+      <span class="mi">9</span>         <span class="k">del</span> <span class="n">provinces</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>   <span class="c1"># VERY BAD IDEA</span>
+
+<span class="ne">RuntimeError</span><span class="p">:</span> <span class="n">dictionary</span> <span class="n">changed</span> <span class="n">size</span> <span class="n">during</span> <span class="n">iteration</span>
+</pre></div>
+</div>
+<p><strong>If you really need to remove elements from the sequence in which you are iterating</strong>, use a while cycle or first copy the original sequence.</p>
+<section id="Exercise---zazb">
+<h3>Exercise - zazb<a class="headerlink" href="#Exercise---zazb" title="Link to this heading">#</a></h3>
+<p>✪✪ Write some code which given a dictionary <code class="docutils literal notranslate"><span class="pre">chars</span></code> with characters as keys, MODIFY the dictionary so to add keys like the existing ones prefixed with character <code class="docutils literal notranslate"><span class="pre">'z'</span></code> - new keys should be associated with the constant integer <code class="docutils literal notranslate"><span class="pre">10</span></code></p>
+<p>Example - given:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">chars</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span>
+    <span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span>
+    <span class="s1">&#39;c&#39;</span><span class="p">:</span><span class="mi">4</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>after your code, <code class="docutils literal notranslate"><span class="pre">chars</span></code> should result MODIFIED like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">chars</span>
+<span class="go">{   &#39;a&#39;:3,</span>
+<span class="go">    &#39;b&#39;:8,</span>
+<span class="go">    &#39;c&#39;:4,</span>
+<span class="go">    &#39;za&#39;:10,</span>
+<span class="go">    &#39;zb&#39;:10,</span>
+<span class="go">    &#39;zc&#39;:10</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<p><strong>QUESTION</strong>: Is it desirable to write a solution like the following one? Read carefully!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">chars</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span>
+    <span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span>
+    <span class="s1">&#39;c&#39;</span><span class="p">:</span><span class="mi">4</span>
+<span class="p">}</span>
+
+<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">chars</span><span class="p">:</span>
+    <span class="n">chars</span><span class="p">[</span><span class="s1">&#39;z&#39;</span><span class="o">+</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>    <span class="c1"># WARNING !! TROUBLE AHEAD !!</span>
+</pre></div>
+</div>
+<p><strong>ANSWER</strong>: Absolutely not - in this case we’re lucky and we will obtain an explicit error, in other cases we might obtain infinite loops or incomprehensible results:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">---------------------------------------------------------------------------</span>
+<span class="ne">RuntimeError</span>                              <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">36</span><span class="o">-</span><span class="mi">550</span><span class="n">c4c302120</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span><span class="p">()</span>
+      <span class="mi">5</span> <span class="p">}</span>
+      <span class="mi">6</span>
+<span class="o">----&gt;</span> <span class="mi">7</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">chars</span><span class="p">:</span>
+      <span class="mi">8</span>     <span class="n">chars</span><span class="p">[</span><span class="s1">&#39;z&#39;</span><span class="o">+</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="ne">RuntimeError</span><span class="p">:</span> <span class="n">dictionary</span> <span class="n">changed</span> <span class="n">size</span> <span class="n">during</span> <span class="n">iteration</span>
+</pre></div>
+</div>
+<p><strong>Do something better:</strong> try now rewriting a version of the program without this bug.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chars</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span>
+    <span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span>
+    <span class="s1">&#39;c&#39;</span><span class="p">:</span><span class="mi">4</span>
+<span class="p">}</span>
+
+<span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chars</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span>
+    <span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span>
+    <span class="s1">&#39;c&#39;</span><span class="p">:</span><span class="mi">4</span>
+<span class="p">}</span>
+
+<span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">chars</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>  <span class="c1"># list &#39;takes a picture&#39; of the current keys state</span>
+    <span class="n">chars</span><span class="p">[</span><span class="s1">&#39;z&#39;</span><span class="o">+</span><span class="n">el</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="n">chars</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="Exercise---DIY">
+<h3>Exercise - DIY<a class="headerlink" href="#Exercise---DIY" title="Link to this heading">#</a></h3>
+<p>✪✪ A depot for do-it-yourself hobbists has a <code class="docutils literal notranslate"><span class="pre">catalog</span></code> which associates object types to the shelves where to put them. Each day, a list of <code class="docutils literal notranslate"><span class="pre">entries</span></code> is populated with the newly arrived object types. Such types are placed in the <code class="docutils literal notranslate"><span class="pre">depot</span></code>, a dictionary which associates to each shelf the object type pointed by the catalof. Write some code which given the list <code class="docutils literal notranslate"><span class="pre">entries</span></code> and <code class="docutils literal notranslate"><span class="pre">catalog</span></code>, populates the dictionary <code class="docutils literal notranslate"><span class="pre">depot</span></code></p>
+<p>Example - given:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">entries</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;chairs&#39;</span><span class="p">,</span> <span class="s1">&#39;lamps&#39;</span><span class="p">,</span> <span class="s1">&#39;cables&#39;</span><span class="p">]</span>
+
+<span class="n">catalog</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;stoves&#39;</span> <span class="p">:</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;chairs&#39;</span> <span class="p">:</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;carafes&#39;</span> <span class="p">:</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;lamps&#39;</span> <span class="p">:</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;cables&#39;</span> <span class="p">:</span> <span class="s1">&#39;F&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;gardening&#39;</span> <span class="p">:</span> <span class="s1">&#39;E&#39;</span><span class="p">}</span>
+
+<span class="n">depot</span> <span class="o">=</span> <span class="p">{}</span>
+</pre></div>
+</div>
+<p>after your code, it must result:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">depot</span><span class="p">)</span>
+<span class="go">{&#39;B&#39;: &#39;chairs&#39;, &#39;C&#39;: &#39;lamps&#39;, &#39;F&#39;: &#39;cables&#39;}</span>
+</pre></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><br/><span></span><span class="n">entries</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;chairs&#39;</span><span class="p">,</span> <span class="s1">&#39;lamps&#39;</span><span class="p">,</span> <span class="s1">&#39;cables&#39;</span><span class="p">]</span>  <span class="c1"># depot becomes: {&#39;B&#39;: &#39;chairs&#39;, &#39;C&#39;: &#39;lamps&#39;, &#39;F&#39;: &#39;cables&#39;}</span>
+<span class="c1">#entries = [&#39;carafes&#39;, &#39;gardening&#39;]      # depot becomes: {&#39;D&#39;: &#39;carafes&#39;, &#39;E&#39;: &#39;gardening&#39;}</span>
+<span class="c1">#entries = [&#39;stoves&#39;]                    # depot becomes: {&#39;A&#39;: &#39;stoves&#39;}</span>
+
+<span class="n">catalog</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;stoves&#39;</span> <span class="p">:</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;chairs&#39;</span> <span class="p">:</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;carafes&#39;</span> <span class="p">:</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;lamps&#39;</span> <span class="p">:</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;cables&#39;</span> <span class="p">:</span> <span class="s1">&#39;F&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;gardening&#39;</span> <span class="p">:</span> <span class="s1">&#39;E&#39;</span><span class="p">}</span>
+
+<span class="n">depot</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><br/><span></span><span class="n">entries</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;chairs&#39;</span><span class="p">,</span> <span class="s1">&#39;lamps&#39;</span><span class="p">,</span> <span class="s1">&#39;cables&#39;</span><span class="p">]</span>  <span class="c1"># depot becomes: {&#39;B&#39;: &#39;chairs&#39;, &#39;C&#39;: &#39;lamps&#39;, &#39;F&#39;: &#39;cables&#39;}</span>
+<span class="c1">#entries = [&#39;carafes&#39;, &#39;gardening&#39;]      # depot becomes: {&#39;D&#39;: &#39;carafes&#39;, &#39;E&#39;: &#39;gardening&#39;}</span>
+<span class="c1">#entries = [&#39;stoves&#39;]                    # depot becomes: {&#39;A&#39;: &#39;stoves&#39;}</span>
+
+<span class="n">catalog</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;stoves&#39;</span> <span class="p">:</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;chairs&#39;</span> <span class="p">:</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;carafes&#39;</span> <span class="p">:</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;lamps&#39;</span> <span class="p">:</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;cables&#39;</span> <span class="p">:</span> <span class="s1">&#39;F&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;gardening&#39;</span> <span class="p">:</span> <span class="s1">&#39;E&#39;</span><span class="p">}</span>
+
+<span class="n">depot</span> <span class="o">=</span> <span class="p">{}</span>
+
+
+<span class="n">depot</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">shipment</span> <span class="ow">in</span> <span class="n">entries</span><span class="p">:</span>
+    <span class="n">depot</span><span class="p">[</span> <span class="n">catalog</span><span class="p">[</span><span class="n">shipment</span><span class="p">]</span> <span class="p">]</span> <span class="o">=</span> <span class="n">shipment</span>
+
+<span class="n">depot</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="Exercise---mine">
+<h3>Exercise - mine<a class="headerlink" href="#Exercise---mine" title="Link to this heading">#</a></h3>
+<p>✪✪ Given a dictionary <code class="docutils literal notranslate"><span class="pre">mine</span></code> which associates keys to numbers, MODIFY the dictionary <code class="docutils literal notranslate"><span class="pre">extracted</span></code> associating the same keys of <code class="docutils literal notranslate"><span class="pre">mine</span></code> to lists with keys repeated the given number of times</p>
+<p>Example - given:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mine</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;brass&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="s1">&#39;iron&#39;</span>  <span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+        <span class="s1">&#39;copper&#39;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+<span class="n">extracted</span> <span class="o">=</span> <span class="p">{}</span>
+</pre></div>
+</div>
+<p>after your code it must result:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">extracted</span><span class="p">)</span>
+<span class="go">{&#39;brass&#39;: [&#39;brass&#39;, &#39;brass&#39;, &#39;brass&#39;, &#39;brass&#39;, &#39;brass&#39;],</span>
+<span class="go"> &#39;iron&#39;: [&#39;iron&#39;, &#39;iron&#39;, &#39;iron&#39;, &#39;iron&#39;, &#39;iron&#39;, &#39;iron&#39;, &#39;iron&#39;, &#39;iron&#39;],</span>
+<span class="go"> &#39;copper&#39;: [&#39;copper&#39;]}</span>
+</pre></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mine</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;brass&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="s1">&#39;iron&#39;</span>  <span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+        <span class="s1">&#39;copper&#39;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+<span class="n">extracted</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mine</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;brass&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="s1">&#39;iron&#39;</span>  <span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+        <span class="s1">&#39;copper&#39;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+<span class="n">extracted</span> <span class="o">=</span> <span class="p">{}</span>
+
+
+<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">mine</span><span class="p">:</span>
+    <span class="n">extracted</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">*</span> <span class="n">mine</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+
+<span class="n">extracted</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+</section>
+<section id="Continue">
+<h2>Continue<a class="headerlink" href="#Continue" title="Link to this heading">#</a></h2>
+<p>Go on with <a class="reference internal" href="for7-sol.html"><span class="doc">For loops - Nested Loops</span></a></p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="for7-sol.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">For loops - Nested Loops</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="for5-sol.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">For loops - Iterating Sets</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2026, Erich Robbi
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">For loops - Iterating Dictionaries</a><ul>
+<li><a class="reference internal" href="#Download-exercises-zip">Download exercises zip</a></li>
+<li><a class="reference internal" href="#Iterating-keys">Iterating keys</a></li>
+<li><a class="reference internal" href="#Iterating-key-value-pairs">Iterating key-value pairs</a></li>
+<li><a class="reference internal" href="#Iterating-values">Iterating values</a></li>
+<li><a class="reference internal" href="#Questions---iteration">Questions - iteration</a></li>
+<li><a class="reference internal" href="#Questions---Are-they-equivalent?">Questions - Are they equivalent?</a><ul>
+<li><a class="reference internal" href="#Are-they-equivalent-?-postin">Are they equivalent ? postin</a></li>
+<li><a class="reference internal" href="#Are-they-equivalent-?-cortel">Are they equivalent ? cortel</a></li>
+<li><a class="reference internal" href="#Are-they-equivalent-?---gel">Are they equivalent ? - gel</a></li>
+<li><a class="reference internal" href="#Are-they-equivalent-?---giri">Are they equivalent ? - giri</a></li>
+<li><a class="reference internal" href="#Are-they-equivalent?---Found">Are they equivalent? - Found</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#Iteration-exercises">Iteration exercises</a><ul>
+<li><a class="reference internal" href="#Exercise---color-of-hearts">Exercise - color of hearts</a></li>
+<li><a class="reference internal" href="#Exercise---jewels">Exercise - jewels</a></li>
+<li><a class="reference internal" href="#Exercise---powers">Exercise - powers</a></li>
+<li><a class="reference internal" href="#Exercise---flowers">Exercise - flowers</a></li>
+<li><a class="reference internal" href="#Exercise---art">Exercise - art</a></li>
+<li><a class="reference internal" href="#Exercise---stationery-stores">Exercise - stationery stores</a></li>
+<li><a class="reference internal" href="#Exercise---legumes">Exercise - legumes</a></li>
+<li><a class="reference internal" href="#Exercise---smog">Exercise - smog</a></li>
+<li><a class="reference internal" href="#Exercise---sports">Exercise - sports</a></li>
+<li><a class="reference internal" href="#Exercise---green-lizard">Exercise - green lizard</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#Modifying-a-dictionary-during-iteration">Modifying a dictionary during iteration</a><ul>
+<li><a class="reference internal" href="#Exercise---zazb">Exercise - zazb</a></li>
+<li><a class="reference internal" href="#Exercise---DIY">Exercise - DIY</a></li>
+<li><a class="reference internal" href="#Exercise---mine">Exercise - mine</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#Continue">Continue</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=d91ab2ad"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    </body>
+</html>

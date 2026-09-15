@@ -1,0 +1,7 @@
+05 - Sets
+=========
+
+.. toctree::
+   :maxdepth: 1
+
+   sets1-sol

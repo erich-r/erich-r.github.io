@@ -41,18 +41,34 @@ Lectures
    :caption: Lectures
    :maxdepth: 1
 
-   notebooks/lectures/lecture0/installation
-   notebooks/lectures/lecture1/index
+   lectures/00 - Installation/installation
+   lectures/01 - Basics/index
+   lectures/02 - Strings/index
+   lectures/03 - Lists/index
+   lectures/04 - Tuples/index
+   lectures/05 - Sets/index
+   lectures/06 - Dictionaries/index
+   lectures/07 - Control flow/index
+.. AUTOGEN:CHALLENGES:START
+Challenges
+----------
 
-   
-.. Challenges
-.. ----------
+.. toctree::
+   :caption: Challenge Yourself at Home
+   :maxdepth: 1
 
-.. .. toctree::
-..    :caption: Challenge Yourself at Home
-..    :maxdepth: 1
+   challenges/01 - Basics/basics4-chal
+   challenges/02 - Strings/strings5-chal
+   challenges/03 - Lists/lists5-chal
+   challenges/04 - Tuples/tuples2-chal
+   challenges/05 - Sets/sets2-chal
+   challenges/06 - Dictionaries/dictionaries5-chal
+   challenges/07 - Control flow/for8-chal
+   challenges/07 - Control flow/if2-chal
+   challenges/07 - Control flow/sequences2-chal
+   challenges/07 - Control flow/while2-chal
 
-..    notebooks/challenges/challenges_basics.ipynb
+.. AUTOGEN:CHALLENGES:END
 
 
 
@@ -63,7 +79,7 @@ Commandments
    :caption: Commandments
    :maxdepth: 1
 
-   notebooks/commandments/commandments.ipynb
+   commandments/commandments.ipynb
 
 Resources
 ---------

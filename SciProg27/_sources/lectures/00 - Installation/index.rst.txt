@@ -1,0 +1,7 @@
+00 - Installation
+============
+
+.. toctree::
+   :maxdepth: 1
+
+   installation

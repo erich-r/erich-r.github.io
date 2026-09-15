@@ -1,0 +1,10 @@
+02 - Strings
+============
+
+.. toctree::
+   :maxdepth: 1
+
+   strings1-sol
+   strings2-sol
+   strings3-sol
+   strings4-sol

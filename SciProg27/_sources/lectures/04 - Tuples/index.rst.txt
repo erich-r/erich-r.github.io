@@ -1,0 +1,7 @@
+04 - Tuples
+===========
+
+.. toctree::
+   :maxdepth: 1
+
+   tuples1-sol

@@ -1,0 +1,1999 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Python Basics - Booleans"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<div class=\"alert alert-warning\">\n",
+    "\n",
+    "**PREREQUISITES:**\n",
+    "    \n",
+    "* **Having read** [basics 1 integer variables](basics1-ints-sol.ipynb)\n",
+    "    \n",
+    "</div>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Booleans are used in boolean algebra and have the type `bool`.\n",
+    "\n",
+    "Values of truth in Python are represented with the keywords `True` and `False`: a boolean object can only have the values `True` or `False`."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "x = True"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "True"
+      ]
+     },
+     "execution_count": 3,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "x"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "bool"
+      ]
+     },
+     "execution_count": 4,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "type(x)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "y = False"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "bool"
+      ]
+     },
+     "execution_count": 6,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "type(y)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Boolean operators\n",
+    "\n",
+    "We can operate on boolean values with the operators `not`, `and`, `or`:"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "\n",
+    "###  and\n",
+    "\n",
+    "| a | b |a and b|\n",
+    "|-----|-----|--------|\n",
+    "|`False`|`False`| `False`  |\n",
+    "|`False`|`True` | `False`  |\n",
+    "|`True` |`False`| `False`  |\n",
+    "|`True` |`True` | `True`   |\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "\n",
+    "###  or\n",
+    "\n",
+    "| a | b |a or b|\n",
+    "|-----|-----|--------|\n",
+    "|`False`|`False`| `False`  |\n",
+    "|`False`|`True` | `True`   |\n",
+    "|`True` |`False`| `True`   |\n",
+    "|`True` |`True` | `True`   |\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "###  not\n",
+    "\n",
+    "| a |not a |\n",
+    "|-----|-----|\n",
+    "|`False`|`True` |\n",
+    "|`True` |`False`|"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Questions with costants\n",
+    "\n",
+    "**QUESTION**: For each of the following boolean expressions, try guessing the result (_before_ guess, and _then_ try them !):\n",
+    "\n",
+    "\n",
+    "1.  `\n",
+    "    not (True and False)\n",
+    "    `\n",
+    "1.  `    \n",
+    "    (not True) or (not (True or False))\n",
+    "    `\n",
+    "1.  `\n",
+    "    not (not True)\n",
+    "    `\n",
+    "1.  `    \n",
+    "    not (True and (False or True))\n",
+    "    `\n",
+    "1.  `    \n",
+    "    not (not (not False))\n",
+    "    `\n",
+    "1.  `    \n",
+    "    True and (not (not((not False) and True)))\n",
+    "    `\n",
+    "1.  `    \n",
+    "    False or (False or ((True and True) and (True and False)))\n",
+    "    `\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Questions with variables"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "**QUESTION**: For each of these expressions, for which values of `x` and `y` they give `True`? Try to think an answer before trying!\n",
+    "\n",
+    "**NOTE**: there can be many combinations that produce `True`, find them all\n",
+    "\n",
+    "1.  `\n",
+    "    x or (not x)\n",
+    "    `\n",
+    "1.  `\n",
+    "    (not x) and (not y)\n",
+    "    `\n",
+    "1.  `\n",
+    "    x and (y or y)\n",
+    "    `\n",
+    "1.  `\n",
+    "    x and (not y)\n",
+    "    `\n",
+    "1.  `\n",
+    "    (not x) or  y\n",
+    "    `\n",
+    "1.  `\n",
+    "    y or not (y and x)\n",
+    "    `\n",
+    "1.  `\n",
+    "    x and ((not x) or not(y))\n",
+    "    `\n",
+    "1.  `\n",
+    "    (not (not x)) and not (x and y)\n",
+    "    `    \n",
+    "1.  `\n",
+    "    x and (x or (not(x) or not(not(x or not (x)))))\n",
+    "    `"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "**QUESTION**:  For each of these expressions, for which values of `x`, `y` and `z` they give `False`?\n",
+    "\n",
+    "**NOTE**: there can be many combinations that produce `False`, find them all\n",
+    "\n",
+    "1.  `\n",
+    "    x or ((not y) or z)\n",
+    "    `\n",
+    "1.  `\n",
+    "    x or (not y) or (not z)\n",
+    "    `\n",
+    "1.  `\n",
+    "    not (x and y and (not z))\n",
+    "    `\n",
+    "1.  `\n",
+    "    not (x and (not y) and (x or z))\n",
+    "    `\n",
+    "1.  `\n",
+    "    y or ((x or y) and (not z))\n",
+    "    `"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## De Morgan\n",
+    "\n",
+    "There are a couple of laws that sometimes are useful:\n",
+    "\n",
+    "| Formula| Equivalent to|\n",
+    "|-|-|\n",
+    "|`x or y`|`not(not x and not y)`|\n",
+    "|`x and y`|`not(not x or not y)`|\n",
+    "\n",
+    "**QUESTION**: Look at following expressions, and try to rewrite them in equivalent ones by using De Morgan laws, simplifying the result wherever possible. Then verify the translation produces the same result as the original for all possible values of `x` and `y`.\n",
+    "\n",
+    "1.  `\n",
+    "    (not x) or y\n",
+    "    `\n",
+    "1.  `\n",
+    "    (not x) and (not y)\n",
+    "    `    \n",
+    "1.  `\n",
+    "    (not x) and (not (x or y))\n",
+    "    `        \n",
+    "\n",
+    "Example:\n",
+    "\n",
+    "```python\n",
+    "x,y = False, False\n",
+    "#x,y = False, True\n",
+    "#x,y = True, False\n",
+    "#x,y = True, True\n",
+    "\n",
+    "orig = x or y\n",
+    "trans = not((not x) and (not y))\n",
+    "print('orig=',orig)\n",
+    "print('trans=',trans)\n",
+    "```"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# verify here\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Conversion\n",
+    "\n",
+    "We can convert booleans into intergers with the predefined function `int`. Each integer can be converted into a boolean (and vice versa) with `bool`:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "True"
+      ]
+     },
+     "execution_count": 8,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "bool(1)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "False"
+      ]
+     },
+     "execution_count": 9,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "bool(0)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "True"
+      ]
+     },
+     "execution_count": 10,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "bool(72)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "True"
+      ]
+     },
+     "execution_count": 11,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "bool(-5)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "1"
+      ]
+     },
+     "execution_count": 12,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "int(True)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "0"
+      ]
+     },
+     "execution_count": 13,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "int(False)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Each integer is valued to `True` except `0`. Note that truth values `True` and `False` behave respectively like integers `1` and `0`."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Questions - what is a boolean?\n",
+    "\n",
+    "**QUESTION**: For each of these expressions, which results it produces?\n",
+    "\n",
+    "1.  `\n",
+    "    bool(True)\n",
+    "    `\n",
+    "1.  `\n",
+    "    bool(False)\n",
+    "    `\n",
+    "1.  `\n",
+    "    bool(2 + 4)\n",
+    "    `\n",
+    "\n",
+    "1.  `\n",
+    "    bool(4-3-1)\n",
+    "    `\n",
+    "1.  `\n",
+    "    int(4-3-1)\n",
+    "    `\n",
+    "1.  `\n",
+    "    True + True\n",
+    "    `\n",
+    "1.  `\n",
+    "    True + False\n",
+    "    `\n",
+    "1.  `\n",
+    "    True - True\n",
+    "    `\n",
+    "1.  `\n",
+    "    True * True\n",
+    "    `"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Evaluation order \n",
+    "\n",
+    "\n",
+    "For efficiency reasons, during the evaluation of a boolean expression if Python discovers the possible result can only be one, it then avoids to calculate further expressions. For example, in this expression:\n",
+    "\n",
+    "```python\n",
+    "False and x\n",
+    "```\n",
+    "\n",
+    "by reading from left to right, in the moment we encounter `False` we already know that the result of `and` operation will always be `False` independetly from the value of `x` (convince yourself).\n",
+    "\n",
+    "Instead, if while reading from left to right Python finds first `True`, it will continue the evaluation of following  expressions and _as result of the whole `and` will return the evaluation of the_ ***last*** expression_. If we are using booleans, we will not notice the differences, but by exchanging types we might get surprises:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "5"
+      ]
+     },
+     "execution_count": 14,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "True and 5"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "True"
+      ]
+     },
+     "execution_count": 15,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "5 and True"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 16,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "False"
+      ]
+     },
+     "execution_count": 16,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "False and 5"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 17,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "False"
+      ]
+     },
+     "execution_count": 17,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "5 and False"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Let's think which order of evaluation Python might use for the `or` operator. Have a look at the expression:\n",
+    "\n",
+    "```python\n",
+    "True or x\n",
+    "```\n",
+    "\n",
+    "By reading from left to right, as soon as we find the `True` we mich conclude  that the result of the whole `or` must be `True` independently from the value of `x` (convince yourself).\n",
+    "\n",
+    "Instead, if the first value is `False`, Python will continue in the evaluation until it finds a logical value `True`, when this happens that value will be the result of the whole expression. We can notice it if we use different costants from `True` and `False`:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 18,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "5"
+      ]
+     },
+     "execution_count": 18,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "False or 5"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 19,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "7"
+      ]
+     },
+     "execution_count": 19,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "7 or False"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 20,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "3"
+      ]
+     },
+     "execution_count": 20,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "3 or True"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The numbers you see have always a logical result coherent with the operations we did, that is, if you see `0` the expression result is intended to have logical value `False` and if you see a number different from `0` the result is intended to be `True` (convince yourself)."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "**QUESTION**: Have a look at the following expressions, and for each of them try to guess which result it produces (or if it gives an error):\n",
+    "\n",
+    "1.  `\n",
+    "    0 and True\n",
+    "    `\n",
+    "1.  `\n",
+    "    1 and 0\n",
+    "    `\n",
+    "1.  `\n",
+    "    True and -1\n",
+    "    `    \n",
+    "1.  `\n",
+    "    0 and False\n",
+    "    `    \n",
+    "1.  `\n",
+    "    0 or False\n",
+    "    `        \n",
+    "1.  `\n",
+    "    0 or 1\n",
+    "    `\n",
+    "1.  `\n",
+    "    False or -6\n",
+    "    `    \n",
+    "1.  `\n",
+    "    0 or True\n",
+    "    `       "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Evaluation errors\n",
+    "\n",
+    "What happens if a boolean expression contains some code that would generate an error? According to intuition, the program should terminate, but it's not always like this. \n",
+    "\n",
+    "Let's try to generate an error on purpose. During math lessons they surely told you many times that dividing a number by zero is an error because the result is not defined. So if we try to ask Python what the result of `1/0` is we will (predictably) get complaints:"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "```python\n",
+    "print(1/0)\n",
+    "print('after')\n",
+    "\n",
+    "---------------------------------------------------------------------------\n",
+    "ZeroDivisionError                         Traceback (most recent call last)\n",
+    "<ipython-input-51-9e1622b385b6> in <module>()\n",
+    "----> 1 1/0\n",
+    "\n",
+    "ZeroDivisionError: division by zero\n",
+    "\n",
+    "```"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Notice that `'after'` _is not_  printed because the progam gets first interrupted.\n",
+    "\n",
+    "What if we try to write like this?"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 21,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "False"
+      ]
+     },
+     "execution_count": 21,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "False and 1/0"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Python produces a result without complaining !  Why? Evaluating form left to right it found a `False` and so it concluded before hand that  the expression result must be `False`. Many times you will not be aware of these potential problems but it is good to understand them because there are indeed situations in which you can event exploit the execution order to prevent errors (for example in `if` and `while` instructions we will see later in the book)."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "**QUESTION**: Look at the following expression, and for each of them try to guess which result it produces (or if it gives on error):\n",
+    "\n",
+    "01.\n",
+    "\n",
+    "   ```python\n",
+    "   True and 1/0\n",
+    "   ```\n",
+    "\n",
+    "02.  \n",
+    "\n",
+    "   ```python\n",
+    "   1/0 and 1/0\n",
+    "   ```     \n",
+    "03.  \n",
+    "\n",
+    "   ```python\n",
+    "   False or 1/0\n",
+    "   ```\n",
+    "04.  \n",
+    "\n",
+    "   ```python\n",
+    "   True or 1/0\n",
+    "   ```     \n",
+    "    \n",
+    "05.  \n",
+    "\n",
+    "   ```python\n",
+    "   1/0 or True\n",
+    "   ```     \n",
+    "     \n",
+    "06.  \n",
+    "\n",
+    "   ```python\n",
+    "   1/0 or 1/0\n",
+    "   ```     \n",
+    "    \n",
+    "07.  \n",
+    "\n",
+    "   ```python\n",
+    "   True or (1/0 and True)\n",
+    "   ```     \n",
+    "\n",
+    "08.  \n",
+    "\n",
+    "   ```python\n",
+    "   (not False) or not 1/0\n",
+    "   ```     \n",
+    "\n",
+    "09.  \n",
+    "\n",
+    "   ```python\n",
+    "   True and 1/0 and True\n",
+    "   ```     \n",
+    "\n",
+    "10.  \n",
+    "\n",
+    "   ```python\n",
+    "   (not True) or 1/0 or True\n",
+    "   ```     \n",
+    "\n",
+    "11.  \n",
+    "\n",
+    "   ```python\n",
+    "   True and (not True) and 1/0\n",
+    "   ```     \n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Comparison operators\n",
+    "\n",
+    "Comparison operators allow to build _expressions_ which return a boolean value:\n",
+    "\n",
+    "|Comparator|Description|\n",
+    "|-----------|-----------|\n",
+    "|`a == b`| `True` if and only if a = b|\n",
+    "|`a != b`| `True` if and only if a $\\neq$ b|\n",
+    "|`a < b`| `True` if and only if a < b|\n",
+    "|`a > b`| `True` if and only if a > b|\n",
+    "|`a <= b`| `True` if and only if a $\\leq$ b|\n",
+    "|`a >= b`| `True` if and only if a $\\geq$ b|"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 22,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "True"
+      ]
+     },
+     "execution_count": 22,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "3 == 3"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 23,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "False"
+      ]
+     },
+     "execution_count": 23,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "3 == 5"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 24,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "a,b = 3,5"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 25,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "True"
+      ]
+     },
+     "execution_count": 25,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "a == a"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 26,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "False"
+      ]
+     },
+     "execution_count": 26,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "a == b"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 27,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "True"
+      ]
+     },
+     "execution_count": 27,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "a == b - 2"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 28,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "True"
+      ]
+     },
+     "execution_count": 28,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "3 != 5  # 3 is different from 5 ? "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 29,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "False"
+      ]
+     },
+     "execution_count": 29,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "3 != 3  # 3 is different from 3 ? "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 30,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "True"
+      ]
+     },
+     "execution_count": 30,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "3 < 5"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 31,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "False"
+      ]
+     },
+     "execution_count": 31,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "5 < 5"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 32,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "True"
+      ]
+     },
+     "execution_count": 32,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "5 <= 5"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 33,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "True"
+      ]
+     },
+     "execution_count": 33,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "8 > 5"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 34,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "False"
+      ]
+     },
+     "execution_count": 34,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "8 > 8"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 35,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "True"
+      ]
+     },
+     "execution_count": 35,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "8 >= 8"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Since the comparison are expressions which produce booleans, we can also assign the result to a variable:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 36,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "x = 5 > 3"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 37,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "True\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(x)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Joining comparisons\n",
+    "\n",
+    "Given a couple of quantities:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 38,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "x, y = 7, 5"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "If we ask ourselves whether both `x` and `y` are greater than zero, which boolean expression should we write?\n",
+    "\n",
+    "The correct way (although a bit verbose) is the following:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 39,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "True"
+      ]
+     },
+     "execution_count": 39,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "x > 0 and y > 0"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<div class=\"alert alert-warning\">\n",
+    "    \n",
+    "**WARNING**: the following code instead is **NOT** correct:    \n",
+    "    \n",
+    "```python\n",
+    "x and y > 0    # WRONG!\n",
+    "```\n",
+    "</div>    "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Why? Apparently on some inputs it seems to work:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 40,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "True"
+      ]
+     },
+     "execution_count": 40,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "x,y = 7, 5\n",
+    "x and y > 0  # WARNING!"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 41,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "False"
+      ]
+     },
+     "execution_count": 41,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "x,y = 7, -6\n",
+    "x and y > 0  # WARNING!"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Does it really work on all of them?"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 42,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "True"
+      ]
+     },
+     "execution_count": 42,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "x,y = -3, 5\n",
+    "x and y > 0   # WARNING!"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Mmm we found something wrong.... What's the reason? Implicitly, Python has considered the expression with these parenthesis:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 43,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "True"
+      ]
+     },
+     "execution_count": 43,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "x,y = -3,5\n",
+    "(x) and (y>0)  # WARNING!"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "This way it's evident that on the left Python is considering `x` like it were a single boolean expression: as such, it tries to interpret the logical value of the integer `-3`: since it's a number different from zero, it's considered as `True`, hence the strange result."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "**QUESTION**: What if we tried to place these parenthesis?\n",
+    "\n",
+    "```python\n",
+    "x,y = -3,5\n",
+    "(x and y) > 0   # WARNING!\n",
+    "```\n",
+    "\n",
+    "Try thinking in depth all the steps Python will perform to calculate the expression."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "**ANSWER**: in this case both `x` and `y` are considered single boolean expressions, so Python internally will reduce the expression with these steps:\n",
+    "\n",
+    "1.  `\n",
+    "    (True and True) > 0\n",
+    "    `\n",
+    "2.  `\n",
+    "    True > 0\n",
+    "    `    \n",
+    "3.  `\n",
+    "    1 > 0\n",
+    "    `\n",
+    "4.  `\n",
+    "    True\n",
+    "    `\n",
+    "   \n",
+    "Note that at step 2) `True` is converted to the integer value `1`."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "**QUESTION**: Look at the following expression, and for each of them try to guess which result it produces (or if it gives on error):\n",
+    "\n",
+    "01.  \n",
+    "\n",
+    "   ```python\n",
+    "   x = 3 == 4\n",
+    "   print(x)\n",
+    "   ```\n",
+    "\n",
+    "02.  \n",
+    "\n",
+    "   ```python\n",
+    "   x = False or True\n",
+    "   print(x)\n",
+    "   ```\n",
+    "\n",
+    "03.  \n",
+    "    \n",
+    "   ```python\n",
+    "   True or False = x or False\n",
+    "   print(x)\n",
+    "   ```\n",
+    "\n",
+    "04.  \n",
+    "\n",
+    "   ```python\n",
+    "   x,y = 9,10\n",
+    "   z = x < y and x == 3**2\n",
+    "   print(z)\n",
+    "   ```\n",
+    "\n",
+    "05.  \n",
+    "\n",
+    "   ```python\n",
+    "   a,b = 7,6\n",
+    "   a = b\n",
+    "   x = a >= b + 1\n",
+    "   print(x)\n",
+    "   ```\n",
+    "\n",
+    "06.  \n",
+    "\n",
+    "   ```python\n",
+    "   x = 3^2\n",
+    "   y = 9\n",
+    "   print(x == y)\n",
+    "   ```"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Spatial Binary Classifier\n",
+    "\n",
+    "A binary classifier assigns each point in a domain to one of two classes according to a mathematical rule.\n",
+    "\n",
+    "Consider a square domain with side length `d`. A point is identified by its Cartesian coordinates `(x, y)`, with the origin at the lower-left corner.\n",
+    "\n",
+    "Define a classifier that labels each point as:\n",
+    "\n",
+    "- `True` if it belongs to the green region.\n",
+    "- `False` otherwise.\n",
+    "\n",
+    "Write a **single Boolean expression** that implements this classifier.\n",
+    "\n",
+    "- Do **not** use `if` statements or conditional expressions.\n",
+    "- Write the classifier using the variable `d` (do **not** substitute `d = 100`).\n",
+    "- The result should be a Boolean value (`True` or `False`) for any point `(x, y)`.\n",
+    "\n",
+    "![Boolean regions diagram1](images/boolean_spatial_classifier_1.svg)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "d = 100\n",
+    "\n",
+    "x,y = 0,  0      # False\n",
+    "#x,y = 25, 25    # False\n",
+    "#x,y = 75, 75    # False\n",
+    "#x,y = 75, 25    # False\n",
+    "#x,y = 25, 75    # True\n",
+    "#x,y = 100, 100  # False\n",
+    "#x,y = 10, 90    # True\n",
+    "#x,y = 60, 60    # False\n",
+    "\n",
+    "# write here"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<details class=\"solution\">\n<summary>Show solution</summary>"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "d = 100\n",
+    "\n",
+    "x,y = 0,  0      # False\n",
+    "#x,y = 25, 25    # False\n",
+    "#x,y = 75, 75    # False\n",
+    "#x,y = 75, 25    # False\n",
+    "#x,y = 25, 75    # True\n",
+    "#x,y = 100, 100  # False\n",
+    "#x,y = 10, 90    # True\n",
+    "#x,y = 60, 60    # False\n",
+    "\n",
+    "x < d/2 and y > d/2"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "</details>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Repeat the exercise on this new domain"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "![Boolean regions diagram2](images/boolean_spatial_classifier_2.svg)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "d = 100\n",
+    "\n",
+    "x,y = 0,  0      # True\n",
+    "#x,y = 25, 25    # True\n",
+    "#x,y = 75, 75    # True\n",
+    "#x,y = 75, 25    # False\n",
+    "#x,y = 25, 75    # False\n",
+    "#x,y = 100, 100  # True\n",
+    "#x,y = 10, 90    # False\n",
+    "#x,y = 60, 60    # True\n",
+    "\n",
+    "# write here"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<details class=\"solution\">\n<summary>Show solution</summary>"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "d = 100\n",
+    "\n",
+    "x,y = 0,  0      # True\n",
+    "#x,y = 25, 25    # True\n",
+    "#x,y = 75, 75    # True\n",
+    "#x,y = 75, 25    # False\n",
+    "#x,y = 25, 75    # False\n",
+    "#x,y = 100, 100  # True\n",
+    "#x,y = 10, 90    # False\n",
+    "#x,y = 60, 60    # True\n",
+    "\n",
+    "(x < d/2 and y < d/2) or (x > d/2 and y > d/2)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "</details>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Repeat the exercise on this new domain"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "![Boolean regions diagram3](images/boolean_spatial_classifier_3.svg)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "d = 100\n",
+    "\n",
+    "x,y = 50, 10  # True\n",
+    "#x,y = 100,0   # True\n",
+    "#x,y = 75, 70  # True\n",
+    "#x,y = 25,75   # False\n",
+    "#x,y = 25, 5   # True\n",
+    "#x,y = 5, 80   # False\n",
+    "#x,y = 60, 70  # False\n",
+    "\n",
+    "# write here"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<details class=\"solution\">\n<summary>Show solution</summary>"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "d = 100\n",
+    "\n",
+    "x,y = 50, 10  # True\n",
+    "#x,y = 100,0   # True\n",
+    "#x,y = 75, 70  # True\n",
+    "#x,y = 25,75   # False\n",
+    "#x,y = 25, 5   # True\n",
+    "#x,y = 5, 80   # False\n",
+    "#x,y = 60, 70  # False\n",
+    "\n",
+    "y < x"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "</details>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Repeat the exercise on this new domain"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "![Boolean regions diagram4](images/boolean_spatial_classifier_4.svg)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "d = 100\n",
+    "\n",
+    "x,y = 50, 10   # True\n",
+    "#x,y = 0,0     # True\n",
+    "#x,y = 75, 70  # False\n",
+    "#x,y = 25,90   # False\n",
+    "#x,y = 25, 5   # True\n",
+    "#x,y = 80, 20  # False\n",
+    "#x,y = 25, 25  # True\n",
+    "\n",
+    "# write here"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<details class=\"solution\">\n<summary>Show solution</summary>"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "d = 100\n",
+    "\n",
+    "x,y = 50, 10   # True\n",
+    "#x,y = 0,0     # True\n",
+    "#x,y = 75, 70  # False\n",
+    "#x,y = 25,90   # False\n",
+    "#x,y = 25, 5   # True\n",
+    "#x,y = 80, 20  # False\n",
+    "#x,y = 25, 25  # True\n",
+    "\n",
+    "y < -x + d"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "</details>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Last one, I swear!"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "![Boolean regions diagram5](images/boolean_spatial_classifier_5.svg)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "d = 80\n",
+    "\n",
+    "x,y = 0, 0     # False\n",
+    "#x,y = 20, 20  # False\n",
+    "#x,y = 60, 10  # True\n",
+    "#x,y = 10, 60  # True\n",
+    "#x,y = 20, 70  # False\n",
+    "#x,y = 70, 20  # False\n",
+    "#x,y = 70, 70  # False\n",
+    "#x,y = 0,60    # True\n",
+    "#x,y = 60,0    # True\n",
+    "\n",
+    "# write here"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<details class=\"solution\">\n<summary>Show solution</summary>"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "d = 80\n",
+    "\n",
+    "x,y = 0, 0     # False\n",
+    "#x,y = 20, 20  # False\n",
+    "#x,y = 60, 10  # True\n",
+    "#x,y = 10, 60  # True\n",
+    "#x,y = 20, 70  # False\n",
+    "#x,y = 70, 20  # False\n",
+    "#x,y = 70, 70  # False\n",
+    "#x,y = 0,60    # True\n",
+    "#x,y = 60,0    # True\n",
+    "\n",
+    "((x > d//2) or (y > d//2)) and  (x < -y + d)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "</details>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## The Repeating Zones\n",
+    "\n",
+    "A value `n` represents a position on a repeating circular scale.  \n",
+    "The scale has a length of **360 units** and repeats indefinitely.\n",
+    "\n",
+    "Some intervals of the scale are marked as **active zones**:\n",
+    "\n",
+    "- `90 ≤ position < 120`\n",
+    "- `210 ≤ position < 240`\n",
+    "- `330 ≤ position < 360`\n",
+    "\n",
+    "Write code that outputs `True` if `n` falls inside one of the active zones, and `False` otherwise.\n",
+    "\n",
+    "**Constraints**\n",
+    "\n",
+    "- Do **not** use `if` statements.\n",
+    "- `n` can be any integer, including values greater than `360` (for example `460`, `815`, `925`).\n",
+    "\n",
+    "![clock](images/boolean_clock_1.svg)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "n = 20    # False\n",
+    "#n = 405  # False\n",
+    "#n = 70   # False\n",
+    "#n = 100  # True\n",
+    "#n = 460  # True\n",
+    "#n = 225  # True\n",
+    "#n = 182  # False\n",
+    "#n = 253  # False\n",
+    "#n = 275  # False\n",
+    "#n = 205  # False\n",
+    "#n = 350  # True\n",
+    "#n = 925  # False\n",
+    "#n = 815  # True\n",
+    "#n = 92   # True\n",
+    "\n",
+    "# write here"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<details class=\"solution\">\n<summary>Show solution</summary>"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "n = 20    # False\n",
+    "#n = 405  # False\n",
+    "#n = 70   # False\n",
+    "#n = 100  # True\n",
+    "#n = 460  # True\n",
+    "#n = 225  # True\n",
+    "#n = 182  # False\n",
+    "#n = 253  # False\n",
+    "#n = 275  # False\n",
+    "#n = 205  # False\n",
+    "#n = 350  # True\n",
+    "#n = 925  # False\n",
+    "#n = 815  # True\n",
+    "#n = 92   # True\n",
+    "\n",
+    "# 1. LONG SOLUTION\n",
+    "# Looking at the figure, we see the zones are between 90° and 120°, 210° and 240°, 330 and 360°\n",
+    "\n",
+    "# A first problem to tackle is the fact the hand can have rotated more than 360°, like 460° or 925° as in test.\n",
+    "# To solve this first problem, we can directly use the module operator like this\n",
+    "# to always get numbers between 0 and 359 included:\n",
+    "\n",
+    "# m = n % 360\n",
+    "\n",
+    "# This way we could simply solve the exercise with many and/or, like:\n",
+    "\n",
+    "# (m >= 90 and m < 120)  or (m >= 210 and m < 240) or (m >= 330 and m < 360)     # 'long' solution\n",
+    "\n",
+    "# 2. SHORT SOLUTION\n",
+    "\n",
+    "# As an alternative, consider this fact: if you take sequences of 4 segments of 30° each, \n",
+    "# every sequence occupies 120° and we are interested to know when the hand is in the last segment,\n",
+    "# between 90° and 120°. We can then creatively use the modulus operator to 'shorten' the clock panel \n",
+    "# and ignore all the degrees after the 120th. Finally, we look whether or not m is lying in the last segment:\n",
+    "\n",
+    "# m = n % 120      # number between 0 and 119 included\n",
+    "# m > 3 * 30       \n",
+    "\n",
+    "n % 120 > 90   # 'short' solution"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "</details>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## The Three Levels\n",
+    "\n",
+    "A system has three platforms at heights `t1`, `t2`, and `t3`.\n",
+    "\n",
+    "Each platform contains a different reward:\n",
+    "\n",
+    "- Platform 1 → 10 points\n",
+    "- Platform 2 → 20 points\n",
+    "- Platform 3 → 30 points\n",
+    "\n",
+    "A player jumps and reaches a height `h`.\n",
+    "\n",
+    "Write code that prints the number of points collected:\n",
+    "\n",
+    "- `10` if the player reaches the first platform,\n",
+    "- `20` if the player reaches the second platform,\n",
+    "- `30` if the player reaches the third platform.\n",
+    "\n",
+    "***Constraints***\n",
+    "\n",
+    "- Do **not** use `if` statements.\n",
+    "- Assume the heights are ordered: `t1 < t2 < t3`.\n",
+    "- The jump height `h` can be any value.\n",
+    "\n",
+    "![platform](images/boolean_pipes.svg)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "t1,t2,t3 = 200,500,600\n",
+    "\n",
+    "h=450   # 10\n",
+    "#h=570  # 20\n",
+    "#h=610  # 30\n",
+    "#h=50   # 0\n",
+    "\n",
+    "# write here"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<details class=\"solution\">\n<summary>Show solution</summary>"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "t1,t2,t3 = 200,500,600\n",
+    "\n",
+    "h=450   # 10\n",
+    "#h=570  # 20\n",
+    "#h=610  # 30\n",
+    "#h=50   # 0\n",
+    "\n",
+    "(h >= t3 and 30) or (h >= t2 and 20) or (h >= t1 and 10) or 0"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "</details>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Continue\n\nGo on with [Python Basics - Float](basics3-floats-sol.ipynb)"
+   ]
+  }
+ ],
+ "metadata": {
+  "celltoolbar": "Edit Metadata",
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.7.10"
+  },
+  "toc": {
+   "base_numbering": 1,
+   "nav_menu": {},
+   "number_sections": false,
+   "sideBar": true,
+   "skip_h1_title": false,
+   "title_cell": "Table of Contents",
+   "title_sidebar": "Contents",
+   "toc_cell": false,
+   "toc_position": {
+    "height": "calc(100% - 180px)",
+    "left": "10px",
+    "top": "150px",
+    "width": "280.2px"
+   },
+   "toc_section_display": true,
+   "toc_window_display": true
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
