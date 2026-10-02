@@ -3,7 +3,7 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../../genindex.html"><link rel="search" title="Search" href="../../search.html"><link rel="next" title="If Else statements" href="if1-sol.html"><link rel="prev" title="Dictionaries 4 - special classes" href="../06%20-%20Dictionaries/dictionaries4-sol.html">
+<link rel="index" title="Index" href="../../genindex.html"><link rel="search" title="Search" href="../../search.html"><link rel="next" title="For loops - Introduction" href="for1-sol.html"><link rel="prev" title="Dictionaries 4 - special classes" href="../06%20-%20Dictionaries/dictionaries4-sol.html">
         <link rel="canonical" href="https://erich-r.github.io/SciProg27/lectures/07%20-%20Control%20flow/index.html">
 
     <!-- Generated with Sphinx 9.0.4 and Furo 2025.12.19 -->
@@ -232,7 +232,6 @@
 </ul>
 </li>
 <li class="toctree-l1 current has-children current-page"><a class="current reference internal" href="#">07 - Control flow</a><input aria-label="Toggle navigation of 07 - Control flow" checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="if1-sol.html">If Else statements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="for1-sol.html">For loops - Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="for2-sol.html">For loops - Iterating Strings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="for3-sol.html">For loops - Iterating Lists</a></li>
@@ -240,8 +239,13 @@
 <li class="toctree-l2"><a class="reference internal" href="for5-sol.html">For loops - Iterating Sets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="for6-sol.html">For loops - Iterating Dictionaries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="for7-sol.html">For loops - Nested Loops</a></li>
-<li class="toctree-l2"><a class="reference internal" href="while1-sol.html">While loops 1 - introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="if1-sol.html">If Else statements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sequences1-sol.html">Sequences and comprehensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="while1-sol.html">While loops 1 - introduction</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../08%20-%20Functions/index.html">08 - Functions</a><input aria-label="Toggle navigation of 08 - Functions" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../08%20-%20Functions/functions1-sol.html">Functions - solutions</a></li>
 </ul>
 </li>
 </ul>
@@ -257,6 +261,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../challenges/07%20-%20Control%20flow/if2-chal.html">If Else - Challenges</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../challenges/07%20-%20Control%20flow/sequences2-chal.html">Sequences - Challenges</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../challenges/07%20-%20Control%20flow/while2-chal.html">While loops - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/Misc.%20Challenges/chall1-chal.html">Challenges - Miscellaneous</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Commandments</span></p>
 <ul>
@@ -299,7 +304,6 @@
 <h1>07 - Control flow<a class="headerlink" href="#control-flow" title="Link to this heading">#</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="if1-sol.html">If Else statements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="for1-sol.html">For loops - Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="for2-sol.html">For loops - Iterating Strings</a></li>
 <li class="toctree-l1"><a class="reference internal" href="for3-sol.html">For loops - Iterating Lists</a></li>
@@ -307,8 +311,9 @@
 <li class="toctree-l1"><a class="reference internal" href="for5-sol.html">For loops - Iterating Sets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="for6-sol.html">For loops - Iterating Dictionaries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="for7-sol.html">For loops - Nested Loops</a></li>
-<li class="toctree-l1"><a class="reference internal" href="while1-sol.html">While loops 1 - introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="if1-sol.html">If Else statements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sequences1-sol.html">Sequences and comprehensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="while1-sol.html">While loops 1 - introduction</a></li>
 </ul>
 </div>
 </section>
@@ -318,12 +323,12 @@
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="if1-sol.html">
+          <a class="next-page" href="for1-sol.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">If Else statements</div>
+                <div class="title">For loops - Introduction</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>

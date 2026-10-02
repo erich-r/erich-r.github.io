@@ -49,6 +49,7 @@ Lectures
    lectures/05 - Sets/index
    lectures/06 - Dictionaries/index
    lectures/07 - Control flow/index
+   lectures/08 - Functions/index
 .. AUTOGEN:CHALLENGES:START
 Challenges
 ----------
@@ -67,6 +68,7 @@ Challenges
    challenges/07 - Control flow/if2-chal
    challenges/07 - Control flow/sequences2-chal
    challenges/07 - Control flow/while2-chal
+   challenges/Misc. Challenges/chall1-chal
 
 .. AUTOGEN:CHALLENGES:END
 

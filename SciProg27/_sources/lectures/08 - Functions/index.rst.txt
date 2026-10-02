@@ -1,0 +1,7 @@
+08 - Functions
+==============
+
+.. toctree::
+   :maxdepth: 1
+
+   functions1-sol

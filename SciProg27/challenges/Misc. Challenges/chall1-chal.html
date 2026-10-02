@@ -1,0 +1,702 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html"><link rel="search" title="Search" href="../../search.html"><link rel="next" title="Rules You Shall Not Break" href="../../commandments/commandments.html"><link rel="prev" title="While loops - Challenges" href="../07%20-%20Control%20flow/while2-chal.html">
+        <link rel="canonical" href="https://erich-r.github.io/SciProg27/challenges/Misc.%20Challenges/chall1-chal.html">
+
+    <!-- Generated with Sphinx 9.0.4 and Furo 2025.12.19 -->
+        <title>Challenges - Miscellaneous - SciProg 2027</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=e429fab1" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">SciProg 2027</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  <span class="sidebar-brand-text">SciProg 2027</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/00%20-%20Installation/installation.html">Installation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../lectures/01%20-%20Basics/index.html">01 - Basics</a><input aria-label="Toggle navigation of 01 - Basics" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/01%20-%20Basics/basics1-ints-sol.html">Python Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/01%20-%20Basics/basics2-bools-sol.html">Python Basics - Booleans</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/01%20-%20Basics/basics3-floats-sol.html">Python Basics - Float</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../lectures/02%20-%20Strings/index.html">02 - Strings</a><input aria-label="Toggle navigation of 02 - Strings" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/02%20-%20Strings/strings1-sol.html">Strings 1 - Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/02%20-%20Strings/strings2-sol.html">Strings 2 - Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/02%20-%20Strings/strings3-sol.html">Strings 3 - Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/02%20-%20Strings/strings4-sol.html">Strings 4 - Search Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../lectures/03%20-%20Lists/index.html">03 - Lists</a><input aria-label="Toggle navigation of 03 - Lists" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/03%20-%20Lists/lists1-sol.html">Lists 1 - Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/03%20-%20Lists/lists2-sol.html">Lists 2 - operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/03%20-%20Lists/lists3-sol.html">Lists 3 - Basic methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/03%20-%20Lists/lists4-sol.html">Lists 4 - Search methods</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../lectures/04%20-%20Tuples/index.html">04 - Tuples</a><input aria-label="Toggle navigation of 04 - Tuples" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/04%20-%20Tuples/tuples1-sol.html">Tuples</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../lectures/05%20-%20Sets/index.html">05 - Sets</a><input aria-label="Toggle navigation of 05 - Sets" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/05%20-%20Sets/sets1-sol.html">Sets</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../lectures/06%20-%20Dictionaries/index.html">06 - Dictionaries</a><input aria-label="Toggle navigation of 06 - Dictionaries" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/06%20-%20Dictionaries/dictionaries1-sol.html">Dictionaries 1 - Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/06%20-%20Dictionaries/dictionaries2-sol.html">Dictionaries 2 - operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/06%20-%20Dictionaries/dictionaries3-sol.html">Dictionaries 3 - Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/06%20-%20Dictionaries/dictionaries4-sol.html">Dictionaries 4 - special classes</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../lectures/07%20-%20Control%20flow/index.html">07 - Control flow</a><input aria-label="Toggle navigation of 07 - Control flow" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/07%20-%20Control%20flow/for1-sol.html">For loops - Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/07%20-%20Control%20flow/for2-sol.html">For loops - Iterating Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/07%20-%20Control%20flow/for3-sol.html">For loops - Iterating Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/07%20-%20Control%20flow/for4-sol.html">For loops - Iterating Tuples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/07%20-%20Control%20flow/for5-sol.html">For loops - Iterating Sets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/07%20-%20Control%20flow/for6-sol.html">For loops - Iterating Dictionaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/07%20-%20Control%20flow/for7-sol.html">For loops - Nested Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/07%20-%20Control%20flow/if1-sol.html">If Else statements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/07%20-%20Control%20flow/sequences1-sol.html">Sequences and comprehensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/07%20-%20Control%20flow/while1-sol.html">While loops 1 - introduction</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../lectures/08%20-%20Functions/index.html">08 - Functions</a><input aria-label="Toggle navigation of 08 - Functions" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/08%20-%20Functions/functions1-sol.html">Functions - solutions</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Challenge Yourself at Home</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../01%20-%20Basics/basics4-chal.html">Python Basics - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02%20-%20Strings/strings5-chal.html">Strings - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03%20-%20Lists/lists5-chal.html">Lists - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04%20-%20Tuples/tuples2-chal.html">Tuples - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05%20-%20Sets/sets2-chal.html">Sets - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06%20-%20Dictionaries/dictionaries5-chal.html">Dictionaries - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07%20-%20Control%20flow/for8-chal.html">For Loops - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07%20-%20Control%20flow/if2-chal.html">If Else - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07%20-%20Control%20flow/sequences2-chal.html">Sequences - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07%20-%20Control%20flow/while2-chal.html">While loops - Challenges</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Challenges - Miscellaneous</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Commandments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../commandments/commandments.html">Rules You Shall Not Break</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="Challenges---Miscellaneous">
+<h1>Challenges - Miscellaneous<a class="headerlink" href="#Challenges---Miscellaneous" title="Link to this heading">#</a></h1>
+<p>Challenges that require you to use a selection of the topics learned so far</p>
+<section id="Stick-Breaking-Triangle-Experiment">
+<h2>Stick-Breaking Triangle Experiment<a class="headerlink" href="#Stick-Breaking-Triangle-Experiment" title="Link to this heading">#</a></h2>
+<p>You have a stick of total length <strong>1</strong>.</p>
+<ol class="arabic simple">
+<li><p>Drop the stick and let it break at a random point, chosen uniformly along its length.</p></li>
+<li><p>Take the <strong>longer</strong> of the two resulting pieces and drop it again, breaking it at a random point (uniformly along that piece).</p></li>
+<li><p>At the end, you have <strong>three pieces</strong> whose total length is still 1.</p></li>
+</ol>
+<p>Write a Python program to <strong>estimate the probability</strong> that these three pieces can form a triangle.</p>
+<blockquote>
+<div><p><strong>Tip:</strong> To generate uniformly distributed random numbers, use <code class="docutils literal notranslate"><span class="pre">random.uniform(a,</span> <span class="pre">b)</span></code>. Remember to import the <code class="docutils literal notranslate"><span class="pre">random</span></code> module.</p>
+</div></blockquote>
+<section id="Hint-1:-Triangle-Condition">
+<h3>Hint 1: Triangle Condition<a class="headerlink" href="#Hint-1:-Triangle-Condition" title="Link to this heading">#</a></h3>
+<p>Three line segments with a total length of 1 can form a triangle <strong>if and only if no single piece is at least 0.5 units long</strong>.</p>
+<p>This is equivalent to the triangle inequality.</p>
+</section>
+<section id="Hint-2:-Estimating-Probabilities">
+<h3>Hint 2: Estimating Probabilities<a class="headerlink" href="#Hint-2:-Estimating-Probabilities" title="Link to this heading">#</a></h3>
+<p>When an exact formula is difficult to find, we can approximate a probability by performing the same random experiment many times.</p>
+<p>The estimated probability is:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>number of successful trials / total number of trials
+</pre></div>
+</div>
+<p>Try running your simulation with a large number of trials, such as 10.000 or 100.000, to get a more accurate estimate.</p>
+</section>
+<section id="Expected-Result">
+<h3>Expected Result<a class="headerlink" href="#Expected-Result" title="Link to this heading">#</a></h3>
+<p>If your simulation is working correctly, you should expect your estimated probability to be <strong>close to</strong></p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[2\ln(2) - 1 \approx 0.3863\]</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">random</span><span class="w"> </span><span class="kn">import</span> <span class="n">uniform</span>
+
+<span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="The-Metropolis-Hastings-Algorithm">
+<h2>The Metropolis-Hastings Algorithm<a class="headerlink" href="#The-Metropolis-Hastings-Algorithm" title="Link to this heading">#</a></h2>
+<section id="Context">
+<h3>Context<a class="headerlink" href="#Context" title="Link to this heading">#</a></h3>
+<p>In many scientific and statistical applications, we need to draw random samples from a probability distribution <span class="math notranslate nohighlight">\(p(x)\)</span>. However, standard sampling methods (like inverse transform sampling) fail when <span class="math notranslate nohighlight">\(p(x)\)</span> is high-dimensional or complex.</p>
+<p>More crucially, in many real-world scenarios, such as Bayesian inference or statistical mechanics, we only know the target distribution up to an unknown normalization constant:</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[p(x) = \frac{\tilde{p}(x)}{Z}\]</div>
+</div>
+<p>where <span class="math notranslate nohighlight">\(\tilde{p}(x)\)</span> is an unnormalized density function that we can evaluate, but <span class="math notranslate nohighlight">\(Z = \int \tilde{p}(x) \, dx\)</span> is an intractable integral that is computationally impossible to calculate.</p>
+<p>The <strong>Metropolis-Hastings (MH)</strong> algorithm is a <strong>Markov Chain Monte Carlo (MCMC)</strong> method designed specifically to solve this problem: it generates a sequence of samples drawn from <span class="math notranslate nohighlight">\(p(x)\)</span> <strong>without ever calculating :math:`Z`</strong>.</p>
+<p>Basically, this algorithm made Bayesian statistics practical beyond conjugacy!</p>
+</section>
+<section id="How-the-Algorithm-Works">
+<h3>How the Algorithm Works<a class="headerlink" href="#How-the-Algorithm-Works" title="Link to this heading">#</a></h3>
+<p>Starting from an initial state <span class="math notranslate nohighlight">\(x_0\)</span>, the algorithm iteratively constructs a sequence of states <span class="math notranslate nohighlight">\(x_0, x_1, x_2, \dots\)</span> using a chosen <strong>proposal distribution</strong> <span class="math notranslate nohighlight">\(q(x' \mid x)\)</span> (e.g., a Gaussian distribution centered at the current state <span class="math notranslate nohighlight">\(x\)</span>).</p>
+<p>For each step <span class="math notranslate nohighlight">\(t = 1, 2, \dots, N\)</span>:</p>
+<ol class="arabic">
+<li><p><strong>Propose a candidate state:</strong> Draw a candidate <span class="math notranslate nohighlight">\(x'\)</span> from the proposal distribution <span class="math notranslate nohighlight">\(q(x' \mid x_{t-1})\)</span>.</p></li>
+<li><p><strong>Calculate the acceptance probability :math:`alpha`:</strong></p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\alpha = \min\left(1, \, \frac{\tilde{p}(x') \, q(x_{t-1} \mid x')}{\tilde{p}(x_{t-1}) \, q(x' \mid x_{t-1})}\right)\]</div>
+</div>
+<p><em>(Note: If the proposal distribution is symmetric, :math:`q(x’ mid x) = q(x mid x’)`, the ratio simplifies to :math:`frac{tilde{p}(x’)}{tilde{p}(x_{t-1})}`)</em></p>
+</li>
+<li><p><strong>Accept or Reject:</strong></p>
+<ul class="simple">
+<li><p>Generate a random number <span class="math notranslate nohighlight">\(u \sim \text{Uniform}(0, 1)\)</span>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(u \le \alpha\)</span>, <strong>accept</strong> the candidate: set <span class="math notranslate nohighlight">\(x_t = x'\)</span>.</p></li>
+<li><p>Otherwise, <strong>reject</strong> the candidate: set <span class="math notranslate nohighlight">\(x_t = x_{t-1}\)</span>.</p></li>
+</ul>
+</li>
+</ol>
+<p>Over time, the stationary distribution of this generated Markov chain converges to <span class="math notranslate nohighlight">\(p(x)\)</span>.</p>
+</section>
+<section id="Exercise:-Implementation">
+<h3>Exercise: Implementation<a class="headerlink" href="#Exercise:-Implementation" title="Link to this heading">#</a></h3>
+<p>Write a Python function <code class="docutils literal notranslate"><span class="pre">metropolis_hastings</span></code> that implements the Metropolis-Hastings algorithm for a 1D target distribution.</p>
+<section id="Function-Requirements">
+<h4>Function Requirements<a class="headerlink" href="#Function-Requirements" title="Link to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">target_density</span></code>: A function <code class="docutils literal notranslate"><span class="pre">f(x)</span></code> proportional to the target PDF <span class="math notranslate nohighlight">\(\tilde{p}(x)\)</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">x0</span></code>: Initial state (float).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_samples</span></code>: Number of iterations to run (int).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">proposal_std</span></code>: Standard deviation <span class="math notranslate nohighlight">\(\sigma\)</span> of a symmetric Gaussian proposal <span class="math notranslate nohighlight">\(q(x' \mid x) = \mathcal{N}(x, \sigma^2)\)</span> (default: <code class="docutils literal notranslate"><span class="pre">1.0</span></code>).</p></li>
+</ul>
+</li>
+<li><p><strong>Return Value:</strong></p>
+<ul class="simple">
+<li><p>An array of length <code class="docutils literal notranslate"><span class="pre">n_samples</span></code> containing the sampled chain <span class="math notranslate nohighlight">\(x_0, x_1, \dots, x_{N-1}\)</span>.</p></li>
+<li><p>An integer representing the total count of accepted proposals (to evaluate the acceptance rate).</p></li>
+</ul>
+</li>
+<li><p><strong>Task:</strong></p>
+<ul class="simple">
+<li><p>Implement the function below.</p></li>
+<li><p>Test your function by sampling from a target distribution <span class="math notranslate nohighlight">\(\tilde{p}(x) = \exp(-x^2) \cdot (1 + \sin(3x)^2)\)</span> using <span class="math notranslate nohighlight">\(x_0 = 0.0\)</span> and <span class="math notranslate nohighlight">\(n\_samples = 20.000\)</span>.</p></li>
+</ul>
+</li>
+</ol>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+
+<span class="c1"># this is an example of an unnormalized pdf (i.e., its integral is not 1),</span>
+<span class="c1"># you can change this to be any unnormalized pdf you want (but in that case if you want to</span>
+<span class="c1"># plot your empirical result with the true distribution p</span>
+<span class="c1"># you also need to change the normalisation constant in true_pdf function -&gt; 2.65857)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">unnormalized_target</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">true_pdf</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">unnormalized_target</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.65857</span>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">metropolis_hastings</span><span class="p">(</span><span class="n">target_density</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">,</span> <span class="n">proposal_std</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO Implement me!&quot;</span><span class="p">)</span>
+
+
+<span class="n">samples</span><span class="p">,</span> <span class="n">n_accepted</span> <span class="o">=</span> <span class="n">metropolis_hastings</span><span class="p">(</span>
+    <span class="n">target_density</span><span class="o">=</span><span class="n">unnormalized_target</span><span class="p">,</span>
+    <span class="n">x0</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">n_samples</span><span class="o">=</span><span class="mi">200_000</span><span class="p">,</span>
+    <span class="n">proposal_std</span><span class="o">=</span><span class="mf">1.0</span>
+<span class="p">)</span>
+
+<span class="c1"># this is for plotting purposes, do not touch</span>
+
+<span class="n">x_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">y_true</span> <span class="o">=</span> <span class="n">true_pdf</span><span class="p">(</span><span class="n">x_grid</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span>
+    <span class="n">samples</span><span class="p">,</span> <span class="c1"># this should be returned by metropolis_hastings function!!</span>
+    <span class="n">bins</span><span class="o">=</span><span class="mi">70</span><span class="p">,</span>
+    <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;skyblue&#39;</span><span class="p">,</span>
+    <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;navy&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;MH MCMC Samples&#39;</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">x_grid</span><span class="p">,</span>
+    <span class="n">y_true</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;crimson&#39;</span><span class="p">,</span>
+    <span class="n">linewidth</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;True Normalized PDF $p(x)$&#39;</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Density&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="k-Nearest-Neighbors-(k-NN)-from-Scratch">
+<h2><span class="math notranslate nohighlight">\(k\)</span>-Nearest Neighbors (<span class="math notranslate nohighlight">\(k\)</span>-NN) from Scratch<a class="headerlink" href="#k-Nearest-Neighbors-(k-NN)-from-Scratch" title="Link to this heading">#</a></h2>
+<section id="id1">
+<h3>Context<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>The <strong>:math:`k`-Nearest Neighbors (:math:`k`-NN)</strong> algorithm is one of the foundational algorithms in supervised machine learning. Unlike parametric models (such as linear regression or logistic regression) that learn a set of parameters <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> during a training phase, <span class="math notranslate nohighlight">\(k\)</span>-NN is a <strong>non-parametric, instance-based (or “lazy”) learning algorithm</strong>.</p>
+<p>It makes no explicit assumptions about the functional form of the underlying data distribution and defers all computations until prediction time.</p>
+</section>
+<section id="id2">
+<h3>How the Algorithm Works<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>Given a training dataset of <span class="math notranslate nohighlight">\(N\)</span> samples <span class="math notranslate nohighlight">\(\mathbf{X}_{\text{train}} \in \mathbb{R}^{N \times d}\)</span> with labels <span class="math notranslate nohighlight">\(\mathbf{y}_{\text{train}} \in \{0, 1, \dots, C-1\}\)</span>, and a new query point <span class="math notranslate nohighlight">\(\mathbf{x}_* \in \mathbb{R}^d\)</span>:</p>
+<ol class="arabic">
+<li><p><strong>Distance Calculation:</strong> Compute the distance between <span class="math notranslate nohighlight">\(\mathbf{x}_*\)</span> and every training point <span class="math notranslate nohighlight">\(\mathbf{x}_i \in \mathbf{X}_{\text{train}}\)</span>. The standard choice is the <strong>Euclidean distance</strong> (<span class="math notranslate nohighlight">\(L_2\)</span> norm):</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[d(\mathbf{x}_*, \mathbf{x}_i) = \Vert\mathbf{x}_* - \mathbf{x}_i\Vert_2 = \sqrt{\sum_{j=1}^{d} (x_{*,j} - x_{i,j})^2}\]</div>
+</div>
+</li>
+<li><p><strong>Neighbor Identification:</strong> Sort the calculated distances in ascending order and select the indices corresponding to the <span class="math notranslate nohighlight">\(k\)</span> smallest distances, denoted by the neighborhood set <span class="math notranslate nohighlight">\(\mathcal{N}_k(\mathbf{x}_*)\)</span>.</p></li>
+<li><p><strong>Majority Voting (Classification):</strong> Assign <span class="math notranslate nohighlight">\(\mathbf{x}_*\)</span> the label that appears most frequently among its <span class="math notranslate nohighlight">\(k\)</span> nearest neighbors:</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\hat{y}_* = \arg\max_{c} \sum_{i \in \mathcal{N}_k(\mathbf{x}_*)} \mathbb{I}(y_i = c)\]</div>
+</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbb{I}(\cdot)\)</span> is the indicator function (evaluates to <span class="math notranslate nohighlight">\(1\)</span> if true, <span class="math notranslate nohighlight">\(0\)</span> otherwise).</p>
+</li>
+</ol>
+</section>
+<section id="id3">
+<h3>Exercise: Implementation<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>Implement clean, modular Python functions to perform <span class="math notranslate nohighlight">\(k\)</span>-NN classification.</p>
+<section id="Requirements">
+<h4>Requirements<a class="headerlink" href="#Requirements" title="Link to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p><strong>Function Structure:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">compute_distances(X_train,</span> <span class="pre">X_test)</span></code>: Computes the <span class="math notranslate nohighlight">\(M \times N\)</span> Euclidean distance matrix between test queries <span class="math notranslate nohighlight">\(\mathbf{X}_{\text{test}} \in \mathbb{R}^{M \times d}\)</span> and training points <span class="math notranslate nohighlight">\(\mathbf{X}_{\text{train}} \in \mathbb{R}^{N \times d}\)</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">knn_predict(X_train,</span> <span class="pre">y_train,</span> <span class="pre">X_test,</span> <span class="pre">k=3)</span></code>: Accepts training features, training labels, test queries, and the hyperparameter <span class="math notranslate nohighlight">\(k\)</span>. Returns a NumPy array of predicted class labels for <code class="docutils literal notranslate"><span class="pre">X_test</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong>Task:</strong></p>
+<ul class="simple">
+<li><p>Complete the implementation of <code class="docutils literal notranslate"><span class="pre">compute_distances</span></code> and <code class="docutils literal notranslate"><span class="pre">knn_predict</span></code> below.</p></li>
+<li><p>Evaluate your functions on the synthetic multi-class dataset provided in the test block.</p></li>
+<li><p>Compute the accuracy score and compare it against <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>’s <code class="docutils literal notranslate"><span class="pre">KNeighborsClassifier</span></code>.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<section id="Dataset-Provided">
+<h3>Dataset Provided<a class="headerlink" href="#Dataset-Provided" title="Link to this heading">#</a></h3>
+<p>A synthetic dataset representing a multi-class classification problem is generated for you in the testing code below. You will use this fictional dataset to test your functions</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># X_train, X_test, and y_train are numpy arrays.</span>
+<span class="c1"># in python, you can iterate over numpy arrays in the same way as lists,</span>
+<span class="c1"># so you can use regular for loops. However, you can also use numpy</span>
+<span class="c1"># functions and operations if you want!</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_distances</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">):</span>
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO: Implement me&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">knn_predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+       <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO: Implement me&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k_value</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">n_classes</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">n_samples</span> <span class="o">=</span> <span class="mi">500</span>
+
+<span class="c1"># this below is for testing your code, do not touch it</span>
+
+<span class="c1"># if you dont have sklearn installed, type this in terminal:</span>
+<span class="c1"># pip install -U scikit-learn</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_classification</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">accuracy_score</span>
+
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span>
+    <span class="n">n_samples</span><span class="o">=</span><span class="n">n_samples</span><span class="p">,</span>
+    <span class="n">n_features</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">n_informative</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">n_redundant</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">n_classes</span><span class="o">=</span><span class="n">n_classes</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+<span class="p">)</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+
+
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dataset summary: </span><span class="si">{</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> train samples, </span><span class="si">{</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> test samples.&quot;</span><span class="p">)</span>
+
+
+
+<span class="n">y_pred_custom</span> <span class="o">=</span> <span class="n">knn_predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">k_value</span><span class="p">)</span>
+<span class="n">custom_acc</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_custom</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Accuracy (k=</span><span class="si">{</span><span class="n">k_value</span><span class="si">}</span><span class="s2">): </span><span class="si">{</span><span class="n">custom_acc</span><span class="si">:</span><span class="s2">.2%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<br/><br/></pre></div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="../../commandments/commandments.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Rules You Shall Not Break</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="../07%20-%20Control%20flow/while2-chal.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">While loops - Challenges</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2026, Erich Robbi
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Challenges - Miscellaneous</a><ul>
+<li><a class="reference internal" href="#Stick-Breaking-Triangle-Experiment">Stick-Breaking Triangle Experiment</a><ul>
+<li><a class="reference internal" href="#Hint-1:-Triangle-Condition">Hint 1: Triangle Condition</a></li>
+<li><a class="reference internal" href="#Hint-2:-Estimating-Probabilities">Hint 2: Estimating Probabilities</a></li>
+<li><a class="reference internal" href="#Expected-Result">Expected Result</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#The-Metropolis-Hastings-Algorithm">The Metropolis-Hastings Algorithm</a><ul>
+<li><a class="reference internal" href="#Context">Context</a></li>
+<li><a class="reference internal" href="#How-the-Algorithm-Works">How the Algorithm Works</a></li>
+<li><a class="reference internal" href="#Exercise:-Implementation">Exercise: Implementation</a><ul>
+<li><a class="reference internal" href="#Function-Requirements">Function Requirements</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#k-Nearest-Neighbors-(k-NN)-from-Scratch"><span class="math notranslate nohighlight">\(k\)</span>-Nearest Neighbors (<span class="math notranslate nohighlight">\(k\)</span>-NN) from Scratch</a><ul>
+<li><a class="reference internal" href="#id1">Context</a></li>
+<li><a class="reference internal" href="#id2">How the Algorithm Works</a></li>
+<li><a class="reference internal" href="#id3">Exercise: Implementation</a><ul>
+<li><a class="reference internal" href="#Requirements">Requirements</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#Dataset-Provided">Dataset Provided</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=d91ab2ad"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    </body>
+</html>
