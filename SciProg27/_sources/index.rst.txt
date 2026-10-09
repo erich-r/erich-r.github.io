@@ -50,6 +50,7 @@ Lectures
    lectures/06 - Dictionaries/index
    lectures/07 - Control flow/index
    lectures/08 - Functions/index
+   lectures/09 - Matrices of Lists/index
 .. AUTOGEN:CHALLENGES:START
 Challenges
 ----------
@@ -68,6 +69,7 @@ Challenges
    challenges/07 - Control flow/if2-chal
    challenges/07 - Control flow/sequences2-chal
    challenges/07 - Control flow/while2-chal
+   challenges/09 - Matrices of Lists/matrices-lists3-chal
    challenges/Misc. Challenges/chall1-chal
 
 .. AUTOGEN:CHALLENGES:END
