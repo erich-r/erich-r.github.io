@@ -12,7 +12,7 @@ teaser_image: /projects/images/asking.png
 teaser_caption: "Asking only the questions that matter: narrowing down someone's preferences until there is enough information to make a recommendation."
 authors:
 - name: Erich Robbi
-  url: https://erich-r.github.io
+  url: https://erichrobbi.dev
 - name: Marco Bronzini
 - name: Paolo Viappiani
 - name: Andrea Passerini
@@ -144,8 +144,6 @@ In other words, changing the weights was not enough. The model needed to represe
 There was still a practical problem: how do we get the capacity in the first place?
 
 This is where the elicitation implementation came back into the picture. Instead of asking users to specify dozens of capacity values, we simulated different types of decision makers with different environmental preferences and used pairwise comparisons between bundles to recover enough information to make recommendations.
-
-The point was not to reconstruct every parameter of the user's preference model. It was to collect just enough information to make a good decision.
 
 ### Sources
 

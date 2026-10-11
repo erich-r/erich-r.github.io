@@ -1,24 +1,19 @@
-
-<header class="section-header">
-    <h2>Education</h2>
-</header>
-{% assign educations = site.educations | sort:"item_id" | reverse %}
-
-{% for education in educations  limit: 2 %}
-
-<div class="item">
-    <h3 class="item-title">{{education.course_name}}</h3>
-    <h4 class="item-title-details">{{education.university}} • {{education.from}} - {{education.to}}</h4>
-
-    <p class="item-description">
-        {{education.content | markdownify}}
-    </p><span>
-        {% if education.gpa != null or education.grade != null %}
-            {% if education.to == "Present" %}
-                <strong>Current GPA</strong>: {{education.gpa}} 
-            {% else %}
-                <strong>Final Grade</strong>: {{education.grade}}
-            {% endif %}</span>
+<h2 class="section-title">Education</h2>
+{% assign educations = site.educations | sort: "item_id" | reverse %}
+<div class="stack">
+{% for education in educations %}
+<div class="entry">
+    <div class="entry-main">
+        <h3 class="entry-title">{{ education.course_name }}</h3>
+        <div class="entry-where">{{ education.university }}</div>
+        {% assign body = education.content | strip %}{% if body != "" %}<div class="entry-text">{{ education.content | markdownify }}</div>{% endif %}
+        {% if education.to == "Present" %}
+            {% if education.gpa %}<p class="entry-note"><strong>Current GPA</strong>: {{ education.gpa }}</p>{% endif %}
+        {% elsif education.grade %}
+            <p class="entry-note"><strong>Final grade</strong>: {{ education.grade }}</p>
         {% endif %}
+    </div>
+    <span class="date">{{ education.from }}–{{ education.to }}</span>
 </div>
 {% endfor %}
+</div>

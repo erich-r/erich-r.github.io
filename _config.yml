@@ -25,6 +25,32 @@ description: >- # this means to ignore newlines until "baseurl:"
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  erich-r
+author: Erich Robbi
+
+# Profile photo shown on the home page (round). Leave empty to show initials.
+# e.g. avatar: /assets/files/profile.jpg
+avatar: /assets/files/profile.jpg
+
+# Links in the top navigation bar (Home and the theme toggle are always shown).
+nav:
+  - title: Blog
+    url: /blog/
+  - title: Teaching
+    url: /teachings/
+  - title: Projects
+    url: /projects/
+  - title: Publications
+    url: /publications/
+
+# Blog posts live in my_collections/_posts/YYYY-MM-DD-title.md
+permalink: /blog/:title/
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
 
 # Build settings
 plugins:
@@ -61,6 +87,10 @@ include:
   - _sources
   - _images
   - _downloads
+
+exclude:
+  - template_to_copy
+  - commands.txt
 
 collections_dir: "my_collections"
 

@@ -1,23 +1,15 @@
-<header class="section-header">
-    <h2>Work Experiences</h2>
-</header>
-{% assign works = site.work-experiences | sort:"item_id" | reverse %}
-
-{% for work in works limit: 2 %}
-
-<div class="item">
-    
-    <h3 class="item-title">{{work.name}}</h3>
-    <h4 class="item-title-details">{{work.where}} - {{work.city}} • {{work.from}} - {{work.to}}</h4>
-
-    <p class="item-description">
-        {{work.content | markdownify}}
-    </p>
-    <div class="tags">
-
-        {% for tag in work.tags %}
-        <span class="chip">{{tag}}</span>
-        {% endfor %}
+<h2 class="section-title">Experience</h2>
+{% assign works = site.work-experiences | sort: "item_id" | reverse %}
+<div class="stack">
+{% for work in works %}
+<div class="entry">
+    <div class="entry-main">
+        <h3 class="entry-title">{{ work.name }}</h3>
+        <div class="entry-where">{{ work.where }}{% if work.city %}, {{ work.city }}{% endif %}</div>
+        {% assign body = work.content | strip %}{% if body != "" %}<div class="entry-text">{{ work.content | markdownify }}</div>{% endif %}
+        {% if work.tags %}<p class="tag-line">{{ work.tags | join: " · " }}</p>{% endif %}
     </div>
+    <span class="date">{{ work.from }} – {{ work.to }}</span>
 </div>
 {% endfor %}
+</div>

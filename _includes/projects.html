@@ -1,8 +1,6 @@
-<header class="section-header">
-    <h2>Projects</h2>
-</header>
-{% assign my_projects = site.projects | sort:"item_id" | reverse %}
-{% for project in my_projects limit:2 %}
-{% include project-card.html project=project %}
-{% endfor %}
-<a id="more" href="{{ '/projects/' | relative_url }}">View all projects</a>
+<h2 class="section-title">Projects 👨‍💻</h2>
+{% assign my_projects = site.projects | sort: "item_id" | reverse %}
+<div class="stack">
+    {% for project in my_projects limit: 3 %}{% include project-card.html project=project %}{% endfor %}
+</div>
+{% include more-link.html url="/projects/" label="View all projects" %}

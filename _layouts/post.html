@@ -1,0 +1,16 @@
+---
+layout: base
+---
+<article>
+    <header class="article-header">
+        <h1 class="article-title">{{ page.title }}</h1>
+        <time class="article-date" datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%m/%d/%Y" }}</time>
+    </header>
+    <hr class="article-rule">
+    <div class="prose">
+        {{ content }}
+    </div>
+    <footer class="article-footer">
+        {% include more-link.html url="/blog/" label="All posts" %}
+    </footer>
+</article>

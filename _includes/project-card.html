@@ -1,19 +1,14 @@
-<div class="item" data-tags="{{ include.project.tags | join: '|' }}">
-    <h3 class="item-title">{% if include.project.layout %}<a href="{{ include.project.url | relative_url }}">{{ include.project.name }}</a>{% else %}{{ include.project.name }}{% endif %}</h3>
-    <p class="item-venue">{{ include.project.course_name }}</p>
-    <p class="item-meta">{{ include.project.completition_date }}</p>
-
+{% assign p = include.project %}
+{% if p.layout %}<a href="{{ p.url | relative_url }}" class="card" data-tags="{{ p.tags | join: '|' }}">{% else %}<div class="card" data-tags="{{ p.tags | join: '|' }}">{% endif %}
+    <div class="card-head">
+        <h3 class="card-title">{{ p.name }}</h3>
+        {% if p.completition_date %}<span class="date">{{ p.completition_date }}</span>{% endif %}
+    </div>
+    {% if p.course_name %}<p class="card-meta">{{ p.course_name }}{% if p.final_mark %} · {{ p.final_mark }}{% endif %}</p>{% endif %}
     {% unless include.hide_description %}
-    <div class="item-description">
-        {% if include.project.layout %}{{ include.project.summary | markdownify }}{% else %}{{ include.project.content | markdownify }}{% endif %}
+    <div class="card-text">
+        {% if p.layout %}{{ p.summary | markdownify }}{% else %}{{ p.content | markdownify }}{% endif %}
     </div>
     {% endunless %}
-    {% if include.project.final_mark %}
-    <p class="project-mark"><strong>Final mark</strong>: {{ include.project.final_mark }}</p>
-    {% endif %}
-    <div class="tags">
-        {% for tag in include.project.tags %}
-        <span class="chip">{{ tag }}</span>
-        {% endfor %}
-    </div>
-</div>
+    {% if p.tags %}<p class="tag-line">{{ p.tags | join: " · " }}</p>{% endif %}
+{% if p.layout %}</a>{% else %}</div>{% endif %}

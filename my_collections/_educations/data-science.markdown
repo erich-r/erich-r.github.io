@@ -10,9 +10,4 @@ grade: 110/110 Cum Laude
 
 ---
 
-Main courses: 
-- Statistical Learning 
-- Machine Learning
-- Scientific Programming
-- Big Data Technologies
-- Data Visualisation
+Statistical Learning, Machine Learning, Scientific Programming, Big Data Technologies, Data Visualisation

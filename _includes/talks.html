@@ -1,15 +1,14 @@
-<header class="section-header">
-    <h2>Talks</h2>
-</header>
-{% assign my_talks = site.talks | sort:"item_id" | reverse %}
-{% for talk in my_talks limit:2 %}
-
-<div class="item">
-    <h3 class="item-title">{{talk.name}}</h3>
-    <h4 class="item-title-details">{{talk.congress}} @ {{talk.location}} • {{talk.year}}</h4>
-    <p class="item-description">
-        {{talk.content | markdownify}}
-    </p>
+<h2 class="section-title">Talks</h2>
+{% assign my_talks = site.talks | sort: "item_id" | reverse %}
+<div class="stack">
+{% for talk in my_talks %}
+<div class="entry">
+    <div class="entry-main">
+        <h3 class="entry-title">{{ talk.name }}</h3>
+        <div class="entry-where">{{ talk.congress }}{% if talk.location %}, {{ talk.location }}{% endif %}</div>
+        {% assign body = talk.content | strip %}{% if body != "" %}<div class="entry-text">{{ talk.content | markdownify }}</div>{% endif %}
+    </div>
+    <span class="date">{{ talk.year }}</span>
 </div>
 {% endfor %}
-
+</div>

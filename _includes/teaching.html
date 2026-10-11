@@ -1,19 +1,15 @@
-<header class="section-header">
-    <h2>Teaching</h2>
-</header>
-{% assign my_teaching = site.teaching | sort:"item_id" | reverse %}
-{% for course in my_teaching limit:2 %}
-
-<div class="item">
-
-    <h3 class="item-title"><a href="{{course.link}}">{{course.name}}</a></h3>
-    <h4 class="item-title-details">{{course.role}} • {{course.university}} • {{course.year}}</h4>
-
-    {% assign course_description = course.content | strip %}
-    {% if course_description != "" %}
-    <p class="item-description">
-        {{course.content | markdownify}}
-    </p>
-    {% endif %}
+<h2 class="section-title">Teaching</h2>
+{% assign my_teaching = site.teaching | sort: "item_id" | reverse %}
+<div class="stack">
+{% for course in my_teaching %}
+<div class="entry">
+    <div class="entry-main">
+        <h3 class="entry-title">{% if course.link %}<a href="{{ course.link | relative_url }}">{{ course.name }}</a>{% else %}{{ course.name }}{% endif %}</h3>
+        <div class="entry-where">{{ course.role }} · {{ course.university }}</div>
+        {% assign body = course.content | strip %}{% if body != "" %}<div class="entry-text">{{ course.content | markdownify }}</div>{% endif %}
+        {% if course.link %}<p class="entry-note"><a href="{{ course.link | relative_url }}" class="accent-link">[Course material]</a></p>{% endif %}
+    </div>
+    <span class="date">{{ course.year }}</span>
 </div>
 {% endfor %}
+</div>

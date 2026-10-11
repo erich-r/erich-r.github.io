@@ -1,19 +1,12 @@
-<header class="section-header">
-    <h2>Latest Publications</h2>
-</header>
-{% assign my_publications = site.publications | sort:"item_id" | reverse %}
-{% for pub in my_publications limit:2 %}
-
-<div class="item">
-
-    <h3 class="item-title"><a href={{pub.link}}>{{pub.name}}</a></h3>
-    <p class="item-venue">{{pub.context}}</p>
-    <p class="item-meta">{% if pub.location %}{{ pub.location }} · {% endif %}{{pub.publish_date}}</p>
-
-    <div class="item-description">
-        <span class="item-authors-label">Authors</span>
-        {{pub.content | markdownify}}
-    </div>
+<h2 class="section-title">Publications 🗞️</h2>
+{% for group in site.data.publication_types %}
+{% assign pubs = site.publications | where: "type", group.key | sort: "publish_date" | reverse %}
+{% if pubs.size > 0 %}
+<div class="pub-group">
+    <h3 class="subheading">{{ group.label }}</h3>
+    <ul class="pub-list">
+        {% for pub in pubs %}{% include publication-entry.html pub=pub %}{% endfor %}
+    </ul>
 </div>
+{% endif %}
 {% endfor %}
-<a id="more" href="{{ '/publications/' | relative_url }}">View all publications</a>

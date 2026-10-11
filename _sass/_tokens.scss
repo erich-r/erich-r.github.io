@@ -1,0 +1,61 @@
+// Design tokens, modelled on Tailwind's zinc greys + orange accent.
+// Dark mode follows the `dark` class on <html> (set by the toggle),
+// falling back to the OS preference when no choice has been made.
+
+:root {
+  --bg: #ffffff;
+  --text: #18181b;            // zinc-900
+  --text-strong: #18181b;     // zinc-900
+  --text-body: #3f3f46;       // zinc-700
+  --text-muted: #52525b;      // zinc-600
+  --text-soft: #71717a;       // zinc-500
+  --text-faint: #a1a1aa;      // zinc-400
+  --marker: #d4d4d8;          // zinc-300
+  --rule: #e2e8f0;            // slate-200
+  --accent: #ea580c;          // orange-600
+  --accent-hover: #ea580c;
+  --hero-title: #ea580c;
+  --selection-bg: #fed7aa;    // orange-200
+  --selection-text: #7c2d12;  // orange-900
+
+  // Long-form (prose) colours, from Tailwind Typography's "slate" theme.
+  --prose-body: #334155;
+  --prose-strong: #0f172a;
+  --prose-bullets: #cbd5e1;
+  --prose-counters: #64748b;
+  --prose-captions: #64748b;
+  --prose-quote-border: #e2e8f0;
+  --prose-pre-bg: #282a36;
+
+  --font: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+@mixin dark-tokens {
+  --bg: #09090b;              // zinc-950
+  --text: #d4d4d8;            // zinc-300
+  --text-strong: #f4f4f5;     // zinc-100
+  --text-body: #d4d4d8;       // zinc-300
+  --text-muted: #a1a1aa;      // zinc-400
+  --text-soft: #e4e4e7;       // zinc-200
+  --text-faint: #a1a1aa;      // zinc-400
+  --marker: #52525b;
+  --rule: #1e293b;            // slate-800
+  --accent: #ea580c;
+  --accent-hover: #f97316;    // orange-500
+  --hero-title: #f4f4f5;
+
+  --prose-body: #cbd5e1;
+  --prose-strong: #ffffff;
+  --prose-bullets: #475569;
+  --prose-counters: #94a3b8;
+  --prose-captions: #94a3b8;
+  --prose-quote-border: #334155;
+  --prose-pre-bg: #282a36;
+}
+
+html.dark { @include dark-tokens; color-scheme: dark; }
+
+@media (prefers-color-scheme: dark) {
+  html:not(.light) { @include dark-tokens; color-scheme: dark; }
+}

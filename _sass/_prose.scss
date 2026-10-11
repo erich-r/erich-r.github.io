@@ -1,0 +1,196 @@
+// Long-form article pages: blog posts and project write-ups.
+// Mirrors Tailwind Typography (`prose prose-slate`) so plain Markdown
+// — ## headings, lists, > quotes, ``` code, images — is styled as-is.
+
+.article-header { margin-bottom: 2rem; }
+
+.article-kicker {
+  margin-bottom: .5rem;
+  font-size: .875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--accent);
+}
+
+.article-title {
+  margin-bottom: .5rem;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 700;
+  color: var(--text-strong);
+}
+
+.article-date {
+  font-family: var(--font-mono);
+  font-size: .875rem;
+  color: #64748b;
+}
+
+.article-meta {
+  margin-top: .5rem;
+  color: var(--text-muted);
+
+  & + & { margin-top: .25rem; }
+  a { color: var(--text-strong); text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 3px; }
+  a:hover { color: var(--accent-hover); }
+}
+
+.article-links { margin-top: 1rem; }
+
+.article-rule {
+  margin: 2rem 0;
+  border: 0;
+  border-top: 1px solid var(--rule);
+}
+
+.article-media {
+  margin: 0 0 2rem;
+  img { margin: 0 auto; border-radius: .5rem; }
+  figcaption {
+    margin-top: .75rem;
+    font-size: .875rem;
+    color: var(--prose-captions);
+    text-align: center;
+  }
+}
+
+.article-footer {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+}
+
+.prose {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--prose-body);
+
+  > :first-child { margin-top: 0; }
+  > :last-child { margin-bottom: 0; }
+
+  p { margin: 1.25em 0; }
+
+  h2, h3, h4 { color: var(--prose-strong); font-weight: 700; }
+  h2 { margin: 2em 0 1em; font-size: 1.5em; line-height: 1.333; }
+  h3 { margin: 1.6em 0 .6em; font-size: 1.25em; line-height: 1.6; font-weight: 600; }
+  h4 { margin: 1.5em 0 .5em; line-height: 1.5; font-weight: 600; }
+  h2 + *, h3 + *, h4 + * { margin-top: 0; }
+
+  a {
+    color: var(--prose-strong);
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-underline-offset: 2px;
+    &:hover { color: var(--accent-hover); }
+  }
+
+  strong { color: var(--prose-strong); font-weight: 600; }
+
+  ul, ol { margin: 1.25em 0; padding-left: 1.625em; }
+  ul { list-style: disc; }
+  ol { list-style: decimal; }
+  li { margin: .5em 0; padding-left: .375em; }
+  ul > li::marker { color: var(--prose-bullets); }
+  ol > li::marker { color: var(--prose-counters); }
+  li > ul, li > ol { margin: .75em 0; }
+
+  blockquote {
+    margin: 1.6em 0;
+    padding-left: 1em;
+    border-left: .25rem solid var(--prose-quote-border);
+    font-weight: 500;
+    font-style: italic;
+    color: var(--prose-strong);
+  }
+
+  hr { margin: 3em 0; border: 0; border-top: 1px solid var(--rule); }
+
+  img { margin: 2em auto; border-radius: .5rem; }
+
+  figure { margin: 2em 0; text-align: center; }
+  figure img { margin: 0 auto; }
+  figcaption { margin-top: .857em; font-size: .875em; line-height: 1.43; color: var(--prose-captions); }
+
+  table { width: 100%; margin: 2em 0; border-collapse: collapse; font-size: .875em; }
+  th { color: var(--prose-strong); font-weight: 600; text-align: left; border-bottom: 1px solid var(--marker); }
+  td { border-bottom: 1px solid var(--rule); }
+  th, td { padding: .571em; }
+
+  code {
+    font-family: var(--font-mono);
+    font-size: .875em;
+    font-weight: 600;
+    color: var(--prose-strong);
+    &::before, &::after { content: "`"; }
+  }
+
+  pre {
+    margin: 1.714em 0;
+    padding: .857em 1.143em;
+    overflow-x: auto;
+    border-radius: .375rem;
+    background: var(--prose-pre-bg);
+    color: #f8f8f2;
+    font-size: .875em;
+    line-height: 1.714;
+
+    code {
+      font-size: inherit;
+      font-weight: 400;
+      color: inherit;
+      &::before, &::after { content: none; }
+    }
+  }
+
+  .highlighter-rouge, .highlight { margin: 0; }
+  div.highlighter-rouge { margin: 1.714em 0; }
+  div.highlighter-rouge pre { margin: 0; }
+
+  // Centered display block for a standalone Unicode/sub/sup equation.
+  .equation {
+    margin: 1.75rem 0;
+    padding: .5rem 1rem;
+    overflow-x: auto;
+    text-align: center;
+    font-family: Georgia, "Times New Roman", serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--prose-strong);
+
+    sub, sup { font-style: normal; }
+  }
+}
+
+// Lay two or more <figure>s side by side.
+.project-media-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin: 2rem 0;
+
+  figure { flex: 1 1 0; min-width: 240px; margin: 0; }
+}
+
+// ---------- Dracula syntax highlighting (Rouge) ----------
+.highlight {
+  .c, .ch, .cd, .cm, .cpf, .c1, .cs { color: #6272a4; }
+  .k, .kd, .kn, .kp, .kr, .kv, .o, .ow { color: #ff79c6; }
+  .kc, .m, .mb, .mf, .mh, .mi, .il, .mo, .mx, .no { color: #bd93f9; }
+  .kt, .nc, .nn, .nb, .bp { color: #8be9fd; }
+  .nc { font-style: italic; }
+  .nf, .fm, .nd, .ne { color: #50fa7b; }
+  .s, .sa, .sb, .sc, .dl, .sd, .s2, .se, .sh, .si, .sx, .sr, .s1, .ss { color: #f1fa8c; }
+  .na, .nv, .vc, .vg, .vi, .vm { color: #ffb86c; }
+  .nt { color: #ff79c6; }
+  .cp { color: #ff79c6; }
+  .gd { color: #ff5555; }
+  .gi { color: #50fa7b; }
+  .ge { font-style: italic; }
+  .gs { font-weight: 700; }
+  .err { color: #ff5555; }
+}
+
+.article-footer > .more-link:first-child { margin-top: 0; }
+.article-footer .tag-line + .more-link { margin-top: 1.25rem; }
