@@ -26,6 +26,7 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  erich-r
 author: Erich Robbi
+timezone: Europe/Rome
 
 # Profile photo shown on the home page (round). Leave empty to show initials.
 # e.g. avatar: /assets/files/profile.jpg
