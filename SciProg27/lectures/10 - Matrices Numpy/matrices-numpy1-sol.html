@@ -1,0 +1,3101 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html"><link rel="search" title="Search" href="../../search.html"><link rel="next" title="Matrices: Numpy 2 - Exercises" href="matrices-numpy2-sol.html"><link rel="prev" title="10 - Matrices Numpy" href="index.html">
+        <link rel="canonical" href="https://erich-r.github.io/SciProg27/lectures/10%20-%20Matrices%20Numpy/matrices-numpy1-sol.html">
+
+    <!-- Generated with Sphinx 9.0.4 and Furo 2025.12.19 -->
+        <title>Matrices: Numpy 1 - SciProg 2027</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=e429fab1" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">SciProg 2027</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  <span class="sidebar-brand-text">SciProg 2027</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../00%20-%20Installation/installation.html">Installation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../01%20-%20Basics/index.html">01 - Basics</a><input aria-label="Toggle navigation of 01 - Basics" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../01%20-%20Basics/basics1-ints-sol.html">Python Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01%20-%20Basics/basics2-bools-sol.html">Python Basics - Booleans</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01%20-%20Basics/basics3-floats-sol.html">Python Basics - Float</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../02%20-%20Strings/index.html">02 - Strings</a><input aria-label="Toggle navigation of 02 - Strings" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../02%20-%20Strings/strings1-sol.html">Strings 1 - Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02%20-%20Strings/strings2-sol.html">Strings 2 - Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02%20-%20Strings/strings3-sol.html">Strings 3 - Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02%20-%20Strings/strings4-sol.html">Strings 4 - Search Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../03%20-%20Lists/index.html">03 - Lists</a><input aria-label="Toggle navigation of 03 - Lists" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../03%20-%20Lists/lists1-sol.html">Lists 1 - Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03%20-%20Lists/lists2-sol.html">Lists 2 - operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03%20-%20Lists/lists3-sol.html">Lists 3 - Basic methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03%20-%20Lists/lists4-sol.html">Lists 4 - Search methods</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../04%20-%20Tuples/index.html">04 - Tuples</a><input aria-label="Toggle navigation of 04 - Tuples" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../04%20-%20Tuples/tuples1-sol.html">Tuples</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../05%20-%20Sets/index.html">05 - Sets</a><input aria-label="Toggle navigation of 05 - Sets" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../05%20-%20Sets/sets1-sol.html">Sets</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../06%20-%20Dictionaries/index.html">06 - Dictionaries</a><input aria-label="Toggle navigation of 06 - Dictionaries" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../06%20-%20Dictionaries/dictionaries1-sol.html">Dictionaries 1 - Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06%20-%20Dictionaries/dictionaries2-sol.html">Dictionaries 2 - operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06%20-%20Dictionaries/dictionaries3-sol.html">Dictionaries 3 - Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06%20-%20Dictionaries/dictionaries4-sol.html">Dictionaries 4 - special classes</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../07%20-%20Control%20flow/index.html">07 - Control flow</a><input aria-label="Toggle navigation of 07 - Control flow" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/for1-sol.html">For loops - Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/for2-sol.html">For loops - Iterating Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/for3-sol.html">For loops - Iterating Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/for4-sol.html">For loops - Iterating Tuples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/for5-sol.html">For loops - Iterating Sets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/for6-sol.html">For loops - Iterating Dictionaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/for7-sol.html">For loops - Nested Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/if1-sol.html">If Else statements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/sequences1-sol.html">Sequences and comprehensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/while1-sol.html">While loops 1 - introduction</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../08%20-%20Functions/index.html">08 - Functions</a><input aria-label="Toggle navigation of 08 - Functions" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../08%20-%20Functions/functions1-sol.html">Functions - solutions</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../09%20-%20Matrices%20of%20Lists/index.html">09 - Matrices of Lists</a><input aria-label="Toggle navigation of 09 - Matrices of Lists" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../09%20-%20Matrices%20of%20Lists/matrices-lists1-sol.html">Matrices: list of lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../09%20-%20Matrices%20of%20Lists/matrices-lists2-sol.html">Matrices 2: list of lists - other exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">10 - Matrices Numpy</a><input aria-label="Toggle navigation of 10 - Matrices Numpy" checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Matrices: Numpy 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="matrices-numpy2-sol.html">Matrices: Numpy 2 - Exercises</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Challenge Yourself at Home</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/01%20-%20Basics/basics4-chal.html">Python Basics - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/02%20-%20Strings/strings5-chal.html">Strings - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/03%20-%20Lists/lists5-chal.html">Lists - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/04%20-%20Tuples/tuples2-chal.html">Tuples - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/05%20-%20Sets/sets2-chal.html">Sets - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/06%20-%20Dictionaries/dictionaries5-chal.html">Dictionaries - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/07%20-%20Control%20flow/for8-chal.html">For Loops - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/07%20-%20Control%20flow/if2-chal.html">If Else - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/07%20-%20Control%20flow/sequences2-chal.html">Sequences - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/07%20-%20Control%20flow/while2-chal.html">While loops - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/09%20-%20Matrices%20of%20Lists/matrices-lists3-chal.html">Matrices Lists - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/Misc.%20Challenges/chall1-chal.html">Challenges - Miscellaneous</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Commandments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../commandments/commandments.html">Rules You Shall Not Break</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="Matrices:-Numpy-1">
+<h1>Matrices: Numpy 1<a class="headerlink" href="#Matrices:-Numpy-1" title="Link to this heading">#</a></h1>
+<section id="Download-exercises-zip">
+<h2><a class="reference external" href="../_static/generated/matrices-numpy.zip">Download exercises zip</a><a class="headerlink" href="#Download-exercises-zip" title="Link to this heading">#</a></h2>
+</section>
+<section id="Introduction">
+<h2>Introduction<a class="headerlink" href="#Introduction" title="Link to this heading">#</a></h2>
+<p>There are substantially two ways to represent matrices in Python: we’ve first encountered <a class="reference internal" href="../09%20-%20Matrices%20of%20Lists/matrices-lists1-sol.html"><span class="doc">matrices as lists of lists</span></a>, in this tutorial we focus on matrices as provided by the widely used <a class="reference external" href="https://www.numpy.org">Numpy</a> library.</p>
+<p>Let’s see the main differences:</p>
+<p>List of lists - <a class="reference internal" href="#"><span class="doc">see separate notebook</span></a></p>
+<ol class="arabic simple">
+<li><p>native in Python</p></li>
+<li><p>not efficient</p></li>
+<li><p>lists are pervasive in Python, probably you will encounter matrices expressed as list of lists anyway</p></li>
+<li><p>gives an idea of how to build a nested data structure</p></li>
+<li><p>may help in understanding important concepts like pointers to memory and copies</p></li>
+</ol>
+<p>Numpy - this notebook</p>
+<ol class="arabic simple">
+<li><p>not natively available in Python</p></li>
+<li><p>efficient</p></li>
+<li><p>many libraries for scientific calculations are based on Numpy (scipy, pandas)</p></li>
+<li><p>easier syntax to access elements (slightly different from list of lists)</p></li>
+<li><p>in rare cases might give problems of installation and/or conflicts (implementation is not pure Python)</p></li>
+</ol>
+<p>We will only see main data types and essential commands of <a class="reference external" href="https://www.numpy.org">Numpy library</a>, without going much into the details. In particular, we will review the new data format <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> and compare slow algorithms with Python <code class="docutils literal notranslate"><span class="pre">for</span></code> cycles to faster ones made possible by idiomatic use of Numpy vector operations.</p>
+<p>For further references, see <a class="reference external" href="https://jakevdp.github.io/PythonDataScienceHandbook/02.00-introduction-to-numpy.html">Python Data Science Handbook, Numpy part</a></p>
+<div class="admonition warning">
+<p><strong>WARNING</strong>: Numpy does not work in <a class="reference external" href="http://www.pythontutor.com/visualize.html#mode=edit">Python Tutor</a></p>
+</div>
+<section id="What-to-do">
+<h3>What to do<a class="headerlink" href="#What-to-do" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>unzip exercises in a folder, you should get something like this:</p></li>
+</ul>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>matrices-numpy
+    matrices-numpy1.ipynb
+    matrices-numpy1-sol.ipynb
+    matrices-numpy2.ipynb
+    matrices-numpy2-sol.ipynb
+    jupman.py
+</pre></div>
+</div>
+<div class="admonition warning">
+<p><strong>WARNING</strong>: to correctly visualize the notebook, it MUST be in an unzipped folder !</p>
+</div>
+<ul class="simple">
+<li><p>open Jupyter Notebook from that folder. Two things should open, first a console and then browser. The browser should show a file list: navigate the list and open the notebook <code class="docutils literal notranslate"><span class="pre">matrices-numpy/matrices-numpy1.ipynb</span></code></p></li>
+<li><p>Go on reading that notebook, and follow instuctions inside.</p></li>
+</ul>
+<p>Shortcut keys:</p>
+<ul class="simple">
+<li><p>to execute Python code inside a Jupyter cell, press <code class="docutils literal notranslate"><span class="pre">Control</span> <span class="pre">+</span> <span class="pre">Enter</span></code></p></li>
+<li><p>to execute Python code inside a Jupyter cell AND select next cell, press <code class="docutils literal notranslate"><span class="pre">Shift</span> <span class="pre">+</span> <span class="pre">Enter</span></code></p></li>
+<li><p>to execute Python code inside a Jupyter cell AND a create a new cell aftwerwards, press <code class="docutils literal notranslate"><span class="pre">Alt</span> <span class="pre">+</span> <span class="pre">Enter</span></code></p></li>
+<li><p>If the notebooks look stuck, try to select <code class="docutils literal notranslate"><span class="pre">Kernel</span> <span class="pre">-&gt;</span> <span class="pre">Restart</span></code></p></li>
+</ul>
+</section>
+</section>
+<section id="np.array">
+<h2>np.array<a class="headerlink" href="#np.array" title="Link to this heading">#</a></h2>
+<p>First of all, we import the library, and for convenience we rename it to <code class="docutils literal notranslate"><span class="pre">np</span></code></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+<p>With lists of lists we have often built the matrices one row at a time, adding lists as needed. In Numpy instead we usually create in one shot the whole matrix, filling it with zeroes.</p>
+<p>In particular, this command creates an <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> filled with zeroes:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>  <span class="p">)</span>   <span class="c1"># 2 rows, 3 columns</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([[0., 0., 0.],
+       [0., 0., 0.]])
+</pre></div></div>
+</div>
+<p>Note like inside <code class="docutils literal notranslate"><span class="pre">array(</span> <span class="pre">)</span></code> the content seems represented like a list of lists, BUT in reality in physical memory the data is structured in a linear sequence which allows Python to access numbers in a faster way.</p>
+<p>We can also create an <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> from a list of lists:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span> <span class="p">[</span> <span class="p">[</span><span class="mf">5.0</span><span class="p">,</span><span class="mf">8.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mf">4.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([[5., 8., 1.],
+       [4., 3., 2.]])
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+numpy.ndarray
+</pre></div></div>
+</div>
+</section>
+<section id="Creating-a-matrix-filled-with-ones">
+<h2>Creating a matrix filled with ones<a class="headerlink" href="#Creating-a-matrix-filled-with-ones" title="Link to this heading">#</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>  <span class="c1"># 3 rows, 5 columns</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([[1., 1., 1., 1., 1.],
+       [1., 1., 1., 1., 1.],
+       [1., 1., 1., 1., 1.]])
+</pre></div></div>
+</div>
+</section>
+<section id="Creating-a-matrix-filled-with-a-number-k">
+<h2>Creating a matrix filled with a number <code class="docutils literal notranslate"><span class="pre">k</span></code><a class="headerlink" href="#Creating-a-matrix-filled-with-a-number-k" title="Link to this heading">#</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([[7, 7, 7, 7, 7],
+       [7, 7, 7, 7, 7],
+       [7, 7, 7, 7, 7]])
+</pre></div></div>
+</div>
+</section>
+<section id="Dimensions-of-a-matrix">
+<h2>Dimensions of a matrix<a class="headerlink" href="#Dimensions-of-a-matrix" title="Link to this heading">#</a></h2>
+<p>To obtain the dimension, we write like the following:</p>
+<div class="admonition warning">
+<p class="admonition-title"><strong>ATTENTION</strong>: after <code class="docutils literal notranslate"><span class="pre">shape</span></code> there are <strong>no</strong> round parenthesis !</p>
+<p><code class="docutils literal notranslate"><span class="pre">shape</span></code> is an attribute, not a function to call</p>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span> <span class="p">[</span> <span class="p">[</span><span class="mf">5.0</span><span class="p">,</span><span class="mf">8.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mf">4.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">]])</span>
+
+<span class="n">mat</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(2, 3)
+</pre></div></div>
+</div>
+<p>If we want to memorize the dimension in separate variables, we can use thi more pythonic mode (note the comma between <code class="docutils literal notranslate"><span class="pre">num_rows</span></code> and <code class="docutils literal notranslate"><span class="pre">num_cols</span></code>:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_rows</span><span class="p">,</span> <span class="n">num_cols</span> <span class="o">=</span> <span class="n">mat</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_rows</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+2
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_cols</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+3
+</pre></div></div>
+</div>
+</section>
+<section id="Reading-and-writing">
+<h2>Reading and writing<a class="headerlink" href="#Reading-and-writing" title="Link to this heading">#</a></h2>
+<p>To access data or overwrite square bracket notation is used, with the important difference that in Numpy you can write <em>both</em> the indeces <em>inside</em> the same brackets, separated by a comma:</p>
+<div class="admonition warning">
+<p><strong>ATTENTION</strong>: notation <code class="docutils literal notranslate"><span class="pre">mat[i,j]</span></code> is only for Numpy, with list of lists <strong>does not</strong> work!</p>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span> <span class="p">[</span> <span class="p">[</span><span class="mf">5.0</span><span class="p">,</span><span class="mf">8.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mf">4.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">]])</span>
+
+<span class="c1"># Let&#39;s put number `9` in cell at row `0` and column `1`</span>
+
+<span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([[5., 9., 1.],
+       [4., 3., 2.]])
+</pre></div></div>
+</div>
+<p>Let’s access cell at row <code class="docutils literal notranslate"><span class="pre">0</span></code> and column <code class="docutils literal notranslate"><span class="pre">1</span></code></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+9.0
+</pre></div></div>
+</div>
+<p>We put number <code class="docutils literal notranslate"><span class="pre">7</span></code> into cell at row <code class="docutils literal notranslate"><span class="pre">1</span></code> and column <code class="docutils literal notranslate"><span class="pre">2</span></code></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">7</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([[5., 9., 1.],
+       [4., 3., 7.]])
+</pre></div></div>
+</div>
+<p><strong>✪ EXERCISE</strong>: try to write like the following, what happens?</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;c&quot;</span>
+</pre></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here</span>
+<br/><br/></pre></div>
+</div>
+</div>
+<p><strong>✪ EXERCISE</strong>: Try writing like this, what happens?</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.0</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here</span>
+<br/><br/></pre></div>
+</div>
+</div>
+<section id="Filling-the-whole-matrix">
+<h3>Filling the whole matrix<a class="headerlink" href="#Filling-the-whole-matrix" title="Link to this heading">#</a></h3>
+<p>We can MODIFY the matrix by writing inside a number with <code class="docutils literal notranslate"><span class="pre">fill()</span></code></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">],</span>
+                <span class="p">[</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">]])</span>
+
+<span class="n">mat</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>  <span class="c1"># NOTE: returns nothings !!</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([[7., 7., 7.],
+       [7., 7., 7.]])
+</pre></div></div>
+</div>
+</section>
+<section id="Slices">
+<h3>Slices<a class="headerlink" href="#Slices" title="Link to this heading">#</a></h3>
+<p>To extract data from an <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> we can use slices, with the notation we already used for regular lists. There are important difference, though. Let’s see them.</p>
+<p>The first difference is that we can extract sub-matrices by specifying two ranges among the same squared brackets:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span> <span class="p">[</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>  <span class="c1"># rows from 0 *included* to 4 *excluded*</span>
+               <span class="c1"># and columns from 1 *included* to 3 *excluded*</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([[8, 1],
+       [3, 2],
+       [7, 9],
+       [3, 4]])
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>  <span class="c1"># the whole first row</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([[5, 8, 1]])
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">,:]</span>  <span class="c1"># another way to extract the whole first row</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([[5, 8, 1]])
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># the whole first column</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([[5],
+       [4],
+       [6],
+       [9],
+       [8]])
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># another way to extract the whole first column</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([[5],
+       [4],
+       [6],
+       [9],
+       [8]])
+</pre></div></div>
+</div>
+<p><strong>The step</strong>: We can also specify a step as a third paramter after the <code class="docutils literal notranslate"><span class="pre">:</span></code>. For example, to extract only even rows we can add a <code class="docutils literal notranslate"><span class="pre">2</span></code> like this:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([[5, 8, 1],
+       [6, 7, 9],
+       [8, 2, 7]])
+</pre></div></div>
+</div>
+<div class="admonition warning">
+<p><strong>WARNING: by modifying the numpy slice you also modify the original matrix!</strong></p>
+</div>
+<p>Differently from slices of lists which always produce new lists, this time of performance reasons with numpy slices we only obtain a <em>view</em> on the original data: by writing into the view we will also write on the original matrix:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span> <span class="p">[</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sub_mat</span> <span class="o">=</span> <span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">sub_mat</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([[8, 1],
+       [3, 2],
+       [7, 9],
+       [3, 4]])
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sub_mat</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">999</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([[  5, 999,   1],
+       [  4,   3,   2],
+       [  6,   7,   9],
+       [  9,   3,   4],
+       [  8,   2,   7]])
+</pre></div></div>
+</div>
+</section>
+<section id="Writing-a-constant-in-a-slice">
+<h3>Writing a constant in a slice<a class="headerlink" href="#Writing-a-constant-in-a-slice" title="Link to this heading">#</a></h3>
+<p>We can also write a constant in all the cells of a region by identifying the region with a slice, and assigning a constant to it:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span> <span class="p">[</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">]])</span>
+
+<span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>  <span class="o">=</span> <span class="mi">7</span>
+
+<span class="n">mat</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([[5, 7, 7],
+       [4, 7, 7],
+       [6, 7, 7],
+       [9, 7, 7],
+       [8, 2, 5]])
+</pre></div></div>
+</div>
+</section>
+<section id="Writing-a-matrix-into-a-slice">
+<h3>Writing a matrix into a slice<a class="headerlink" href="#Writing-a-matrix-into-a-slice" title="Link to this heading">#</a></h3>
+<p>We can also write into all the cells in a region by identifying the region with a slice, and then assigning to it a matrix from which we want to read the cells.</p>
+<p><strong>WARNING</strong>: To avoid problems, <strong>double check</strong> you’re using the same dimensions in both left and right slices!</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span> <span class="p">[</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">]])</span>
+
+<span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+                            <span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">50</span><span class="p">],</span>
+                            <span class="p">[</span><span class="mi">11</span><span class="p">,</span><span class="mi">51</span><span class="p">],</span>
+                            <span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="mi">52</span><span class="p">],</span>
+                            <span class="p">[</span><span class="mi">13</span><span class="p">,</span><span class="mi">53</span><span class="p">],</span>
+                        <span class="p">])</span>
+
+<span class="n">mat</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([[ 5, 10, 50],
+       [ 4, 11, 51],
+       [ 6, 12, 52],
+       [ 9, 13, 53],
+       [ 8,  2,  5]])
+</pre></div></div>
+</div>
+</section>
+</section>
+<section id="Assignment-and-copy">
+<h2>Assignment and copy<a class="headerlink" href="#Assignment-and-copy" title="Link to this heading">#</a></h2>
+<p>With Numpy we must take particular care when using the assignment operator <code class="docutils literal notranslate"><span class="pre">=</span></code>: as with regular lists, if we perform an assignment into the new variable, it will only contain a pointer to the original region of memory.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">va</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">va</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([1, 2, 3])
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vb</span> <span class="o">=</span> <span class="n">va</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vb</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vb</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([100,   2,   3])
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">va</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([100,   2,   3])
+</pre></div></div>
+</div>
+<p>If we wanted a complete copy of the array, we should use the <code class="docutils literal notranslate"><span class="pre">.copy()</span></code> method:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">va</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vc</span> <span class="o">=</span> <span class="n">va</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vc</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([1, 2, 3])
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vc</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([100,   2,   3])
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">va</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([1, 2, 3])
+</pre></div></div>
+</div>
+</section>
+<section id="Calculations">
+<h2>Calculations<a class="headerlink" href="#Calculations" title="Link to this heading">#</a></h2>
+<p>Numpy is extremely flexible, and allows us to perform on arrays almost the same operations from classical vector and matrix algebra:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">va</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">7</span><span class="p">])</span>
+<span class="n">va</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([5, 9, 7])
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">vb</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([6, 8, 0])
+</pre></div></div>
+</div>
+<p>Whenever we perform an algebraic operation, typically a NEW array is created:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vc</span> <span class="o">=</span> <span class="n">va</span> <span class="o">+</span> <span class="n">vb</span>
+<span class="n">vc</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([11, 17,  7])
+</pre></div></div>
+</div>
+<p>Note the sum didn’t change the input:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">va</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([5, 9, 7])
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vb</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([6, 8, 0])
+</pre></div></div>
+</div>
+<section id="Scalar-multiplication">
+<h3>Scalar multiplication<a class="headerlink" href="#Scalar-multiplication" title="Link to this heading">#</a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span> <span class="o">*</span> <span class="n">m</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([[15, 27, 21],
+       [18, 24,  0]])
+</pre></div></div>
+</div>
+</section>
+<section id="Scalar-sum">
+<h3>Scalar sum<a class="headerlink" href="#Scalar-sum" title="Link to this heading">#</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span> <span class="o">+</span> <span class="n">m</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([[ 8, 12, 10],
+       [ 9, 11,  3]])
+</pre></div></div>
+</div>
+</section>
+<section id="Multiplication">
+<h3>Multiplication<a class="headerlink" href="#Multiplication" title="Link to this heading">#</a></h3>
+<p>Be careful about multiplying with <code class="docutils literal notranslate"><span class="pre">*</span></code>: differently from classical matrix multiplication, it multiplies <em>element by element</em> and so requires matrices of identical dimensions:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">3</span><span class="p">],</span>
+               <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">]])</span>
+
+<span class="n">mb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">],</span>
+               <span class="p">[</span><span class="mi">4</span><span class="p">,</span>  <span class="mi">5</span><span class="p">,</span>  <span class="mi">6</span><span class="p">]])</span>
+
+<span class="n">ma</span> <span class="o">*</span> <span class="n">mb</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([[  1,   0,   3],
+       [ 40, 100, 180]])
+</pre></div></div>
+</div>
+<p>If we want the matrix multiplication <a class="reference external" href="https://en.wikipedia.org/wiki/Matrix_multiplication">from classical algebra</a>, we must use the <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> operator taking care of having compatible matrix dimensions:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">3</span><span class="p">],</span>
+               <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">]])</span>
+<span class="n">md</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+               <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+               <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
+
+<span class="n">mc</span> <span class="o">@</span> <span class="n">md</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([[  4,  32],
+       [ 40, 320]])
+</pre></div></div>
+</div>
+</section>
+<section id="Dividing-by-a-scalar">
+<h3>Dividing by a scalar<a class="headerlink" href="#Dividing-by-a-scalar" title="Link to this heading">#</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[58]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mf">0.0</span><span class="p">],</span>
+               <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">30</span><span class="p">]])</span>
+
+<span class="n">ma</span> <span class="o">/</span> <span class="mi">4</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[58]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([[0.25, 0.5 , 0.  ],
+       [2.5 , 0.  , 7.5 ]])
+</pre></div></div>
+</div>
+<p>Careful about dividing by <code class="docutils literal notranslate"><span class="pre">0.0</span></code>, the program execution will still continue with a warning and we will find a matrix with strange <code class="docutils literal notranslate"><span class="pre">nan</span></code> and <code class="docutils literal notranslate"><span class="pre">inf</span></code> which have a bad tendency to create problems later - see the section <a class="reference internal" href="#NaNs-and-infinities"><span class="std std-ref">NaNs and infinities</span></a></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[59]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ma</span> <span class="o">/</span> <span class="mf">0.0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;AFTER&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[[inf inf nan]
+ [inf nan inf]]
+AFTER
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/home/da/.local/lib/python3.7/site-packages/ipykernel_launcher.py:1: RuntimeWarning: divide by zero encountered in true_divide
+  &#34;&#34;&#34;Entry point for launching an IPython kernel.
+/home/da/.local/lib/python3.7/site-packages/ipykernel_launcher.py:1: RuntimeWarning: invalid value encountered in true_divide
+  &#34;&#34;&#34;Entry point for launching an IPython kernel.
+</pre></div></div>
+</div>
+</section>
+</section>
+<section id="Aggregation">
+<h2>Aggregation<a class="headerlink" href="#Aggregation" title="Link to this heading">#</a></h2>
+<p>Numpy provides several functions to calculate statistics, we only show some:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[60]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[60]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+26
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[61]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[61]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+7
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[62]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[62]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+1
+</pre></div></div>
+</div>
+<section id="Aggregating-by-row-or-column">
+<h3>Aggregating by row or column<a class="headerlink" href="#Aggregating-by-row-or-column" title="Link to this heading">#</a></h3>
+<p>By adding the <code class="docutils literal notranslate"><span class="pre">axis</span></code> parameter we can tell numpy to perform the affrefation on each column (<code class="docutils literal notranslate"><span class="pre">axis=0</span></code>) or row (<code class="docutils literal notranslate"><span class="pre">axis=1</span></code>):</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[63]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># the maximum of each column</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[63]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([5, 7, 6])
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[64]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>   <span class="c1"># sum each column</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[64]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([ 8, 11,  7])
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[65]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># the maximum of each row</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[65]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([6, 7])
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[66]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>   <span class="c1"># sum each row</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[66]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([15, 11])
+</pre></div></div>
+</div>
+</section>
+</section>
+<section id="Filtering">
+<h2>Filtering<a class="headerlink" href="#Filtering" title="Link to this heading">#</a></h2>
+<p>Numpy offers a mini-language to filter the numbers in an array, by specifying the selection criteria. Let’s see an example:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[67]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+                <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span>
+<span class="n">mat</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[67]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([[5, 2, 6],
+       [1, 4, 3]])
+</pre></div></div>
+</div>
+<p>Suppose you want to obtain an array with all the numbers from <code class="docutils literal notranslate"><span class="pre">mat</span></code> which are greater than 2.</p>
+<p>We can tell numpy the matrix <code class="docutils literal notranslate"><span class="pre">mat</span></code> we want to use, then <em>inside square brackets</em> we put a kind of boolean conditions, <em>reusing</em> the <code class="docutils literal notranslate"><span class="pre">mat</span></code> variable like so:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[68]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span><span class="p">[</span> <span class="n">mat</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[68]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([5, 6, 4, 3])
+</pre></div></div>
+</div>
+<p>Exactly, what is that strange expression we put inside the squared brackts? Let’s try executing it alone:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[69]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span> <span class="o">&gt;</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[69]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([[ True, False,  True],
+       [False,  True,  True]])
+</pre></div></div>
+</div>
+<p>We note it gives us a matrix of booleans, which are <code class="docutils literal notranslate"><span class="pre">True</span></code> whenever the corresponding cell in the original matrix satisfies the condition we imposed.</p>
+<p>By then placing this expression inside <code class="docutils literal notranslate"><span class="pre">mat[</span>&#160;&#160; <span class="pre">]</span></code> we obtain the values from the original matrix which satisfy the expression:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[70]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span><span class="p">[</span> <span class="n">mat</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[70]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([5, 6, 4, 3])
+</pre></div></div>
+</div>
+<p>Not only that, we can also build more complex expressions by using</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&amp;</span></code> symbol as the logical conjunction <em>and</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">|</span></code> (pipe character) as the logical conjunction <em>or</em></p></li>
+</ul>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[71]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+                <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span>
+<span class="n">mat</span><span class="p">[(</span><span class="n">mat</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">mat</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[71]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([5, 4])
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[72]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+                <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span>
+<span class="n">mat</span><span class="p">[(</span><span class="n">mat</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">mat</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[72]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([5, 6, 1])
+</pre></div></div>
+</div>
+<div class="admonition warning">
+<p><strong>WARNING: REMEMBER THE ROUND PARENTHESIS AMONG THE VARIOUS EXPRESSIONS!</strong></p>
+</div>
+<p><strong>EXERCISE</strong>: try to rewrite the expressions above by ‘forgetting’ the round parenthesis in the various components (left/right/both) and see what happens. Do you obtain errors or unexpected results?</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#jupman-purge-output</span>
+<span class="n">mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+                <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span>
+
+<span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#jupman-purge-output</span>
+<span class="n">mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+                <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span>
+
+<span class="nb">print</span><span class="p">(</span>  <span class="n">mat</span><span class="p">[(</span><span class="n">mat</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">mat</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">]</span>  <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>  <span class="n">mat</span><span class="p">[</span><span class="n">mat</span> <span class="o">&gt;</span> <span class="mi">3</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">mat</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">)]</span>    <span class="p">)</span>
+<span class="c1">#print(  mat[mat &gt; 3 &amp; mat &lt; 6]      )</span>
+<span class="c1"># the last one produces:</span>
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="c1"># ValueError                                Traceback (most recent call last)</span>
+<span class="c1"># &lt;ipython-input-212-33c5a083b265&gt; in &lt;module&gt;</span>
+<span class="c1">#       3 print(  mat[(mat &gt; 3) &amp; mat &lt; 6]  )</span>
+<span class="c1">#       4 print(  mat[mat &gt; 3 &amp; (mat &lt; 6)]    )</span>
+<span class="c1"># ----&gt; 5 print(  mat[mat &gt; 3 &amp; mat &lt; 6]      )</span>
+
+<span class="c1"># ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()</span>
+</pre></div>
+</div>
+</div>
+</details><div class="admonition warning">
+<p><strong>WARNING</strong>: <code class="docutils literal notranslate"><span class="pre">and</span></code> <strong>and</strong> <code class="docutils literal notranslate"><span class="pre">or</span></code> <strong>DON’T WORK!</strong></p>
+</div>
+<p><strong>EXERCISE</strong>: try rewriting the expressions above by substituting <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> with <code class="docutils literal notranslate"><span class="pre">and</span></code> and <code class="docutils literal notranslate"><span class="pre">|</span></code> with <code class="docutils literal notranslate"><span class="pre">or</span></code> and see what happens. Do you get errors or unexpected results?</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><br/><span></span><span class="n">mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+                <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span>
+
+<span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><br/><span></span><span class="n">mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+                <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span>
+
+<span class="nb">print</span><span class="p">(</span>  <span class="n">mat</span><span class="p">[(</span><span class="n">mat</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">mat</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">)</span> <span class="p">]</span>  <span class="p">)</span>
+<span class="c1">#---------------------------------------------------------------------------</span>
+<span class="c1">#ValueError                                Traceback (most recent call last)</span>
+<span class="c1">#&lt;ipython-input-218-3edf025af7c0&gt; in &lt;module&gt;</span>
+<span class="c1">#      4</span>
+<span class="c1">#      5 # write here</span>
+<span class="c1">#----&gt; 6 print(  mat[(mat &gt; 3) and (mat &lt; 6) ]  )</span>
+
+<span class="c1">#ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()</span>
+
+<span class="c1">#print(  mat[(mat &gt; 3) or (mat &lt; 6)]    )</span>
+<span class="c1">#---------------------------------------------------------------------------</span>
+<span class="c1">#ValueError                                Traceback (most recent call last)</span>
+<span class="c1">#&lt;ipython-input-219-192c022d9d87&gt; in &lt;module&gt;</span>
+<span class="c1">#     16</span>
+<span class="c1">#     17</span>
+<span class="c1">#---&gt; 18 print(  mat[(mat &gt; 3) or (mat &lt; 6)]    )</span>
+
+<span class="c1">#ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()</span>
+</pre></div>
+</div>
+</div>
+</details><section id="Finding-indexes-with-np.where">
+<h3>Finding indexes with <code class="docutils literal notranslate"><span class="pre">np.where</span></code><a class="headerlink" href="#Finding-indexes-with-np.where" title="Link to this heading">#</a></h3>
+<p>We’ve seen how to find the content of cells which satisfy a certain criteria. What if we wanted to find the <em>indeces</em> of those cells? In that case we would use the function <code class="docutils literal notranslate"><span class="pre">np.where</span></code>, passing as parameter the condition expressed in the same language used before.</p>
+<p>For example, if we wanted to find the <em>indexes</em> of cells containing numbers less than 40 or greater than 60 we would write like so:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[75]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>             <span class="c1">#0  1  2  3  4  5</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">30</span><span class="p">,</span><span class="mi">60</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">70</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">80</span><span class="p">])</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">v</span> <span class="o">&lt;</span> <span class="mi">40</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">v</span> <span class="o">&gt;</span> <span class="mi">60</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[75]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(array([0, 2, 3, 5]),)
+</pre></div></div>
+</div>
+</section>
+<section id="Writing-into-cells-which-satisfy-a-criteria">
+<h3>Writing into cells which satisfy a criteria<a class="headerlink" href="#Writing-into-cells-which-satisfy-a-criteria" title="Link to this heading">#</a></h3>
+<p>We can use <code class="docutils literal notranslate"><span class="pre">np.where</span></code> to substitute values in the cells which satisfy a criteria with other values which we’ll be expressed in two extra matrices <code class="docutils literal notranslate"><span class="pre">ma</span></code> and <code class="docutils literal notranslate"><span class="pre">mb</span></code>. In case the criteria is satisfied, numpy will take the corresponding values from <code class="docutils literal notranslate"><span class="pre">ma</span></code>, otherwise from <code class="docutils literal notranslate"><span class="pre">mb</span></code>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[76]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="p">[</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
+    <span class="p">[</span> <span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">]</span>
+<span class="p">])</span>
+
+<span class="n">mb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">],</span>
+    <span class="p">[</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="o">-</span><span class="mi">7</span><span class="p">,</span> <span class="o">-</span><span class="mi">8</span><span class="p">],</span>
+    <span class="p">[</span> <span class="o">-</span><span class="mi">9</span><span class="p">,</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="o">-</span><span class="mi">11</span><span class="p">,</span><span class="o">-</span><span class="mi">12</span><span class="p">]</span>
+<span class="p">])</span>
+
+
+<span class="n">mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">40</span><span class="p">,</span><span class="mi">70</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">80</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">20</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">60</span><span class="p">,</span><span class="mi">40</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">60</span><span class="p">,</span><span class="mi">80</span><span class="p">,</span><span class="mi">90</span><span class="p">]</span>
+<span class="p">])</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">mat</span> <span class="o">&lt;</span> <span class="mi">50</span><span class="p">,</span> <span class="n">ma</span><span class="p">,</span> <span class="n">mb</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[76]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([[  1,  -2,   3,  -4],
+       [  5,   6,  -7,   8],
+       [  9, -10, -11, -12]])
+</pre></div></div>
+</div>
+</section>
+</section>
+<section id="arange-and-linspace-sequences">
+<h2>arange and linspace sequences<a class="headerlink" href="#arange-and-linspace-sequences" title="Link to this heading">#</a></h2>
+<p>The standard function <code class="docutils literal notranslate"><span class="pre">range</span></code> of Python does not allow for float increments, which we can instead obtain by building sequences of float numbers with <code class="docutils literal notranslate"><span class="pre">np.arange</span></code>, by specifying left limit (<strong>included</strong>), right limit (<strong>excluded</strong>) and the increment:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[77]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[77]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([0. , 0.2, 0.4, 0.6, 0.8])
+</pre></div></div>
+</div>
+<p>Alternatively, we can use <code class="docutils literal notranslate"><span class="pre">np.linspace</span></code>, which takes a left limit <strong>included</strong>, a right limit this time <strong>included</strong>, and the <strong>number of repetitions</strong> to subdivide this space:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[78]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[78]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([0. , 0.2, 0.4, 0.6, 0.8])
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[79]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[79]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([0.        , 0.08888889, 0.17777778, 0.26666667, 0.35555556,
+       0.44444444, 0.53333333, 0.62222222, 0.71111111, 0.8       ])
+</pre></div></div>
+</div>
+</section>
+<section id="NaNs-and-infinities">
+<h2>NaNs and infinities<a class="headerlink" href="#NaNs-and-infinities" title="Link to this heading">#</a></h2>
+<p>Float numbers can be numbers and…. not numbers, and infinities. Sometimes during calculations extremal conditions may arise, like when dividing a small number by a huge number. In such cases, you might end up having a float which is a dreaded <em>Not a Number</em>, <em>NaN</em> for short, or you might get an infinity. This can lead to very awful unexpected behaviours, so you must be well aware of it. Examples:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[80]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mf">10e99999999999999999999999</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[80]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+inf
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[81]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mf">10e99999999999999999999999</span> <span class="o">/</span> <span class="mf">10e99999999999999999999999</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[81]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+nan
+</pre></div></div>
+</div>
+<p>Following behaviours are dictated by IEEE Standard for Binary Floating-Point for Arithmetic (IEEE 754) which Numpy uses and is implemented in all CPUs, so they actually regard all programming languages.</p>
+<section id="NaNs">
+<h3>NaNs<a class="headerlink" href="#NaNs" title="Link to this heading">#</a></h3>
+<p>A NaN is <em>Not a Number</em>. Which is already a silly name, since a NaN is actually a very special member of floats, with this astonishing property:</p>
+<div class="admonition warning">
+<p class="admonition-title"><strong>WARNING: NaN IS NOT EQUAL TO ITSELF</strong> !!!!</p>
+<p>Yes you read it right, NaN is really <em>not</em> equal to itself.</p>
+</div>
+<p>Even if your mind wants to refuse it, we are going to confirm it.</p>
+<p>To get a NaN, you can use Python module <code class="docutils literal notranslate"><span class="pre">math</span></code> which holds this alien item:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[82]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="n">math</span><span class="o">.</span><span class="n">nan</span>    <span class="c1"># notice it prints as &#39;nan&#39; with lowercase n</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[82]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+nan
+</pre></div></div>
+</div>
+<p>As we said, a NaN is actually considered a float:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[83]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[83]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+float
+</pre></div></div>
+</div>
+<p>Still, it behaves very differently from its fellow floats, or any other object in the known universe:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[84]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">math</span><span class="o">.</span><span class="n">nan</span> <span class="o">==</span> <span class="n">math</span><span class="o">.</span><span class="n">nan</span>   <span class="c1"># what the F... alse</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[84]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+False
+</pre></div></div>
+</div>
+</section>
+<section id="Detecting-NaN">
+<h3>Detecting NaN<a class="headerlink" href="#Detecting-NaN" title="Link to this heading">#</a></h3>
+<p>Given the above, if you want to check if a variable <code class="docutils literal notranslate"><span class="pre">x</span></code> is a NaN, you <em>cannot</em> write this:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[85]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">nan</span>
+<span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">math</span><span class="o">.</span><span class="n">nan</span><span class="p">:</span>  <span class="c1"># WRONG</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;I&#39;m NaN &quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x is something else ??&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+x is something else ??
+</pre></div></div>
+</div>
+<p>To correctly handle this situation, you need to use <code class="docutils literal notranslate"><span class="pre">math.isnan</span></code> function:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[86]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">nan</span>
+<span class="k">if</span> <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>  <span class="c1"># CORRECT</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x is NaN &quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x is something else ??&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+x is NaN
+</pre></div></div>
+</div>
+<p>Notice <code class="docutils literal notranslate"><span class="pre">math.isnan</span></code> also work with <em>negative</em> NaN:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[87]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">nan</span>
+<span class="k">if</span> <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>  <span class="c1"># CORRECT</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;y is NaN &quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;y is something else ??&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+y is NaN
+</pre></div></div>
+</div>
+</section>
+<section id="Sequences-with-NaNs">
+<h3>Sequences with NaNs<a class="headerlink" href="#Sequences-with-NaNs" title="Link to this heading">#</a></h3>
+<p>Still, not everything is completely crazy. If you compare a sequence holding NaNs to another one, you will get reasonable results:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[88]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">math</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">nan</span><span class="p">]</span> <span class="o">==</span> <span class="p">[</span><span class="n">math</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">nan</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[88]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+True
+</pre></div></div>
+</div>
+</section>
+<section id="Exercise-NaN:-two-vars">
+<h3>Exercise NaN: two vars<a class="headerlink" href="#Exercise-NaN:-two-vars" title="Link to this heading">#</a></h3>
+<p>Given two number variables <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>, write some code that prints <code class="docutils literal notranslate"><span class="pre">&quot;same&quot;</span></code> when they are the same, <em>even</em> when they are NaN. Otherwise, prints `”not the same”</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># expected output: same</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">nan</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">nan</span>
+
+<span class="c1"># expected output: not the same</span>
+<span class="c1">#x = 3</span>
+<span class="c1">#y = math.nan</span>
+
+<span class="c1"># expected output: not the same</span>
+<span class="c1">#x = math.nan</span>
+<span class="c1">#y = 5</span>
+
+<span class="c1"># expected output: not the same</span>
+<span class="c1">#x = 2</span>
+<span class="c1">#y = 7</span>
+
+<span class="c1"># expected output: same</span>
+<span class="c1">#x = 4</span>
+<span class="c1">#y = 4</span>
+
+<span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># expected output: same</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">nan</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">nan</span>
+
+<span class="c1"># expected output: not the same</span>
+<span class="c1">#x = 3</span>
+<span class="c1">#y = math.nan</span>
+
+<span class="c1"># expected output: not the same</span>
+<span class="c1">#x = math.nan</span>
+<span class="c1">#y = 5</span>
+
+<span class="c1"># expected output: not the same</span>
+<span class="c1">#x = 2</span>
+<span class="c1">#y = 7</span>
+
+<span class="c1"># expected output: same</span>
+<span class="c1">#x = 4</span>
+<span class="c1">#y = 4</span>
+
+<span class="k">if</span> <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="ow">and</span> <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;same&#39;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;same&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;not the same&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="Operations-on-NaNs">
+<h3>Operations on NaNs<a class="headerlink" href="#Operations-on-NaNs" title="Link to this heading">#</a></h3>
+<p>Any operation on a NaN will generate another NaN:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[90]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">5</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">nan</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[90]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+nan
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[91]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">math</span><span class="o">.</span><span class="n">nan</span> <span class="o">+</span> <span class="n">math</span><span class="o">.</span><span class="n">nan</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[91]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+nan
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[92]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">math</span><span class="o">.</span><span class="n">nan</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">nan</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[92]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+nan
+</pre></div></div>
+</div>
+<p>The only thing you cannot do is dividing by zero with an unboxed NaN:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">math</span><span class="o">.</span><span class="n">nan</span> <span class="o">/</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">---------------------------------------------------------------------------</span>
+<span class="ne">ZeroDivisionError</span>                         <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">94</span><span class="o">-</span><span class="mi">1</span><span class="n">da38377fac4</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">----&gt;</span> <span class="mi">1</span> <span class="n">math</span><span class="o">.</span><span class="n">nan</span> <span class="o">/</span> <span class="mi">0</span>
+
+<span class="ne">ZeroDivisionError</span><span class="p">:</span> <span class="nb">float</span> <span class="n">division</span> <span class="n">by</span> <span class="n">zero</span>
+</pre></div>
+</div>
+<p>NaN corresponds to boolean value <code class="docutils literal notranslate"><span class="pre">True</span></code>:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[93]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">math</span><span class="o">.</span><span class="n">nan</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;That&#39;s True&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+That&#39;s True
+</pre></div></div>
+</div>
+</section>
+<section id="NaN-and-Numpy">
+<h3>NaN and Numpy<a class="headerlink" href="#NaN-and-Numpy" title="Link to this heading">#</a></h3>
+<p>When using Numpy you are quite likely to encounter NaNs, so much so they get redefined inside Numpy, but they are exactly the same as in <code class="docutils literal notranslate"><span class="pre">math</span></code> module:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[94]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[94]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+nan
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[95]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[95]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+True
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[96]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[96]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+True
+</pre></div></div>
+</div>
+<p>In Numpy when you have unknown numbers you might be tempted to put a <code class="docutils literal notranslate"><span class="pre">None</span></code>. You can actually do it, but look closely at the result:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[97]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">4.9</span><span class="p">,</span><span class="kc">None</span><span class="p">,</span><span class="mf">3.2</span><span class="p">,</span><span class="mf">5.1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[97]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([4.9, None, 3.2, 5.1], dtype=object)
+</pre></div></div>
+</div>
+<p>The resulting array type is <em>not</em> an array of float64 which allows fast calculations, instead it is an array containing generic <em>objects</em>, as Numpy is assuming the array holds heterogenous data. So what you gain in generality you lose it in performance, which should actually be the whole point of using Numpy.</p>
+<p>Despite being weird, NaNs are actually regular float citizen so they can be stored in the array:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[98]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">4.9</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span><span class="mf">3.2</span><span class="p">,</span><span class="mf">5.1</span><span class="p">])</span>   <span class="c1"># Notice how the `dtype=object` has disappeared</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[98]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([4.9, nan, 3.2, 5.1])
+</pre></div></div>
+</div>
+</section>
+<section id="Where-are-the-NaNs-?">
+<h3>Where are the NaNs ?<a class="headerlink" href="#Where-are-the-NaNs-?" title="Link to this heading">#</a></h3>
+<p>Let’s try to see where we can spot NaNs and other weird things such infinities in the wild</p>
+<p>First, let check what happens when we call function <code class="docutils literal notranslate"><span class="pre">log</span></code> of standard module <code class="docutils literal notranslate"><span class="pre">math</span></code>. As we know, log function behaves like this:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x &lt; 0\)</span>: not defined</p></li>
+<li><p><span class="math notranslate nohighlight">\(x = 0\)</span>: tends to minus infinity</p></li>
+<li><p><span class="math notranslate nohighlight">\(x &gt; 0\)</span>: defined</p></li>
+</ul>
+<p><img alt="log function u9u9u9" src="../../_images/log.png" /></p>
+<p>So we might wonder what happens when we pass to it a value where it is not defined. Let’s first try with the standard <code class="docutils literal notranslate"><span class="pre">math.log</span></code> from Python library:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ne">ValueError</span>                                <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">38</span><span class="o">-</span><span class="n">d6e02ba32da6</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">----&gt;</span> <span class="mi">1</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="ne">ValueError</span><span class="p">:</span> <span class="n">math</span> <span class="n">domain</span> <span class="n">error</span>
+</pre></div>
+</div>
+<p>In this case <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> is raised and <strong>the execution gets interrupted.</strong></p>
+<p>Let’s try the equivalent with Numpy:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[99]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/home/da/.local/lib/python3.7/site-packages/ipykernel_launcher.py:1: RuntimeWarning: invalid value encountered in log
+  &#34;&#34;&#34;Entry point for launching an IPython kernel.
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[99]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+nan
+</pre></div></div>
+</div>
+<p>In this case we <strong>actually got as a result</strong> <code class="docutils literal notranslate"><span class="pre">np.nan</span></code>, so execution was not interrupted, Jupyter only informed us with an extra print that something dangerous happened.</p>
+<p>The default behaviour of Numpy regarding dangerous calculations is to perform them anyway and storing the result in as a NaN or other limit objects. This also works for arrays calculations:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[100]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">9</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/home/da/.local/lib/python3.7/site-packages/ipykernel_launcher.py:1: RuntimeWarning: invalid value encountered in log
+  &#34;&#34;&#34;Entry point for launching an IPython kernel.
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[100]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([1.09861229, 1.94591015,        nan, 2.19722458])
+</pre></div></div>
+</div>
+</section>
+<section id="Infinities">
+<h3>Infinities<a class="headerlink" href="#Infinities" title="Link to this heading">#</a></h3>
+<p>As we said previously, NumPy uses the IEEE Standard for Binary Floating-Point for Arithmetic (IEEE 754). Since somebody at IEEE decided to capture the misteries of infinity into floating numbers, we have yet another citizen to take into account when performing calculations (for more info see <a class="reference external" href="https://numpy.org/devdocs/reference/constants.html">Numpy documentation on constants</a>):</p>
+</section>
+<section id="Positive-infinity-np.inf">
+<h3>Positive infinity <code class="docutils literal notranslate"><span class="pre">np.inf</span></code><a class="headerlink" href="#Positive-infinity-np.inf" title="Link to this heading">#</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[101]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span> <span class="p">[</span> <span class="mi">5</span> <span class="p">]</span> <span class="p">)</span> <span class="o">/</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/home/da/.local/lib/python3.7/site-packages/ipykernel_launcher.py:1: RuntimeWarning: divide by zero encountered in true_divide
+  &#34;&#34;&#34;Entry point for launching an IPython kernel.
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[101]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([inf])
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[102]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span> <span class="p">[</span> <span class="mi">6</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span> <span class="p">]</span> <span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span> <span class="p">[</span> <span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span> <span class="p">]</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/home/da/.local/lib/python3.7/site-packages/ipykernel_launcher.py:1: RuntimeWarning: divide by zero encountered in true_divide
+  &#34;&#34;&#34;Entry point for launching an IPython kernel.
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[102]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([3.  ,  inf,  inf, 1.75])
+</pre></div></div>
+</div>
+<p>Be aware that:</p>
+<ul class="simple">
+<li><p>Not a Number is <strong>not</strong> equivalent to infinity</p></li>
+<li><p>positive infinity is <strong>not</strong> equivalent to negative infinity</p></li>
+<li><p>infinity is equivalent to positive infinity</p></li>
+</ul>
+<p>This time, infinity is equal to infinity:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[103]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">inf</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[103]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+True
+</pre></div></div>
+</div>
+<p>so we can safely detect infinity with <code class="docutils literal notranslate"><span class="pre">==</span></code>:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[104]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+
+<span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x is infinite&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x is finite&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+x is infinite
+</pre></div></div>
+</div>
+<p>Alternatively, we can use the function <code class="docutils literal notranslate"><span class="pre">np.isinf</span></code>:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[105]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[105]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+True
+</pre></div></div>
+</div>
+</section>
+<section id="Negative-infinity">
+<h3>Negative infinity<a class="headerlink" href="#Negative-infinity" title="Link to this heading">#</a></h3>
+<p>We can also have negative infinity, which is different from positive infinity:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[106]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[106]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+False
+</pre></div></div>
+</div>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">isinf</span></code> detects <em>both</em> positive and negative:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[107]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[107]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+True
+</pre></div></div>
+</div>
+<p>To actually check for negative infinity you have to use <code class="docutils literal notranslate"><span class="pre">isneginf</span></code>:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[108]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">isneginf</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[108]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+True
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[109]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">isneginf</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[109]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+False
+</pre></div></div>
+</div>
+<p>Where do they appear? As an example, let’s try <code class="docutils literal notranslate"><span class="pre">np.log</span></code> function:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[110]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/home/da/.local/lib/python3.7/site-packages/ipykernel_launcher.py:1: RuntimeWarning: divide by zero encountered in log
+  &#34;&#34;&#34;Entry point for launching an IPython kernel.
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[110]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+-inf
+</pre></div></div>
+</div>
+</section>
+<section id="Combining-infinities-and-NaNs">
+<h3>Combining infinities and NaNs<a class="headerlink" href="#Combining-infinities-and-NaNs" title="Link to this heading">#</a></h3>
+<p>When performing operations involving infinities and NaNs, IEEE arithmetics tries to mimic classical analysis, sometimes including NaN as a result:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[111]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">inf</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[111]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+inf
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[112]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[112]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+-inf
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[113]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">inf</span> <span class="o">*</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[113]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+-inf
+</pre></div></div>
+</div>
+<p>What in classical analysis would be undefined, here becomes NaN:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[114]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">inf</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[114]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+nan
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[115]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">inf</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[115]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+nan
+</pre></div></div>
+</div>
+<p>As usual, combining with NaN results in NaN:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[116]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">inf</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[116]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+nan
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[117]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">inf</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[117]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+nan
+</pre></div></div>
+</div>
+</section>
+<section id="Negative-zero">
+<h3>Negative zero<a class="headerlink" href="#Negative-zero" title="Link to this heading">#</a></h3>
+<p>We can even have a <em>negative</em> zero - who would have thought?</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[118]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">NZERO</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[118]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+-0.0
+</pre></div></div>
+</div>
+<p>Negative zero of course pairs well with the more known and much appreciated <em>positive</em> zero:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[119]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">PZERO</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[119]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0.0
+</pre></div></div>
+</div>
+<p><strong>NOTE</strong>: Writing <code class="docutils literal notranslate"><span class="pre">np.NZERO</span></code> or <code class="docutils literal notranslate"><span class="pre">-0.0</span></code> is <em>exactly</em> the same thing. Same goes for positive zero.</p>
+<p>At this point, you might start wondering with some concern if they are actually <em>equal</em>. Let’s try:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[120]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mf">0.0</span> <span class="o">==</span> <span class="o">-</span><span class="mf">0.0</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[120]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+True
+</pre></div></div>
+</div>
+<p>Great! Finally one thing that makes sense.</p>
+<p>Given the above, you might think in a formula you can substitute one for the other one and get same results, in harmony with the rules of the universe.</p>
+<p>Let’s make an attempt of substitution, as an example we first try dividing a number by positive zero (even if math teachers tell us such divisions are forbidden) - what will we ever get??</p>
+<p><span class="math notranslate nohighlight">\(\frac{5.0}{0.0}=???\)</span></p>
+<p>In Numpy terms, we might write like this to box everything in arrays:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[121]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span> <span class="p">[</span> <span class="mf">5.0</span> <span class="p">]</span> <span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span> <span class="p">[</span> <span class="mf">0.0</span> <span class="p">]</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/home/da/.local/lib/python3.7/site-packages/ipykernel_launcher.py:1: RuntimeWarning: divide by zero encountered in true_divide
+  &#34;&#34;&#34;Entry point for launching an IPython kernel.
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[121]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([inf])
+</pre></div></div>
+</div>
+<p>Hmm, we got an array holding an <code class="docutils literal notranslate"><span class="pre">np.inf</span></code>.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">0.0</span></code> and <code class="docutils literal notranslate"><span class="pre">-0.0</span></code> are actually the same, dividing a number by <code class="docutils literal notranslate"><span class="pre">-0.0</span></code> we should get the very same result, shouldn’t we?</p>
+<p>Let’s try:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[122]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span> <span class="p">[</span> <span class="mf">5.0</span> <span class="p">]</span> <span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span> <span class="p">[</span> <span class="o">-</span><span class="mf">0.0</span> <span class="p">]</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/home/da/.local/lib/python3.7/site-packages/ipykernel_launcher.py:1: RuntimeWarning: divide by zero encountered in true_divide
+  &#34;&#34;&#34;Entry point for launching an IPython kernel.
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[122]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([-inf])
+</pre></div></div>
+</div>
+<p>Oh gosh. This time we got an array holding a <em>negative</em> infinity <code class="docutils literal notranslate"><span class="pre">-np.inf</span></code></p>
+<p>If all of this seems odd to you, do not bash at Numpy. This is the way pretty much any CPUs does floating point calculations so you will find it in almost ALL computer languages.</p>
+<p>What programming languages can do is add further controls to protect you from paradoxical situations, for example when you directly write <code class="docutils literal notranslate"><span class="pre">1.0/0.0</span></code> Python raises <code class="docutils literal notranslate"><span class="pre">ZeroDivisionError</span></code> (blocking thus execution), and when you operate on arrays Numpy emits a warning (but doesn’t block execution).</p>
+</section>
+<section id="Exercise:-detect-proper-numbers">
+<h3>Exercise: detect proper numbers<a class="headerlink" href="#Exercise:-detect-proper-numbers" title="Link to this heading">#</a></h3>
+<p>Write some code that PRINTS <code class="docutils literal notranslate"><span class="pre">equal</span> <span class="pre">numbers</span></code> if two numbers <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> passed are equal and actual numbers, and PRINTS <code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">equal</span> <span class="pre">numbers</span></code> otherwise.</p>
+<p><strong>NOTE</strong>: <code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">equal</span> <span class="pre">numbers</span></code> must be printed if any of the numbers is infinite or NaN.</p>
+<p>To solve it, feel free to call functions indicated in <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/constants.html">Numpy documentation about costants</a></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># expected: equal numbers</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="c1"># expected: not equal numbers</span>
+<span class="c1">#x = np.inf</span>
+<span class="c1">#y = 3</span>
+
+<span class="c1"># expected: not equal numbers</span>
+<span class="c1">#x = 3</span>
+<span class="c1">#y = np.inf</span>
+
+<span class="c1"># expected: not equal numbers</span>
+<span class="c1">#x = np.inf</span>
+<span class="c1">#y = np.nan</span>
+
+<span class="c1"># expected: not equal numbers</span>
+<span class="c1">#x = np.nan</span>
+<span class="c1">#y = np.inf</span>
+
+<span class="c1"># expected: not equal numbers</span>
+<span class="c1">#x = np.nan</span>
+<span class="c1">#y = 7</span>
+
+<span class="c1"># expected: not equal numbers</span>
+<span class="c1">#x = 9</span>
+<span class="c1">#y = np.nan</span>
+
+<span class="c1"># expected: not equal numbers</span>
+<span class="c1">#x = np.nan</span>
+<span class="c1">#y = np.nan</span>
+
+
+<span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># expected: equal numbers</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="c1"># expected: not equal numbers</span>
+<span class="c1">#x = np.inf</span>
+<span class="c1">#y = 3</span>
+
+<span class="c1"># expected: not equal numbers</span>
+<span class="c1">#x = 3</span>
+<span class="c1">#y = np.inf</span>
+
+<span class="c1"># expected: not equal numbers</span>
+<span class="c1">#x = np.inf</span>
+<span class="c1">#y = np.nan</span>
+
+<span class="c1"># expected: not equal numbers</span>
+<span class="c1">#x = np.nan</span>
+<span class="c1">#y = np.inf</span>
+
+<span class="c1"># expected: not equal numbers</span>
+<span class="c1">#x = np.nan</span>
+<span class="c1">#y = 7</span>
+
+<span class="c1"># expected: not equal numbers</span>
+<span class="c1">#x = 9</span>
+<span class="c1">#y = np.nan</span>
+
+<span class="c1"># expected: not equal numbers</span>
+<span class="c1">#x = np.nan</span>
+<span class="c1">#y = np.nan</span>
+
+
+
+<span class="c1"># SOLUTION 1 - the ugly one</span>
+<span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;not equal numbers&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;equal numbers&#39;</span><span class="p">)</span>
+
+<span class="c1"># SOLUTION 2 - the pretty one</span>
+<span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;equal numbers&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;not equal numbers&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="Exercise:-guess-expressions">
+<h3>Exercise: guess expressions<a class="headerlink" href="#Exercise:-guess-expressions" title="Link to this heading">#</a></h3>
+<p>For each of the following expressions, try to guess the result</p>
+<div class="admonition warning">
+<p class="admonition-title"><strong>WARNING: the following may cause severe convulsions and nausea.</strong></p>
+<p>During clinical trials, both mathematically inclined and math-averse patients have experienced illness, for different reasons which are currently being investigated.</p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">.</span>  <span class="mf">0.0</span> <span class="o">*</span> <span class="o">-</span><span class="mf">0.0</span>
+<span class="n">b</span><span class="o">.</span>  <span class="p">(</span><span class="o">-</span><span class="mf">0.0</span><span class="p">)</span><span class="o">**</span><span class="mi">3</span>
+<span class="n">c</span><span class="o">.</span>  <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">)</span> <span class="o">==</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">d</span><span class="o">.</span>  <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">)</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">e</span><span class="o">.</span>  <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">f</span><span class="o">.</span>  <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>   <span class="c1"># sqrt = square root</span>
+<span class="n">g</span><span class="o">.</span>  <span class="mi">3</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+<span class="n">h</span>   <span class="mi">3</span> <span class="o">**</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+<span class="n">i</span><span class="o">.</span>  <span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">j</span><span class="o">.</span>  <span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="o">-</span><span class="mf">0.0</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span>  <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span>
+<span class="n">n</span><span class="o">.</span>  <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="o">-</span><span class="mf">0.0</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">o</span><span class="o">.</span>  <span class="n">np</span><span class="o">.</span><span class="n">isneginf</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">e</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="o">-</span><span class="mf">0.0</span><span class="p">))</span>
+<span class="n">p</span><span class="o">.</span>  <span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">e</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="o">-</span><span class="mf">0.0</span><span class="p">))</span>
+<span class="n">q</span><span class="o">.</span>  <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">]</span> <span class="o">==</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">]</span>
+<span class="n">r</span><span class="o">.</span>  <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">]</span> <span class="o">==</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">]</span>
+<span class="n">s</span><span class="o">.</span>  <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">]</span> <span class="o">==</span> <span class="p">[</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="Continue">
+<h2>Continue<a class="headerlink" href="#Continue" title="Link to this heading">#</a></h2>
+<p>Go on with <a class="reference internal" href="matrices-numpy2-sol.html"><span class="doc">Matrices: Numpy 2 - Exercises</span></a></p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="matrices-numpy2-sol.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Matrices: Numpy 2 - Exercises</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="index.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">10 - Matrices Numpy</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2026, Erich Robbi
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Matrices: Numpy 1</a><ul>
+<li><a class="reference internal" href="#Download-exercises-zip">Download exercises zip</a></li>
+<li><a class="reference internal" href="#Introduction">Introduction</a><ul>
+<li><a class="reference internal" href="#What-to-do">What to do</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#np.array">np.array</a></li>
+<li><a class="reference internal" href="#Creating-a-matrix-filled-with-ones">Creating a matrix filled with ones</a></li>
+<li><a class="reference internal" href="#Creating-a-matrix-filled-with-a-number-k">Creating a matrix filled with a number <code class="docutils literal notranslate"><span class="pre">k</span></code></a></li>
+<li><a class="reference internal" href="#Dimensions-of-a-matrix">Dimensions of a matrix</a></li>
+<li><a class="reference internal" href="#Reading-and-writing">Reading and writing</a><ul>
+<li><a class="reference internal" href="#Filling-the-whole-matrix">Filling the whole matrix</a></li>
+<li><a class="reference internal" href="#Slices">Slices</a></li>
+<li><a class="reference internal" href="#Writing-a-constant-in-a-slice">Writing a constant in a slice</a></li>
+<li><a class="reference internal" href="#Writing-a-matrix-into-a-slice">Writing a matrix into a slice</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#Assignment-and-copy">Assignment and copy</a></li>
+<li><a class="reference internal" href="#Calculations">Calculations</a><ul>
+<li><a class="reference internal" href="#Scalar-multiplication">Scalar multiplication</a></li>
+<li><a class="reference internal" href="#Scalar-sum">Scalar sum</a></li>
+<li><a class="reference internal" href="#Multiplication">Multiplication</a></li>
+<li><a class="reference internal" href="#Dividing-by-a-scalar">Dividing by a scalar</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#Aggregation">Aggregation</a><ul>
+<li><a class="reference internal" href="#Aggregating-by-row-or-column">Aggregating by row or column</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#Filtering">Filtering</a><ul>
+<li><a class="reference internal" href="#Finding-indexes-with-np.where">Finding indexes with <code class="docutils literal notranslate"><span class="pre">np.where</span></code></a></li>
+<li><a class="reference internal" href="#Writing-into-cells-which-satisfy-a-criteria">Writing into cells which satisfy a criteria</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#arange-and-linspace-sequences">arange and linspace sequences</a></li>
+<li><a class="reference internal" href="#NaNs-and-infinities">NaNs and infinities</a><ul>
+<li><a class="reference internal" href="#NaNs">NaNs</a></li>
+<li><a class="reference internal" href="#Detecting-NaN">Detecting NaN</a></li>
+<li><a class="reference internal" href="#Sequences-with-NaNs">Sequences with NaNs</a></li>
+<li><a class="reference internal" href="#Exercise-NaN:-two-vars">Exercise NaN: two vars</a></li>
+<li><a class="reference internal" href="#Operations-on-NaNs">Operations on NaNs</a></li>
+<li><a class="reference internal" href="#NaN-and-Numpy">NaN and Numpy</a></li>
+<li><a class="reference internal" href="#Where-are-the-NaNs-?">Where are the NaNs ?</a></li>
+<li><a class="reference internal" href="#Infinities">Infinities</a></li>
+<li><a class="reference internal" href="#Positive-infinity-np.inf">Positive infinity <code class="docutils literal notranslate"><span class="pre">np.inf</span></code></a></li>
+<li><a class="reference internal" href="#Negative-infinity">Negative infinity</a></li>
+<li><a class="reference internal" href="#Combining-infinities-and-NaNs">Combining infinities and NaNs</a></li>
+<li><a class="reference internal" href="#Negative-zero">Negative zero</a></li>
+<li><a class="reference internal" href="#Exercise:-detect-proper-numbers">Exercise: detect proper numbers</a></li>
+<li><a class="reference internal" href="#Exercise:-guess-expressions">Exercise: guess expressions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#Continue">Continue</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=d91ab2ad"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    </body>
+</html>

@@ -1,0 +1,8 @@
+10 - Matrices Numpy
+===================
+
+.. toctree::
+   :maxdepth: 1
+
+   matrices-numpy1-sol
+   matrices-numpy2-sol

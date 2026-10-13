@@ -30,7 +30,7 @@
     "\n",
     "Below there are the steps to follow:\n",
     "\n",
-    "1. Install [Miniconda](https://www.anaconda.com/docs/getting-started/miniconda/system-requirements), which provides a minimal Python environment managed by Conda ([unlike Anaconda](images/anaconda.png)), with little manual setup required.\n",
+    "1. Install [Miniconda](https://www.anaconda.com/docs/getting-started/miniconda/system-requirements), which provides a minimal Python environment managed by Conda ([unlike Anaconda](../../_static/anaconda.png)), with little manual setup required.\n",
     "\n",
     "2. Install Visual Studio Code, which is available for all platforms. You can read about it [here](https://code.visualstudio.com/). Downloads for all platforms can be found [here](https://code.visualstudio.com/Download) \n",
     "\n",

@@ -51,6 +51,7 @@ Lectures
    lectures/07 - Control flow/index
    lectures/08 - Functions/index
    lectures/09 - Matrices of Lists/index
+   lectures/10 - Matrices Numpy/index
 .. AUTOGEN:CHALLENGES:START
 Challenges
 ----------
