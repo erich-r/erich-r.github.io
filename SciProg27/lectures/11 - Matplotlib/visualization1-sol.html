@@ -1,0 +1,1788 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html"><link rel="search" title="Search" href="../../search.html"><link rel="next" title="Matplotlib - Numpy images" href="visualization2-sol.html"><link rel="prev" title="11 - Matplotlib" href="index.html">
+        <link rel="canonical" href="https://erich-r.github.io/SciProg27/lectures/11%20-%20Matplotlib/visualization1-sol.html">
+
+    <!-- Generated with Sphinx 9.0.4 and Furo 2025.12.19 -->
+        <title>Matplotlib - SciProg 2027</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=e429fab1" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">SciProg 2027</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  <span class="sidebar-brand-text">SciProg 2027</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../00%20-%20Installation/installation.html">Installation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../01%20-%20Basics/index.html">01 - Basics</a><input aria-label="Toggle navigation of 01 - Basics" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../01%20-%20Basics/basics1-ints-sol.html">Python Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01%20-%20Basics/basics2-bools-sol.html">Python Basics - Booleans</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01%20-%20Basics/basics3-floats-sol.html">Python Basics - Float</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../02%20-%20Strings/index.html">02 - Strings</a><input aria-label="Toggle navigation of 02 - Strings" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../02%20-%20Strings/strings1-sol.html">Strings 1 - Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02%20-%20Strings/strings2-sol.html">Strings 2 - Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02%20-%20Strings/strings3-sol.html">Strings 3 - Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02%20-%20Strings/strings4-sol.html">Strings 4 - Search Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../03%20-%20Lists/index.html">03 - Lists</a><input aria-label="Toggle navigation of 03 - Lists" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../03%20-%20Lists/lists1-sol.html">Lists 1 - Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03%20-%20Lists/lists2-sol.html">Lists 2 - operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03%20-%20Lists/lists3-sol.html">Lists 3 - Basic methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03%20-%20Lists/lists4-sol.html">Lists 4 - Search methods</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../04%20-%20Tuples/index.html">04 - Tuples</a><input aria-label="Toggle navigation of 04 - Tuples" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../04%20-%20Tuples/tuples1-sol.html">Tuples</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../05%20-%20Sets/index.html">05 - Sets</a><input aria-label="Toggle navigation of 05 - Sets" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../05%20-%20Sets/sets1-sol.html">Sets</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../06%20-%20Dictionaries/index.html">06 - Dictionaries</a><input aria-label="Toggle navigation of 06 - Dictionaries" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../06%20-%20Dictionaries/dictionaries1-sol.html">Dictionaries 1 - Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06%20-%20Dictionaries/dictionaries2-sol.html">Dictionaries 2 - operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06%20-%20Dictionaries/dictionaries3-sol.html">Dictionaries 3 - Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06%20-%20Dictionaries/dictionaries4-sol.html">Dictionaries 4 - special classes</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../07%20-%20Control%20flow/index.html">07 - Control flow</a><input aria-label="Toggle navigation of 07 - Control flow" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/for1-sol.html">For loops - Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/for2-sol.html">For loops - Iterating Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/for3-sol.html">For loops - Iterating Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/for4-sol.html">For loops - Iterating Tuples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/for5-sol.html">For loops - Iterating Sets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/for6-sol.html">For loops - Iterating Dictionaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/for7-sol.html">For loops - Nested Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/if1-sol.html">If Else statements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/sequences1-sol.html">Sequences and comprehensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/while1-sol.html">While loops 1 - introduction</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../08%20-%20Functions/index.html">08 - Functions</a><input aria-label="Toggle navigation of 08 - Functions" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../08%20-%20Functions/functions1-sol.html">Functions - solutions</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../09%20-%20Matrices%20of%20Lists/index.html">09 - Matrices of Lists</a><input aria-label="Toggle navigation of 09 - Matrices of Lists" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../09%20-%20Matrices%20of%20Lists/matrices-lists1-sol.html">Matrices: list of lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../09%20-%20Matrices%20of%20Lists/matrices-lists2-sol.html">Matrices 2: list of lists - other exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../10%20-%20Matrices%20Numpy/index.html">10 - Matrices Numpy</a><input aria-label="Toggle navigation of 10 - Matrices Numpy" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../10%20-%20Matrices%20Numpy/matrices-numpy1-sol.html">Matrices: Numpy 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../10%20-%20Matrices%20Numpy/matrices-numpy2-sol.html">Matrices: Numpy 2 - Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">11 - Matplotlib</a><input aria-label="Toggle navigation of 11 - Matplotlib" checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Matplotlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualization2-sol.html">Matplotlib - Numpy images</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Challenge Yourself at Home</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/01%20-%20Basics/basics4-chal.html">Python Basics - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/02%20-%20Strings/strings5-chal.html">Strings - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/03%20-%20Lists/lists5-chal.html">Lists - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/04%20-%20Tuples/tuples2-chal.html">Tuples - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/05%20-%20Sets/sets2-chal.html">Sets - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/06%20-%20Dictionaries/dictionaries5-chal.html">Dictionaries - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/07%20-%20Control%20flow/for8-chal.html">For Loops - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/07%20-%20Control%20flow/if2-chal.html">If Else - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/07%20-%20Control%20flow/sequences2-chal.html">Sequences - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/07%20-%20Control%20flow/while2-chal.html">While loops - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/09%20-%20Matrices%20of%20Lists/matrices-lists3-chal.html">Matrices Lists - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/11%20-%20Matplotlib/visualization3-chal.html">Matplotlib Challenge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/Misc.%20Challenges/chall1-chal.html">Challenges - Miscellaneous</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Commandments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../commandments/commandments.html">Rules You Shall Not Break</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="Matplotlib">
+<h1>Matplotlib<a class="headerlink" href="#Matplotlib" title="Link to this heading">#</a></h1>
+<section id="Download-exercises-zip">
+<h2><a class="reference external" href="../_static/generated/visualization.zip">Download exercises zip</a><a class="headerlink" href="#Download-exercises-zip" title="Link to this heading">#</a></h2>
+</section>
+<section id="Introduction">
+<h2>Introduction<a class="headerlink" href="#Introduction" title="Link to this heading">#</a></h2>
+<p>We will review the famous library Matplotlib which allows to display a variety of charts, and it is the base of many other visualization libraries.</p>
+<section id="What-to-do">
+<h3>What to do<a class="headerlink" href="#What-to-do" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>unzip exercises in a folder, you should get something like this:</p></li>
+</ul>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>visualization
+    visualization1.ipynb
+    visualization1-sol.ipynb
+    visualization3-chal.ipynb
+    visualization2.ipynb
+    visualization2-sol.ipynb
+    jupman.py
+</pre></div>
+</div>
+<div class="admonition warning">
+<p><strong>WARNING</strong>: to correctly visualize the notebook, it MUST be in an unzipped folder !</p>
+</div>
+<ul class="simple">
+<li><p>open Jupyter Notebook from that folder. Two things should open, first a console and then browser. The browser should show a file list: navigate the list and open the notebook <code class="docutils literal notranslate"><span class="pre">visualization/visualization1.ipynb</span></code></p></li>
+</ul>
+<div class="admonition warning">
+<p><strong>WARNING 2</strong>: DO NOT use the <em>Upload</em> button in Jupyter, instead navigate in Jupyter browser to the unzipped folder !</p>
+</div>
+<ul class="simple">
+<li><p>Go on reading that notebook, and follow instuctions inside.</p></li>
+</ul>
+<p>Shortcut keys:</p>
+<ul class="simple">
+<li><p>to execute Python code inside a Jupyter cell, press <code class="docutils literal notranslate"><span class="pre">Control</span> <span class="pre">+</span> <span class="pre">Enter</span></code></p></li>
+<li><p>to execute Python code inside a Jupyter cell AND select next cell, press <code class="docutils literal notranslate"><span class="pre">Shift</span> <span class="pre">+</span> <span class="pre">Enter</span></code></p></li>
+<li><p>to execute Python code inside a Jupyter cell AND a create a new cell aftwerwards, press <code class="docutils literal notranslate"><span class="pre">Alt</span> <span class="pre">+</span> <span class="pre">Enter</span></code></p></li>
+<li><p>If the notebooks look stuck, try to select <code class="docutils literal notranslate"><span class="pre">Kernel</span> <span class="pre">-&gt;</span> <span class="pre">Restart</span></code></p></li>
+</ul>
+</section>
+</section>
+<section id="First-example">
+<h2>First example<a class="headerlink" href="#First-example" title="Link to this heading">#</a></h2>
+<p>Let’s start with a very simple plot:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># this is *not* a python command, it is a Jupyter-specific magic command,</span>
+<span class="c1"># to tell jupyter we want the graphs displayed in the cell outputs</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="c1"># imports matplotlib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># we can give coordinates as simple numberlists</span>
+<span class="c1"># this are couples for the function y = 2 * x</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<span class="n">ys</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">12</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">)</span>
+
+<span class="c1"># we can add this after plot call, it doesn&#39;t matter</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;my function&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+
+<span class="c1"># prevents showing &#39;&lt;matplotlib.text.Text at 0x7fbcf3c4ff28&gt;&#39; in Jupyter</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization1-sol_2_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization1-sol_2_0.png" />
+</div>
+</div>
+<section id="Plot-style">
+<h3>Plot style<a class="headerlink" href="#Plot-style" title="Link to this heading">#</a></h3>
+<p>To change the way the line is displayed, you can set dot styles with another string parameter. For example, to display red dots, you would add the string <code class="docutils literal notranslate"><span class="pre">ro</span></code>, where <code class="docutils literal notranslate"><span class="pre">r</span></code> stands for red and <code class="docutils literal notranslate"><span class="pre">o</span></code> stands for dot.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">xs</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<span class="n">ys</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">12</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">)</span>  <span class="c1"># NOW USING RED DOTS</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;my function&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization1-sol_4_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization1-sol_4_0.png" />
+</div>
+</div>
+</section>
+<section id="x-power-2-exercise">
+<h3>x power 2 exercise<a class="headerlink" href="#x-power-2-exercise" title="Link to this heading">#</a></h3>
+<p>Try to display the function <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">x**2</span></code> (x power 2) using green dots and for integer xs going from -10 to 10</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization1-sol_6_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization1-sol_6_0.png" />
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><br/><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">xs</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">ys</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span> <span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="s1">&#39;go&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;x squared&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="Axis-limits">
+<h3>Axis limits<a class="headerlink" href="#Axis-limits" title="Link to this heading">#</a></h3>
+<p>If you want to change the x axis, you can use <code class="docutils literal notranslate"><span class="pre">plt.xlim</span></code>:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">xs</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<span class="n">ys</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">12</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;my function&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>  <span class="c1"># SETS LOWER X DISPLAY TO -5 AND UPPER TO 10</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span> <span class="mi">26</span><span class="p">)</span>  <span class="c1"># SETS LOWER Y DISPLAY TO -7 AND UPPER TO 26</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization1-sol_11_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization1-sol_11_0.png" />
+</div>
+</div>
+</section>
+<section id="Axis-size">
+<h3>Axis size<a class="headerlink" href="#Axis-size" title="Link to this heading">#</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">xs</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<span class="n">ys</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">12</span><span class="p">]</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>  <span class="c1"># width: 10 inches, height 3 inches</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;my function&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization1-sol_13_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization1-sol_13_0.png" />
+</div>
+</div>
+</section>
+<section id="Changing-tick-labels">
+<h3>Changing tick labels<a class="headerlink" href="#Changing-tick-labels" title="Link to this heading">#</a></h3>
+<p>You can also change labels displayed on ticks on axis with <code class="docutils literal notranslate"><span class="pre">plt.xticks</span></code> and <code class="docutils literal notranslate"><span class="pre">plt.yticks</span></code> functions:</p>
+<p><strong>Note:</strong> instead of <code class="docutils literal notranslate"><span class="pre">xticks</span></code> you might directly use <a class="reference external" href="https://matplotlib.org/gallery/lines_bars_and_markers/categorical_variables.html">categorical variables</a> IF you have matplotlib &gt;= 2.1.0</p>
+<p>Here we use <code class="docutils literal notranslate"><span class="pre">xticks</span></code> as sometimes you might need to fiddle with them anyway</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">xs</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<span class="n">ys</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">12</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;my function&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+
+<span class="c1"># FIRST NEEDS A SEQUENCE WITH THE POSITIONS, THEN A SEQUENCE OF SAME LENGTH WITH LABELS</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization1-sol_15_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization1-sol_15_0.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="Multiple-lines">
+<h2>Multiple lines<a class="headerlink" href="#Multiple-lines" title="Link to this heading">#</a></h2>
+<p>To overlay multiple lines, you just need to perform several calls to <code class="docutils literal notranslate"><span class="pre">plt.plot</span></code>. Matplotlib will automatically use a different color for each line.</p>
+<p><strong>REMEMBER:</strong> you should call <code class="docutils literal notranslate"><span class="pre">plt.show</span></code> only <strong>ONCE</strong> at the very end!!</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><br/><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># we can give coordinates as simple numberlists</span>
+<span class="c1"># this are couples for the function y = 2 * x</span>
+<span class="n">xsa</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<span class="n">ysa</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">12</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xsa</span><span class="p">,</span> <span class="n">ysa</span><span class="p">)</span>
+
+<span class="n">xsb</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">]</span>   <span class="c1"># note this other series can have a different number of points at different places</span>
+<span class="n">ysb</span> <span class="o">=</span> <span class="p">[</span><span class="mi">9</span>  <span class="p">,</span> <span class="mi">2</span><span class="p">,</span>   <span class="mi">8</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xsb</span><span class="p">,</span> <span class="n">ysb</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization1-sol_17_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization1-sol_17_0.png" />
+</div>
+</div>
+</section>
+<section id="Numpy">
+<h2>Numpy<a class="headerlink" href="#Numpy" title="Link to this heading">#</a></h2>
+<p>For functions involving reals, vanilla python starts showing its limits and its better to switch to numpy library. Matplotlib can easily handle both vanilla python sequences like lists and numpy array. Let’s see an example without numpy and one with it.</p>
+<section id="Example-without-numpy">
+<h3>Example without numpy<a class="headerlink" href="#Example-without-numpy" title="Link to this heading">#</a></h3>
+<p>If we only use <em>vanilla</em> Python (that is, Python without extra libraries like numpy), to display the function <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">2x</span> <span class="pre">+</span> <span class="pre">1</span></code> we can come up with a solution like this</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><br/><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">xs</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">*</span><span class="mf">0.1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>   <span class="c1"># notice we can&#39;t do a range with float increments</span>
+                                  <span class="c1"># (and it would also introduce rounding errors)</span>
+<span class="n">ys</span> <span class="o">=</span> <span class="p">[(</span><span class="n">x</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="s1">&#39;bo&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;y = 2x + 1  with vanilla python&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization1-sol_21_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization1-sol_21_0.png" />
+</div>
+</div>
+</section>
+<section id="Example-with-numpy">
+<h3>Example with numpy<a class="headerlink" href="#Example-with-numpy" title="Link to this heading">#</a></h3>
+<p>With numpy, we have at our disposal several new methods for dealing with arrays.</p>
+<p>First we can generate <a class="reference internal" href="../10%20-%20Matrices%20Numpy/matrices-numpy1-sol.html#arange-and-linspace-sequences"><span class="std std-ref">an interval of values</span></a> with one of these methods.</p>
+<p>Sine Python range does not allow float increments, we can use <code class="docutils literal notranslate"><span class="pre">np.arange</span></code>:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">xs</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([0. , 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9])
+</pre></div></div>
+</div>
+<p>Equivalently, we could use <code class="docutils literal notranslate"><span class="pre">np.linspace</span></code>:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.9</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">xs</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([0. , 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9])
+</pre></div></div>
+</div>
+<p>Numpy allows us to easily write functions on arrays in a natural manner. For example, to calculate <code class="docutils literal notranslate"><span class="pre">ys</span></code> we can now do like this:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ys</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">xs</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="n">ys</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([1. , 1.2, 1.4, 1.6, 1.8, 2. , 2.2, 2.4, 2.6, 2.8])
+</pre></div></div>
+</div>
+<p>Let’s put everything together:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.9</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># left end: 0 *included*  right end: 0.9  *included*   number of values: 10</span>
+<span class="n">ys</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">xs</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="s1">&#39;bo&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;y = 2x + 1  with numpy&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization1-sol_29_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization1-sol_29_0.png" />
+</div>
+</div>
+</section>
+<section id="Exercise---sin(x)-+-3">
+<h3>Exercise - sin(x) + 3<a class="headerlink" href="#Exercise---sin(x)-+-3" title="Link to this heading">#</a></h3>
+<p>✪✪✪ Try to display the function <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">sin(x)</span> <span class="pre">+</span> <span class="pre">3</span></code> for x at pi / 4 intervals, starting from 0. Use exactly 8 ticks.</p>
+<p><strong>NOTE</strong>: 8 is the <em>number of x ticks</em> (telecom people would use the term ‘samples’), <strong>NOT</strong> the x of the last tick !!</p>
+<ol class="loweralpha simple">
+<li><p>try to solve it <em>without</em> using numpy. For pi, use constant <code class="docutils literal notranslate"><span class="pre">math.pi</span></code> (first you need to import <code class="docutils literal notranslate"><span class="pre">math</span></code> module)</p></li>
+<li><p>try to solve it <em>with numpy</em>. For pi, use constant <code class="docutils literal notranslate"><span class="pre">np.pi</span></code> (which is exactly the same as <code class="docutils literal notranslate"><span class="pre">math.pi</span></code>)</p></li>
+</ol>
+<p>b.1) solve it with <code class="docutils literal notranslate"><span class="pre">np.arange</span></code></p>
+<p>b.2) solve it with <code class="docutils literal notranslate"><span class="pre">np.linspace</span></code></p>
+<ol class="loweralpha simple" start="3">
+<li><p>For each tick, use the label sequence <code class="docutils literal notranslate"><span class="pre">&quot;0π/4&quot;,</span> <span class="pre">&quot;1π/4&quot;</span> <span class="pre">,</span> <span class="pre">&quot;2π/4&quot;,</span>&#160; <span class="pre">&quot;3π/4&quot;</span> <span class="pre">,</span>&#160; <span class="pre">&quot;4π/4&quot;,</span> <span class="pre">&quot;5π/4&quot;,</span>&#160;&#160; <span class="pre">....</span></code> . Obviously writing them by hand is easy, try instead to devise a method that works for any number of ticks. What is changing in the sequence? What is constant? What is the type of the part changes ? What is final type of the labels you want to obtain ?</p></li>
+<li><p>If you are in the mood, try to display them better like 0, π/4 , π/2 π, 3π/4 , π, 5π/4 possibly using Latex (requires some search, <a class="reference external" href="https://stackoverflow.com/a/40642200">this example</a> might be a starting point)</p></li>
+</ol>
+<p><strong>NOTE</strong>: Latex often involves the usage of the <code class="docutils literal notranslate"><span class="pre">\</span></code> bar, like in <code class="docutils literal notranslate"><span class="pre">\frac{2,3}</span></code>. If we use it directly, Python will interpret <code class="docutils literal notranslate"><span class="pre">\f</span></code> as a special character and will not send to the Latex processor the string we meant:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;</span><span class="se">\f</span><span class="s1">rac{2,3}&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;\x0crac{2,3}&#39;
+</pre></div></div>
+</div>
+<p>One solution would be to double the slashes, like this:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">frac{2,3}&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;\\frac{2,3}&#39;
+</pre></div></div>
+</div>
+<p>An even better one is to prepend the string with the <code class="docutils literal notranslate"><span class="pre">r</span></code> character, which allows to write slashes only once:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sa">r</span><span class="s1">&#39;\frac{2,3}&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;\\frac{2,3}&#39;
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here solution for a) y = sin(x) + 3 with vanilla python</span>
+<span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization1-sol_36_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization1-sol_36_0.png" />
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here solution for a) y = sin(x) + 3 with vanilla python</span>
+<span class="c1"># a)     y = sin(x) + 3 with vanilla python</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+
+<span class="n">xs</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="o">*</span> <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">)]</span>
+<span class="n">ys</span> <span class="o">=</span> <span class="p">[</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="mi">3</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;a) solution     y = sin(x) + 3 with vanilla python &quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details><div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#b.1)       y = sin(x) + 3 with numpy, linspace</span>
+
+<span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization1-sol_40_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization1-sol_40_0.png" />
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#b.1)       y = sin(x) + 3 with numpy, linspace</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># left end = 0   right end = 7/4 pi   8 points</span>
+<span class="c1"># notice numpy.pi is exactly the same as vanilla math.pi</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span>            <span class="c1"># included</span>
+               <span class="mi">8</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span>  <span class="c1"># *not* included (we put 8, as we actually want 7 to be included)</span>
+               <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span> <span class="p">)</span>
+<span class="n">ys</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span> <span class="o">+</span> <span class="mi">3</span>   <span class="c1"># notice we know operate on arrays. All numpy functions can operate on them</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;b.1 solution       y = sin(x) + 3  with numpy arange&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details><div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># b.2)        y = sin(x) + 3 with numpy, linspace</span>
+<span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization1-sol_44_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization1-sol_44_0.png" />
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># b.2)        y = sin(x) + 3 with numpy, linspace</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># left end = 0   right end = 7/4 pi   8 points</span>
+<span class="c1"># notice numpy.pi is exactly the same as vanilla math.pi</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span> <span class="o">*</span> <span class="mi">7</span> <span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="n">ys</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span> <span class="o">+</span> <span class="mi">3</span>   <span class="c1"># notice we know operate on arrays. All numpy functions can operate on them</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;b2 solution       y = sin(x) + 3  with numpy , linspace&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details><div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># c)    y = sin(x) + 3 with numpy and pi xlabels</span>
+<span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization1-sol_48_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization1-sol_48_0.png" />
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># c)    y = sin(x) + 3 with numpy and pi xlabels</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span> <span class="o">*</span> <span class="mi">7</span> <span class="p">,</span> <span class="mi">8</span><span class="p">)</span>  <span class="c1"># left end = 0   right end = 7/4 pi   8 points</span>
+<span class="n">ys</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span> <span class="o">+</span> <span class="mi">3</span>   <span class="c1"># notice we know operate on arrays. All numpy functions can operate on them</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;c) solution     y = sin(x) + 3  with numpy and pi xlabels&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+
+<span class="c1"># FIRST NEEDS A SEQUENCE WITH THE POSITIONS, THEN A SEQUENCE OF SAME LENGTH WITH LABELS</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">π/4&quot;</span> <span class="o">%</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+</section>
+<section id="Bar-plots">
+<h2>Bar plots<a class="headerlink" href="#Bar-plots" title="Link to this heading">#</a></h2>
+<p>First look at this this example, then proceed with the next exercises</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">xs</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">ys</span> <span class="o">=</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span>
+        <span class="mf">0.5</span><span class="p">,</span>             <span class="c1"># the width of the bars</span>
+        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span>   <span class="c1"># someone suggested the default blue color is depressing, so let&#39;s put green</span>
+        <span class="n">align</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>  <span class="c1"># bars are centered on the xtick</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization1-sol_53_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization1-sol_53_0.png" />
+</div>
+</div>
+<section id="Exercise---goleadors">
+<h3>Exercise - goleadors<a class="headerlink" href="#Exercise---goleadors" title="Link to this heading">#</a></h3>
+<p>✪✪ Display a bar plot of football players and their total goals in top-level football competitions, with their names sorted alphabetically</p>
+<p><strong>REMEMBER</strong> title and axis labels, make sure all texts are clearly visible</p>
+<p>EXPECTED OUTPUT: <img alt="expected-goleadors.png" src="lectures/11 - Matplotlib/expected-goleadors.png" /></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+
+<span class="n">players</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Cristiano Ronaldo&quot;</span> <span class="p">:</span> <span class="mi">795</span><span class="p">,</span>
+    <span class="s2">&quot;Pelé&quot;</span> <span class="p">:</span> <span class="mi">765</span><span class="p">,</span>
+    <span class="s2">&quot;Lionel Messi&quot;</span> <span class="p">:</span> <span class="mi">755</span><span class="p">,</span>
+    <span class="s2">&quot;Romário&quot;</span> <span class="p">:</span> <span class="mi">753</span><span class="p">,</span>
+    <span class="s2">&quot;Ferenc Puskás&quot;</span> <span class="p">:</span> <span class="mi">729</span><span class="p">,</span>
+    <span class="s2">&quot;Josef Bican&quot;</span><span class="p">:</span> <span class="mi">720</span><span class="p">,</span>
+    <span class="s2">&quot;Jimmy Jones&quot;</span><span class="p">:</span> <span class="mi">647</span>
+<span class="p">}</span>
+
+<span class="c1">#players={&quot;Zlatan Ibrahimović&quot;: 566, &quot;Alfredo Di Stéfano&quot;: 530}</span>
+
+<span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization1-sol_55_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization1-sol_55_0.png" />
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+
+<span class="n">players</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Cristiano Ronaldo&quot;</span> <span class="p">:</span> <span class="mi">795</span><span class="p">,</span>
+    <span class="s2">&quot;Pelé&quot;</span> <span class="p">:</span> <span class="mi">765</span><span class="p">,</span>
+    <span class="s2">&quot;Lionel Messi&quot;</span> <span class="p">:</span> <span class="mi">755</span><span class="p">,</span>
+    <span class="s2">&quot;Romário&quot;</span> <span class="p">:</span> <span class="mi">753</span><span class="p">,</span>
+    <span class="s2">&quot;Ferenc Puskás&quot;</span> <span class="p">:</span> <span class="mi">729</span><span class="p">,</span>
+    <span class="s2">&quot;Josef Bican&quot;</span><span class="p">:</span> <span class="mi">720</span><span class="p">,</span>
+    <span class="s2">&quot;Jimmy Jones&quot;</span><span class="p">:</span> <span class="mi">647</span>
+<span class="p">}</span>
+
+<span class="c1">#players={&quot;Zlatan Ibrahimović&quot;: 566, &quot;Alfredo Di Stéfano&quot;: 530}</span>
+
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">players</span><span class="p">))</span>
+
+<span class="n">xs_labels</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">players</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+<span class="n">ys</span> <span class="o">=</span> <span class="p">[</span><span class="n">players</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">xs_labels</span> <span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Goals in top-level football competitions as of 2021&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">xs_labels</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Football player&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Goals&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;expected-goleadors.png&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="Exercise---chemical-elements">
+<h3>Exercise - chemical elements<a class="headerlink" href="#Exercise---chemical-elements" title="Link to this heading">#</a></h3>
+<p>✪✪✪ Given multiple lists representig data about chemical elements, show a bar plot where elements are sorted alphabetically according to their name.</p>
+<ul class="simple">
+<li><p>show elements as <em>name (symbol)</em></p></li>
+</ul>
+<p><strong>REMEMBER</strong> title and axis labels, make sure all texts are clearly visible</p>
+<p><strong>HINT</strong>: This is more challenging, you need some sort trick - First read the <a class="reference external" href="https://docs.python.org/3/howto/sorting.html#key-functions">Python documentation</a> and then:</p>
+<ol class="arabic simple">
+<li><p>create a list of couples (list of tuples) where each tuple is the node identifier and the corresponding weight</p></li>
+<li><p>sort the list by using the second value of the tuples as a key.</p></li>
+</ol>
+<p>EXPECTED OUTPUT:</p>
+<p><img alt="expected-chemical-elements.png" src="../../_images/expected-chemical-elements.png" /></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">symbols</span>       <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;He&#39;</span><span class="p">,</span> <span class="s1">&#39;Li&#39;</span><span class="p">,</span> <span class="s1">&#39;Be&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">]</span>
+<span class="n">names</span>         <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hydrogen&#39;</span><span class="p">,</span> <span class="s1">&#39;helium&#39;</span><span class="p">,</span> <span class="s1">&#39;lithium&#39;</span><span class="p">,</span> <span class="s1">&#39;beryllium&#39;</span><span class="p">,</span> <span class="s1">&#39;boron&#39;</span><span class="p">,</span> <span class="s1">&#39;carbon&#39;</span><span class="p">,</span> <span class="s1">&#39;nitrogen&#39;</span><span class="p">]</span>
+<span class="n">atomic_weight</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.008</span><span class="p">,</span> <span class="mf">4.0026</span><span class="p">,</span> <span class="mf">6.94</span><span class="p">,</span> <span class="mf">9.0122</span><span class="p">,</span> <span class="mf">10.81</span><span class="p">,</span> <span class="mf">12.011</span><span class="p">,</span> <span class="mf">14.007</span><span class="p">]</span>
+
+<span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization1-sol_61_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization1-sol_61_0.png" />
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">symbols</span>       <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;He&#39;</span><span class="p">,</span> <span class="s1">&#39;Li&#39;</span><span class="p">,</span> <span class="s1">&#39;Be&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">]</span>
+<span class="n">names</span>         <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hydrogen&#39;</span><span class="p">,</span> <span class="s1">&#39;helium&#39;</span><span class="p">,</span> <span class="s1">&#39;lithium&#39;</span><span class="p">,</span> <span class="s1">&#39;beryllium&#39;</span><span class="p">,</span> <span class="s1">&#39;boron&#39;</span><span class="p">,</span> <span class="s1">&#39;carbon&#39;</span><span class="p">,</span> <span class="s1">&#39;nitrogen&#39;</span><span class="p">]</span>
+<span class="n">atomic_weight</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.008</span><span class="p">,</span> <span class="mf">4.0026</span><span class="p">,</span> <span class="mf">6.94</span><span class="p">,</span> <span class="mf">9.0122</span><span class="p">,</span> <span class="mf">10.81</span><span class="p">,</span> <span class="mf">12.011</span><span class="p">,</span> <span class="mf">14.007</span><span class="p">]</span>
+
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+
+<span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">symbols</span><span class="p">))</span>
+
+<span class="n">coords</span> <span class="o">=</span> <span class="p">[</span> <span class="p">(</span><span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="s2">&quot;(&quot;</span> <span class="o">+</span> <span class="n">symbols</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">,</span> <span class="n">atomic_weight</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>   <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">symbols</span><span class="p">))</span> <span class="p">]</span>
+
+<span class="n">coords</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">ys</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">coords</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Chemical elements&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="p">[</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">coords</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Elements&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Atomic weight&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;expected-chemical-elements.png&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="Exercise---superheroes">
+<h3>Exercise - superheroes<a class="headerlink" href="#Exercise---superheroes" title="Link to this heading">#</a></h3>
+<p>✪✪✪✪ Each year a contest between the super-heroes of two crime-ridden cities is held. The superheroes perform several challenges and each city receives a score. At the end, the mayor of each city wants to see how its city compared against the other city. The mayor wants you to show the performances in <strong>sorted</strong> order with respect to the mayor’s <code class="docutils literal notranslate"><span class="pre">city</span></code>, while showing also the performance of the other city for comparison.</p>
+<p>Look at <a class="reference external" href="https://matplotlib.org/gallery/lines_bars_and_markers/barchart.html#sphx-glr-gallery-lines-bars-and-markers-barchart-py">this example</a>, and make a double bar chart</p>
+<ul class="simple">
+<li><p>specify the city in the title</p></li>
+<li><p>remember x and y axis labels</p></li>
+</ul>
+<p>EXPECTED OUTPUT (here the performances of Gotham City are shown in sorted order):</p>
+<p><img alt="expected-superhero-perf" src="../../_images/expected-superhero-perf.png" /></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Punching glasses&#39;</span>   <span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">5</span><span class="p">),</span>
+    <span class="s1">&#39;Kicking the tires&#39;</span>  <span class="p">:</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span>  <span class="mi">5</span><span class="p">),</span>
+    <span class="s1">&#39;Throwing cars&#39;</span>      <span class="p">:</span> <span class="p">(</span><span class="mf">5.5</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span>
+    <span class="s1">&#39;Hot oil bath&#39;</span>       <span class="p">:</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span>  <span class="mi">7</span><span class="p">),</span>
+    <span class="s1">&#39;Jumping on the wall&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span>
+    <span class="s1">&#39;Arresting mutants&#39;</span>  <span class="p">:</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span>  <span class="mi">3</span><span class="p">),</span>
+<span class="p">}</span>
+
+<span class="n">city</span> <span class="o">=</span> <span class="s1">&#39;Gotham City&#39;</span>
+<span class="n">cities</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Gotham City&#39;</span><span class="p">,</span> <span class="s1">&#39;Metropolis&#39;</span><span class="p">]</span>
+<span class="c1">#city= &#39;Sin City&#39;</span>
+<span class="c1">#cities = [&#39;District X&#39;, &#39;Sin City&#39;]</span>
+
+<span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization1-sol_66_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization1-sol_66_0.png" />
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Punching glasses&#39;</span>   <span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">5</span><span class="p">),</span>
+    <span class="s1">&#39;Kicking the tires&#39;</span>  <span class="p">:</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span>  <span class="mi">5</span><span class="p">),</span>
+    <span class="s1">&#39;Throwing cars&#39;</span>      <span class="p">:</span> <span class="p">(</span><span class="mf">5.5</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span>
+    <span class="s1">&#39;Hot oil bath&#39;</span>       <span class="p">:</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span>  <span class="mi">7</span><span class="p">),</span>
+    <span class="s1">&#39;Jumping on the wall&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span>
+    <span class="s1">&#39;Arresting mutants&#39;</span>  <span class="p">:</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span>  <span class="mi">3</span><span class="p">),</span>
+<span class="p">}</span>
+
+<span class="n">city</span> <span class="o">=</span> <span class="s1">&#39;Gotham City&#39;</span>
+<span class="n">cities</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Gotham City&#39;</span><span class="p">,</span> <span class="s1">&#39;Metropolis&#39;</span><span class="p">]</span>
+<span class="c1">#city= &#39;Sin City&#39;</span>
+<span class="c1">#cities = [&#39;District X&#39;, &#39;Sin City&#39;]</span>
+
+
+<span class="n">ind</span> <span class="o">=</span> <span class="n">cities</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">city</span><span class="p">)</span>
+
+<span class="n">labels</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="n">d</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">ind</span><span class="p">])</span>
+<span class="n">perf1</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">labels</span><span class="p">]</span>
+<span class="n">perf2</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">labels</span><span class="p">]</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">))</span>  <span class="c1"># the label locations</span>
+<span class="n">width</span> <span class="o">=</span> <span class="mf">0.35</span>                <span class="c1"># the width of the bars</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">rects1</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">perf1</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">cities</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">rects2</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">perf2</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">cities</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># Add some text for labels, title and custom x-axis tick labels, etc.</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Scores&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Challenges&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Superhero performances by challenge.</span><span class="se">\n</span><span class="s1">Sorting by: &#39;</span>  <span class="o">+</span> <span class="n">city</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">bar_label</span><span class="p">(</span><span class="n">rects1</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">bar_label</span><span class="p">(</span><span class="n">rects2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;expected-superhero-perf.png&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+</section>
+<section id="Showing-plots-side-by-side">
+<h2>Showing plots side by side<a class="headerlink" href="#Showing-plots-side-by-side" title="Link to this heading">#</a></h2>
+<p>You can display plots on a grid. Each cell in the grid is identified by only one number. For example, for a grid of two rows and three columns, you would have cells indexed like this:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>1 2 3
+4 5 6
+</pre></div>
+</div>
+<p><strong>REMEMBER</strong>: <code class="docutils literal notranslate"><span class="pre">plt.figure</span></code> and <code class="docutils literal notranslate"><span class="pre">plt.show</span></code> should be called only <strong>ONCE</strong> in the whole program !</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+
+<span class="n">xs</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+
+<span class="c1"># cells:</span>
+<span class="c1"># 1 2 3</span>
+<span class="c1"># 4 5 6</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span>   <span class="c1"># 2 rows</span>
+            <span class="mi">3</span><span class="p">,</span>   <span class="c1"># 3 columns</span>
+            <span class="mi">1</span><span class="p">)</span>   <span class="c1"># plotting in first cell</span>
+<span class="n">ys1</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;first cell&#39;</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span>   <span class="c1"># 2 rows</span>
+            <span class="mi">3</span><span class="p">,</span>   <span class="c1"># 3 columns</span>
+            <span class="mi">2</span><span class="p">)</span>   <span class="c1"># plotting in second cell</span>
+
+<span class="n">ys2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span><span class="n">ys2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;2nd cell&#39;</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span>   <span class="c1"># 2 rows</span>
+            <span class="mi">3</span><span class="p">,</span>   <span class="c1"># 3 columns</span>
+            <span class="mi">3</span><span class="p">)</span>   <span class="c1"># plotting in third cell</span>
+
+<span class="n">ys3</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span><span class="n">ys3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;3rd cell&#39;</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span>   <span class="c1"># 2 rows</span>
+            <span class="mi">3</span><span class="p">,</span>   <span class="c1"># 3 columns</span>
+            <span class="mi">4</span><span class="p">)</span>   <span class="c1"># plotting in fourth cell</span>
+
+<span class="n">ys4</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span><span class="n">ys4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;4th cell&#39;</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span>   <span class="c1"># 2 rows</span>
+            <span class="mi">3</span><span class="p">,</span>   <span class="c1"># 3 columns</span>
+            <span class="mi">5</span><span class="p">)</span>   <span class="c1"># plotting in fifth cell</span>
+
+<span class="n">ys5</span> <span class="o">=</span> <span class="p">[</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span><span class="n">ys5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;5th cell&#39;</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span>   <span class="c1"># 2 rows</span>
+            <span class="mi">3</span><span class="p">,</span>   <span class="c1"># 3 columns</span>
+            <span class="mi">6</span><span class="p">)</span>   <span class="c1"># plotting in sixth cell</span>
+
+<span class="n">ys6</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span><span class="n">ys6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;6th cell&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">hspace</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># to avoid text overlapping</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>  <span class="c1"># ONLY call this ONCE at the very end</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization1-sol_71_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization1-sol_71_0.png" />
+</div>
+</div>
+<section id="Exercise---sin(kx)">
+<h3>Exercise - sin(kx)<a class="headerlink" href="#Exercise---sin(kx)" title="Link to this heading">#</a></h3>
+<p>Given a list <code class="docutils literal notranslate"><span class="pre">ks</span></code> containing <span class="math notranslate nohighlight">\(n\)</span> floats, show <span class="math notranslate nohighlight">\(n\)</span> plots stacked vertically of function <span class="math notranslate nohighlight">\(sin(k x)\)</span> with limits <code class="docutils literal notranslate"><span class="pre">left</span></code> to <code class="docutils literal notranslate"><span class="pre">right</span></code> subdivided in <code class="docutils literal notranslate"><span class="pre">50</span></code> intervals.</p>
+<ul class="simple">
+<li><p>display the <code class="docutils literal notranslate"><span class="pre">k</span></code> values as titles</p></li>
+<li><p>define a function <code class="docutils literal notranslate"><span class="pre">plot_sin</span></code> to be called <span class="math notranslate nohighlight">\(n\)</span> times</p></li>
+<li><p>put adequate vertical space</p></li>
+<li><p><strong>HINT</strong>: use numpy vector operations</p></li>
+<li><p><strong>REMEMBER</strong> <code class="docutils literal notranslate"><span class="pre">plt.figure</span></code> and <code class="docutils literal notranslate"><span class="pre">plt.show</span></code> must be called only <strong>ONCE</strong> in the whole program !</p></li>
+</ul>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><br/><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+
+<span class="n">ks</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+
+<span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization1-sol_73_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization1-sol_73_0.png" />
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><br/><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+
+<span class="n">ks</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_sin</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+    <span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ks</span><span class="p">),</span>   <span class="c1"># rows</span>
+                <span class="mi">1</span><span class="p">,</span>   <span class="c1"># columns</span>
+                <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>   <span class="c1"># cell number</span>
+    <span class="n">ys</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">k</span> <span class="o">*</span> <span class="n">xs</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;sin(</span><span class="si">%s</span><span class="s2">x)&quot;</span> <span class="o">%</span> <span class="n">k</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ks</span><span class="p">)):</span>
+    <span class="n">plot_sin</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">ks</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">i</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">hspace</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span>  <span class="c1"># to avoid text overlapping</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+</section>
+<section id="Other-plots">
+<h2>Other plots<a class="headerlink" href="#Other-plots" title="Link to this heading">#</a></h2>
+<p>Matplotlib allows to display pretty much anything, here we collect some we use in the book, for others, see the <a class="reference external" href="https://matplotlib.org/gallery/index.html">extensive Matplotlib documentation</a></p>
+<section id="Pie-chart">
+<h3>Pie chart<a class="headerlink" href="#Pie-chart" title="Link to this heading">#</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Oranges&#39;</span><span class="p">,</span> <span class="s1">&#39;Apples&#39;</span><span class="p">,</span> <span class="s1">&#39;Cocumbers&#39;</span><span class="p">]</span>
+<span class="n">fracs</span> <span class="o">=</span> <span class="p">[</span><span class="mi">14</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>   <span class="c1"># how much for each sector, note doesn&#39;t need to add up to 100</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">fracs</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">autopct</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%1.1f%%</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">shadow</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Super strict vegan diet (good luck)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization1-sol_79_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization1-sol_79_0.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="Fancy-plots">
+<h2>Fancy plots<a class="headerlink" href="#Fancy-plots" title="Link to this heading">#</a></h2>
+<p>You can enhance your plots with some eyecandy, we put some example.</p>
+<section id="Background-color">
+<h3>Background color<a class="headerlink" href="#Background-color" title="Link to this heading">#</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># CHANGES THE BACKGROUND COLOR FOR *ALL* SUBSEQUENT PLOTS</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.facecolor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;azure&#39;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization1-sol_82_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization1-sol_82_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.facecolor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;white&#39;</span>  <span class="c1"># restores the white for all following plots</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization1-sol_83_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization1-sol_83_0.png" />
+</div>
+</div>
+</section>
+<section id="Text">
+<h3>Text<a class="headerlink" href="#Text" title="Link to this heading">#</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">450</span><span class="p">)</span> <span class="c1"># important to set when you add text</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">600</span><span class="p">)</span> <span class="c1"># as matplotlib doesn&#39;t automatically resize to show them</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">250</span><span class="p">,</span>
+         <span class="mi">450</span><span class="p">,</span>
+         <span class="s2">&quot;Hello !&quot;</span><span class="p">,</span>
+         <span class="n">fontsize</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
+         <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span>
+         <span class="n">color</span><span class="o">=</span><span class="s2">&quot;lightgreen&quot;</span><span class="p">,</span>
+         <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="c1"># centers text horizontally</span>
+         <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span> <span class="c1"># centers text vertically</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization1-sol_85_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization1-sol_85_0.png" />
+</div>
+</div>
+</section>
+<section id="Images">
+<h3>Images<a class="headerlink" href="#Images" title="Link to this heading">#</a></h3>
+<p>Let’s try adding the image <a class="reference external" href="images/clef.png">clef.png</a></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+
+<span class="c1"># NOTE: if you don&#39;t see anything, check position and/or zoom factor</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.offsetbox</span><span class="w"> </span><span class="kn">import</span> <span class="n">OffsetImage</span><span class="p">,</span> <span class="n">AnnotationBbox</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">150</span><span class="p">)</span>   <span class="c1"># important to set when you add images</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">200</span><span class="p">)</span>   <span class="c1"># as matplotlib doesn&#39;t automatically resize to show them</span>
+<span class="n">ax</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;images/clef.png&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">AnnotationBbox</span><span class="p">(</span><span class="n">OffsetImage</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span>
+                            <span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span>
+                            <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization1-sol_87_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization1-sol_87_0.png" />
+</div>
+</div>
+</section>
+<section id="Color-intensity">
+<h3>Color intensity<a class="headerlink" href="#Color-intensity" title="Link to this heading">#</a></h3>
+<p>To tweak the color intensity we can use the <code class="docutils literal notranslate"><span class="pre">alpha</span></code> parameter, which varies from <code class="docutils literal notranslate"><span class="pre">0.0</span></code> to <code class="docutils literal notranslate"><span class="pre">1.0</span></code></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">150</span><span class="p">,</span><span class="mi">175</span><span class="p">],</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span><span class="mi">400</span><span class="p">],</span>
+         <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span>
+         <span class="n">alpha</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>  <span class="c1"># full color</span>
+         <span class="n">linewidth</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">100</span><span class="p">,</span><span class="mi">125</span><span class="p">],[</span><span class="mi">25</span><span class="p">,</span><span class="mi">400</span><span class="p">],</span>
+         <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span>
+         <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>  <span class="c1"># lighter</span>
+         <span class="n">linewidth</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">50</span><span class="p">,</span><span class="mi">75</span><span class="p">],</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span><span class="mi">400</span><span class="p">],</span>
+         <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span>
+         <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>  <span class="c1"># almost invisible</span>
+         <span class="n">linewidth</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization1-sol_89_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization1-sol_89_0.png" />
+</div>
+</div>
+</section>
+<section id="Exercise---Be-fancy">
+<h3>Exercise - Be fancy<a class="headerlink" href="#Exercise---Be-fancy" title="Link to this heading">#</a></h3>
+<p>Try writing some code to visualize the image down here</p>
+<p>EXPECTED OUTPUT</p>
+<p><img alt="expected-fancy-plot.png" src="../../_images/expected-fancy-plot.png" /></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization1-sol_91_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization1-sol_91_0.png" />
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+
+<span class="c1"># CHANGES BACKGROUND COLOR</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.facecolor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;azure&#39;</span>
+
+<span class="c1"># SHOWS TEXT</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">250</span><span class="p">,</span>
+         <span class="mi">450</span><span class="p">,</span>
+         <span class="s2">&quot;Be fancy&quot;</span><span class="p">,</span>
+         <span class="n">fontsize</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
+         <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span>
+         <span class="n">color</span><span class="o">=</span><span class="s2">&quot;pink&quot;</span><span class="p">,</span>
+         <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+         <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+
+<span class="c1"># CHANGES COLOR INTENSITY WITH alpha</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">25</span><span class="p">,</span><span class="mi">400</span><span class="p">],</span> <span class="p">[</span><span class="mi">300</span><span class="p">,</span><span class="mi">300</span><span class="p">],</span>
+         <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span>
+         <span class="n">alpha</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>  <span class="c1"># full color</span>
+         <span class="n">linewidth</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">25</span><span class="p">,</span><span class="mi">400</span><span class="p">],</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span><span class="mi">200</span><span class="p">],</span>
+         <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span>
+         <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>  <span class="c1"># softer</span>
+         <span class="n">linewidth</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">25</span><span class="p">,</span><span class="mi">400</span><span class="p">],</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">],</span>
+         <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span>
+         <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>  <span class="c1"># almost invisible</span>
+         <span class="n">linewidth</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># NOTE: if you don&#39;t see anything, check position and/or zoom factor</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.offsetbox</span><span class="w"> </span><span class="kn">import</span> <span class="n">OffsetImage</span><span class="p">,</span> <span class="n">AnnotationBbox</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">450</span><span class="p">)</span> <span class="c1"># important to set when you add images</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">600</span><span class="p">)</span> <span class="c1"># as matplotlib doesn&#39;t automatically resize to show them</span>
+
+<span class="n">ax</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;images/clef.png&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">AnnotationBbox</span><span class="p">(</span><span class="n">OffsetImage</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span>
+                            <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span>
+                            <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;expected-fancy-plot.png&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+</section>
+<section id="Continue">
+<h2>Continue<a class="headerlink" href="#Continue" title="Link to this heading">#</a></h2>
+<p>Go on with <a class="reference internal" href="visualization2-sol.html"><span class="doc">Matplotlib - Numpy images</span></a></p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="visualization2-sol.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Matplotlib - Numpy images</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="index.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">11 - Matplotlib</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2026, Erich Robbi
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Matplotlib</a><ul>
+<li><a class="reference internal" href="#Download-exercises-zip">Download exercises zip</a></li>
+<li><a class="reference internal" href="#Introduction">Introduction</a><ul>
+<li><a class="reference internal" href="#What-to-do">What to do</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#First-example">First example</a><ul>
+<li><a class="reference internal" href="#Plot-style">Plot style</a></li>
+<li><a class="reference internal" href="#x-power-2-exercise">x power 2 exercise</a></li>
+<li><a class="reference internal" href="#Axis-limits">Axis limits</a></li>
+<li><a class="reference internal" href="#Axis-size">Axis size</a></li>
+<li><a class="reference internal" href="#Changing-tick-labels">Changing tick labels</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#Multiple-lines">Multiple lines</a></li>
+<li><a class="reference internal" href="#Numpy">Numpy</a><ul>
+<li><a class="reference internal" href="#Example-without-numpy">Example without numpy</a></li>
+<li><a class="reference internal" href="#Example-with-numpy">Example with numpy</a></li>
+<li><a class="reference internal" href="#Exercise---sin(x)-+-3">Exercise - sin(x) + 3</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#Bar-plots">Bar plots</a><ul>
+<li><a class="reference internal" href="#Exercise---goleadors">Exercise - goleadors</a></li>
+<li><a class="reference internal" href="#Exercise---chemical-elements">Exercise - chemical elements</a></li>
+<li><a class="reference internal" href="#Exercise---superheroes">Exercise - superheroes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#Showing-plots-side-by-side">Showing plots side by side</a><ul>
+<li><a class="reference internal" href="#Exercise---sin(kx)">Exercise - sin(kx)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#Other-plots">Other plots</a><ul>
+<li><a class="reference internal" href="#Pie-chart">Pie chart</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#Fancy-plots">Fancy plots</a><ul>
+<li><a class="reference internal" href="#Background-color">Background color</a></li>
+<li><a class="reference internal" href="#Text">Text</a></li>
+<li><a class="reference internal" href="#Images">Images</a></li>
+<li><a class="reference internal" href="#Color-intensity">Color intensity</a></li>
+<li><a class="reference internal" href="#Exercise---Be-fancy">Exercise - Be fancy</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#Continue">Continue</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=d91ab2ad"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    </body>
+</html>

@@ -1,0 +1,8 @@
+11 - Matplotlib
+===============
+
+.. toctree::
+   :maxdepth: 1
+
+   visualization1-sol
+   visualization2-sol

@@ -1,0 +1,2559 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html"><link rel="search" title="Search" href="../../search.html"><link rel="next" title="Python Basics - Challenges" href="../../challenges/01%20-%20Basics/basics4-chal.html"><link rel="prev" title="Matplotlib" href="visualization1-sol.html">
+        <link rel="canonical" href="https://erich-r.github.io/SciProg27/lectures/11%20-%20Matplotlib/visualization2-sol.html">
+
+    <!-- Generated with Sphinx 9.0.4 and Furo 2025.12.19 -->
+        <title>Matplotlib - Numpy images - SciProg 2027</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=e429fab1" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">SciProg 2027</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  <span class="sidebar-brand-text">SciProg 2027</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../00%20-%20Installation/installation.html">Installation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../01%20-%20Basics/index.html">01 - Basics</a><input aria-label="Toggle navigation of 01 - Basics" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../01%20-%20Basics/basics1-ints-sol.html">Python Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01%20-%20Basics/basics2-bools-sol.html">Python Basics - Booleans</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01%20-%20Basics/basics3-floats-sol.html">Python Basics - Float</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../02%20-%20Strings/index.html">02 - Strings</a><input aria-label="Toggle navigation of 02 - Strings" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../02%20-%20Strings/strings1-sol.html">Strings 1 - Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02%20-%20Strings/strings2-sol.html">Strings 2 - Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02%20-%20Strings/strings3-sol.html">Strings 3 - Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02%20-%20Strings/strings4-sol.html">Strings 4 - Search Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../03%20-%20Lists/index.html">03 - Lists</a><input aria-label="Toggle navigation of 03 - Lists" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../03%20-%20Lists/lists1-sol.html">Lists 1 - Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03%20-%20Lists/lists2-sol.html">Lists 2 - operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03%20-%20Lists/lists3-sol.html">Lists 3 - Basic methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03%20-%20Lists/lists4-sol.html">Lists 4 - Search methods</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../04%20-%20Tuples/index.html">04 - Tuples</a><input aria-label="Toggle navigation of 04 - Tuples" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../04%20-%20Tuples/tuples1-sol.html">Tuples</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../05%20-%20Sets/index.html">05 - Sets</a><input aria-label="Toggle navigation of 05 - Sets" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../05%20-%20Sets/sets1-sol.html">Sets</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../06%20-%20Dictionaries/index.html">06 - Dictionaries</a><input aria-label="Toggle navigation of 06 - Dictionaries" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../06%20-%20Dictionaries/dictionaries1-sol.html">Dictionaries 1 - Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06%20-%20Dictionaries/dictionaries2-sol.html">Dictionaries 2 - operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06%20-%20Dictionaries/dictionaries3-sol.html">Dictionaries 3 - Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06%20-%20Dictionaries/dictionaries4-sol.html">Dictionaries 4 - special classes</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../07%20-%20Control%20flow/index.html">07 - Control flow</a><input aria-label="Toggle navigation of 07 - Control flow" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/for1-sol.html">For loops - Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/for2-sol.html">For loops - Iterating Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/for3-sol.html">For loops - Iterating Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/for4-sol.html">For loops - Iterating Tuples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/for5-sol.html">For loops - Iterating Sets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/for6-sol.html">For loops - Iterating Dictionaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/for7-sol.html">For loops - Nested Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/if1-sol.html">If Else statements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/sequences1-sol.html">Sequences and comprehensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/while1-sol.html">While loops 1 - introduction</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../08%20-%20Functions/index.html">08 - Functions</a><input aria-label="Toggle navigation of 08 - Functions" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../08%20-%20Functions/functions1-sol.html">Functions - solutions</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../09%20-%20Matrices%20of%20Lists/index.html">09 - Matrices of Lists</a><input aria-label="Toggle navigation of 09 - Matrices of Lists" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../09%20-%20Matrices%20of%20Lists/matrices-lists1-sol.html">Matrices: list of lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../09%20-%20Matrices%20of%20Lists/matrices-lists2-sol.html">Matrices 2: list of lists - other exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../10%20-%20Matrices%20Numpy/index.html">10 - Matrices Numpy</a><input aria-label="Toggle navigation of 10 - Matrices Numpy" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../10%20-%20Matrices%20Numpy/matrices-numpy1-sol.html">Matrices: Numpy 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../10%20-%20Matrices%20Numpy/matrices-numpy2-sol.html">Matrices: Numpy 2 - Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">11 - Matplotlib</a><input aria-label="Toggle navigation of 11 - Matplotlib" checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="visualization1-sol.html">Matplotlib</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Matplotlib - Numpy images</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Challenge Yourself at Home</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/01%20-%20Basics/basics4-chal.html">Python Basics - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/02%20-%20Strings/strings5-chal.html">Strings - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/03%20-%20Lists/lists5-chal.html">Lists - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/04%20-%20Tuples/tuples2-chal.html">Tuples - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/05%20-%20Sets/sets2-chal.html">Sets - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/06%20-%20Dictionaries/dictionaries5-chal.html">Dictionaries - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/07%20-%20Control%20flow/for8-chal.html">For Loops - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/07%20-%20Control%20flow/if2-chal.html">If Else - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/07%20-%20Control%20flow/sequences2-chal.html">Sequences - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/07%20-%20Control%20flow/while2-chal.html">While loops - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/09%20-%20Matrices%20of%20Lists/matrices-lists3-chal.html">Matrices Lists - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/11%20-%20Matplotlib/visualization3-chal.html">Matplotlib Challenge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/Misc.%20Challenges/chall1-chal.html">Challenges - Miscellaneous</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Commandments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../commandments/commandments.html">Rules You Shall Not Break</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="Matplotlib---Numpy-images">
+<h1>Matplotlib - Numpy images<a class="headerlink" href="#Matplotlib---Numpy-images" title="Link to this heading">#</a></h1>
+<section id="Download-exercises-zip">
+<h2><a class="reference external" href="../_static/generated/visualization.zip">Download exercises zip</a><a class="headerlink" href="#Download-exercises-zip" title="Link to this heading">#</a></h2>
+<p>Images are a direct application of matrices, and show we can nicely translate a numpy matrix cell into a pixel on the screen.</p>
+<p>Typically, images are divided into color channels: a common scheme is the RGB model, which stands for Red Green and Blue. In this tutorial we will load an image where each pixel is made of three integer values ranging from 0 to 255 included. Each integer indicates how much of a color component is present in the pixel, with zero meaning absence and 255 bright colors.</p>
+<section id="What-to-do">
+<h3>What to do<a class="headerlink" href="#What-to-do" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>unzip exercises in a folder, you should get something like this:</p></li>
+</ul>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>visualization
+    visualization1.ipynb
+    visualization1-sol.ipynb
+    visualization3-chal.ipynb
+    visualization2.ipynb
+    visualization2-sol.ipynb
+    jupman.py
+</pre></div>
+</div>
+<div class="admonition warning">
+<p><strong>WARNING</strong>: to correctly visualize the notebook, it MUST be in an unzipped folder !</p>
+</div>
+<ul class="simple">
+<li><p>open Jupyter Notebook from that folder. Two things should open, first a console and then browser. The browser should show a file list: navigate the list and open the notebook <code class="docutils literal notranslate"><span class="pre">visualization-images.ipynb</span></code></p></li>
+<li><p>Go on reading that notebook, and follow instuctions inside.</p></li>
+</ul>
+<p>Shortcut keys:</p>
+<ul class="simple">
+<li><p>to execute Python code inside a Jupyter cell, press <code class="docutils literal notranslate"><span class="pre">Control</span> <span class="pre">+</span> <span class="pre">Enter</span></code></p></li>
+<li><p>to execute Python code inside a Jupyter cell AND select next cell, press <code class="docutils literal notranslate"><span class="pre">Shift</span> <span class="pre">+</span> <span class="pre">Enter</span></code></p></li>
+<li><p>to execute Python code inside a Jupyter cell AND a create a new cell aftwerwards, press <code class="docutils literal notranslate"><span class="pre">Alt</span> <span class="pre">+</span> <span class="pre">Enter</span></code></p></li>
+<li><p>If the notebooks look stuck, try to select <code class="docutils literal notranslate"><span class="pre">Kernel</span> <span class="pre">-&gt;</span> <span class="pre">Restart</span></code></p></li>
+</ul>
+</section>
+</section>
+<section id="Introduction">
+<h2>Introduction<a class="headerlink" href="#Introduction" title="Link to this heading">#</a></h2>
+<p>Let’s load the image:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># this is *not* a python command, it is a Jupyter-specific magic command,</span>
+<span class="c1"># to tell jupyter we want the graphs displayed in the cell outputs</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.image</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mpimg</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">img</span> <span class="o">=</span> <span class="n">mpimg</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;images/lulu.jpg&#39;</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;matplotlib.image.AxesImage at 0x7ff5875da550&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_4_1.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_4_1.png" />
+</div>
+</div>
+<section id="Monochrome">
+<h3>Monochrome<a class="headerlink" href="#Monochrome" title="Link to this heading">#</a></h3>
+<p>For an easy start, we first get a monochromatic view of the image we call <code class="docutils literal notranslate"><span class="pre">gimg</span></code>:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gimg</span> <span class="o">=</span> <span class="n">img</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">]</span>   <span class="c1"># this trick selects only one channel (the red one)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">gimg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;matplotlib.image.AxesImage at 0x7ff586c08fd0&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_6_1.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_6_1.png" />
+</div>
+</div>
+<p>If we have taken the RED, why is it shown GREEN?? For Matplotlib, the picture is only a square matrix of integer numbers, for now it has no notion of the best color scheme we would like to see:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">gimg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[[209 209 210 ... 117 118 117]
+ [214 214 215 ... 112 116 117]
+ [217 217 217 ... 105 110 114]
+ ...
+ [ 36  33  30 ...  72  67  64]
+ [ 42  36  31 ...  70  65  61]
+ [ 37  31  24 ...  68  63  60]]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">gimg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+numpy.ndarray
+</pre></div></div>
+</div>
+<p>By default matplotlib shows the intensity of light using with a greenish colormap.</p>
+<p>Luckily, <a class="reference external" href="https://matplotlib.org/3.1.0/tutorials/colors/colormaps.html">many color maps</a> are available, for example the <code class="docutils literal notranslate"><span class="pre">'hot'</span></code> one:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">gimg</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;hot&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;matplotlib.image.AxesImage at 0x7ff586ba6d50&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_12_1.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_12_1.png" />
+</div>
+</div>
+<p>To avoid confusion, we will pick a proper gray colormap:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">gimg</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;matplotlib.image.AxesImage at 0x7ff586b2ea50&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_14_1.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_14_1.png" />
+</div>
+</div>
+<p>Let’s define this shorthand function to type a little less:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">gs</span><span class="p">(</span><span class="n">some_img</span><span class="p">):</span>
+    <span class="c1"># vmin and vmax prevent normalization that occurs only with monochromatic images</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">some_img</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gs</span><span class="p">(</span><span class="n">gimg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_17_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_17_0.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="Focus">
+<h2>Focus<a class="headerlink" href="#Focus" title="Link to this heading">#</a></h2>
+<p>Let’s try some simple transformation. As with regular Python lists, we can do slicing:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gs</span><span class="p">(</span><span class="n">gimg</span><span class="p">[</span><span class="mi">350</span><span class="p">:</span><span class="mi">1050</span><span class="p">,</span><span class="mi">500</span><span class="p">:</span><span class="mi">1200</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_20_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_20_0.png" />
+</div>
+</div>
+<p><strong>NOTE 1</strong>: differently from regular lists of lists, in Numpy we can write slices for different dimensions <strong>within the same square brackets</strong></p>
+<p><strong>NOTE 2</strong>: We are still talking about matrices, so pictures also follow the very same conventions of regular algebra we’ve also seen with lists of lists: the first index is for rows and starts from 0 in the left upper corner, and second index is for columns.</p>
+<p><strong>NOTE 3</strong>: the indeces shown on the extracted picture are <em>not</em> the indeces of the original matrix!</p>
+<section id="Exercise---Head-focus">
+<h3>Exercise - Head focus<a class="headerlink" href="#Exercise---Head-focus" title="Link to this heading">#</a></h3>
+<p>Try selecting the head:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_23_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_23_0.png" />
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gs</span><span class="p">(</span><span class="n">gimg</span><span class="p">[</span><span class="mi">470</span><span class="p">:</span><span class="mi">650</span><span class="p">,</span><span class="mi">600</span><span class="p">:</span><span class="mi">860</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+</section>
+<section id="hstack-and-vstack">
+<h2><code class="docutils literal notranslate"><span class="pre">hstack</span></code> and <code class="docutils literal notranslate"><span class="pre">vstack</span></code><a class="headerlink" href="#hstack-and-vstack" title="Link to this heading">#</a></h2>
+<p>We can stitch together pictures with <code class="docutils literal notranslate"><span class="pre">hstack</span></code> and <code class="docutils literal notranslate"><span class="pre">vstack</span></code>. Note they produce a NEW matrix:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">gimg</span><span class="p">,</span> <span class="n">gimg</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_28_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_28_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">gimg</span><span class="p">,</span> <span class="n">gimg</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_29_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_29_0.png" />
+</div>
+</div>
+<section id="Exercise---Passport">
+<h3>Exercise - Passport<a class="headerlink" href="#Exercise---Passport" title="Link to this heading">#</a></h3>
+<p>Try to replicate somehow the head</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_31_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_31_0.png" />
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">head</span> <span class="o">=</span> <span class="n">gimg</span><span class="p">[</span><span class="mi">470</span><span class="p">:</span><span class="mi">650</span><span class="p">,</span><span class="mi">600</span><span class="p">:</span><span class="mi">860</span><span class="p">]</span>
+<span class="n">col</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">head</span><span class="p">,</span> <span class="n">head</span><span class="p">))</span>
+<span class="n">gs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">col</span><span class="p">,</span> <span class="n">col</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+</section>
+<section id="flip">
+<h2><code class="docutils literal notranslate"><span class="pre">flip</span></code><a class="headerlink" href="#flip" title="Link to this heading">#</a></h2>
+<p>A handy method for mirroring is <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.flip.html">flip</a>:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">gimg</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_36_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_36_0.png" />
+</div>
+</div>
+<section id="Exercise---Hall-of-mirrors">
+<h3>Exercise - Hall of mirrors<a class="headerlink" href="#Exercise---Hall-of-mirrors" title="Link to this heading">#</a></h3>
+<p>Try to replicate somehow the head, pointing it in different directions as in the example</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_38_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_38_0.png" />
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">head</span> <span class="o">=</span> <span class="n">gimg</span><span class="p">[</span><span class="mi">470</span><span class="p">:</span><span class="mi">650</span><span class="p">,</span><span class="mi">600</span><span class="p">:</span><span class="mi">860</span><span class="p">]</span>
+<span class="n">col1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">head</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">head</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)))</span>
+<span class="n">gs</span><span class="p">(</span><span class="n">col1</span><span class="p">)</span>
+<span class="n">col2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">col1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">gs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">col1</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">col2</span><span class="p">))))</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="Exercise---The-nose-from-above">
+<h3>Exercise - The nose from above<a class="headerlink" href="#Exercise---The-nose-from-above" title="Link to this heading">#</a></h3>
+<p>Do some googling and find an appropriate method for obtaining this:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_43_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_43_0.png" />
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><br/><span></span><span class="n">gs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">rot90</span><span class="p">(</span><span class="n">gimg</span><span class="p">[:,:</span><span class="n">gimg</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">//</span><span class="mi">2</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+</section>
+<section id="Writing-arrays">
+<h2>Writing arrays<a class="headerlink" href="#Writing-arrays" title="Link to this heading">#</a></h2>
+<p>We can write into an array using square brackets:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">7</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([7, 9, 4, 8, 6])
+</pre></div></div>
+</div>
+<p>So far, nothing special. Let’s try to make a slice:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>                <span class="c1">#0 1 2 3 4</span>
+<span class="n">arr1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">])</span>
+<span class="n">arr2</span> <span class="o">=</span> <span class="n">arr1</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">arr2</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([9, 4])
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">7</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr2</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([7, 4])
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr1</span>  <span class="c1"># the original was modified !!!</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([5, 7, 4, 8, 6])
+</pre></div></div>
+</div>
+<div class="admonition warning">
+<p><strong>WARNING: SLICE CELLS IN NUMPY ARE POINTERS TO ORIGINAL CELLS!</strong></p>
+</div>
+<p>To prevent problems, you can create a <em>deep copy</em> by using the <code class="docutils literal notranslate"><span class="pre">copy</span></code> method:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>                <span class="c1">#0 1 2 3 4</span>
+<span class="n">arr1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">])</span>
+<span class="n">arr2</span> <span class="o">=</span> <span class="n">arr1</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">arr2</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([9, 4])
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">7</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr2</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([7, 4])
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr1</span>  <span class="c1"># remained the same</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([5, 9, 4, 8, 6])
+</pre></div></div>
+</div>
+</section>
+<section id="Writing-into-images">
+<h2>Writing into images<a class="headerlink" href="#Writing-into-images" title="Link to this heading">#</a></h2>
+<p>Let’s go back to images. First note that <code class="docutils literal notranslate"><span class="pre">gimg</span></code> was generated by calling <code class="docutils literal notranslate"><span class="pre">pt.imshow</span></code>, which set it as READ-ONLY:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">gimg</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">255</span>  <span class="c1"># NOT POSSIBLE WITH LOADED IMAGES!</span>
+<span class="o">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span>                                <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">186</span><span class="o">-</span><span class="mi">7</span><span class="n">d21dd84cac2</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span><span class="p">()</span>
+<span class="o">----&gt;</span> <span class="mi">1</span> <span class="n">img</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span>  <span class="c1"># NOT POSSIBLE!</span>
+
+<span class="ne">ValueError</span><span class="p">:</span> <span class="n">assignment</span> <span class="n">destination</span> <span class="ow">is</span> <span class="n">read</span><span class="o">-</span><span class="n">only</span>
+</pre></div>
+</div>
+<p>If we want something we can write into, we need to perform a <strong>deep copy</strong>:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mimg</span> <span class="o">=</span> <span class="n">gimg</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>  <span class="c1"># *DEEP* COPY</span>
+<span class="n">mimg</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">255</span>  <span class="c1"># the copy is writable</span>
+<span class="n">mimg</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+255
+</pre></div></div>
+</div>
+<p>If we want to set an entire slice to a constant value, we can write like this:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mimg</span><span class="p">[:,</span> <span class="mi">300</span><span class="p">:</span><span class="mi">400</span><span class="p">]</span> <span class="o">=</span> <span class="mi">255</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gs</span><span class="p">(</span><span class="n">mimg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_69_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_69_0.png" />
+</div>
+</div>
+<section id="Exercise---Stripes">
+<h3>Exercise - Stripes<a class="headerlink" href="#Exercise---Stripes" title="Link to this heading">#</a></h3>
+<p>Write a program that given top-left coordinates <code class="docutils literal notranslate"><span class="pre">tl</span></code> and bottom-right coordinates <code class="docutils literal notranslate"><span class="pre">br</span></code> creates a NEW image <code class="docutils literal notranslate"><span class="pre">nimg</span></code> with lines drawn like in the example:</p>
+<ul class="simple">
+<li><p>use a width of 5 pixels</p></li>
+</ul>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><br/><span></span><span class="n">tl</span> <span class="o">=</span> <span class="p">(</span><span class="mi">450</span><span class="p">,</span><span class="mi">600</span><span class="p">)</span>
+<span class="n">br</span> <span class="o">=</span> <span class="p">(</span><span class="mi">650</span><span class="p">,</span><span class="mi">830</span><span class="p">)</span>
+
+<span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_71_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_71_0.png" />
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><br/><span></span><span class="n">tl</span> <span class="o">=</span> <span class="p">(</span><span class="mi">450</span><span class="p">,</span><span class="mi">600</span><span class="p">)</span>
+<span class="n">br</span> <span class="o">=</span> <span class="p">(</span><span class="mi">650</span><span class="p">,</span><span class="mi">830</span><span class="p">)</span>
+
+
+<span class="n">nimg</span> <span class="o">=</span> <span class="n">gimg</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>  <span class="c1"># *DEEP* COPY</span>
+<span class="n">nimg</span><span class="p">[</span><span class="n">tl</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">tl</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">5</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="mi">255</span>
+<span class="n">nimg</span><span class="p">[</span><span class="n">br</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">br</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">5</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="mi">255</span>
+<span class="n">nimg</span><span class="p">[:,</span> <span class="n">tl</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span><span class="n">tl</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="mi">255</span>
+<span class="n">nimg</span><span class="p">[:,</span> <span class="n">br</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span><span class="n">br</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="mi">255</span>
+
+<span class="n">gs</span><span class="p">(</span><span class="n">nimg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details><div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gs</span><span class="p">(</span><span class="n">gimg</span><span class="p">)</span> <span class="c1"># original must NOT change!</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_75_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_75_0.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="In-a-dark-integer-night">
+<h2>In a dark integer night<a class="headerlink" href="#In-a-dark-integer-night" title="Link to this heading">#</a></h2>
+<p>Let’s say we want to darken the scene. One simple approach would be to divide all the numbers by two:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gs</span><span class="p">(</span><span class="n">gimg</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_77_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_77_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gimg</span> <span class="o">//</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([[104, 104, 105, ...,  58,  59,  58],
+       [107, 107, 107, ...,  56,  58,  58],
+       [108, 108, 108, ...,  52,  55,  57],
+       ...,
+       [ 18,  16,  15, ...,  36,  33,  32],
+       [ 21,  18,  15, ...,  35,  32,  30],
+       [ 18,  15,  12, ...,  34,  31,  30]], dtype=uint8)
+</pre></div></div>
+</div>
+<p>If we divide by floats we get an array of floats:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gimg</span> <span class="o">/</span> <span class="mf">3.14</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([[66.56050955, 66.56050955, 66.87898089, ..., 37.2611465 ,
+        37.57961783, 37.2611465 ],
+       [68.15286624, 68.15286624, 68.47133758, ..., 35.66878981,
+        36.94267516, 37.2611465 ],
+       [69.10828025, 69.10828025, 69.10828025, ..., 33.43949045,
+        35.03184713, 36.30573248],
+       ...,
+       [11.46496815, 10.50955414,  9.55414013, ..., 22.92993631,
+        21.33757962, 20.38216561],
+       [13.37579618, 11.46496815,  9.87261146, ..., 22.29299363,
+        20.70063694, 19.42675159],
+       [11.78343949,  9.87261146,  7.6433121 , ..., 21.65605096,
+        20.06369427, 19.10828025]])
+</pre></div></div>
+</div>
+<p>To go back to unsigned bytes, you can use <code class="docutils literal notranslate"><span class="pre">astype</span></code>:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">gimg</span> <span class="o">/</span> <span class="mf">3.0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([[69, 69, 70, ..., 39, 39, 39],
+       [71, 71, 71, ..., 37, 38, 39],
+       [72, 72, 72, ..., 35, 36, 38],
+       ...,
+       [12, 11, 10, ..., 24, 22, 21],
+       [14, 12, 10, ..., 23, 21, 20],
+       [12, 10,  8, ..., 22, 21, 20]], dtype=uint8)
+</pre></div></div>
+</div>
+<p>We used division because it guarantees we will never go below zero, which is important when working with unsigned bytes as we’re doing here. Let’s see what happens when we violate the datatype bounds.</p>
+<section id="The-Integer-Shining">
+<h3>The Integer Shining<a class="headerlink" href="#The-Integer-Shining" title="Link to this heading">#</a></h3>
+<p>Intuitevely, if we want more light we can try increasing the matrices values but something terrible hides in the shadows….</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gs</span><span class="p">(</span><span class="n">gimg</span> <span class="o">+</span> <span class="mi">30</span><span class="p">)</span>  <span class="c1"># mmm something looks wrong ...</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_85_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_85_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gs</span><span class="p">(</span><span class="n">gimg</span> <span class="o">+</span> <span class="mi">100</span><span class="p">)</span>  <span class="c1"># even worse!</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_86_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_86_0.png" />
+</div>
+</div>
+<p>Something really bad happened:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gimg</span> <span class="o">+</span> <span class="mi">100</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([[ 53,  53,  54, ..., 217, 218, 217],
+       [ 58,  58,  59, ..., 212, 216, 217],
+       [ 61,  61,  61, ..., 205, 210, 214],
+       ...,
+       [136, 133, 130, ..., 172, 167, 164],
+       [142, 136, 131, ..., 170, 165, 161],
+       [137, 131, 124, ..., 168, 163, 160]], dtype=uint8)
+</pre></div></div>
+</div>
+<p>Why do we get values less than &lt; 100 ??</p>
+<p>This is not so weird, technically it’s called integer overflow and is the way CPU works with byte sized integers, so most programming languages actually behave like this. In regular Python you don’t notice it because standard Python allows for arbitrary sized integers, but that comes at a big performance cost that Numpy cannot afford, so in a sense we can say Numpy is ‘closer to the metal’ of the CPU.</p>
+<p>Let’s see a simpler example:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>  <span class="c1"># unsigned 8 bit byte, values from 0 to 255 included</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([0, 0, 0], dtype=uint8)
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">255</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([255,   0,   0], dtype=uint8)
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>  <span class="c1"># cycles back to zero</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([0, 0, 0], dtype=uint8)
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>  <span class="c1"># cycles forward to 255</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([255,   0,   0], dtype=uint8)
+</pre></div></div>
+</div>
+<p>Going back to the image, how could we prevent exceeding the limit of 255?</p>
+<p><code class="docutils literal notranslate"><span class="pre">np.minimum</span></code> compares arrays cell by cell:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">9</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">8</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([5, 4, 2])
+</pre></div></div>
+</div>
+<p>As well as matrices:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><br/><span></span><span class="n">m1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span>
+               <span class="p">[</span><span class="mi">8</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">m2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">9</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">8</span><span class="p">],</span>
+               <span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">]])</span>
+<span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([[5, 4, 2],
+       [6, 0, 1]])
+</pre></div></div>
+</div>
+<p>If you pass a constant, it will automatically compare all matrix cells against that constant:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([[2, 2, 2],
+       [2, 2, 1]])
+</pre></div></div>
+</div>
+</section>
+<section id="Exercise---Be-bright">
+<h3>Exercise - Be bright<a class="headerlink" href="#Exercise---Be-bright" title="Link to this heading">#</a></h3>
+<p>Now try writing some code which enhances scene luminosity by adding <code class="docutils literal notranslate"><span class="pre">light=125</span></code> without distortions (you may still see some pixellation due to the fact we have taken just one color channel from the original image)</p>
+<ul class="simple">
+<li><p><strong>DO NOT</strong> exceed 255 value for cells - if you see dark spots in your image where before there was white (i.e. background sky), it means color cycled back to small values!</p></li>
+<li><p><strong>DO NOT</strong> write stuff like <code class="docutils literal notranslate"><span class="pre">gimg</span> <span class="pre">+</span> <span class="pre">light</span></code>, this would surely exceed the 255 bound !!</p></li>
+<li><p><strong>MUST</strong> have unsigned bytes as cells type</p></li>
+</ul>
+<p><strong>HINT 1</strong>: if direct sum is not the way, which safe operations are there which surely won’t provoke any overflow?</p>
+<p><strong>HINT 2</strong>: you will need more than one step to solve the exercise</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">light</span><span class="o">=</span><span class="mi">125</span>
+<span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_105_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_105_0.png" />
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">light</span><span class="o">=</span><span class="mi">125</span>
+<span class="n">gs</span><span class="p">(</span><span class="n">gimg</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="mi">255</span> <span class="o">-</span> <span class="n">gimg</span><span class="p">,</span> <span class="n">light</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+</section>
+<section id="RGB---Get-colorful">
+<h2>RGB - Get colorful<a class="headerlink" href="#RGB---Get-colorful" title="Link to this heading">#</a></h2>
+<p>Let’s get a third dimension for representing colors. Our new third dimension will have three planes of integers, in this order:</p>
+<p>0: <strong>R</strong>ed</p>
+<p>1: <strong>G</strong>reen</p>
+<p>2: <strong>B</strong>lue</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;matplotlib.image.AxesImage at 0x7ff584617990&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_110_1.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_110_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+numpy.ndarray
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">img</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(1080, 1440, 3)
+</pre></div></div>
+</div>
+<p>Each pixel is represented by three integer values:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[[[209 223 236]
+  [209 223 236]
+  [210 224 237]
+  ...
+  [117 132 139]
+  [118 132 141]
+  [117 131 140]]
+
+ [[214 228 241]
+  [214 228 241]
+  [215 229 242]
+  ...
+  [112 127 134]
+  [116 131 138]
+  [117 131 140]]
+
+ [[217 229 243]
+  [217 229 243]
+  [217 229 243]
+  ...
+  [105 120 127]
+  [110 125 132]
+  [114 129 136]]
+
+ ...
+
+ [[ 36  28  49]
+  [ 33  25  46]
+  [ 30  22  43]
+  ...
+  [ 72  78  90]
+  [ 67  73  87]
+  [ 64  70  84]]
+
+ [[ 42  34  55]
+  [ 36  28  49]
+  [ 31  23  44]
+  ...
+  [ 70  76  88]
+  [ 65  71  85]
+  [ 61  67  81]]
+
+ [[ 37  29  50]
+  [ 31  23  44]
+  [ 24  16  37]
+  ...
+  [ 68  74  86]
+  [ 63  69  83]
+  [ 60  66  80]]]
+</pre></div></div>
+</div>
+<p>Given a pixel coordinates, like <code class="docutils literal notranslate"><span class="pre">0,0</span></code>, we can extract the color with a third coordinate like this:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">img</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># red</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+209
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[58]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">img</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># green</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[58]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+223
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[59]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">img</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>  <span class="c1"># blue</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[59]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+236
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[60]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">img</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>   <span class="c1"># result is an array with three RGB colors</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[60]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([209, 223, 236], dtype=uint8)
+</pre></div></div>
+</div>
+</section>
+<section id="Exercise---Focus---top-left">
+<h2>Exercise - Focus - top left<a class="headerlink" href="#Exercise---Focus---top-left" title="Link to this heading">#</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[61]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">[:</span><span class="mi">100</span><span class="p">,:</span><span class="mi">100</span><span class="p">,:])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[61]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;matplotlib.image.AxesImage at 0x7ff5845b1dd0&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_121_1.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_121_1.png" />
+</div>
+</div>
+</section>
+<section id="Exercise---Focus---bottom---left">
+<h2>Exercise - Focus - bottom - left<a class="headerlink" href="#Exercise---Focus---bottom---left" title="Link to this heading">#</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_123_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_123_0.png" />
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">[</span><span class="o">-</span><span class="mi">100</span><span class="p">:,:</span><span class="mi">100</span><span class="p">,:])</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="Exercise---Focus---bottom---right">
+<h2>Exercise - Focus - bottom - right<a class="headerlink" href="#Exercise---Focus---bottom---right" title="Link to this heading">#</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_128_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_128_0.png" />
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">[</span><span class="o">-</span><span class="mi">100</span><span class="p">:,</span><span class="o">-</span><span class="mi">100</span><span class="p">:,:])</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="Exercise---Focus---top---right">
+<h2>Exercise - Focus - top - right<a class="headerlink" href="#Exercise---Focus---top---right" title="Link to this heading">#</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_133_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_133_0.png" />
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">[:</span><span class="mi">100</span><span class="p">,</span><span class="o">-</span><span class="mi">100</span><span class="p">:,:])</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="Exercise---Look-the-other-way">
+<h2>Exercise - Look the other way<a class="headerlink" href="#Exercise---Look-the-other-way" title="Link to this heading">#</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_138_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_138_0.png" />
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fliplr</span><span class="p">(</span><span class="n">img</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="Exercise---Upside-down-world">
+<h2>Exercise - Upside down world<a class="headerlink" href="#Exercise---Upside-down-world" title="Link to this heading">#</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_143_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_143_0.png" />
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fliplr</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">flipud</span><span class="p">(</span><span class="n">img</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="Exercise---Shrinking-Walls---X">
+<h2>Exercise - Shrinking Walls - X<a class="headerlink" href="#Exercise---Shrinking-Walls---X" title="Link to this heading">#</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_148_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_148_0.png" />
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">[:,::</span><span class="mi">2</span><span class="p">,:])</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="Exercise---Shrinking-Walls---Y">
+<h2>Exercise - Shrinking Walls - Y<a class="headerlink" href="#Exercise---Shrinking-Walls---Y" title="Link to this heading">#</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_153_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_153_0.png" />
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">[::</span><span class="mi">2</span><span class="p">,:,:])</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="Exercise---Shrinking-World">
+<h2>Exercise - Shrinking World<a class="headerlink" href="#Exercise---Shrinking-World" title="Link to this heading">#</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_158_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_158_0.png" />
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">[::</span><span class="mi">2</span><span class="p">,::</span><span class="mi">2</span><span class="p">,:])</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="Exercise---Pixellate">
+<h2>Exercise - Pixellate<a class="headerlink" href="#Exercise---Pixellate" title="Link to this heading">#</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_163_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_163_0.png" />
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">[::</span><span class="mi">15</span><span class="p">,::</span><span class="mi">15</span><span class="p">,:])</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="Exercise---Feeling-Red">
+<h2>Exercise - Feeling Red<a class="headerlink" href="#Exercise---Feeling-Red" title="Link to this heading">#</a></h2>
+<p>Create a NEW image where you only see red</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_168_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_168_0.png" />
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mimg</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">mimg</span><span class="p">[:,:,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">mimg</span><span class="p">[:,:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mimg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="Exercise---Feeling-Green">
+<h2>Exercise - Feeling Green<a class="headerlink" href="#Exercise---Feeling-Green" title="Link to this heading">#</a></h2>
+<p>Create a NEW image where you only see green</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_173_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_173_0.png" />
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mimg</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">mimg</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">mimg</span><span class="p">[:,:,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mimg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="Exercise---Feeling-Blue">
+<h2>Exercise - Feeling Blue<a class="headerlink" href="#Exercise---Feeling-Blue" title="Link to this heading">#</a></h2>
+<p>Create a NEW image where you only see blue</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_178_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_178_0.png" />
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mimg</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">mimg</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">mimg</span><span class="p">[:,:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mimg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="Exercise---No-Red">
+<h2>Exercise - No Red<a class="headerlink" href="#Exercise---No-Red" title="Link to this heading">#</a></h2>
+<p>Create a NEW image without red</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_183_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_183_0.png" />
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mimg</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">mimg</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mimg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="Exercise---No-Green">
+<h2>Exercise - No Green<a class="headerlink" href="#Exercise---No-Green" title="Link to this heading">#</a></h2>
+<p>Create a NEW image without green</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_188_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_188_0.png" />
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mimg</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">mimg</span><span class="p">[:,:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mimg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="Exercise---No-Blue">
+<h2>Exercise - No Blue<a class="headerlink" href="#Exercise---No-Blue" title="Link to this heading">#</a></h2>
+<p>Create a NEW image without blue</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_193_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_193_0.png" />
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mimg</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">mimg</span><span class="p">[:,:,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mimg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="Exercise---Feeling-Gray-again">
+<h2>Exercise - Feeling Gray again<a class="headerlink" href="#Exercise---Feeling-Gray-again" title="Link to this heading">#</a></h2>
+<p>Given an RGB image, set all the values equal to red channel</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_198_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_198_0.png" />
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mimg</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">mimg</span><span class="p">[:,:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">mimg</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">mimg</span><span class="p">[:,:,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">mimg</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mimg</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mimg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="Exercise---Beyond-the-limit">
+<h2>Exercise - Beyond the limit<a class="headerlink" href="#Exercise---Beyond-the-limit" title="Link to this heading">#</a></h2>
+<p>… weird things happen:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[78]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span> <span class="o">+</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[78]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;matplotlib.image.AxesImage at 0x7ff57ec72b50&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_203_1.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_203_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[79]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mimg</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">mimg</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">255</span>  <span class="c1"># limit !!</span>
+<span class="n">mimg</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[79]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+255
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[80]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mimg</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>   <span class="c1"># integer overflow, cycles back - note it does not happen in regular Python !</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[81]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mimg</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[81]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0
+</pre></div></div>
+</div>
+<p>Note this is not so weird, technically this is called overflow and us the way CPU works with byte sized integers, so most programming languages actually behave like this.</p>
+<p>You can get the same problem when subtracting:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[82]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mimg</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>     <span class="c1"># limit !!</span>
+<span class="n">mimg</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>    <span class="c1"># integer overflow , cycles forward</span>
+<span class="n">mimg</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[82]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+255
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[83]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span> <span class="o">+</span> <span class="n">img</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[83]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;matplotlib.image.AxesImage at 0x7ff57ebef550&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_209_1.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_209_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[84]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>  <span class="c1"># + operator didn&#39;t change original image</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[84]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;matplotlib.image.AxesImage at 0x7ff57eb55250&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_210_1.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_210_1.png" />
+</div>
+</div>
+</section>
+<section id="Exercise---Gimme-light">
+<h2>Exercise - Gimme light<a class="headerlink" href="#Exercise---Gimme-light" title="Link to this heading">#</a></h2>
+<p>Increment all the RGB values of <code class="docutils literal notranslate"><span class="pre">light</span></code>, <strong>without overflowing</strong></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">light</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_212_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_212_0.png" />
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">light</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="mi">255</span> <span class="o">-</span> <span class="n">img</span><span class="p">,</span> <span class="n">light</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="Exercise---When-the-darkness-comes---with-a-warning">
+<h2>Exercise - When the darkness comes - with a warning<a class="headerlink" href="#Exercise---When-the-darkness-comes---with-a-warning" title="Link to this heading">#</a></h2>
+<p>Decrement all values by <code class="docutils literal notranslate"><span class="pre">light</span></code>. As a first attempt, a result with a warning might be considered acceptable.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">light</span> <span class="o">=</span> <span class="o">-</span><span class="mi">50</span>
+<span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_217_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_217_0.png" />
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">light</span> <span class="o">=</span> <span class="o">-</span><span class="mi">50</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="mi">255</span> <span class="o">-</span> <span class="n">img</span><span class="p">,</span> <span class="n">light</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="Exercise---When-the-darkness-comes---without-a-warning">
+<h2>Exercise - When the darkness comes - without a warning<a class="headerlink" href="#Exercise---When-the-darkness-comes---without-a-warning" title="Link to this heading">#</a></h2>
+<p>Decrement all RGB values by <code class="docutils literal notranslate"><span class="pre">light</span></code>, <strong>without overflowing nor warnings</strong></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">light</span><span class="o">=</span><span class="mi">50</span>
+<span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_222_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_222_0.png" />
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">light</span><span class="o">=</span><span class="mi">50</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">light</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="Exercise---Fade-to-black">
+<h2>Exercise - Fade to black<a class="headerlink" href="#Exercise---Fade-to-black" title="Link to this heading">#</a></h2>
+<p>Fade the gray picture to black from left to right. Try using <code class="docutils literal notranslate"><span class="pre">np.linspace</span></code> and <code class="docutils literal notranslate"><span class="pre">np.tile</span></code></p>
+<p>First create the <code class="docutils literal notranslate"><span class="pre">horiz_fade</span></code>:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ls</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">gimg</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">horiz_fade</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">ls</span><span class="p">,</span> <span class="p">(</span><span class="n">gimg</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</details><div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[89]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gs</span><span class="p">(</span><span class="n">horiz_fade</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_232_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_232_0.png" />
+</div>
+</div>
+<p>Then apply the fade - notice that by ‘applying’ we mean subtracting the fade (so white in the fade will actually correspond to dark in the picture)</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_234_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_234_0.png" />
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gs</span><span class="p">(</span><span class="n">gimg</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">gimg</span><span class="p">,</span> <span class="n">horiz_fade</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="Exercise---vertical-fade">
+<h2>Exercise - vertical fade<a class="headerlink" href="#Exercise---vertical-fade" title="Link to this heading">#</a></h2>
+<p>(harder) First create a <code class="docutils literal notranslate"><span class="pre">vertical_fade</span></code>:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><br/><span></span><span class="n">ls</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="n">gimg</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">vertical_fade</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">ls</span><span class="p">,</span> <span class="n">gimg</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">gimg</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">gimg</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</details><div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[92]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gs</span><span class="p">(</span><span class="n">vertical_fade</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_243_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_243_0.png" />
+</div>
+</div>
+<p>Then apply the fade:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/lectures_11_-_Matplotlib_visualization2-sol_245_0.png" src="../../_images/lectures_11_-_Matplotlib_visualization2-sol_245_0.png" />
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gs</span><span class="p">(</span><span class="n">gimg</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">gimg</span><span class="p">,</span> <span class="n">vertical_fade</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="Continue">
+<h2>Continue<a class="headerlink" href="#Continue" title="Link to this heading">#</a></h2>
+<p>Go on with <a class="reference internal" href="../../challenges/11%20-%20Matplotlib/visualization3-chal.html"><span class="doc">Matplotlib Challenge</span></a></p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="../../challenges/01%20-%20Basics/basics4-chal.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Python Basics - Challenges</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="visualization1-sol.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Matplotlib</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2026, Erich Robbi
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Matplotlib - Numpy images</a><ul>
+<li><a class="reference internal" href="#Download-exercises-zip">Download exercises zip</a><ul>
+<li><a class="reference internal" href="#What-to-do">What to do</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#Introduction">Introduction</a><ul>
+<li><a class="reference internal" href="#Monochrome">Monochrome</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#Focus">Focus</a><ul>
+<li><a class="reference internal" href="#Exercise---Head-focus">Exercise - Head focus</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#hstack-and-vstack"><code class="docutils literal notranslate"><span class="pre">hstack</span></code> and <code class="docutils literal notranslate"><span class="pre">vstack</span></code></a><ul>
+<li><a class="reference internal" href="#Exercise---Passport">Exercise - Passport</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#flip"><code class="docutils literal notranslate"><span class="pre">flip</span></code></a><ul>
+<li><a class="reference internal" href="#Exercise---Hall-of-mirrors">Exercise - Hall of mirrors</a></li>
+<li><a class="reference internal" href="#Exercise---The-nose-from-above">Exercise - The nose from above</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#Writing-arrays">Writing arrays</a></li>
+<li><a class="reference internal" href="#Writing-into-images">Writing into images</a><ul>
+<li><a class="reference internal" href="#Exercise---Stripes">Exercise - Stripes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#In-a-dark-integer-night">In a dark integer night</a><ul>
+<li><a class="reference internal" href="#The-Integer-Shining">The Integer Shining</a></li>
+<li><a class="reference internal" href="#Exercise---Be-bright">Exercise - Be bright</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#RGB---Get-colorful">RGB - Get colorful</a></li>
+<li><a class="reference internal" href="#Exercise---Focus---top-left">Exercise - Focus - top left</a></li>
+<li><a class="reference internal" href="#Exercise---Focus---bottom---left">Exercise - Focus - bottom - left</a></li>
+<li><a class="reference internal" href="#Exercise---Focus---bottom---right">Exercise - Focus - bottom - right</a></li>
+<li><a class="reference internal" href="#Exercise---Focus---top---right">Exercise - Focus - top - right</a></li>
+<li><a class="reference internal" href="#Exercise---Look-the-other-way">Exercise - Look the other way</a></li>
+<li><a class="reference internal" href="#Exercise---Upside-down-world">Exercise - Upside down world</a></li>
+<li><a class="reference internal" href="#Exercise---Shrinking-Walls---X">Exercise - Shrinking Walls - X</a></li>
+<li><a class="reference internal" href="#Exercise---Shrinking-Walls---Y">Exercise - Shrinking Walls - Y</a></li>
+<li><a class="reference internal" href="#Exercise---Shrinking-World">Exercise - Shrinking World</a></li>
+<li><a class="reference internal" href="#Exercise---Pixellate">Exercise - Pixellate</a></li>
+<li><a class="reference internal" href="#Exercise---Feeling-Red">Exercise - Feeling Red</a></li>
+<li><a class="reference internal" href="#Exercise---Feeling-Green">Exercise - Feeling Green</a></li>
+<li><a class="reference internal" href="#Exercise---Feeling-Blue">Exercise - Feeling Blue</a></li>
+<li><a class="reference internal" href="#Exercise---No-Red">Exercise - No Red</a></li>
+<li><a class="reference internal" href="#Exercise---No-Green">Exercise - No Green</a></li>
+<li><a class="reference internal" href="#Exercise---No-Blue">Exercise - No Blue</a></li>
+<li><a class="reference internal" href="#Exercise---Feeling-Gray-again">Exercise - Feeling Gray again</a></li>
+<li><a class="reference internal" href="#Exercise---Beyond-the-limit">Exercise - Beyond the limit</a></li>
+<li><a class="reference internal" href="#Exercise---Gimme-light">Exercise - Gimme light</a></li>
+<li><a class="reference internal" href="#Exercise---When-the-darkness-comes---with-a-warning">Exercise - When the darkness comes - with a warning</a></li>
+<li><a class="reference internal" href="#Exercise---When-the-darkness-comes---without-a-warning">Exercise - When the darkness comes - without a warning</a></li>
+<li><a class="reference internal" href="#Exercise---Fade-to-black">Exercise - Fade to black</a></li>
+<li><a class="reference internal" href="#Exercise---vertical-fade">Exercise - vertical fade</a></li>
+<li><a class="reference internal" href="#Continue">Continue</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=d91ab2ad"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    </body>
+</html>
