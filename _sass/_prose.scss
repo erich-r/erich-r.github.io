@@ -194,3 +194,12 @@
 
 .article-footer > .more-link:first-child { margin-top: 0; }
 .article-footer .tag-line + .more-link { margin-top: 1.25rem; }
+
+// Short looping clips used like GIFs: <video autoplay loop muted playsinline>.
+.prose video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  border-radius: .5rem;
+}
