@@ -2224,7 +2224,7 @@
    "source": [
     "## 3. MatPlotLib review\n",
     "\n",
-    "We've already seen MatplotLib in the part on [visualization](../11%20-%20Matplotlib//visualization1-sol.html), and today we use  [Matplotlib](http://matplotlib.org) to display data.\n",
+    "We've already seen MatplotLib in the part on [visualization](../11%20-%20Matplotlib/visualization1-sol.html), and today we use  [Matplotlib](http://matplotlib.org) to display data.\n",
     "\n",
     "### 3.1 An example\n",
     "\n",
