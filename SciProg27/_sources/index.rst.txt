@@ -53,6 +53,7 @@ Lectures
    lectures/09 - Matrices of Lists/index
    lectures/10 - Matrices Numpy/index
    lectures/11 - Matplotlib/index
+   lectures/12 - Pandas/index
 .. AUTOGEN:CHALLENGES:START
 Challenges
 ----------
@@ -73,6 +74,7 @@ Challenges
    challenges/07 - Control flow/while2-chal
    challenges/09 - Matrices of Lists/matrices-lists3-chal
    challenges/11 - Matplotlib/visualization3-chal
+   challenges/12 - Pandas/pandas3-chal
    challenges/Misc. Challenges/chall1-chal
 
 .. AUTOGEN:CHALLENGES:END
@@ -102,7 +104,12 @@ Alternatively:
 Assessment
 ----------
 
-TBD
+The assessment for Part A includes the following midterm activities:
+
+* **Midterm simulation:** 30 October 2026, 13:00-14:30, room B106.
+* **Midterm exam:** 6 November 2026, 11:30-13:00, room A201.
+
+**Please arrive at least 5 minutes early**
 
 Acknowledgements
 ----------

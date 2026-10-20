@@ -1,0 +1,8 @@
+12 - Pandas
+===========
+
+.. toctree::
+   :maxdepth: 1
+
+   pandas1-intro-sol
+   pandas2-advanced-sol
