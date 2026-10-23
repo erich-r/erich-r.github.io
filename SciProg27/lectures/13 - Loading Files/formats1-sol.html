@@ -946,7 +946,7 @@ BookmarkPageNumber: 47
 </details></section>
 <section id="Exercise---Chess-Game-Parser">
 <h2>Exercise - Chess Game Parser<a class="headerlink" href="#Exercise---Chess-Game-Parser" title="Link to this heading">#</a></h2>
-<p>Given a PNG file as a .txt file:</p>
+<p>Given the file <code class="docutils literal notranslate"><span class="pre">gamechess.txt</span></code>, which represents a chess game with this structure:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[Event &quot;ch-UZB 1st League 2014&quot;]
 [Site &quot;Tashkent UZB&quot;]
 [Date &quot;2014.03.01&quot;]
@@ -965,7 +965,7 @@ BookmarkPageNumber: 47
 30.Qf1 Nxd5 31.Rxb7 Qd4+ 32.Kh1 Rf8 33.Qg1 Ne3 34.Re7 a5 35.c6 a4 36.Qxe3 Qxe3
 </pre></div>
 </div>
-<p>write a function <code class="docutils literal notranslate"><span class="pre">parse_game(path)</span></code> that would return the parsed chess game as a dictionary with this structure:</p>
+<p>write a function <code class="docutils literal notranslate"><span class="pre">load_chess_game(path)</span></code> that returns the parsed chess game as a dictionary with this structure:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;Black&#39;: &#39;Alikulov,Elbek&#39;,
  &#39;BlackElo&#39;: &#39;2212&#39;,
  &#39;Date&#39;: &#39;2014.03.01&#39;,
