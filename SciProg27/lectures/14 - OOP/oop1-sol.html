@@ -1,0 +1,1666 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html"><link rel="search" title="Search" href="../../search.html"><link rel="next" title="Python Basics - Challenges" href="../../challenges/01%20-%20Basics/basics4-chal.html"><link rel="prev" title="14 - OOP" href="index.html">
+        <link rel="canonical" href="https://erich-r.github.io/SciProg27/lectures/14%20-%20OOP/oop1-sol.html">
+
+    <!-- Generated with Sphinx 9.0.4 and Furo 2025.12.19 -->
+        <title>OOP - SciProg 2027</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=e429fab1" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">SciProg 2027</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  <span class="sidebar-brand-text">SciProg 2027</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../00%20-%20Installation/installation.html">Installation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../01%20-%20Basics/index.html">01 - Basics</a><input aria-label="Toggle navigation of 01 - Basics" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../01%20-%20Basics/basics1-ints-sol.html">Python Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01%20-%20Basics/basics2-bools-sol.html">Python Basics - Booleans</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01%20-%20Basics/basics3-floats-sol.html">Python Basics - Float</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../02%20-%20Strings/index.html">02 - Strings</a><input aria-label="Toggle navigation of 02 - Strings" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../02%20-%20Strings/strings1-sol.html">Strings 1 - Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02%20-%20Strings/strings2-sol.html">Strings 2 - Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02%20-%20Strings/strings3-sol.html">Strings 3 - Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02%20-%20Strings/strings4-sol.html">Strings 4 - Search Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../03%20-%20Lists/index.html">03 - Lists</a><input aria-label="Toggle navigation of 03 - Lists" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../03%20-%20Lists/lists1-sol.html">Lists 1 - Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03%20-%20Lists/lists2-sol.html">Lists 2 - operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03%20-%20Lists/lists3-sol.html">Lists 3 - Basic methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03%20-%20Lists/lists4-sol.html">Lists 4 - Search methods</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../04%20-%20Tuples/index.html">04 - Tuples</a><input aria-label="Toggle navigation of 04 - Tuples" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../04%20-%20Tuples/tuples1-sol.html">Tuples</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../05%20-%20Sets/index.html">05 - Sets</a><input aria-label="Toggle navigation of 05 - Sets" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../05%20-%20Sets/sets1-sol.html">Sets</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../06%20-%20Dictionaries/index.html">06 - Dictionaries</a><input aria-label="Toggle navigation of 06 - Dictionaries" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../06%20-%20Dictionaries/dictionaries1-sol.html">Dictionaries 1 - Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06%20-%20Dictionaries/dictionaries2-sol.html">Dictionaries 2 - operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06%20-%20Dictionaries/dictionaries3-sol.html">Dictionaries 3 - Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06%20-%20Dictionaries/dictionaries4-sol.html">Dictionaries 4 - special classes</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../07%20-%20Control%20flow/index.html">07 - Control flow</a><input aria-label="Toggle navigation of 07 - Control flow" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/for1-sol.html">For loops - Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/for2-sol.html">For loops - Iterating Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/for3-sol.html">For loops - Iterating Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/for4-sol.html">For loops - Iterating Tuples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/for5-sol.html">For loops - Iterating Sets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/for6-sol.html">For loops - Iterating Dictionaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/for7-sol.html">For loops - Nested Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/if1-sol.html">If Else statements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/sequences1-sol.html">Sequences and comprehensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/while1-sol.html">While loops 1 - introduction</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../08%20-%20Functions/index.html">08 - Functions</a><input aria-label="Toggle navigation of 08 - Functions" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../08%20-%20Functions/functions1-sol.html">Functions - solutions</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../09%20-%20Matrices%20of%20Lists/index.html">09 - Matrices of Lists</a><input aria-label="Toggle navigation of 09 - Matrices of Lists" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../09%20-%20Matrices%20of%20Lists/matrices-lists1-sol.html">Matrices: list of lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../09%20-%20Matrices%20of%20Lists/matrices-lists2-sol.html">Matrices 2: list of lists - other exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../10%20-%20Matrices%20Numpy/index.html">10 - Matrices Numpy</a><input aria-label="Toggle navigation of 10 - Matrices Numpy" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../10%20-%20Matrices%20Numpy/matrices-numpy1-sol.html">Matrices: Numpy 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../10%20-%20Matrices%20Numpy/matrices-numpy2-sol.html">Matrices: Numpy 2 - Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../11%20-%20Matplotlib/index.html">11 - Matplotlib</a><input aria-label="Toggle navigation of 11 - Matplotlib" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../11%20-%20Matplotlib/visualization1-sol.html">Matplotlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../11%20-%20Matplotlib/visualization2-sol.html">Matplotlib - Numpy images</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../12%20-%20Pandas/index.html">12 - Pandas</a><input aria-label="Toggle navigation of 12 - Pandas" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../12%20-%20Pandas/pandas1-intro-sol.html">Pandas 1 - Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../12%20-%20Pandas/pandas2-advanced-sol.html">Pandas 2 - Advanced Operations</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../13%20-%20Loading%20Files/index.html">13 - Loading Files</a><input aria-label="Toggle navigation of 13 - Loading Files" class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../13%20-%20Loading%20Files/formats1-sol.html">Loading Files 1 - Text Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../13%20-%20Loading%20Files/formats2-sol.html">Loading Files 2 - CSV files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../13%20-%20Loading%20Files/formats3-sol.html">Loading Files 3 - JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">14 - OOP</a><input aria-label="Toggle navigation of 14 - OOP" checked="" class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">OOP</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Challenge Yourself at Home</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/01%20-%20Basics/basics4-chal.html">Python Basics - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/02%20-%20Strings/strings5-chal.html">Strings - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/03%20-%20Lists/lists5-chal.html">Lists - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/04%20-%20Tuples/tuples2-chal.html">Tuples - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/05%20-%20Sets/sets2-chal.html">Sets - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/06%20-%20Dictionaries/dictionaries5-chal.html">Dictionaries - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/07%20-%20Control%20flow/for8-chal.html">For Loops - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/07%20-%20Control%20flow/if2-chal.html">If Else - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/07%20-%20Control%20flow/sequences2-chal.html">Sequences - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/07%20-%20Control%20flow/while2-chal.html">While loops - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/09%20-%20Matrices%20of%20Lists/matrices-lists3-chal.html">Matrices Lists - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/11%20-%20Matplotlib/visualization3-chal.html">Matplotlib Challenge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/12%20-%20Pandas/pandas3-chal.html">Pandas Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/13%20-%20Loading%20Files/formats4-chal.html">Loading Files - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/14%20-%20OOP/oop2-matrix-chal.html">OOP Matrix Challenge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/Misc.%20Challenges/chall1-chal.html">Challenges - Miscellaneous</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Commandments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../commandments/commandments.html">Rules You Shall Not Break</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="OOP">
+<h1>OOP<a class="headerlink" href="#OOP" title="Link to this heading">#</a></h1>
+<section id="Download-exercises-zip">
+<h2><a class="reference external" href="../_static/generated/oop.zip">Download exercises zip</a><a class="headerlink" href="#Download-exercises-zip" title="Link to this heading">#</a></h2>
+</section>
+<section id="What-to-do">
+<h2>What to do<a class="headerlink" href="#What-to-do" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>unzip exercises in a folder, you should get something like this:</p></li>
+</ul>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>oop
+   complex_number.py
+   complex_number_test.py
+   complex_number_sol.py
+   multiset.py
+   multiset_test.py
+   multiset_sol.py
+   matrix.py
+   oop.ipynb
+   jupman.py
+   sciprog.py
+</pre></div>
+</div>
+<p>This time you will not write in the notebook, instead you will edit <code class="docutils literal notranslate"><span class="pre">.py</span></code> files in Visual Studio Code.</p>
+<p>Now proceed reading.</p>
+</section>
+<section id="1.-Abstract-Data-Types-(ADT)-Theory">
+<h2>1. Abstract Data Types (ADT) Theory<a class="headerlink" href="#1.-Abstract-Data-Types-(ADT)-Theory" title="Link to this heading">#</a></h2>
+<section id="1.1.-Intro">
+<h3>1.1. Intro<a class="headerlink" href="#1.1.-Intro" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Theory from the slides:</p>
+<ul>
+<li><p><a class="reference external" href="http://disi.unitn.it/~passerini/teaching/2026-2027/sci-pro/slides/A09-oop.pdf">Andrea Passerini - Programming paradagims, Object-Oriented Python</a></p></li>
+</ul>
+</li>
+<li><p>Object Oriented programming on the <a class="reference external" href="https://runestone.academy/runestone/books/published/pythonds/Introduction/ObjectOrientedProgramminginPythonDefiningClasses.html">the book</a> (In particular, <a class="reference external" href="https://runestone.academy/runestone/books/published/pythonds/Introduction/ObjectOrientedProgramminginPythonDefiningClasses.html#a-fraction-class">Fraction class</a>, in this course we won’t focus on inheritance)</p></li>
+</ul>
+</section>
+<section id="1.2.-Complex-number-theory">
+<h3>1.2. Complex number theory<a class="headerlink" href="#1.2.-Complex-number-theory" title="Link to this heading">#</a></h3>
+<p><img alt="Complex number definition from Wikipedia" src="../../_images/complex-numbers-definition.png" /></p>
+</section>
+<section id="1.3.-Datatypes-the-old-way">
+<h3>1.3. Datatypes the old way<a class="headerlink" href="#1.3.-Datatypes-the-old-way" title="Link to this heading">#</a></h3>
+<p>From the definition we see that to identify a complex number <strong>we need two float values</strong> . One number is for the <strong>real part</strong>, and another number is for the <strong>imaginary part</strong>.</p>
+<p>How can we represent this in Python? So far, you saw there are many ways to put two numbers together. One way could be to put the numbers in a list of two elements, and implicitly assume the first one is the <em>real</em> and the second the <em>imaginary</em> part:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<p>Or we could use a tuple:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>A problem with the previous representations is that a casual observer might not know exactly the meaning of the two numbers. We could be more explicit and store the values into a dictionary, using keys to identify the two parts:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;real&#39;</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">,</span> <span class="s1">&#39;imaginary&#39;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;real&#39;: 3.0, &#39;imaginary&#39;: 5.0}
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="s1">&#39;real&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+3.0
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="s1">&#39;imaginary&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+5.0
+</pre></div></div>
+</div>
+<p>Now, writing the whole record <code class="docutils literal notranslate"><span class="pre">{'real':</span> <span class="pre">3.0,</span> <span class="pre">'imaginary':</span> <span class="pre">5.0}</span></code> each time we want to create a complex number might be annoying and error prone. To help us, we can create a little shortcut function named <code class="docutils literal notranslate"><span class="pre">complex_number</span></code> that creates and returns the dictionary:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">complex_number</span><span class="p">(</span><span class="n">real</span><span class="p">,</span> <span class="n">imaginary</span><span class="p">):</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;real&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">real</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;imaginary&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">imaginary</span>
+    <span class="k">return</span> <span class="n">d</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">complex_number</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;real&#39;: 3.0, &#39;imaginary&#39;: 5.0}
+</pre></div></div>
+</div>
+<p>To do something with our dictionary, we would then define functions, like for example <code class="docutils literal notranslate"><span class="pre">complex_str</span></code> to show them nicely:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">complex_str</span><span class="p">(</span><span class="n">cn</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">cn</span><span class="p">[</span><span class="s1">&#39;real&#39;</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot; + &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">cn</span><span class="p">[</span><span class="s1">&#39;imaginary&#39;</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;i&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">complex_number</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">complex_str</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+3.0 + 5.0i
+</pre></div></div>
+</div>
+<p>We could do something more complex, like defining the <code class="docutils literal notranslate"><span class="pre">phase</span></code> of the complex number which returns a <code class="docutils literal notranslate"><span class="pre">float</span></code>:</p>
+<div class="admonition note">
+<p><strong>IMPORTANT</strong>: In these exercises, we care about programming, not complex numbers theory. There’s no need to break your head over formulas!</p>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">phase</span><span class="p">(</span><span class="n">cn</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Returns a float which is the phase (that is, the vector angle) of the complex number</span>
+
+<span class="sd">            See definition: https://en.wikipedia.org/wiki/Complex_number#Absolute_value_and_argument</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="n">cn</span><span class="p">[</span><span class="s1">&#39;imaginary&#39;</span><span class="p">],</span> <span class="n">cn</span><span class="p">[</span><span class="s1">&#39;real&#39;</span><span class="p">])</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">complex_number</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">phase</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+1.0303768265243125
+</pre></div></div>
+</div>
+<p>We could even define functions that that take the complex number and some other parameter, for example we could define the <code class="docutils literal notranslate"><span class="pre">log</span></code> of complex numbers, which return another complex number (mathematically it would be infinitely many, but we just pick the first one in the series):</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="n">cn</span><span class="p">,</span> <span class="n">base</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Returns another complex number which is the logarithm of this complex number</span>
+
+<span class="sd">            See definition (accomodated for generic base b):</span>
+<span class="sd">            https://en.wikipedia.org/wiki/Complex_number#Natural_logarithm</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;real&#39;</span><span class="p">:</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">cn</span><span class="p">[</span><span class="s1">&#39;real&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">base</span><span class="p">),</span>
+                <span class="s1">&#39;imaginary&#39;</span> <span class="p">:</span> <span class="n">phase</span><span class="p">(</span><span class="n">cn</span><span class="p">)</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">base</span><span class="p">)}</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">log</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;real&#39;: 1.5849625007211563, &#39;imaginary&#39;: 1.4865195378735334}
+</pre></div></div>
+</div>
+<p>You see we got our dictionary representing a complex number. If we want a nicer display we can call on it the <code class="docutils literal notranslate"><span class="pre">complex_str</span></code> we defined:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">complex_str</span><span class="p">(</span><span class="n">log</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="mi">2</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+1.5849625007211563 + 1.4865195378735334i
+</pre></div></div>
+</div>
+</section>
+<section id="1.4.-Finding-the-pattern">
+<h3>1.4. Finding the pattern<a class="headerlink" href="#1.4.-Finding-the-pattern" title="Link to this heading">#</a></h3>
+<p>So, what have we done so far?</p>
+<ol class="arabic simple">
+<li><p>Decided a data format for the complex number, saw that the dictionary is quite convenient</p></li>
+<li><p>Defined a function to quickly create the dictionary:</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">complex_number</span><span class="p">(</span><span class="n">real</span><span class="p">,</span> <span class="n">imaginary</span><span class="p">):</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Defined some function like <code class="docutils literal notranslate"><span class="pre">phase</span></code> and <code class="docutils literal notranslate"><span class="pre">log</span></code> to do stuff on the complex number</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">phase</span><span class="p">(</span><span class="n">cn</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="n">cn</span><span class="p">,</span> <span class="n">base</span><span class="p">):</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Defined a function <code class="docutils literal notranslate"><span class="pre">complex_str</span></code> to express the complex number as a readable string:</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">complex_str</span><span class="p">(</span><span class="n">cn</span><span class="p">):</span>
+</pre></div>
+</div>
+<p>Notice that:</p>
+<ul class="simple">
+<li><p>all functions above take a <code class="docutils literal notranslate"><span class="pre">cn</span></code> complex number dictionary as first parameter</p></li>
+<li><p>the functions <code class="docutils literal notranslate"><span class="pre">phase</span></code> and <code class="docutils literal notranslate"><span class="pre">log</span></code> are quite peculiar to complex number, and to know what they do you need to have deep knowledge of what a complex number is.</p></li>
+<li><p>the function <code class="docutils literal notranslate"><span class="pre">complex_str</span></code> is more intuitive, because it covers the common need of giving a nice string representation to the data format we just defined. Also, we used the word <code class="docutils literal notranslate"><span class="pre">str</span></code> as part of the name to give a hint to the reader that probably the function behaves in a way similar to the Python function <code class="docutils literal notranslate"><span class="pre">str()</span></code>.</p></li>
+</ul>
+<p>When we encounter a new datatype in our programs, we often follow the procedure of thinking listed above. Such procedure is so common that software engineering people though convenient to provide a specific programming paradigm to represent it, called <em>Object Oriented</em> programming. We are now going to rewrite the complex number example using such paradigm.</p>
+</section>
+<section id="1.5.-Object-Oriented-Programming">
+<h3>1.5. Object Oriented Programming<a class="headerlink" href="#1.5.-Object-Oriented-Programming" title="Link to this heading">#</a></h3>
+<p>In Object Oriented Programming, we usually:</p>
+<ol class="arabic simple">
+<li><p>introduce new datatypes by declaring a <em>class</em>, named for example <code class="docutils literal notranslate"><span class="pre">ComplexNumber</span></code></p></li>
+<li><p>are given a dictionary and define how data is stored in the dictionary (i.e. in fields <code class="docutils literal notranslate"><span class="pre">real</span></code> and <code class="docutils literal notranslate"><span class="pre">imaginary</span></code>)</p></li>
+<li><p>define a way to <em>construct</em> specific <em>instances</em> , like <code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">+</span> <span class="pre">2i</span></code>, <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">+</span> <span class="pre">6i</span></code> (instances are also called <em>objects</em>)</p></li>
+<li><p>define some <em>methods</em> to operate on the <em>instances</em> (like <code class="docutils literal notranslate"><span class="pre">phase</span></code>)</p></li>
+<li><p>define some special <em>methods</em> to customize how Python treats <em>instances</em> (for example for displaying them as strings when printing)</p></li>
+</ol>
+<p>Let’s now create our first <em>class</em>.</p>
+</section>
+</section>
+<section id="2.-ComplexNumber-class">
+<h2>2. ComplexNumber class<a class="headerlink" href="#2.-ComplexNumber-class" title="Link to this heading">#</a></h2>
+<section id="2.1.-Class-declaration">
+<h3>2.1. Class declaration<a class="headerlink" href="#2.1.-Class-declaration" title="Link to this heading">#</a></h3>
+<p>A minimal class declaration will at least declare the class name and the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> method:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">ComplexNumber</span><span class="p">:</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">real</span><span class="p">,</span> <span class="n">imaginary</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">real</span> <span class="o">=</span> <span class="n">real</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span> <span class="o">=</span> <span class="n">imaginary</span>
+</pre></div>
+</div>
+</div>
+<p>Here we declare to Python that we are starting defining a template for a new <em>class</em> called <code class="docutils literal notranslate"><span class="pre">ComplexNumber</span></code>. This template will hold a collection of functions (called methods) that manipulate <em>instances</em> of complex numbers (instances are <code class="docutils literal notranslate"><span class="pre">1.0</span> <span class="pre">+</span> <span class="pre">2.0i</span></code>, <code class="docutils literal notranslate"><span class="pre">3.0</span> <span class="pre">+</span> <span class="pre">4.0i</span></code>, …).</p>
+<div class="admonition note">
+<p><strong>IMPORTANT</strong>: Although classes can have any name (i.e. <code class="docutils literal notranslate"><span class="pre">complex_number</span></code>, <code class="docutils literal notranslate"><span class="pre">complexNumber</span></code>, …), by convention you <em>SHOULD</em> use a camel cased name like <code class="docutils literal notranslate"><span class="pre">ComplexNumber</span></code>, with capital letters as initials and no underscores.</p>
+</div>
+</section>
+<section id="2.2.-Constructor-__init__">
+<h3>2.2. Constructor <code class="docutils literal notranslate"><span class="pre">__init__</span></code><a class="headerlink" href="#2.2.-Constructor-__init__" title="Link to this heading">#</a></h3>
+<p>With the dictonary model, to create complex numbers remember we defined that small utility function <code class="docutils literal notranslate"><span class="pre">complex_number</span></code>, where inside we were creating the dictionary:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">complex_number</span><span class="p">(</span><span class="n">real</span><span class="p">,</span> <span class="n">imaginary</span><span class="p">):</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;real&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">real</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;imaginary&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">imaginary</span>
+    <span class="k">return</span> <span class="n">d</span>
+</pre></div>
+</div>
+<p>With classes, to create objects we have instead to define a so-called <em>constructor method</em> called <code class="docutils literal notranslate"><span class="pre">__init__</span></code>:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">ComplexNumber</span><span class="p">:</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">real</span><span class="p">,</span> <span class="n">imaginary</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">real</span> <span class="o">=</span> <span class="n">real</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span> <span class="o">=</span> <span class="n">imaginary</span>
+</pre></div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">__init__</span></code> is a very special method, that has the job to initialize an <em>instance</em> of a complex number. It has three important features:</p>
+<ol class="loweralpha simple">
+<li><p>it is defined like a function, inside the <code class="docutils literal notranslate"><span class="pre">ComplexNumber</span></code> declaration (as usual, indentation matters!)</p></li>
+<li><p>it always takes as first parameter <code class="docutils literal notranslate"><span class="pre">self</span></code>, which is an instance of a special kind of dictionary that will hold the fields of the complex number. Inside the previous <code class="docutils literal notranslate"><span class="pre">complex_number</span></code> function, we were creating a dictionary <code class="docutils literal notranslate"><span class="pre">d</span></code>. In <code class="docutils literal notranslate"><span class="pre">__init__</span></code> method, the dictionary instead is automatically created by Python and given to us in the form of parameter <code class="docutils literal notranslate"><span class="pre">self</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__init__</span></code> does not return anything: this is different from the previous <code class="docutils literal notranslate"><span class="pre">complex_number</span></code> function where instead we were returning the dictionary <code class="docutils literal notranslate"><span class="pre">d</span></code>.</p></li>
+</ol>
+<p>Later we will explain better these properties. For now, let’s just concentrate on the names of things we see in the declaration.</p>
+<div class="admonition warning">
+<p><strong>WARNING</strong>: There can be only one constructor method per class, and MUST be named <code class="docutils literal notranslate"><span class="pre">__init__</span></code></p>
+</div>
+<div class="admonition warning">
+<p><strong>WARNING</strong>: <strong>init</strong> MUST take at least one parameter, by convention it is usually named <code class="docutils literal notranslate"><span class="pre">self</span></code></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title"><strong>IMPORTANT</strong>: <code class="docutils literal notranslate"><span class="pre">self</span></code> could be any name!</p>
+<p>Self is just a name we give to the first parameter. It could be any name our fantasy suggest and the program would behave exactly the same!</p>
+<p>If the editor you are using will evidence it in some special color, it is because it is aware of the convention but <em>not</em> because <code class="docutils literal notranslate"><span class="pre">self</span></code> is some special Python keyword.</p>
+</div>
+<div class="admonition note">
+<p><strong>IMPORTANT</strong>: In general, any of the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> parameters can have completely arbitrary names, so for example the following code snippet would work exactly the same as the initial definition:</p>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">ComplexNumber</span><span class="p">:</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="n">donald_duck</span><span class="p">,</span> <span class="n">mickey_mouse</span><span class="p">,</span> <span class="n">goofy</span><span class="p">):</span>
+        <span class="n">donald_duck</span><span class="o">.</span><span class="n">real</span> <span class="o">=</span> <span class="n">mickey_mouse</span>
+        <span class="n">donald_duck</span><span class="o">.</span><span class="n">imaginary</span> <span class="o">=</span> <span class="n">goofy</span>
+</pre></div>
+</div>
+</div>
+<p>Once the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> method is defined, we can create a specific <code class="docutils literal notranslate"><span class="pre">ComplexNumber</span></code> <em>instance</em> with a call like this:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">5.0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;__main__.ComplexNumber object at 0x7f1fd825ded0&gt;
+</pre></div></div>
+</div>
+<p>What happend here?</p>
+<p><strong>init 2.2.1)</strong> We told Python we want to create a new particular <em>instance</em> of the template defined by <em>class</em> <code class="docutils literal notranslate"><span class="pre">ComplexNumber</span></code>. As parameters for the instance we indicated <code class="docutils literal notranslate"><span class="pre">3.0</span></code> and <code class="docutils literal notranslate"><span class="pre">5.0</span></code>.</p>
+<div class="admonition warning">
+<p class="admonition-title"><strong>WARNING</strong>: you need round parenthesis to create the instance!</p>
+<p>We used the name of the class <code class="docutils literal notranslate"><span class="pre">ComplexNumber</span></code> following it by an open round parenthesis and parameters like a function call: <code class="docutils literal notranslate"><span class="pre">c=ComplexNumber(3.0,5.0)</span></code></p>
+<p>Writing just <code class="docutils literal notranslate"><span class="pre">c</span> <span class="pre">=</span> <span class="pre">ComplexNumber</span></code> would <em>NOT</em> instantiate anything and we would end up messing with the <em>template</em> <code class="docutils literal notranslate"><span class="pre">ComplexNumber</span></code>, which is a collection of functions for complex numbers.</p>
+</div>
+<p><strong>init 2.2.2)</strong> Python created a new special dictionary for the instance</p>
+<p><strong>init 2.2.3)</strong> Python passed the special dictionary as first parameter of the method <code class="docutils literal notranslate"><span class="pre">__init__</span></code>, so it will be bound to parameter <code class="docutils literal notranslate"><span class="pre">self</span></code>. As second and third arguments passed <em>3.0</em> and <em>5.0</em>, which will be bound respectively to parameters <code class="docutils literal notranslate"><span class="pre">real</span></code> and <code class="docutils literal notranslate"><span class="pre">imaginary</span></code></p>
+<div class="admonition warning">
+<p class="admonition-title"><strong>WARNING</strong>: You don’t need to pass a dictionary to instantiate a class!</p>
+<p>When instantiating an object with a call like <code class="docutils literal notranslate"><span class="pre">c=ComplexNumber(3.0,5.0)</span></code> you don’t need to pass a dictionary as first parameter! Python will implicitly create it and pass it as first parameter to <code class="docutils literal notranslate"><span class="pre">__init__</span></code></p>
+</div>
+<p><strong>init 2.2.4)</strong> In the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> method, the instructions</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">real</span> <span class="o">=</span> <span class="n">real</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span> <span class="o">=</span> <span class="n">imaginary</span>
+</pre></div>
+</div>
+<p>first create a key in the dictionary called <code class="docutils literal notranslate"><span class="pre">real</span></code> associating to the key the value of the parameter <code class="docutils literal notranslate"><span class="pre">real</span></code> (in the call is <em>3.0).</em> Then the value <em>5.0</em> is bound to the key <code class="docutils literal notranslate"><span class="pre">imaginary</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title"><strong>IMPORTANT:</strong> self is special!</p>
+<p>We said Python provides <code class="docutils literal notranslate"><span class="pre">__init__</span></code> with a special kind of dictionary as first parameter. One of the reason it is special is that you can access keys using the dot like <code class="docutils literal notranslate"><span class="pre">self.my_key</span></code>. With ordinary dictionaries you would have to write the brackets like <code class="docutils literal notranslate"><span class="pre">self[&quot;my_key&quot;]</span></code></p>
+</div>
+<div class="admonition note">
+<p><strong>IMPORTANT:</strong> like with dictionaries, we can arbitrarily choose the name of the keys, and which values to associate to them.</p>
+</div>
+<div class="admonition note">
+<p><strong>IMPORTANT:</strong> In the following, we will often refer to keys of the self dictionary with the terms <em>field</em>, and/or <em>attribute</em>.</p>
+</div>
+<p>Now one important word of wisdom:</p>
+<div class="admonition note">
+<p><strong>!!!!!!</strong> <a class="reference internal" href="../../commandments/commandments.html#VIII-COMMANDMENT"><span class="std std-ref">VIII COMMANDMENT</span></a> <strong>: YOU SHALL NEVER EVER REASSIGN</strong> <code class="docutils literal notranslate"><span class="pre">self</span></code> <strong>!!!!!!!</strong></p>
+</div>
+<p>Since self is a kind of dictionary, you might be tempted to do like this:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">EvilComplexNumber</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">real</span><span class="p">,</span> <span class="n">imaginary</span><span class="p">):</span>
+        <span class="bp">self</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;real&#39;</span><span class="p">:</span><span class="n">real</span><span class="p">,</span> <span class="s1">&#39;imaginary&#39;</span><span class="p">:</span><span class="n">imaginary</span><span class="p">}</span>
+<br/></pre></div>
+</div>
+</div>
+<p>but to the outside world this will bring no effect. For example, let’s say somebody from outside makes a call like this:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ce</span> <span class="o">=</span> <span class="n">EvilComplexNumber</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<p>At the first attempt of accessing any field, you would get an error because after the initalization <code class="docutils literal notranslate"><span class="pre">c</span></code> will point to the yet untouched <code class="docutils literal notranslate"><span class="pre">self</span></code> created by Python, and not to your dictionary (which at this point will be simply lost):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ce</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>AttributeError: EvilComplexNumber instance has no attribute ‘real’</p>
+<p>In general, you <em>DO NOT</em> reassign <code class="docutils literal notranslate"><span class="pre">self</span></code> to anything. Here are other example <em>DON’Ts</em>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;666&#39;</span><span class="p">]</span>  <span class="c1"># self is only supposed to be a sort of dictionary which is passed by Python</span>
+<span class="bp">self</span> <span class="o">=</span> <span class="mi">6</span>        <span class="c1"># self is only supposed to be a sort of dictionary which is passed by Python</span>
+</pre></div>
+</div>
+<p><strong>init 2.2.5)</strong> Python automatically returns from <code class="docutils literal notranslate"><span class="pre">__init__</span></code> the special dictionary <code class="docutils literal notranslate"><span class="pre">self</span></code></p>
+<div class="admonition warning">
+<p class="admonition-title"><strong>WARNING</strong>: <code class="docutils literal notranslate"><span class="pre">__init__</span></code> must <em>NOT</em> have a <code class="docutils literal notranslate"><span class="pre">return</span></code> statement !</p>
+<p>Python will implicitly return <code class="docutils literal notranslate"><span class="pre">self</span></code> !</p>
+</div>
+<p><strong>init 2.2.6)</strong> The result of the call (so the special dictionary) is bound to external variable ‘c`:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>init 2.2.7)</strong> You can then start using <code class="docutils literal notranslate"><span class="pre">c</span></code> as any variable</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;__main__.ComplexNumber object at 0x7f1fd825ded0&gt;
+</pre></div></div>
+</div>
+<p>From the output, you see we have indeed an <em>instance</em> of the <em>class</em> <code class="docutils literal notranslate"><span class="pre">ComplexNumber</span></code>. To see the difference between <em>instance</em> and <em>class</em>, you can try printing the <em>class</em> instead:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;class &#39;__main__.ComplexNumber&#39;&gt;
+</pre></div></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title"><strong>IMPORTANT</strong>: instances are different from a class</p>
+<p>You can create an infinite number of different <em>instances</em> (i.e. <code class="docutils literal notranslate"><span class="pre">ComplexNumber(1.0,</span> <span class="pre">1.0)</span></code>, <code class="docutils literal notranslate"><span class="pre">ComplexNumber(2.0,</span> <span class="pre">2.0)</span></code>, <code class="docutils literal notranslate"><span class="pre">ComplexNumber(3.0,</span> <span class="pre">3.0)</span></code>, … ), but you will have only one <em>class</em> definition for them (<code class="docutils literal notranslate"><span class="pre">ComplexNumber</span></code>).</p>
+</div>
+<p>We can now access the fields of the special dictionary by using the dot notation as we were doing with the ‘self`:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+3.0
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">imaginary</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+5.0
+</pre></div></div>
+</div>
+<p>If we want, we can also change them:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">real</span> <span class="o">=</span> <span class="mf">6.0</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+6.0
+</pre></div></div>
+</div>
+</section>
+<section id="2.3.-Defining-methods">
+<h3>2.3. Defining methods<a class="headerlink" href="#2.3.-Defining-methods" title="Link to this heading">#</a></h3>
+<section id="2.3.1-phase">
+<h4>2.3.1 phase<a class="headerlink" href="#2.3.1-phase" title="Link to this heading">#</a></h4>
+<p>Let’s make our class more interesting by adding the method <code class="docutils literal notranslate"><span class="pre">phase(self)</span></code> to operate on the complex number:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">unittest</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ComplexNumber</span><span class="p">:</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">real</span><span class="p">,</span> <span class="n">imaginary</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">real</span> <span class="o">=</span> <span class="n">real</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span> <span class="o">=</span> <span class="n">imaginary</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">phase</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Returns a float which is the phase (that is, the vector angle) of the complex number</span>
+
+<span class="sd">            This method is something we introduce by ourselves, according to the definition:</span>
+<span class="sd">            https://en.wikipedia.org/wiki/Complex_number#Absolute_value_and_argument</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>The method takes as first parameter <code class="docutils literal notranslate"><span class="pre">self</span></code> which again is a special dictionary. We expect the dictionary to have already been initialized with some values for <code class="docutils literal notranslate"><span class="pre">real</span></code> and <code class="docutils literal notranslate"><span class="pre">imaginary</span></code> fields. We can access them with the dot notation as we did before:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>How can we call the method on instances of complex numbers? We can access the method name from an instance using the dot notation as we did with other keys:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">5.0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">phase</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+1.0303768265243125
+</pre></div></div>
+</div>
+<p>What happens here?</p>
+<p>By writing <code class="docutils literal notranslate"><span class="pre">c.phase()</span></code> , we call the method <code class="docutils literal notranslate"><span class="pre">phase(self)</span></code> which we just defined. The method expects as first parameter <code class="docutils literal notranslate"><span class="pre">self</span></code> a class instance, but in the call <code class="docutils literal notranslate"><span class="pre">c.phase()</span></code> apparently we don’t provide any parameter. Here some magic is going on, and Python implicitly is passing as first parameter the special dictionary bound to <code class="docutils literal notranslate"><span class="pre">c</span></code>. Then it executes the method and returns the desired float.</p>
+<div class="admonition warning">
+<p class="admonition-title"><strong>WARNING:</strong> Put round parenthesis in method calls!</p>
+<p>When <em>calling</em> a method, you MUST put the round parenthesis after the method name like in <code class="docutils literal notranslate"><span class="pre">c.phase()</span></code>! If you just write <code class="docutils literal notranslate"><span class="pre">c.phase</span></code> without parenthesis you will get back an address to the physical location of the method code:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; c.phase
+&lt;bound method ComplexNumber.phase of &lt;__main__.ComplexNumber instance at 0xb465a4cc&gt;&gt;
+</pre></div>
+</div>
+</div>
+</section>
+<section id="2.3.2-log">
+<h4>2.3.2 log<a class="headerlink" href="#2.3.2-log" title="Link to this heading">#</a></h4>
+<p>We can also define methods that take more than one parameter, and also that create and return <code class="docutils literal notranslate"><span class="pre">ComplexNumber</span></code> instances, like for example the method <code class="docutils literal notranslate"><span class="pre">log(self,</span> <span class="pre">base)</span></code>:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ComplexNumber</span><span class="p">:</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">real</span><span class="p">,</span> <span class="n">imaginary</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">real</span> <span class="o">=</span> <span class="n">real</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span> <span class="o">=</span> <span class="n">imaginary</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">phase</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Returns a float which is the phase (that is, the vector angle) of the complex number</span>
+
+<span class="sd">            This method is something we introduce by ourselves, according to the definition:</span>
+<span class="sd">            https://en.wikipedia.org/wiki/Complex_number#Absolute_value_and_argument</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Returns another ComplexNumber which is the logarithm of this complex number</span>
+
+<span class="sd">            This method is something we introduce by ourselves, according to the definition:</span>
+<span class="sd">            (accomodated for generic base b)</span>
+<span class="sd">            https://en.wikipedia.org/wiki/Complex_number#Natural_logarithm</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">real</span><span class="p">)</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">base</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">phase</span><span class="p">()</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">base</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition warning">
+<p><strong>WARNING:</strong> <em>ALL</em> METHODS MUST HAVE AT LEAST ONE PARAMETER, WHICH BY CONVENTION IS NAMED <code class="docutils literal notranslate"><span class="pre">self</span></code> !</p>
+</div>
+<p>To call <code class="docutils literal notranslate"><span class="pre">log</span></code>, you can do as with <code class="docutils literal notranslate"><span class="pre">phase</span></code> but this time you will need also to pass one parameter for the <code class="docutils literal notranslate"><span class="pre">base</span></code> parameter, in this case we use the exponential <code class="docutils literal notranslate"><span class="pre">math.e</span></code>:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)</span>
+<span class="n">logarithm</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition warning">
+<p><strong>WARNING</strong>: As before for <code class="docutils literal notranslate"><span class="pre">phase</span></code>, notice we didn’t pass any dictionary as first parameter! Python will implicitly pass as first argument the instance <code class="docutils literal notranslate"><span class="pre">c</span></code> as <code class="docutils literal notranslate"><span class="pre">self</span></code>, and <code class="docutils literal notranslate"><span class="pre">math.e</span></code> as <code class="docutils literal notranslate"><span class="pre">base</span></code></p>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">logarithm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;__main__.ComplexNumber object at 0x7f1fd823dbd0&gt;
+</pre></div></div>
+</div>
+<p>To see if the method worked and we got back we got back a different complex number, we can print the single fields:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">logarithm</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+1.0986122886681098
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">logarithm</span><span class="o">.</span><span class="n">imaginary</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+1.0303768265243125
+</pre></div></div>
+</div>
+</section>
+<section id="2.3.3-__str__-for-printing">
+<h4>2.3.3 <code class="docutils literal notranslate"><span class="pre">__str__</span></code> for printing<a class="headerlink" href="#2.3.3-__str__-for-printing" title="Link to this heading">#</a></h4>
+<p>As we said, printing is not so informative:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;__main__.ComplexNumber object at 0x7f1fd82654d0&gt;
+</pre></div></div>
+</div>
+<p>It would be nice to instruct Python to express the number like <em>“3.0 + 5.0i”</em> whenever we want to see the <code class="docutils literal notranslate"><span class="pre">ComplexNumber</span></code> represented as a string. How can we do it? Luckily for us, defining the <code class="docutils literal notranslate"><span class="pre">__str__(self)</span> <span class="pre">method</span></code> (see bottom of class definition)</p>
+<div class="admonition warning">
+<p><strong>WARNING</strong>: There are <strong>two</strong> underscores <code class="docutils literal notranslate"><span class="pre">_</span></code> before and <strong>two</strong> underscores <code class="docutils literal notranslate"><span class="pre">_</span></code> after in <code class="docutils literal notranslate"><span class="pre">__str__</span></code> !</p>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ComplexNumber</span><span class="p">:</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">real</span><span class="p">,</span> <span class="n">imaginary</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">real</span> <span class="o">=</span> <span class="n">real</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span> <span class="o">=</span> <span class="n">imaginary</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">phase</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Returns a float which is the phase (that is, the vector angle) of the complex number</span>
+
+<span class="sd">            This method is something we introduce by ourselves, according to the definition:</span>
+<span class="sd">            https://en.wikipedia.org/wiki/Complex_number#Absolute_value_and_argument</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Returns another ComplexNumber which is the logarithm of this complex number</span>
+
+<span class="sd">            This method is something we introduce by ourselves, according to the definition:</span>
+<span class="sd">            (accomodated for generic base b)</span>
+<span class="sd">            https://en.wikipedia.org/wiki/Complex_number#Natural_logarithm</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">real</span><span class="p">)</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">base</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">phase</span><span class="p">()</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">base</span><span class="p">))</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">real</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; + &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;i&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p><strong>IMPORTANT</strong>: all methods starting and ending with a double underscore <code class="docutils literal notranslate"><span class="pre">__</span></code> have a special meaning in Python: depending on their name, they override some default behaviour. In this case, with <code class="docutils literal notranslate"><span class="pre">__str__</span></code> we are overriding how Python represents a <code class="docutils literal notranslate"><span class="pre">ComplexNumber</span></code> instance into a string.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title"><strong>WARNING:</strong> follow the specs!</p>
+<p>Since we are overriding Python default behaviour, it is very important that we follow the specs of the method we are overriding <em>to the letter</em>. In our case, <a class="reference external" href="https://docs.python.org/3/reference/datamodel.html#object.__str__">the specs for __str__</a> obviously state you MUST return a string. <strong>Do read them!</strong></p>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>We can also pretty print the whole complex number. Internally, <code class="docutils literal notranslate"><span class="pre">print</span></code> function will look if the class <code class="docutils literal notranslate"><span class="pre">ComplexNumber</span></code> has defined a method named <code class="docutils literal notranslate"><span class="pre">__str__</span></code>. If so, it will pass to the method the instance <code class="docutils literal notranslate"><span class="pre">c</span></code> as the first argument, which in our methods will end up in the <code class="docutils literal notranslate"><span class="pre">self</span></code> parameter:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+3.0 + 5.0i
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+1.5849625007211563 + 1.4865195378735334i
+</pre></div></div>
+</div>
+<p>Special Python methods are like any other method, so if we wish, we can also call them directly:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="fm">__str__</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;3.0 + 5.0i&#39;
+</pre></div></div>
+</div>
+<p><strong>EXERCISE:</strong> There is another method for getting a string representation of a Python object, called <code class="docutils literal notranslate"><span class="pre">__repr__</span></code>. Read carefully <a class="reference external" href="https://docs.python.org/3/reference/datamodel.html#object.__repr__">__repr__ documentation</a> and implement the method. To try it and see if any difference appear with respect to str, call the standard Python functions <code class="docutils literal notranslate"><span class="pre">repr</span></code> and <code class="docutils literal notranslate"><span class="pre">str</span></code> like this:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>c = ComplexNumber(3,5)
+print(repr(c))
+print(str(c))
+</pre></div>
+</div>
+<p><strong>QUESTION</strong>: Would <code class="docutils literal notranslate"><span class="pre">3.0</span> <span class="pre">+</span> <span class="pre">5.0i</span></code> be a valid Python expression ? Should we return it with <code class="docutils literal notranslate"><span class="pre">__repr__</span></code>? Read again also <a class="reference external" href="https://docs.python.org/3/reference/datamodel.html#object.__str__">__str__ documentation</a></p>
+</section>
+</section>
+<section id="2.4.-ComplexNumber-code-skeleton">
+<h3>2.4. ComplexNumber code skeleton<a class="headerlink" href="#2.4.-ComplexNumber-code-skeleton" title="Link to this heading">#</a></h3>
+<p>We are now ready to write methods on our own. Open Visual Studio Code (no jupyter in part B !) and proceed editing file <code class="docutils literal notranslate"><span class="pre">ComplexNumber.py</span></code></p>
+<p>To see how to test, try running this in the console, tests should pass (if system doesn’t find <code class="docutils literal notranslate"><span class="pre">python3</span></code> write <code class="docutils literal notranslate"><span class="pre">python</span></code>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>unittest<span class="w"> </span>complex_number_test.ComplexNumberTest
+</pre></div>
+</div>
+</section>
+<section id="2.5.-Complex-numbers-magnitude">
+<h3>2.5. Complex numbers magnitude<a class="headerlink" href="#2.5.-Complex-numbers-magnitude" title="Link to this heading">#</a></h3>
+<p><img alt="complex numbers magnitude 1 31231893123" src="../../_images/complex-numbers-magnitude-1.png" /> <img alt="complex numbers magnitude 2 2312391232" src="../../_images/complex-numbers-magnitude-2.png" /></p>
+<p>Implement the <code class="docutils literal notranslate"><span class="pre">magnitude</span></code> method, using this signature:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">magnitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Returns a float which is the magnitude (that is, the absolute value) of the complex number</span>
+
+<span class="sd">        This method is something we introduce by ourselves, according to the definition:</span>
+<span class="sd">        https://en.wikipedia.org/wiki/Complex_number#Absolute_value_and_argument</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO implement me!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To test it, check this test in <code class="docutils literal notranslate"><span class="pre">MagnitudeTest</span></code> class passes (notice the <code class="docutils literal notranslate"><span class="pre">almost</span></code> in <code class="docutils literal notranslate"><span class="pre">assertAlmostEquals</span></code> !!!):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_01_magnitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">assertAlmostEqual</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">4.0</span><span class="p">)</span><span class="o">.</span><span class="n">magnitude</span><span class="p">(),</span><span class="mi">5</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To run the test, in the console type:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>unittest<span class="w"> </span>complex_number_test.MagnitudeTest
+</pre></div>
+</div>
+</section>
+<section id="2.6.-Complex-numbers-equality">
+<h3>2.6. Complex numbers equality<a class="headerlink" href="#2.6.-Complex-numbers-equality" title="Link to this heading">#</a></h3>
+<p>Here we will try to give you a glimpse of some aspects related to Python equality, and trying to respect interfaces when overriding methods. Equality can be a nasty subject, here we will treat it in a simplified form.</p>
+<p>First of all, try to execute this command, you should get back <code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+False
+</pre></div></div>
+</div>
+<p>How comes we get <code class="docutils literal notranslate"><span class="pre">False</span></code>? The reason is whenever we write <code class="docutils literal notranslate"><span class="pre">ComplexNumber(1,2)</span></code> we are creating a new object in memory. Such object will get assigned a unique address number in memory, and by default equality between class instances is calculated considering only equality among memory addresses. In this case we create one object to the left of the expression and another one to the right. So far we didn’t tell Python how to deal with equality for <code class="docutils literal notranslate"><span class="pre">ComplexNumber</span></code> classes, so default equality
+testing is used by checking memory addresses by implictly using the operator <code class="docutils literal notranslate"><span class="pre">is</span></code>. Since here the addresses point to different memory regions we get <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+<p>To get <code class="docutils literal notranslate"><span class="pre">True</span></code> as we expect, we need to implement <code class="docutils literal notranslate"><span class="pre">__eq__</span></code> special method. This method should tell Python to compare the fields within the objects, and not just the memory address.</p>
+<div class="admonition note">
+<p><strong>REMEMBER</strong>: as all methods starting and ending with a double underscore <code class="docutils literal notranslate"><span class="pre">__</span></code>, <code class="docutils literal notranslate"><span class="pre">__eq__</span></code> has a special meaning in Python: depending on their name, they override some default behaviour. In this case, with <code class="docutils literal notranslate"><span class="pre">__eq__</span></code> we are overriding how Python checks equality. Please review <a class="reference external" href="https://docs.python.org/3/reference/datamodel.html#object.__eq__">__eq__ documentation</a> before continuing.</p>
+</div>
+<p><strong>QUESTION</strong>: What is the return type of <code class="docutils literal notranslate"><span class="pre">__eq__</span></code> ?</p>
+<p><img alt="image1" src="../../_images/complex-numbers-equality.png" /></p>
+<ul>
+<li><p>Implement equality for <code class="docutils literal notranslate"><span class="pre">ComplexNumber</span></code> more or less as it was done for <code class="docutils literal notranslate"><span class="pre">Fraction</span></code></p>
+<p>Use this method signature:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+</pre></div>
+</div>
+<p>Since <code class="docutils literal notranslate"><span class="pre">__eq__</span></code> is a binary operation, here <code class="docutils literal notranslate"><span class="pre">self</span></code> will represent the object to the left of the <code class="docutils literal notranslate"><span class="pre">==</span></code>, and <code class="docutils literal notranslate"><span class="pre">other</span></code> the object to the right.</p>
+</li>
+</ul>
+<p>Use this simple test case to check for equality in class <code class="docutils literal notranslate"><span class="pre">EqTest</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_01_integer_equality</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Note all other tests depend on this test !</span>
+
+<span class="sd">        We want also to test the constructor, so in c we set stuff by hand</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">real</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">imaginary</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>To run the test, in the console type:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>unittest<span class="w"> </span>complex_number_test.EqTest
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Beware ‘equality’ is tricky in Python for float numbers! Rule of thumb: when overriding <code class="docutils literal notranslate"><span class="pre">__eq__</span></code>, use ‘dumb’ equality, two things are the same only if their parts are literally equal</p></li>
+<li><p>If instead you need to determine if two objects are similar, define other ‘closeness’ functions.</p></li>
+<li><p>Once done, check again <code class="docutils literal notranslate"><span class="pre">ComplexNumber(1,2)</span> <span class="pre">==</span> <span class="pre">ComplexNumber(1,2)</span></code> command and see what happens, this time it should give back <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+</ul>
+<p><strong>QUESTION</strong>: What about <code class="docutils literal notranslate"><span class="pre">ComplexNumber(1,2)</span> <span class="pre">!=</span> <span class="pre">ComplexNumber(1,2)</span></code>? Does it behaves as expected?</p>
+<ul class="simple">
+<li><p>(Non mandatory read) if you are interested in the gory details of equality, see</p>
+<ul>
+<li><p><a class="reference external" href="http://jcalderone.livejournal.com/32837.html">How to Override comparison operators in Python</a></p></li>
+<li><p><a class="reference external" href="http://www.asmeurer.com/blog/posts/what-happens-when-you-mess-with-hashing-in-python/">Messing with hashing</a></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="2.7.-Complex-numbers-isclose">
+<h3>2.7. Complex numbers isclose<a class="headerlink" href="#2.7.-Complex-numbers-isclose" title="Link to this heading">#</a></h3>
+<p>Complex numbers can be represented as vectors, so intuitively we can determine if a complex number is close to another by checking that the distance between its vector tip and the the other tip is less than a given delta. There are more precise ways to calculate it, but here we prefer keeping the example simple.</p>
+<p>Given two complex numbers</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[z_1 = a + bi\]</div>
+</div>
+<p>and</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[z_2 = c + di\]</div>
+</div>
+<p>We can consider them as close if they satisfy this condition:</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\sqrt{(a-c)^2 + (b-d)^2} &lt; delta\]</div>
+</div>
+<ul class="simple">
+<li><p>Implement the method in <code class="docutils literal notranslate"><span class="pre">ComplexNumber</span></code> class:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">isclose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">delta</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Returns True if the complex number is within a delta distance from complex number c.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO Implement me!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Check this test case <code class="docutils literal notranslate"><span class="pre">IsCloseTest</span></code> class pass:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_01_isclose</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;  Notice we use `assertTrue` because we expect `isclose` to return a `bool` value, and</span>
+<span class="sd">         we also test a case where we expect `False`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.1</span><span class="p">),</span> <span class="mf">0.2</span><span class="p">))</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span><span class="mf">10.0</span><span class="p">),</span> <span class="mf">0.2</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>To run the test, in the console type:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>unittest<span class="w"> </span>complex_number_test.IscloseTest
+</pre></div>
+</div>
+<div class="admonition warning">
+<p><strong>REMEMBER</strong>: Equality with <code class="docutils literal notranslate"><span class="pre">__eq__</span></code> and closeness functions like <code class="docutils literal notranslate"><span class="pre">isclose</span></code> are very different things. Equality should check if two objects have the same memory address or, alternatively, if they contain the same things, while closeness functions should check if two objects are similar. You should never use functions like <code class="docutils literal notranslate"><span class="pre">isclose</span></code> inside <code class="docutils literal notranslate"><span class="pre">__eq__</span></code> methods, unless you really know what you’re doing.</p>
+</div>
+</section>
+<section id="2.8.-Complex-numbers-addition">
+<h3>2.8. Complex numbers addition<a class="headerlink" href="#2.8.-Complex-numbers-addition" title="Link to this heading">#</a></h3>
+<p><img alt="complex numbers addition 982323892" src="../../_images/complex-numbers-addition.png" /></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">c</span></code> correspond to <code class="docutils literal notranslate"><span class="pre">real</span></code>, <code class="docutils literal notranslate"><span class="pre">b</span></code> and <code class="docutils literal notranslate"><span class="pre">d</span></code> correspond to <code class="docutils literal notranslate"><span class="pre">imaginary</span></code></p></li>
+<li><p>implement addition for <code class="docutils literal notranslate"><span class="pre">ComplexNumber</span></code> more or less as it was done for <code class="docutils literal notranslate"><span class="pre">Fraction</span></code> in theory slides</p></li>
+<li><p>write some tests as well!</p></li>
+</ul>
+<p>Use this definition:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO implement me!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Check these two tests pass in <code class="docutils literal notranslate"><span class="pre">AddTest</span></code> class:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_01_add_zero</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">));</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_02_add_numbers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>To run the tests, type in the console:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>unittest<span class="w"> </span>complex_number_test.AddTest
+</pre></div>
+</div>
+<p><strong>NOTE</strong>: The other <code class="docutils literal notranslate"><span class="pre">RAddTest</span></code> (note the <code class="docutils literal notranslate"><span class="pre">R</span></code>) will <strong>not</strong> pass, to deal with it see next paragraph.</p>
+</section>
+<section id="2.9.-Adding-a-scalar">
+<h3>2.9. Adding a scalar<a class="headerlink" href="#2.9.-Adding-a-scalar" title="Link to this heading">#</a></h3>
+<p>We defined addition among ComplexNumbers, but what about addition among a ComplexNumber and an <code class="docutils literal notranslate"><span class="pre">int</span></code> or a <code class="docutils literal notranslate"><span class="pre">float</span></code>?</p>
+<p>Will this work?</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="mi">5</span>
+</pre></div>
+</div>
+<p>What about this?</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="mf">5.0</span>
+</pre></div>
+</div>
+<p>Try to add the following method to your class, and check if it does work with the scalar:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span><span class="w"> </span><span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+         <span class="c1"># checks other object is instance of the class ComplexNumber</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">ComplexNumber</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">real</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">real</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">imaginary</span><span class="p">)</span>
+
+        <span class="c1"># else checks the basic type of other is int or float</span>
+        <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">int</span> <span class="ow">or</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">float</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">real</span> <span class="o">+</span> <span class="n">other</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span><span class="p">)</span>
+
+        <span class="c1"># other is of some type we don&#39;t know how to process.</span>
+        <span class="c1"># In this case the Python specs say we MUST return &#39;NotImplemented&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">NotImplemented</span>
+</pre></div>
+</div>
+</div>
+<p>Hopefully now you have a better add. But what about this? Will this work?</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="mi">5</span> <span class="o">+</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Answer: it won’t, Python needs further instructions. Usually Python tries to see if the class of the object on left of the expression defines addition for operands <em>to the right</em> of it. In this case on the left we have a <code class="docutils literal notranslate"><span class="pre">float</span></code> number, and float numbers don’t define any way to deal to the right with your very own <code class="docutils literal notranslate"><span class="pre">ComplexNumber</span></code> class. So as a last resort Python tries to see if your <code class="docutils literal notranslate"><span class="pre">ComplexNumber</span></code> class has defined also a way to deal with operands <em>to the left</em> of the <code class="docutils literal notranslate"><span class="pre">ComplexNumber</span></code>,
+by looking for the method <code class="docutils literal notranslate"><span class="pre">__radd__</span></code> , which means <em>reverse addition</em> . Here we implement it :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="fm">__radd__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Returns the result of expressions like    other + self      &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">int</span> <span class="ow">or</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">float</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">real</span> <span class="o">+</span> <span class="n">other</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">imaginary</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">NotImplemented</span>
+</pre></div>
+</div>
+<p>To check it is working and everything is in order for addition, check these tests in <code class="docutils literal notranslate"><span class="pre">RaddTest</span></code> class pass:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_01_add_scalar_right</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">3</span><span class="p">,</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">));</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_02_add_scalar_left</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">));</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_03_add_negative</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">));</span>
+</pre></div>
+</div>
+</section>
+<section id="2.10.-Complex-numbers-multiplication">
+<h3>2.10. Complex numbers multiplication<a class="headerlink" href="#2.10.-Complex-numbers-multiplication" title="Link to this heading">#</a></h3>
+<p><img alt="complex numbers multiplication 98322372373" src="../../_images/complex-numbers-multiplication.png" /></p>
+<ul class="simple">
+<li><p>Implement multiplication for <code class="docutils literal notranslate"><span class="pre">ComplexNumber</span></code>, taking inspiration from previous <code class="docutils literal notranslate"><span class="pre">__add__</span></code> implementation</p></li>
+<li><p>Can you extend multiplication to work with scalars (both left and right) as well?</p></li>
+</ul>
+<p>To implement <code class="docutils literal notranslate"><span class="pre">__mul__</span></code>, implement definition into <code class="docutils literal notranslate"><span class="pre">ComplexNumber</span></code> class:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO Implement me!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>and make sure these tests cases pass in <code class="docutils literal notranslate"><span class="pre">MulTest</span></code> class:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_01_mul_by_zero</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">));</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_02_mul_just_real</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">));</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_03_mul_just_imaginary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">));</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_04_mul_scalar_right</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="mi">3</span><span class="p">,</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">));</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_05_mul_scalar_left</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">ComplexNumber</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">));</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="3.-MultiSet">
+<h2>3. MultiSet<a class="headerlink" href="#3.-MultiSet" title="Link to this heading">#</a></h2>
+<p>You are going to implement a class called <code class="docutils literal notranslate"><span class="pre">MultiSet</span></code>, where you are only given the class skeleton, and you will need to determine which Python basic datastructures like <code class="docutils literal notranslate"><span class="pre">list</span></code>, <code class="docutils literal notranslate"><span class="pre">set</span></code>, <code class="docutils literal notranslate"><span class="pre">dict</span></code> (or combinations thereof) is best suited to actually hold the data.</p>
+<p>In math a multiset (or bag) generalizes a set by allowing multiple instances of the multiset’s elements.</p>
+<p>The multiplicity of an element is the number of instances of the element in a specific multiset.</p>
+<p>For example:</p>
+<ul class="simple">
+<li><p>The multiset <code class="docutils literal notranslate"><span class="pre">a,</span> <span class="pre">b</span></code> contains only elements <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code>, each having multiplicity 1</p></li>
+<li><p>In multiset <code class="docutils literal notranslate"><span class="pre">a,</span> <span class="pre">a,</span> <span class="pre">b</span></code>, <code class="docutils literal notranslate"><span class="pre">a</span></code> has multiplicity 2 and <code class="docutils literal notranslate"><span class="pre">b</span></code> has multiplicity 1</p></li>
+<li><p>In multiset <code class="docutils literal notranslate"><span class="pre">a,</span> <span class="pre">a,</span> <span class="pre">a,</span> <span class="pre">b,</span> <span class="pre">b,</span> <span class="pre">b</span></code>, <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> both have multiplicity 3</p></li>
+</ul>
+<p>NOTE: order of insertion does not matter, so <code class="docutils literal notranslate"><span class="pre">a,</span> <span class="pre">a,</span> <span class="pre">b</span></code> and <code class="docutils literal notranslate"><span class="pre">a,</span> <span class="pre">b,</span> <span class="pre">a</span></code> are the same multiset, where <code class="docutils literal notranslate"><span class="pre">a</span></code> has multiplicity 2 and <code class="docutils literal notranslate"><span class="pre">b</span></code> has multiplicity 1.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">multiset_sol</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="3.1-__init__-add-and-get">
+<h2>3.1 <code class="docutils literal notranslate"><span class="pre">__init__</span></code> <code class="docutils literal notranslate"><span class="pre">add</span></code> and <code class="docutils literal notranslate"><span class="pre">get</span></code><a class="headerlink" href="#3.1-__init__-add-and-get" title="Link to this heading">#</a></h2>
+<p>Now implement <em>all</em> of the following methods: <code class="docutils literal notranslate"><span class="pre">__init__</span></code>, <code class="docutils literal notranslate"><span class="pre">add</span></code> and <code class="docutils literal notranslate"><span class="pre">get</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Initializes the MultiSet as empty.&quot;&quot;&quot;</span>
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO IMPLEMENT ME !!!&quot;</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">el</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Adds one instance of element el to the multiset</span>
+
+<span class="sd">        NOTE: MUST work in O(1)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO IMPLEMENT ME !!!&quot;</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">el</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Returns the multiplicity of element el in the multiset.</span>
+
+<span class="sd">        If no instance of el is present, return 0.</span>
+
+<span class="sd">        NOTE: MUST work in O(1)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;TODO IMPLEMENT ME !!!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Testing</strong></p>
+<p>Once done, running this will run only the tests in <code class="docutils literal notranslate"><span class="pre">AddGetTest</span></code> class and hopefully they will pass.</p>
+<p><strong>Notice that</strong> <code class="docutils literal notranslate"><span class="pre">multiset_test</span></code> <strong>is followed by a dot and test class name</strong> <code class="docutils literal notranslate"><span class="pre">.AddGetTest</span></code> :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>unittest<span class="w"> </span>multiset_test.AddGetTest
+</pre></div>
+</div>
+</section>
+<section id="3.2-removen">
+<h2>3.2 <code class="docutils literal notranslate"><span class="pre">removen</span></code><a class="headerlink" href="#3.2-removen" title="Link to this heading">#</a></h2>
+<p>Implement the following <code class="docutils literal notranslate"><span class="pre">removen</span></code> method:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">removen</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">el</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Removes n instances of element el from the multiset (that is, reduces el multiplicity by n)</span>
+
+<span class="sd">        If n is negative, raises ValueError.</span>
+<span class="sd">        If n represents a multiplicity bigger than the current multiplicity, raises LookupError</span>
+
+<span class="sd">        NOTE: multiset multiplicities are never negative</span>
+<span class="sd">        NOTE: MUST work in O(1)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p><strong>Testing</strong>: <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">-m</span> <span class="pre">unittest</span> <span class="pre">multiset_test.RemovenTest</span></code></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="Continue">
+<h2>Continue<a class="headerlink" href="#Continue" title="Link to this heading">#</a></h2>
+<p>Go on with <a class="reference internal" href="../../challenges/14%20-%20OOP/oop2-matrix-chal.html"><span class="doc">OOP Matrix Challenge</span></a></p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="../../challenges/01%20-%20Basics/basics4-chal.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Python Basics - Challenges</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="index.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">14 - OOP</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2026, Erich Robbi
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">OOP</a><ul>
+<li><a class="reference internal" href="#Download-exercises-zip">Download exercises zip</a></li>
+<li><a class="reference internal" href="#What-to-do">What to do</a></li>
+<li><a class="reference internal" href="#1.-Abstract-Data-Types-(ADT)-Theory">1. Abstract Data Types (ADT) Theory</a><ul>
+<li><a class="reference internal" href="#1.1.-Intro">1.1. Intro</a></li>
+<li><a class="reference internal" href="#1.2.-Complex-number-theory">1.2. Complex number theory</a></li>
+<li><a class="reference internal" href="#1.3.-Datatypes-the-old-way">1.3. Datatypes the old way</a></li>
+<li><a class="reference internal" href="#1.4.-Finding-the-pattern">1.4. Finding the pattern</a></li>
+<li><a class="reference internal" href="#1.5.-Object-Oriented-Programming">1.5. Object Oriented Programming</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#2.-ComplexNumber-class">2. ComplexNumber class</a><ul>
+<li><a class="reference internal" href="#2.1.-Class-declaration">2.1. Class declaration</a></li>
+<li><a class="reference internal" href="#2.2.-Constructor-__init__">2.2. Constructor <code class="docutils literal notranslate"><span class="pre">__init__</span></code></a></li>
+<li><a class="reference internal" href="#2.3.-Defining-methods">2.3. Defining methods</a><ul>
+<li><a class="reference internal" href="#2.3.1-phase">2.3.1 phase</a></li>
+<li><a class="reference internal" href="#2.3.2-log">2.3.2 log</a></li>
+<li><a class="reference internal" href="#2.3.3-__str__-for-printing">2.3.3 <code class="docutils literal notranslate"><span class="pre">__str__</span></code> for printing</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#2.4.-ComplexNumber-code-skeleton">2.4. ComplexNumber code skeleton</a></li>
+<li><a class="reference internal" href="#2.5.-Complex-numbers-magnitude">2.5. Complex numbers magnitude</a></li>
+<li><a class="reference internal" href="#2.6.-Complex-numbers-equality">2.6. Complex numbers equality</a></li>
+<li><a class="reference internal" href="#2.7.-Complex-numbers-isclose">2.7. Complex numbers isclose</a></li>
+<li><a class="reference internal" href="#2.8.-Complex-numbers-addition">2.8. Complex numbers addition</a></li>
+<li><a class="reference internal" href="#2.9.-Adding-a-scalar">2.9. Adding a scalar</a></li>
+<li><a class="reference internal" href="#2.10.-Complex-numbers-multiplication">2.10. Complex numbers multiplication</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#3.-MultiSet">3. MultiSet</a></li>
+<li><a class="reference internal" href="#3.1-__init__-add-and-get">3.1 <code class="docutils literal notranslate"><span class="pre">__init__</span></code> <code class="docutils literal notranslate"><span class="pre">add</span></code> and <code class="docutils literal notranslate"><span class="pre">get</span></code></a></li>
+<li><a class="reference internal" href="#3.2-removen">3.2 <code class="docutils literal notranslate"><span class="pre">removen</span></code></a></li>
+<li><a class="reference internal" href="#Continue">Continue</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=d91ab2ad"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    </body>
+</html>

@@ -1,0 +1,1474 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html"><link rel="search" title="Search" href="../../search.html"><link rel="next" title="Loading Files 3 - JSON" href="formats3-sol.html"><link rel="prev" title="Loading Files 1 - Text Files" href="formats1-sol.html">
+        <link rel="canonical" href="https://erich-r.github.io/SciProg27/lectures/13%20-%20Loading%20Files/formats2-sol.html">
+
+    <!-- Generated with Sphinx 9.0.4 and Furo 2025.12.19 -->
+        <title>Loading Files 2 - CSV files - SciProg 2027</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=e429fab1" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">SciProg 2027</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  <span class="sidebar-brand-text">SciProg 2027</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../00%20-%20Installation/installation.html">Installation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../01%20-%20Basics/index.html">01 - Basics</a><input aria-label="Toggle navigation of 01 - Basics" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../01%20-%20Basics/basics1-ints-sol.html">Python Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01%20-%20Basics/basics2-bools-sol.html">Python Basics - Booleans</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01%20-%20Basics/basics3-floats-sol.html">Python Basics - Float</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../02%20-%20Strings/index.html">02 - Strings</a><input aria-label="Toggle navigation of 02 - Strings" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../02%20-%20Strings/strings1-sol.html">Strings 1 - Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02%20-%20Strings/strings2-sol.html">Strings 2 - Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02%20-%20Strings/strings3-sol.html">Strings 3 - Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02%20-%20Strings/strings4-sol.html">Strings 4 - Search Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../03%20-%20Lists/index.html">03 - Lists</a><input aria-label="Toggle navigation of 03 - Lists" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../03%20-%20Lists/lists1-sol.html">Lists 1 - Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03%20-%20Lists/lists2-sol.html">Lists 2 - operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03%20-%20Lists/lists3-sol.html">Lists 3 - Basic methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03%20-%20Lists/lists4-sol.html">Lists 4 - Search methods</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../04%20-%20Tuples/index.html">04 - Tuples</a><input aria-label="Toggle navigation of 04 - Tuples" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../04%20-%20Tuples/tuples1-sol.html">Tuples</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../05%20-%20Sets/index.html">05 - Sets</a><input aria-label="Toggle navigation of 05 - Sets" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../05%20-%20Sets/sets1-sol.html">Sets</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../06%20-%20Dictionaries/index.html">06 - Dictionaries</a><input aria-label="Toggle navigation of 06 - Dictionaries" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../06%20-%20Dictionaries/dictionaries1-sol.html">Dictionaries 1 - Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06%20-%20Dictionaries/dictionaries2-sol.html">Dictionaries 2 - operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06%20-%20Dictionaries/dictionaries3-sol.html">Dictionaries 3 - Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06%20-%20Dictionaries/dictionaries4-sol.html">Dictionaries 4 - special classes</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../07%20-%20Control%20flow/index.html">07 - Control flow</a><input aria-label="Toggle navigation of 07 - Control flow" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/for1-sol.html">For loops - Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/for2-sol.html">For loops - Iterating Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/for3-sol.html">For loops - Iterating Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/for4-sol.html">For loops - Iterating Tuples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/for5-sol.html">For loops - Iterating Sets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/for6-sol.html">For loops - Iterating Dictionaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/for7-sol.html">For loops - Nested Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/if1-sol.html">If Else statements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/sequences1-sol.html">Sequences and comprehensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%20-%20Control%20flow/while1-sol.html">While loops 1 - introduction</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../08%20-%20Functions/index.html">08 - Functions</a><input aria-label="Toggle navigation of 08 - Functions" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../08%20-%20Functions/functions1-sol.html">Functions - solutions</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../09%20-%20Matrices%20of%20Lists/index.html">09 - Matrices of Lists</a><input aria-label="Toggle navigation of 09 - Matrices of Lists" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../09%20-%20Matrices%20of%20Lists/matrices-lists1-sol.html">Matrices: list of lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../09%20-%20Matrices%20of%20Lists/matrices-lists2-sol.html">Matrices 2: list of lists - other exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../10%20-%20Matrices%20Numpy/index.html">10 - Matrices Numpy</a><input aria-label="Toggle navigation of 10 - Matrices Numpy" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../10%20-%20Matrices%20Numpy/matrices-numpy1-sol.html">Matrices: Numpy 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../10%20-%20Matrices%20Numpy/matrices-numpy2-sol.html">Matrices: Numpy 2 - Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../11%20-%20Matplotlib/index.html">11 - Matplotlib</a><input aria-label="Toggle navigation of 11 - Matplotlib" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../11%20-%20Matplotlib/visualization1-sol.html">Matplotlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../11%20-%20Matplotlib/visualization2-sol.html">Matplotlib - Numpy images</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../12%20-%20Pandas/index.html">12 - Pandas</a><input aria-label="Toggle navigation of 12 - Pandas" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../12%20-%20Pandas/pandas1-intro-sol.html">Pandas 1 - Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../12%20-%20Pandas/pandas2-advanced-sol.html">Pandas 2 - Advanced Operations</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">13 - Loading Files</a><input aria-label="Toggle navigation of 13 - Loading Files" checked="" class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="formats1-sol.html">Loading Files 1 - Text Files</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Loading Files 2 - CSV files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="formats3-sol.html">Loading Files 3 - JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../14%20-%20OOP/index.html">14 - OOP</a><input aria-label="Toggle navigation of 14 - OOP" class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../14%20-%20OOP/oop1-sol.html">OOP</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Challenge Yourself at Home</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/01%20-%20Basics/basics4-chal.html">Python Basics - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/02%20-%20Strings/strings5-chal.html">Strings - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/03%20-%20Lists/lists5-chal.html">Lists - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/04%20-%20Tuples/tuples2-chal.html">Tuples - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/05%20-%20Sets/sets2-chal.html">Sets - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/06%20-%20Dictionaries/dictionaries5-chal.html">Dictionaries - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/07%20-%20Control%20flow/for8-chal.html">For Loops - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/07%20-%20Control%20flow/if2-chal.html">If Else - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/07%20-%20Control%20flow/sequences2-chal.html">Sequences - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/07%20-%20Control%20flow/while2-chal.html">While loops - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/09%20-%20Matrices%20of%20Lists/matrices-lists3-chal.html">Matrices Lists - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/11%20-%20Matplotlib/visualization3-chal.html">Matplotlib Challenge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/12%20-%20Pandas/pandas3-chal.html">Pandas Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/13%20-%20Loading%20Files/formats4-chal.html">Loading Files - Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/14%20-%20OOP/oop2-matrix-chal.html">OOP Matrix Challenge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges/Misc.%20Challenges/chall1-chal.html">Challenges - Miscellaneous</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Commandments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../commandments/commandments.html">Rules You Shall Not Break</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="Loading-Files-2---CSV-files">
+<h1>Loading Files 2 - CSV files<a class="headerlink" href="#Loading-Files-2---CSV-files" title="Link to this heading">#</a></h1>
+<section id="Download-exercises-zip">
+<h2><a class="reference external" href="../_static/generated/formats.zip">Download exercises zip</a><a class="headerlink" href="#Download-exercises-zip" title="Link to this heading">#</a></h2>
+<p>There can be various formats for tabular data, among which you surely know Excel (<code class="docutils literal notranslate"><span class="pre">.xls</span></code> or <code class="docutils literal notranslate"><span class="pre">.xslx</span></code>). Unfortunately, if you want to programmatically process data, you should better avoid them and prefer if possible the CSV format, literally ‘Comma Separated Value’. Why? Excel format is very complex and may hide several things which have nothing to do with the raw data:</p>
+<ul class="simple">
+<li><p>formatting (bold fonts, colors …)</p></li>
+<li><p>merged cells</p></li>
+<li><p>formulas</p></li>
+<li><p>multiple tabs</p></li>
+<li><p>macros</p></li>
+</ul>
+<p>Correctly parsing complex files may become a nightmare. Instead, CSVs are far simpler, so much so you can even open them witha simple text editor.</p>
+<p>We will try to open some CSV, taking into consideration the possible problems we might get. CSVs are not necessarily the perfect solution for everything, but they offer more control over reading and typically if there are conversion problems is because we made a mistake, and not because the reader module decided on its own to exchange days with months in dates.</p>
+<section id="Why-parsing-a-CSV-?">
+<h3>Why parsing a CSV ?<a class="headerlink" href="#Why-parsing-a-CSV-?" title="Link to this heading">#</a></h3>
+<p>To load and process CSVs there exist many powerful and intuitive modules such as Pandas in Python or R dataframes. Yet, in this notebook we will load CSVs using the most simple method possible, that is reading row by row, mimicking the method already seen in the previous part of the tutorial. Don’t think this method is primitive or stupid, according to the situation it may save the day. How? Some files may potentially occupy huge amounts of memory, and in moder laptops as of 2019 we only have 4
+gigabytes of RAM, the memory where Python stores variables. Given this, Python base functions to read files try their best to avoid loading everything in RAM. Tyipcally a file is read sequentially one piece at a time, putting in RAM only one row at a time.</p>
+<p><strong>QUESTION 2.1</strong>: if we want to know if a given file of 1000 terabytes contains only 3 million rows in which the word ‘ciao’ is present, are we obliged to put in RAM <em>all</em> of the rows ?</p>
+<p><strong>ANSWER</strong>: no, it is sufficient to keep in memory one row at a time, and hold the count in another variable</p>
+<p><strong>QUESTION 2.2</strong>: What if we wanted to take a 100 terabyte file and create another one by appending to each row of the first one the word ‘ciao’? Should we put in RAM at the same time all the rows of the first file ? What about the rows of second one?</p>
+<p><strong>ANSWER</strong>: No, it is enough to keep in RAM one row at a time, which is first read from the first file and then written right away in the second file.</p>
+</section>
+<section id="Reading-a-CSV">
+<h3>Reading a CSV<a class="headerlink" href="#Reading-a-CSV" title="Link to this heading">#</a></h3>
+<p>We will start with artifical example CSV. Let’s look at <a class="reference external" href="data/example-1.csv">example-1.csv</a> which you can find in the same folder as this Jupyter notebook. It contains animals with their expected lifespan:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>animal, lifespan
+dog, 12
+cat, 14
+pelican, 30
+squirrel, 6
+eagle, 25
+</pre></div>
+</div>
+<p>We notice right away that the CSV is more structured than files we’ve seen in the previous section</p>
+<ul class="simple">
+<li><p>in the first line there are column names, separated with commas: <code class="docutils literal notranslate"><span class="pre">animal,</span> <span class="pre">lifespan</span></code></p></li>
+<li><p>fields in successive rows are also separated by commas <code class="docutils literal notranslate"><span class="pre">,</span></code>: <code class="docutils literal notranslate"><span class="pre">dog,</span> <span class="pre">12</span></code></p></li>
+</ul>
+<p>Let’s try now to import this file in Python:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/example-1.csv&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+
+    <span class="c1"># we create an object &#39;my_reader&#39; which will take rows from the file</span>
+    <span class="n">my_reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+
+    <span class="c1"># &#39;my_reader&#39; is an object considered &#39;iterable&#39;, that is,</span>
+    <span class="c1"># if used in a &#39;for&#39; will produce a sequnce of rows from csv</span>
+    <span class="c1"># NOTE: here every file row is converted into a list of Python strings !</span>
+
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">my_reader</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;We just read a row !&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>  <span class="c1"># prints variable &#39;row&#39;, which is a list of strings</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>   <span class="c1"># prints an empty string, to separate in vertical</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+We just read a row !
+[&#39;animal&#39;, &#39; lifespan&#39;]
+
+We just read a row !
+[&#39;dog&#39;, &#39;12&#39;]
+
+We just read a row !
+[&#39;cat&#39;, &#39;14&#39;]
+
+We just read a row !
+[&#39;pelican&#39;, &#39;30&#39;]
+
+We just read a row !
+[&#39;squirrel&#39;, &#39;6&#39;]
+
+We just read a row !
+[&#39;eagle&#39;, &#39;25&#39;]
+
+</pre></div></div>
+</div>
+<p>We immediatly notice from output that example file is being printed, but there are square parrenthesis ( <code class="docutils literal notranslate"><span class="pre">[]</span></code> ). What do they mean? Those we printed are <em>lists of strings</em></p>
+<p>Let’s analyze what we did:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+</pre></div>
+</div>
+<p>Python natively has a module to deal with csv files, which has the intuitive <code class="docutils literal notranslate"><span class="pre">csv</span></code> name. With this instruction, we just loaded the module.</p>
+<p>What happens next? As already did for files with lines before, we open the file in a <code class="docutils literal notranslate"><span class="pre">with</span></code> block:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/example-1.csv&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">my_reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">my_reader</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For now ignore the <code class="docutils literal notranslate"><span class="pre">newline=''</span></code> and notice how first we specificed the encoding</p>
+<p>Once the file is open, in the row</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">my_reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>we ask to <code class="docutils literal notranslate"><span class="pre">csv</span></code> module to create a reader object called <code class="docutils literal notranslate"><span class="pre">my_reader</span></code> for our file, telling Python that comma is the delimiter for fields.</p>
+<p><strong>NOTE:</strong> <code class="docutils literal notranslate"><span class="pre">my_reader</span></code> is the name of the variable we are creating, it could be any name.</p>
+<p>This reader object can be exploited as a sort of generator of rows by using a <code class="docutils literal notranslate"><span class="pre">for</span></code> cycle:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>for row in my_reader:
+    print(row)
+</pre></div>
+</div>
+<p>In <code class="docutils literal notranslate"><span class="pre">for</span></code> cycle we employ <code class="docutils literal notranslate"><span class="pre">lettore</span></code> to iterate in the reading of the file, producing at each iteration a row we call <code class="docutils literal notranslate"><span class="pre">row</span></code> (but it could be any name we like). At each iteration, the variable <code class="docutils literal notranslate"><span class="pre">row</span></code> gets printed.</p>
+<p>If you look closely the prints of first lists, you will see that each time to each row is assigned only one Python list. The list contains as many elements as the number of fields in the CSV.</p>
+<p><strong>✪ EXERCISE 2.3</strong>: Rewrite in the cell below the instructions to read and print the CSV, paying attention to indentation:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/example-1.csv&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+
+    <span class="c1"># we create an object &#39;my_reader&#39; which will take rows from the file</span>
+    <span class="n">my_reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+
+    <span class="c1"># &#39;my_reader&#39; is an object considered &#39;iterable&#39;, that is,</span>
+    <span class="c1"># if used in a &#39;for&#39; will produce a sequnce of rows from csv</span>
+    <span class="c1"># NOTE: here every file row is converted into a list of Python strings !</span>
+
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">my_reader</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;We just read a row !&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>  <span class="c1"># prints variable &#39;row&#39;, which is a list of strings</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>   <span class="c1"># prints an empty string, to separate in vertical</span>
+<br/></pre></div>
+</div>
+</div>
+</details><p><strong>✪✪ EXERCISE 2.4</strong>: try to put into <code class="docutils literal notranslate"><span class="pre">big_list</span></code> a list containing all the rows extracted from the file, which will be a list of lists like so:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="s1">&#39;animal&#39;</span><span class="p">,</span> <span class="s1">&#39;lifespan&#39;</span><span class="p">],</span>
+ <span class="p">[</span><span class="s1">&#39;dog&#39;</span><span class="p">,</span> <span class="s1">&#39;12&#39;</span><span class="p">],</span>
+ <span class="p">[</span><span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="s1">&#39;14&#39;</span><span class="p">],</span>
+ <span class="p">[</span><span class="s1">&#39;pelican&#39;</span><span class="p">,</span> <span class="s1">&#39;30&#39;</span><span class="p">],</span>
+ <span class="p">[</span><span class="s1">&#39;squirrel&#39;</span><span class="p">,</span> <span class="s1">&#39;6&#39;</span><span class="p">],</span>
+ <span class="p">[</span><span class="s1">&#39;eagle&#39;</span><span class="p">,</span> <span class="s1">&#39;25&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p><strong>HINT</strong>: Try creating an empty list and then adding elements with <code class="docutils literal notranslate"><span class="pre">.append</span></code> method</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/example-1.csv&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+
+    <span class="c1"># we create an object &#39;my_reader&#39; which will take rows from the file</span>
+    <span class="n">my_reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+
+    <span class="c1"># &#39;my_reader&#39; is an object considered &#39;iterable&#39;, that is,</span>
+    <span class="c1"># if used in a &#39;for&#39; will produce a sequnce of rows from csv</span>
+    <span class="c1"># NOTE: here every file row is converted into a list of Python strings !</span>
+
+    <span class="n">big_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">my_reader</span><span class="p">:</span>
+        <span class="n">big_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">big_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details><p><strong>✪✪ EXERCISE 2.5</strong>: You may have noticed that numbers in lists are represented as strings like <code class="docutils literal notranslate"><span class="pre">'12'</span></code> (note apeces), instead that like Python integer numbers (represented without apeces), <code class="docutils literal notranslate"><span class="pre">12</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>We just read a row!
+[&#39;dog&#39;, &#39;12&#39;]
+</pre></div>
+</div>
+<p>So, by reading the file and using normal for cycles, try to create a new variable <code class="docutils literal notranslate"><span class="pre">big_list</span></code> like this, which</p>
+<ul class="simple">
+<li><p>has only data, the row with the header is not present</p></li>
+<li><p>numbers are represented as proper integers</p></li>
+</ul>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[[&#39;dog&#39;, 12],
+ [&#39;cat&#39;, 14],
+ [&#39;pelican&#39;, 30],
+ [&#39;squirrel&#39;, 6],
+ [&#39;eagle&#39;, 25]]
+</pre></div>
+</div>
+<p><strong>HINT 1</strong>: to jump a row you can use the instruction <code class="docutils literal notranslate"><span class="pre">next(my_reader)</span></code></p>
+<p><strong>HINT 2</strong>: to convert a string into an integer, you can use for example. <code class="docutils literal notranslate"><span class="pre">int('25')</span></code></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/example-1.csv&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">my_reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+    <span class="n">big_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="nb">next</span><span class="p">(</span><span class="n">my_reader</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">my_reader</span><span class="p">:</span>
+        <span class="n">big_list</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">])])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">big_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="What's-a-reader-?">
+<h3>What’s a reader ?<a class="headerlink" href="#What's-a-reader-?" title="Link to this heading">#</a></h3>
+<p>We said that <code class="docutils literal notranslate"><span class="pre">my_reader</span></code> generates a sequence of rows, and it is <em>iterable</em>. In <code class="docutils literal notranslate"><span class="pre">for</span></code> cycle, at every cycle we ask to read a new line, which is put into variable <code class="docutils literal notranslate"><span class="pre">row</span></code>. We might then ask ourselves, what happens if we directly print <code class="docutils literal notranslate"><span class="pre">my_reader</span></code>, without any <code class="docutils literal notranslate"><span class="pre">for</span></code>? Will we see a nice list or something else? Let’s try:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/example-1.csv&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">my_reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">my_reader</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;_csv.reader object at 0x7f7e701b7050&gt;
+</pre></div></div>
+</div>
+<p>This result is quite disappointing</p>
+<p><strong>✪ EXERCISE 2.6</strong>: you probably found yourself in the same situation when trying to print a sequence generated by a call to <code class="docutils literal notranslate"><span class="pre">range(5)</span></code>: instead of the actual sequence you get a <code class="docutils literal notranslate"><span class="pre">range</span></code> object. If you want to convert the generator to a list, what should you do?</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/example-1.csv&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">my_reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">my_reader</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="Consuming-a-file">
+<h3>Consuming a file<a class="headerlink" href="#Consuming-a-file" title="Link to this heading">#</a></h3>
+<p>Not all sequences are the same. From what you’ve seen so far, going through a file in Python looks a lot like iterating a list. Which is very handy, but you need to pay attention to some things. Given that files potentially might occupy terabytes, basic Python functions to load them avoid loading everything into memory and typically a file is read one piece at a time. But if the whole file is loaded into Python environment in one shot, what happens if we try to go through it twice inside the
+same <code class="docutils literal notranslate"><span class="pre">with</span></code> ? What happens if we try using it outside <code class="docutils literal notranslate"><span class="pre">with</span></code>? To find out look at next exercises.</p>
+<p><strong>✪ EXERCISE 2.7</strong>: taking the solution to previous exercise, try to call <code class="docutils literal notranslate"><span class="pre">print(list(my_reader))</span></code> twice, in sequence. Do you get the same output in both occasions?</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/example-1.csv&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">my_reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">my_reader</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">my_reader</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</details><p><strong>✪ EXERCISE 2.8</strong>: Taking the solution from previous exercise (using only one print), try down here to move the print to the left (removing any spaces). Does it still work ?</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/example-1.csv&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">my_reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+<span class="c1">#print(list(my_reader))    # COMMENTED, AS IT WOULD RAISE ON ERROR OF CLOSED FILE</span>
+                           <span class="c1"># We can&#39;t use commands which read the file outside the with !</span>
+</pre></div>
+</div>
+</div>
+</details><p><strong>✪✪ EXERCISE 2.9</strong>: Now that we understood which kind of beast <code class="docutils literal notranslate"><span class="pre">my_reader</span></code> is, try to produce this result as done before, but using a <em>list comprehension</em> instead of the <code class="docutils literal notranslate"><span class="pre">for</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="s1">&#39;dog&#39;</span><span class="p">,</span> <span class="mi">12</span><span class="p">],</span>
+ <span class="p">[</span><span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="mi">14</span><span class="p">],</span>
+ <span class="p">[</span><span class="s1">&#39;pelican&#39;</span><span class="p">,</span> <span class="mi">30</span><span class="p">],</span>
+ <span class="p">[</span><span class="s1">&#39;squirrel&#39;</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+ <span class="p">[</span><span class="s1">&#39;eagle&#39;</span><span class="p">,</span> <span class="mi">25</span><span class="p">]]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>If you can, try also to write the whole transformation to create <code class="docutils literal notranslate"><span class="pre">big_list</span></code> in one row, usinf the function <a class="reference external" href="https://docs.python.org/3/library/itertools.html#itertools.islice">itertools.islice</a> to jump the header (for example <code class="docutils literal notranslate"><span class="pre">itertools.islice(['A',</span> <span class="pre">'B',</span> <span class="pre">'C',</span> <span class="pre">'D',</span> <span class="pre">'E'],</span> <span class="pre">2,</span> <span class="pre">None)</span></code> first two elements and produces the sequence C D E F G - in our case the elements produced by <code class="docutils literal notranslate"><span class="pre">my_reader</span></code> would be rows)</p></li>
+</ul>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><br/><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">itertools</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/example-1.csv&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">my_reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+<span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><br/><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">itertools</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/example-1.csv&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">my_reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+    <span class="n">big_list</span> <span class="o">=</span> <span class="p">[[</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">islice</span><span class="p">(</span><span class="n">my_reader</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">)]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">big_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details><p><strong>✪ EXERCISE 2.10</strong>: Create a file <code class="docutils literal notranslate"><span class="pre">my-example.csv</span></code> in the same folder where this Jupyter notebook is, and copy inside the content of the file <code class="docutils literal notranslate"><span class="pre">example-1.csv</span></code>. Then add a column <code class="docutils literal notranslate"><span class="pre">description</span></code>, remembering to separate the column name from the preceding one with a comma. As column values, put into successive rows strings like <code class="docutils literal notranslate"><span class="pre">dogs</span> <span class="pre">walk</span></code>, <code class="docutils literal notranslate"><span class="pre">pelicans</span> <span class="pre">fly</span></code>, etc according to the animal, remembering to separate them from lifespan using a comma, like this:</p>
+<p><code class="docutils literal notranslate"><span class="pre">dog,12,dogs</span> <span class="pre">walk</span></code></p>
+<p>After this, copy and paste down here the Python code to load the file, putting the file name <code class="docutils literal notranslate"><span class="pre">my-example.csv</span></code>, and try to load everything, just to check everything is working:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><br/><span></span><span class="c1"># answer:</span>
+<span class="c1"># animal,lifespan,description</span>
+<span class="c1"># dog,12,dogs walk</span>
+<span class="c1"># cat,14,cats walk</span>
+<span class="c1"># pelican,30,pelicans fly</span>
+<span class="c1"># squirrel,6,squirrels fly</span>
+<span class="c1"># eagle,25,eagles fly</span>
+<br/></pre></div>
+</div>
+</div>
+</details><p><strong>✪ EXERCISE 2.11</strong>: Not every CSV is structured in the same way, sometimes when we write csvs or import them some tweak is necessary. Let’s see which problems may arise:</p>
+<ul class="simple">
+<li><p>In the file, try to put one or two spaces before numbers, for example write down here and look what happens</p></li>
+</ul>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>dog, 12,dogs fly
+</pre></div>
+</div>
+<p><strong>QUESTION 2.11.1</strong>: Does the space get imported?</p>
+<p><strong>ANSWER</strong>: yes</p>
+<p><strong>QUESTION 2.11.2</strong>: if we convert to integer, is the space a problem?</p>
+<p><strong>ANSWER</strong>: no</p>
+<p><strong>QUESTION 2.11.3</strong> Modify only dogs description from <code class="docutils literal notranslate"><span class="pre">dogs</span> <span class="pre">walk</span></code> to <code class="docutils literal notranslate"><span class="pre">dogs</span> <span class="pre">walk,</span> <span class="pre">but</span> <span class="pre">don't</span> <span class="pre">fly</span></code> and try to riexecute the cell which opens the file. What happens?</p>
+<p><strong>ANSWER</strong>: Python reads one element more in the list</p>
+<p><strong>QUESTION 2.11.4</strong>: To overcome previous problem, a solution you can adopt in CSVs is to round strings containing commas with double quotes, like this: <code class="docutils literal notranslate"><span class="pre">&quot;dogs</span> <span class="pre">walk,</span> <span class="pre">but</span> <span class="pre">don't</span> <span class="pre">fly&quot;</span></code>. Does it work ?</p>
+<p><strong>ANSWER</strong>: yes</p>
+</section>
+<section id="Reading-as-dictionaries">
+<h3>Reading as dictionaries<a class="headerlink" href="#Reading-as-dictionaries" title="Link to this heading">#</a></h3>
+<p>To read a CSV, instead of getting lists, you may more conveniently get dictionaries in the form of <code class="docutils literal notranslate"><span class="pre">OrderedDict</span></code>s</p>
+<p>See <a class="reference external" href="https://docs.python.org/3/library/csv.html#csv.DictReader">Python documentation</a></p>
+<p><strong>NOTE</strong>: different Python versions give different dictionaries:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(&lt;\)</span> 3.6: <code class="docutils literal notranslate"><span class="pre">dict</span></code></p></li>
+<li><p>3.6, 3.7: <code class="docutils literal notranslate"><span class="pre">OrderedDict</span></code></p></li>
+<li><p><span class="math notranslate nohighlight">\(\geq\)</span> 3.8: <code class="docutils literal notranslate"><span class="pre">dict</span></code></p></li>
+</ul>
+<p>Python 3.8 returned to old <code class="docutils literal notranslate"><span class="pre">dict</span></code> because in the implementation of its dictionariesthe key order is guaranteed, so it will be consistent with the one of CSV headers</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/example-1.csv&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">my_reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>   <span class="c1"># Notice we now used DictReader</span>
+    <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">my_reader</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+OrderedDict([(&#39;animal&#39;, &#39;dog&#39;), (&#39; lifespan&#39;, &#39;12&#39;)])
+OrderedDict([(&#39;animal&#39;, &#39;cat&#39;), (&#39; lifespan&#39;, &#39;14&#39;)])
+OrderedDict([(&#39;animal&#39;, &#39;pelican&#39;), (&#39; lifespan&#39;, &#39;30&#39;)])
+OrderedDict([(&#39;animal&#39;, &#39;squirrel&#39;), (&#39; lifespan&#39;, &#39;6&#39;)])
+OrderedDict([(&#39;animal&#39;, &#39;eagle&#39;), (&#39; lifespan&#39;, &#39;25&#39;)])
+</pre></div></div>
+</div>
+</section>
+</section>
+<section id="Writing-a-CSV">
+<h2>Writing a CSV<a class="headerlink" href="#Writing-a-CSV" title="Link to this heading">#</a></h2>
+<p>You can easily create a CSV by instantiating a <code class="docutils literal notranslate"><span class="pre">writer</span></code> object:</p>
+<div class="admonition warning">
+<p class="admonition-title"><strong>ATTENTION: BE SURE TO WRITE IN THE CORRECT FILE!</strong></p>
+<p>If you don’t pay attention to file names, <strong>you risk deleting data !</strong></p>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+
+<span class="c1"># To write, REMEMBER to specify the `w` option.</span>
+<span class="c1"># WARNING: &#39;w&#39; *completely* replaces existing files !!</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/written-file.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvfile_out</span><span class="p">:</span>
+
+    <span class="n">my_writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">csvfile_out</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+
+    <span class="n">my_writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="s1">&#39;This&#39;</span><span class="p">,</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="s1">&#39;a header&#39;</span><span class="p">])</span>
+    <span class="n">my_writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="s1">&#39;some&#39;</span><span class="p">,</span> <span class="s1">&#39;example&#39;</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">])</span>
+    <span class="n">my_writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="s1">&#39;some&#39;</span><span class="p">,</span> <span class="s1">&#39;other&#39;</span><span class="p">,</span> <span class="s1">&#39;example data&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Reading-and-writing-a-CSV">
+<h2>Reading and writing a CSV<a class="headerlink" href="#Reading-and-writing-a-CSV" title="Link to this heading">#</a></h2>
+<p>To create a copy of an existing CSV, you may nest a <code class="docutils literal notranslate"><span class="pre">with</span></code> for writing inside another for reading:</p>
+<div class="admonition warning">
+<p class="admonition-title"><strong>ATTENTION: CAREFUL NOT TO SWAP FILE NAMES!</strong></p>
+<p>When we read and write it’s easy to make mistakes and accidentally overwrite our precious data.</p>
+</div>
+<p><strong>To avoid issues:</strong></p>
+<ul class="simple">
+<li><p>use explicit names both for output files (es: <a class="reference external" href="data/example-1-enriched.csv">example-1-enriched.csv</a>) and handles (i.e. <code class="docutils literal notranslate"><span class="pre">csvfile_out</span></code>)</p></li>
+<li><p>backup data to read</p></li>
+<li><p>always check before carelessly executing code you just wrote !</p></li>
+</ul>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+
+<span class="c1"># WARNING: handle here is called *csvfile_in*</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/example-1.csv&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvfile_in</span><span class="p">:</span>
+    <span class="n">my_reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">csvfile_in</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+
+
+    <span class="c1"># Notice this &#39;with&#39; is *inside* the outer one</span>
+    <span class="c1"># To write, REMEMBER to specify the `w` option.</span>
+    <span class="c1"># WARNING 1: handle here  is called *csvfile_out*</span>
+    <span class="c1"># WARNING 2: &#39;w&#39; *completely* replaces existing files !!</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/example-1-enriched.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvfile_out</span><span class="p">:</span>
+
+
+        <span class="n">my_writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">csvfile_out</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">my_reader</span><span class="p">:</span>
+            <span class="n">row</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;something else&#39;</span><span class="p">)</span>
+            <span class="n">my_writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Let’s see the new file was actually created by reading it:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/example-1-enriched.csv&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvfile_in</span><span class="p">:</span>
+    <span class="n">my_reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">csvfile_in</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">my_reader</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;animal&#39;, &#39; lifespan&#39;, &#39;something else&#39;]
+[&#39;dog&#39;, &#39;12&#39;, &#39;something else&#39;]
+[&#39;cat&#39;, &#39;14&#39;, &#39;something else&#39;]
+[&#39;pelican&#39;, &#39;30&#39;, &#39;something else&#39;]
+[&#39;squirrel&#39;, &#39;6&#39;, &#39;something else&#39;]
+[&#39;eagle&#39;, &#39;25&#39;, &#39;something else&#39;]
+</pre></div></div>
+</div>
+</section>
+<section id="CSV-Botteghe-storiche">
+<h2>CSV Botteghe storiche<a class="headerlink" href="#CSV-Botteghe-storiche" title="Link to this heading">#</a></h2>
+<p>Usually in open data catalogs like the popular CKAN platform (for example <a class="reference external" href="http://dati.trentino.it/">dati.trentino.it</a>, <a class="reference external" href="https://data.gov.uk/">data.gov.uk</a>, <a class="reference external" href="https://www.europeandataportal.eu/">European data portal</a> run instances of CKAN) files are organized in <em>datasets</em>, which are collections of <em>resources</em>: each resource directly contains a file inside the catalog (typically CSV, JSON or XML) or a link to the real file located in a server belonging to the organizazion which created
+the data.</p>
+<p>The first dataset we wil look at will be <a class="reference external" href="data/botteghe.csv">‘Botteghe storiche del Trentino’</a>.</p>
+<p>The data provider is Provincia Autonoma di Trento and the license <a class="reference external" href="https://creativecommons.org/licenses/by/4.0/deed.en">Creative Commons Attribution v4.0</a>, which basically allows any reuse provided you cite the author.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Numero,Insegna,Indirizzo,Civico,Comune,Cap,Frazione/LocalitÃ ,Note
+1,BAZZANELLA RENATA,Via del Lagorai,30,Sover,38068,Piscine di Sover,&quot;generi misti, bar - ristorante&quot;
+2,CONFEZIONI MONTIBELLER S.R.L.,Corso Ausugum,48,Borgo Valsugana,38051,,esercizio commerciale
+3,FOTOGRAFICA TRINTINAGLIA UMBERTO S.N.C.,Largo Dordi,8,Borgo Valsugana,38051,,&quot;esercizio commerciale, attivitÃ  artigianale&quot;
+4,BAR SERAFINI DI MINATI RENZO,,24,Grigno,38055,Serafini,esercizio commerciale
+6,SEMBENINI GINO &amp; FIGLI S.R.L.,Via S. Francesco,35,Riva del Garda,38066,,
+7,HOTEL RISTORANTE PIZZERIA â€œALLA NAVEâ€,Via Nazionale,29,Lavis,38015,Nave San Felice,
+8,OBRELLI GIOIELLERIA DAL 1929 S.R.L.,Via Roma,33,Lavis,38015,,
+9,MACELLERIE TROIER S.A.S. DI TROIER DARIO E C.,Via Roma,13,Lavis,38015,,
+10,NARDELLI TIZIANO,Piazza Manci,5,Lavis,38015,,esercizio commerciale
+</pre></div>
+</div>
+<p>As expected, values are separated with commas.</p>
+<section id="Problem:-wrong-characters-??">
+<h3>Problem: wrong characters ??<a class="headerlink" href="#Problem:-wrong-characters-??" title="Link to this heading">#</a></h3>
+<p>You can suddenly discover a problem in the first row of headers, in the column <code class="docutils literal notranslate"><span class="pre">Frazione/LocalitÃ</span></code>. It seems last character is wrong, in italian it should show accented like <code class="docutils literal notranslate"><span class="pre">à</span></code>. Is it truly a problem of the file ? Not really. Probably, the server is not telling Firefox which encoding is the correct one for the file. Firefox is not magical, and tries its best to show the CSV on the base of the info it has, which may be limited and / or even wrong. World is never like we would like it to be
+…</p>
+<p><strong>✪ 2.12 EXERCISE</strong>: download the CSV, and try opening it in Excel and / or LibreOffice Calc. Do you see a correct accented character? If not, try to set the encoding to ‘Unicode (UTF-8)’ (in Calc is called ‘Character set’).</p>
+<div class="admonition warning">
+<p class="admonition-title"><strong>WARNING: CAREFUL IF YOU USE Excel!</strong></p>
+<p>By clicking directly on <code class="docutils literal notranslate"><span class="pre">File-&gt;Open</span> <span class="pre">in</span> <span class="pre">Excel</span></code>, probably Excel will try to guess on its own how to put the CSV in a table, and will make the mistake to place everything in a column. To avoid the problem, we have to tell Excel to show a panel to ask us how we want to open the CSV, by doing like so:</p>
+<ul class="simple">
+<li><p>In old Excels, find <code class="docutils literal notranslate"><span class="pre">File-&gt;</span> <span class="pre">Import</span></code></p></li>
+<li><p>In recent Excels, click on tab <code class="docutils literal notranslate"><span class="pre">Data</span></code> and then select <code class="docutils literal notranslate"><span class="pre">From</span> <span class="pre">text</span></code>. For further information, <a class="reference external" href="https://www.copytrans.net/support/how-to-open-a-csv-file-in-excel/">see copytrans guide</a></p></li>
+</ul>
+</div>
+<ul class="simple">
+<li><p><strong>NOTE</strong>: If the file is not available, in the folder where this notebook is you will find the same file renamed to <code class="docutils literal notranslate"><span class="pre">botteghe-storiche.csv</span></code></p></li>
+</ul>
+<p>We should get a table like this. Notice how the <code class="docutils literal notranslate"><span class="pre">Frazione/Località</span></code> header displays with the right accent because we selected Character set: Unicode (UTF-8) which is the appropriate one for this dataset:</p>
+<p><img alt="botteghe storiche table" src="../../_images/botteghe-table.png" /></p>
+</section>
+<section id="Botteghe-storiche-in-Python">
+<h3>Botteghe storiche in Python<a class="headerlink" href="#Botteghe-storiche-in-Python" title="Link to this heading">#</a></h3>
+<p>Now that we understood a couple of things about encoding, let’s try to import the file in Python.</p>
+<p>If we load in Python the first 5 entries with a csv DictReader and print them we should see something like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">OrderedDict</span><span class="p">([(</span><span class="s1">&#39;Numero&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;Insegna&#39;</span><span class="p">,</span> <span class="s1">&#39;BAZZANELLA RENATA&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;Indirizzo&#39;</span><span class="p">,</span> <span class="s1">&#39;Via del Lagorai&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;Civico&#39;</span><span class="p">,</span> <span class="s1">&#39;30&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;Comune&#39;</span><span class="p">,</span> <span class="s1">&#39;Sover&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;Cap&#39;</span><span class="p">,</span> <span class="s1">&#39;38068&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;Frazione/Località&#39;</span><span class="p">,</span> <span class="s1">&#39;Piscine di Sover&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;Note&#39;</span><span class="p">,</span> <span class="s1">&#39;generi misti, bar - ristorante&#39;</span><span class="p">)]),</span>
+<span class="n">OrderedDict</span><span class="p">([(</span><span class="s1">&#39;Numero&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">),</span>
+             <span class="p">(</span><span class="s1">&#39;Insegna&#39;</span><span class="p">,</span> <span class="s1">&#39;CONFEZIONI MONTIBELLER S.R.L.&#39;</span><span class="p">),</span>
+             <span class="p">(</span><span class="s1">&#39;Indirizzo&#39;</span><span class="p">,</span> <span class="s1">&#39;Corso Ausugum&#39;</span><span class="p">),</span>
+             <span class="p">(</span><span class="s1">&#39;Civico&#39;</span><span class="p">,</span> <span class="s1">&#39;48&#39;</span><span class="p">),</span>
+             <span class="p">(</span><span class="s1">&#39;Comune&#39;</span><span class="p">,</span> <span class="s1">&#39;Borgo Valsugana&#39;</span><span class="p">),</span>
+             <span class="p">(</span><span class="s1">&#39;Cap&#39;</span><span class="p">,</span> <span class="s1">&#39;38051&#39;</span><span class="p">),</span>
+             <span class="p">(</span><span class="s1">&#39;Frazione/Località&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+             <span class="p">(</span><span class="s1">&#39;Note&#39;</span><span class="p">,</span> <span class="s1">&#39;esercizio commerciale&#39;</span><span class="p">)]),</span>
+<span class="n">OrderedDict</span><span class="p">([(</span><span class="s1">&#39;Numero&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">),</span>
+             <span class="p">(</span><span class="s1">&#39;Insegna&#39;</span><span class="p">,</span> <span class="s1">&#39;FOTOGRAFICA TRINTINAGLIA UMBERTO S.N.C.&#39;</span><span class="p">),</span>
+             <span class="p">(</span><span class="s1">&#39;Indirizzo&#39;</span><span class="p">,</span> <span class="s1">&#39;Largo Dordi&#39;</span><span class="p">),</span>
+             <span class="p">(</span><span class="s1">&#39;Civico&#39;</span><span class="p">,</span> <span class="s1">&#39;8&#39;</span><span class="p">),</span>
+             <span class="p">(</span><span class="s1">&#39;Comune&#39;</span><span class="p">,</span> <span class="s1">&#39;Borgo Valsugana&#39;</span><span class="p">),</span>
+             <span class="p">(</span><span class="s1">&#39;Cap&#39;</span><span class="p">,</span> <span class="s1">&#39;38051&#39;</span><span class="p">),</span>
+             <span class="p">(</span><span class="s1">&#39;Frazione/Località&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+             <span class="p">(</span><span class="s1">&#39;Note&#39;</span><span class="p">,</span> <span class="s1">&#39;esercizio commerciale, attività artigianale&#39;</span><span class="p">)]),</span>
+<span class="n">OrderedDict</span><span class="p">([(</span><span class="s1">&#39;Numero&#39;</span><span class="p">,</span> <span class="s1">&#39;4&#39;</span><span class="p">),</span>
+             <span class="p">(</span><span class="s1">&#39;Insegna&#39;</span><span class="p">,</span> <span class="s1">&#39;BAR SERAFINI DI MINATI RENZO&#39;</span><span class="p">),</span>
+             <span class="p">(</span><span class="s1">&#39;Indirizzo&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+             <span class="p">(</span><span class="s1">&#39;Civico&#39;</span><span class="p">,</span> <span class="s1">&#39;24&#39;</span><span class="p">),</span>
+             <span class="p">(</span><span class="s1">&#39;Comune&#39;</span><span class="p">,</span> <span class="s1">&#39;Grigno&#39;</span><span class="p">),</span>
+             <span class="p">(</span><span class="s1">&#39;Cap&#39;</span><span class="p">,</span> <span class="s1">&#39;38055&#39;</span><span class="p">),</span>
+             <span class="p">(</span><span class="s1">&#39;Frazione/Località&#39;</span><span class="p">,</span> <span class="s1">&#39;Serafini&#39;</span><span class="p">),</span>
+             <span class="p">(</span><span class="s1">&#39;Note&#39;</span><span class="p">,</span> <span class="s1">&#39;esercizio commerciale&#39;</span><span class="p">)]),</span>
+<span class="n">OrderedDict</span><span class="p">([(</span><span class="s1">&#39;Numero&#39;</span><span class="p">,</span> <span class="s1">&#39;6&#39;</span><span class="p">),</span>
+             <span class="p">(</span><span class="s1">&#39;Insegna&#39;</span><span class="p">,</span> <span class="s1">&#39;SEMBENINI GINO &amp; FIGLI S.R.L.&#39;</span><span class="p">),</span>
+             <span class="p">(</span><span class="s1">&#39;Indirizzo&#39;</span><span class="p">,</span> <span class="s1">&#39;Via S. Francesco&#39;</span><span class="p">),</span>
+             <span class="p">(</span><span class="s1">&#39;Civico&#39;</span><span class="p">,</span> <span class="s1">&#39;35&#39;</span><span class="p">),</span>
+             <span class="p">(</span><span class="s1">&#39;Comune&#39;</span><span class="p">,</span> <span class="s1">&#39;Riva del Garda&#39;</span><span class="p">),</span>
+             <span class="p">(</span><span class="s1">&#39;Cap&#39;</span><span class="p">,</span> <span class="s1">&#39;38066&#39;</span><span class="p">),</span>
+             <span class="p">(</span><span class="s1">&#39;Frazione/Località&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+             <span class="p">(</span><span class="s1">&#39;Note&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)])</span>
+</pre></div>
+</div>
+<p>We would like to know which different categories of <em>bottega</em> there are, and count them. Unfortunately, there is no specific field for <em>Categoria,</em> so we will need to extract this information from other fields such as <code class="docutils literal notranslate"><span class="pre">Insegna</span></code> and <code class="docutils literal notranslate"><span class="pre">Note</span></code>. For example, this <code class="docutils literal notranslate"><span class="pre">Insegna</span></code> contains the category <code class="docutils literal notranslate"><span class="pre">BAR</span></code>, while the <code class="docutils literal notranslate"><span class="pre">Note</span></code> (<em>commercial enterprise</em>) is a bit too generic to be useful:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;Insegna&#39;</span><span class="p">:</span> <span class="s1">&#39;BAR SERAFINI DI MINATI RENZO&#39;</span><span class="p">,</span>
+<span class="s1">&#39;Note&#39;</span><span class="p">:</span> <span class="s1">&#39;esercizio commerciale&#39;</span><span class="p">,</span>
+</pre></div>
+</div>
+<p>while this other <code class="docutils literal notranslate"><span class="pre">Insegna</span></code> contains just the owner name and <code class="docutils literal notranslate"><span class="pre">Note</span></code> holds both the categories <code class="docutils literal notranslate"><span class="pre">bar</span></code> and <code class="docutils literal notranslate"><span class="pre">ristorante</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;Insegna&#39;</span><span class="p">:</span> <span class="s1">&#39;BAZZANELLA RENATA&#39;</span><span class="p">,</span>
+<span class="s1">&#39;Note&#39;</span><span class="p">:</span> <span class="s1">&#39;generi misti, bar - ristorante&#39;</span><span class="p">,</span>
+</pre></div>
+</div>
+<p>As you see, data is non uniform:</p>
+<ul class="simple">
+<li><p>sometimes the category is in the <code class="docutils literal notranslate"><span class="pre">Insegna</span></code></p></li>
+<li><p>sometimes is in the <code class="docutils literal notranslate"><span class="pre">Note</span></code></p></li>
+<li><p>sometimes is in both</p></li>
+<li><p>sometimes is lowercase</p></li>
+<li><p>sometimes is uppercase</p></li>
+<li><p>sometimes is single</p></li>
+<li><p>sometimes is multiple (<code class="docutils literal notranslate"><span class="pre">bar</span> <span class="pre">-</span> <span class="pre">ristorante</span></code>)</p></li>
+</ul>
+<p>First we want to extract all categories we can find, and rank them according their frequency, from most frequent to least frequent.</p>
+<p>To do so, you need to</p>
+<ul class="simple">
+<li><p>count all words you can find in both <code class="docutils literal notranslate"><span class="pre">Insegna</span></code> and <code class="docutils literal notranslate"><span class="pre">Note</span></code> fields, and sort them. Note you need to normalize the uppercase.</p></li>
+<li><p>consider a category relevant if it is present at least 11 times in the dataset.</p></li>
+<li><p>filter non relevant words: some words like prepositions, type of company (<code class="docutils literal notranslate"><span class="pre">'S.N.C'</span></code>, <code class="docutils literal notranslate"><span class="pre">S.R.L.</span></code>, ..), etc will appear a lot, and will need to be ignored. To detect them, you are given a list called <code class="docutils literal notranslate"><span class="pre">stopwords</span></code>.</p></li>
+</ul>
+<p><strong>NOTE</strong>: the rules above do not actually extract all the categories, for the sake of the exercise we only keep the most frequent ones.</p>
+<p>To know how to proceed, read the following.</p>
+</section>
+<section id="Botteghe-storiche---rank_categories">
+<h3>Botteghe storiche - rank_categories<a class="headerlink" href="#Botteghe-storiche---rank_categories" title="Link to this heading">#</a></h3>
+<p>Load the file with <code class="docutils literal notranslate"><span class="pre">csv.DictReader</span></code> and while you are loading it, calculate the words as described above. Afterwards, return a list of words with their frequencies.</p>
+<p>Do <strong>not</strong> load the whole file into memory, just process one dictionary at a time and update statistics accordingly.</p>
+<p>Expected output:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[(</span><span class="s1">&#39;BAR&#39;</span><span class="p">,</span> <span class="mi">191</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;RISTORANTE&#39;</span><span class="p">,</span> <span class="mi">150</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;HOTEL&#39;</span><span class="p">,</span> <span class="mi">67</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;ALBERGO&#39;</span><span class="p">,</span> <span class="mi">64</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;MACELLERIA&#39;</span><span class="p">,</span> <span class="mi">27</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;PANIFICIO&#39;</span><span class="p">,</span> <span class="mi">22</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;CALZATURE&#39;</span><span class="p">,</span> <span class="mi">21</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;FARMACIA&#39;</span><span class="p">,</span> <span class="mi">21</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;ALIMENTARI&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;PIZZERIA&#39;</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;SPORT&#39;</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;TABACCHI&#39;</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;FERRAMENTA&#39;</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;BAZAR&#39;</span><span class="p">,</span> <span class="mi">11</span><span class="p">)]</span>
+</pre></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">rank_categories</span><span class="p">(</span><span class="n">stopwords</span><span class="p">):</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/botteghe.csv&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>  <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,)</span> <span class="k">as</span> <span class="n">csvfile</span><span class="p">:</span>
+        <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">csvfile</span><span class="p">,</span>  <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+            <span class="n">words</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;Insegna&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span> <span class="o">+</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;Note&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">ret</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">stopwords</span><span class="p">:</span>
+                    <span class="n">ret</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">ret</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="nb">sorted</span><span class="p">([(</span><span class="n">key</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">val</span> <span class="ow">in</span> <span class="n">ret</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">val</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">],</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">stopwords</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;S.N.C.&#39;</span><span class="p">,</span> <span class="s1">&#39;SNC&#39;</span><span class="p">,</span><span class="s1">&#39;S.A.S.&#39;</span><span class="p">,</span> <span class="s1">&#39;S.R.L.&#39;</span><span class="p">,</span> <span class="s1">&#39;S.C.A.R.L.&#39;</span><span class="p">,</span> <span class="s1">&#39;SCARL&#39;</span><span class="p">,</span><span class="s1">&#39;S.A.S&#39;</span><span class="p">,</span> <span class="s1">&#39;COMMERCIALE&#39;</span><span class="p">,</span><span class="s1">&#39;FAMIGLIA&#39;</span><span class="p">,</span><span class="s1">&#39;COOPERATIVA&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;&amp;&#39;</span><span class="p">,</span> <span class="s1">&#39;C.&#39;</span><span class="p">,</span> <span class="s1">&#39;ESERCIZIO&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;IL&#39;</span><span class="p">,</span> <span class="s1">&#39;DE&#39;</span><span class="p">,</span> <span class="s1">&#39;DI&#39;</span><span class="p">,</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;DA&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;LA&#39;</span><span class="p">,</span> <span class="s1">&#39;AL&#39;</span><span class="p">,</span>  <span class="s1">&#39;DEL&#39;</span><span class="p">,</span> <span class="s1">&#39;ALLA&#39;</span><span class="p">,</span> <span class="p">]</span>
+<span class="n">categories</span> <span class="o">=</span> <span class="n">rank_categories</span><span class="p">(</span><span class="n">stopwords</span><span class="p">)</span>
+
+<span class="n">categories</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="Botteghe-storiche---enrich">
+<h3>Botteghe storiche - enrich<a class="headerlink" href="#Botteghe-storiche---enrich" title="Link to this heading">#</a></h3>
+<p>Once you found the categories, implement function <code class="docutils literal notranslate"><span class="pre">enrich</span></code>, which takes the db and previously computed categories, and WRITES a NEW file <code class="docutils literal notranslate"><span class="pre">botteghe-enriched.csv</span></code> where the rows are enriched with a new field <code class="docutils literal notranslate"><span class="pre">Categorie</span></code>, which holds a list of the categories a particular <em>bottega</em> belongs to.</p>
+<ul class="simple">
+<li><p>Write the new file with a <code class="docutils literal notranslate"><span class="pre">DictWriter</span></code>, see <a class="reference external" href="https://docs.python.org/3/library/csv.html#csv.DictWriter">documentation</a></p></li>
+</ul>
+<p>The new file should contain rows like this (showing only first 5):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>OrderedDict<span class="o">([</span><span class="w">   </span><span class="o">(</span><span class="s1">&#39;Numero&#39;</span>,<span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="o">)</span>,
+<span class="w">                </span><span class="o">(</span><span class="s1">&#39;Insegna&#39;</span>,<span class="w"> </span><span class="s1">&#39;BAZZANELLA RENATA&#39;</span><span class="o">)</span>,
+<span class="w">                </span><span class="o">(</span><span class="s1">&#39;Indirizzo&#39;</span>,<span class="w"> </span><span class="s1">&#39;Via del Lagorai&#39;</span><span class="o">)</span>,
+<span class="w">                </span><span class="o">(</span><span class="s1">&#39;Civico&#39;</span>,<span class="w"> </span><span class="s1">&#39;30&#39;</span><span class="o">)</span>,
+<span class="w">                </span><span class="o">(</span><span class="s1">&#39;Comune&#39;</span>,<span class="w"> </span><span class="s1">&#39;Sover&#39;</span><span class="o">)</span>,
+<span class="w">                </span><span class="o">(</span><span class="s1">&#39;Cap&#39;</span>,<span class="w"> </span><span class="s1">&#39;38068&#39;</span><span class="o">)</span>,
+<span class="w">                </span><span class="o">(</span><span class="s1">&#39;Frazione/Località&#39;</span>,<span class="w"> </span><span class="s1">&#39;Piscine di Sover&#39;</span><span class="o">)</span>,
+<span class="w">                </span><span class="o">(</span><span class="s1">&#39;Note&#39;</span>,<span class="w"> </span><span class="s1">&#39;generi misti, bar - ristorante&#39;</span><span class="o">)</span>,
+<span class="w">                </span><span class="o">(</span><span class="s1">&#39;Categorie&#39;</span>,<span class="w"> </span><span class="s2">&quot;[&#39;BAR&#39;, &#39;RISTORANTE&#39;]&quot;</span><span class="o">)])</span>
+OrderedDict<span class="o">([</span><span class="w">   </span><span class="o">(</span><span class="s1">&#39;Numero&#39;</span>,<span class="w"> </span><span class="s1">&#39;2&#39;</span><span class="o">)</span>,
+<span class="w">                </span><span class="o">(</span><span class="s1">&#39;Insegna&#39;</span>,<span class="w"> </span><span class="s1">&#39;CONFEZIONI MONTIBELLER S.R.L.&#39;</span><span class="o">)</span>,
+<span class="w">                </span><span class="o">(</span><span class="s1">&#39;Indirizzo&#39;</span>,<span class="w"> </span><span class="s1">&#39;Corso Ausugum&#39;</span><span class="o">)</span>,
+<span class="w">                </span><span class="o">(</span><span class="s1">&#39;Civico&#39;</span>,<span class="w"> </span><span class="s1">&#39;48&#39;</span><span class="o">)</span>,
+<span class="w">                </span><span class="o">(</span><span class="s1">&#39;Comune&#39;</span>,<span class="w"> </span><span class="s1">&#39;Borgo Valsugana&#39;</span><span class="o">)</span>,
+<span class="w">                </span><span class="o">(</span><span class="s1">&#39;Cap&#39;</span>,<span class="w"> </span><span class="s1">&#39;38051&#39;</span><span class="o">)</span>,
+<span class="w">                </span><span class="o">(</span><span class="s1">&#39;Frazione/Località&#39;</span>,<span class="w"> </span><span class="s1">&#39;&#39;</span><span class="o">)</span>,
+<span class="w">                </span><span class="o">(</span><span class="s1">&#39;Note&#39;</span>,<span class="w"> </span><span class="s1">&#39;esercizio commerciale&#39;</span><span class="o">)</span>,
+<span class="w">                </span><span class="o">(</span><span class="s1">&#39;Categorie&#39;</span>,<span class="w"> </span><span class="s1">&#39;[]&#39;</span><span class="o">)])</span>
+OrderedDict<span class="o">([</span><span class="w">   </span><span class="o">(</span><span class="s1">&#39;Numero&#39;</span>,<span class="w"> </span><span class="s1">&#39;3&#39;</span><span class="o">)</span>,
+<span class="w">                </span><span class="o">(</span><span class="s1">&#39;Insegna&#39;</span>,<span class="w"> </span><span class="s1">&#39;FOTOGRAFICA TRINTINAGLIA UMBERTO S.N.C.&#39;</span><span class="o">)</span>,
+<span class="w">                </span><span class="o">(</span><span class="s1">&#39;Indirizzo&#39;</span>,<span class="w"> </span><span class="s1">&#39;Largo Dordi&#39;</span><span class="o">)</span>,
+<span class="w">                </span><span class="o">(</span><span class="s1">&#39;Civico&#39;</span>,<span class="w"> </span><span class="s1">&#39;8&#39;</span><span class="o">)</span>,
+<span class="w">                </span><span class="o">(</span><span class="s1">&#39;Comune&#39;</span>,<span class="w"> </span><span class="s1">&#39;Borgo Valsugana&#39;</span><span class="o">)</span>,
+<span class="w">                </span><span class="o">(</span><span class="s1">&#39;Cap&#39;</span>,<span class="w"> </span><span class="s1">&#39;38051&#39;</span><span class="o">)</span>,
+<span class="w">                </span><span class="o">(</span><span class="s1">&#39;Frazione/Località&#39;</span>,<span class="w"> </span><span class="s1">&#39;&#39;</span><span class="o">)</span>,
+<span class="w">                </span><span class="o">(</span><span class="s1">&#39;Note&#39;</span>,<span class="w"> </span><span class="s1">&#39;esercizio commerciale, attività artigianale&#39;</span><span class="o">)</span>,
+<span class="w">                </span><span class="o">(</span><span class="s1">&#39;Categorie&#39;</span>,<span class="w"> </span><span class="s1">&#39;[]&#39;</span><span class="o">)])</span>
+OrderedDict<span class="o">([</span><span class="w">   </span><span class="o">(</span><span class="s1">&#39;Numero&#39;</span>,<span class="w"> </span><span class="s1">&#39;4&#39;</span><span class="o">)</span>,
+<span class="w">                </span><span class="o">(</span><span class="s1">&#39;Insegna&#39;</span>,<span class="w"> </span><span class="s1">&#39;BAR SERAFINI DI MINATI RENZO&#39;</span><span class="o">)</span>,
+<span class="w">                </span><span class="o">(</span><span class="s1">&#39;Indirizzo&#39;</span>,<span class="w"> </span><span class="s1">&#39;&#39;</span><span class="o">)</span>,
+<span class="w">                </span><span class="o">(</span><span class="s1">&#39;Civico&#39;</span>,<span class="w"> </span><span class="s1">&#39;24&#39;</span><span class="o">)</span>,
+<span class="w">                </span><span class="o">(</span><span class="s1">&#39;Comune&#39;</span>,<span class="w"> </span><span class="s1">&#39;Grigno&#39;</span><span class="o">)</span>,
+<span class="w">                </span><span class="o">(</span><span class="s1">&#39;Cap&#39;</span>,<span class="w"> </span><span class="s1">&#39;38055&#39;</span><span class="o">)</span>,
+<span class="w">                </span><span class="o">(</span><span class="s1">&#39;Frazione/Località&#39;</span>,<span class="w"> </span><span class="s1">&#39;Serafini&#39;</span><span class="o">)</span>,
+<span class="w">                </span><span class="o">(</span><span class="s1">&#39;Note&#39;</span>,<span class="w"> </span><span class="s1">&#39;esercizio commerciale&#39;</span><span class="o">)</span>,
+<span class="w">                </span><span class="o">(</span><span class="s1">&#39;Categorie&#39;</span>,<span class="w"> </span><span class="s2">&quot;[&#39;BAR&#39;]&quot;</span><span class="o">)])</span>
+OrderedDict<span class="o">([</span><span class="w">   </span><span class="o">(</span><span class="s1">&#39;Numero&#39;</span>,<span class="w"> </span><span class="s1">&#39;6&#39;</span><span class="o">)</span>,
+<span class="w">                </span><span class="o">(</span><span class="s1">&#39;Insegna&#39;</span>,<span class="w"> </span><span class="s1">&#39;SEMBENINI GINO &amp; FIGLI S.R.L.&#39;</span><span class="o">)</span>,
+<span class="w">                </span><span class="o">(</span><span class="s1">&#39;Indirizzo&#39;</span>,<span class="w"> </span><span class="s1">&#39;Via S. Francesco&#39;</span><span class="o">)</span>,
+<span class="w">                </span><span class="o">(</span><span class="s1">&#39;Civico&#39;</span>,<span class="w"> </span><span class="s1">&#39;35&#39;</span><span class="o">)</span>,
+<span class="w">                </span><span class="o">(</span><span class="s1">&#39;Comune&#39;</span>,<span class="w"> </span><span class="s1">&#39;Riva del Garda&#39;</span><span class="o">)</span>,
+<span class="w">                </span><span class="o">(</span><span class="s1">&#39;Cap&#39;</span>,<span class="w"> </span><span class="s1">&#39;38066&#39;</span><span class="o">)</span>,
+<span class="w">                </span><span class="o">(</span><span class="s1">&#39;Frazione/Località&#39;</span>,<span class="w"> </span><span class="s1">&#39;&#39;</span><span class="o">)</span>,
+<span class="w">                </span><span class="o">(</span><span class="s1">&#39;Note&#39;</span>,<span class="w"> </span><span class="s1">&#39;&#39;</span><span class="o">)</span>,
+<span class="w">                </span><span class="o">(</span><span class="s1">&#39;Categorie&#39;</span>,<span class="w"> </span><span class="s1">&#39;[]&#39;</span><span class="o">)])</span>
+</pre></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">enrich</span><span class="p">(</span><span class="n">categories</span><span class="p">):</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="p">[]</span>
+
+
+    <span class="n">fieldnames</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c1"># read headers</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/botteghe.csv&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>  <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvfile_in</span><span class="p">:</span>
+        <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">csvfile_in</span><span class="p">,</span>  <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+        <span class="n">d1</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">reader</span><span class="p">)</span>
+        <span class="n">fieldnames</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">d1</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>  <span class="c1"># otherwise we cannot append</span>
+
+    <span class="n">fieldnames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Categorie&#39;</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/botteghe.csv&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>  <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,)</span> <span class="k">as</span> <span class="n">csvfile_in</span><span class="p">:</span>
+        <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">csvfile_in</span><span class="p">,</span>  <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/botteghe-enriched-solution.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvfile_out</span><span class="p">:</span>
+
+            <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictWriter</span><span class="p">(</span><span class="n">csvfile_out</span><span class="p">,</span> <span class="n">fieldnames</span><span class="o">=</span><span class="n">fieldnames</span><span class="p">)</span>
+            <span class="n">writer</span><span class="o">.</span><span class="n">writeheader</span><span class="p">()</span>
+
+            <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+
+                <span class="n">new_d</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span><span class="n">val</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">val</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+                <span class="n">new_d</span><span class="p">[</span><span class="s1">&#39;Categorie&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">cat</span> <span class="ow">in</span> <span class="n">categories</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">cat</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;Insegna&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="ow">or</span> <span class="n">cat</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;Note&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">():</span>
+                        <span class="n">new_d</span><span class="p">[</span><span class="s1">&#39;Categorie&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cat</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">new_d</span><span class="p">)</span>
+
+
+
+<span class="n">enrich</span><span class="p">(</span><span class="n">rank_categories</span><span class="p">(</span><span class="n">stopwords</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</details><div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># let&#39;s see if we created the file we wanted</span>
+<span class="c1"># (using botteghe-enriched-solution.csv to avoid polluting your file)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/botteghe-enriched-solution.csv&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>  <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,)</span> <span class="k">as</span> <span class="n">csvfile_in</span><span class="p">:</span>
+    <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">csvfile_in</span><span class="p">,</span>  <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+    <span class="c1"># better to pretty print the OrderedDicts, otherwise we get unreadable output</span>
+    <span class="c1"># for documentation see https://docs.python.org/3/library/pprint.html</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">pprint</span>
+    <span class="n">pp</span> <span class="o">=</span> <span class="n">pprint</span><span class="o">.</span><span class="n">PrettyPrinter</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">reader</span><span class="p">)</span>
+        <span class="n">pp</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+OrderedDict([   (&#39;Numero&#39;, &#39;1&#39;),
+                (&#39;Insegna&#39;, &#39;BAZZANELLA RENATA&#39;),
+                (&#39;Indirizzo&#39;, &#39;Via del Lagorai&#39;),
+                (&#39;Civico&#39;, &#39;30&#39;),
+                (&#39;Comune&#39;, &#39;Sover&#39;),
+                (&#39;Cap&#39;, &#39;38068&#39;),
+                (&#39;Frazione/Località&#39;, &#39;Piscine di Sover&#39;),
+                (&#39;Note&#39;, &#39;generi misti, bar - ristorante&#39;),
+                (&#39;Categorie&#39;, &#34;[&#39;BAR&#39;, &#39;RISTORANTE&#39;]&#34;)])
+OrderedDict([   (&#39;Numero&#39;, &#39;2&#39;),
+                (&#39;Insegna&#39;, &#39;CONFEZIONI MONTIBELLER S.R.L.&#39;),
+                (&#39;Indirizzo&#39;, &#39;Corso Ausugum&#39;),
+                (&#39;Civico&#39;, &#39;48&#39;),
+                (&#39;Comune&#39;, &#39;Borgo Valsugana&#39;),
+                (&#39;Cap&#39;, &#39;38051&#39;),
+                (&#39;Frazione/Località&#39;, &#39;&#39;),
+                (&#39;Note&#39;, &#39;esercizio commerciale&#39;),
+                (&#39;Categorie&#39;, &#39;[]&#39;)])
+OrderedDict([   (&#39;Numero&#39;, &#39;3&#39;),
+                (&#39;Insegna&#39;, &#39;FOTOGRAFICA TRINTINAGLIA UMBERTO S.N.C.&#39;),
+                (&#39;Indirizzo&#39;, &#39;Largo Dordi&#39;),
+                (&#39;Civico&#39;, &#39;8&#39;),
+                (&#39;Comune&#39;, &#39;Borgo Valsugana&#39;),
+                (&#39;Cap&#39;, &#39;38051&#39;),
+                (&#39;Frazione/Località&#39;, &#39;&#39;),
+                (&#39;Note&#39;, &#39;esercizio commerciale, attività artigianale&#39;),
+                (&#39;Categorie&#39;, &#39;[]&#39;)])
+OrderedDict([   (&#39;Numero&#39;, &#39;4&#39;),
+                (&#39;Insegna&#39;, &#39;BAR SERAFINI DI MINATI RENZO&#39;),
+                (&#39;Indirizzo&#39;, &#39;&#39;),
+                (&#39;Civico&#39;, &#39;24&#39;),
+                (&#39;Comune&#39;, &#39;Grigno&#39;),
+                (&#39;Cap&#39;, &#39;38055&#39;),
+                (&#39;Frazione/Località&#39;, &#39;Serafini&#39;),
+                (&#39;Note&#39;, &#39;esercizio commerciale&#39;),
+                (&#39;Categorie&#39;, &#34;[&#39;BAR&#39;]&#34;)])
+OrderedDict([   (&#39;Numero&#39;, &#39;6&#39;),
+                (&#39;Insegna&#39;, &#39;SEMBENINI GINO &amp; FIGLI S.R.L.&#39;),
+                (&#39;Indirizzo&#39;, &#39;Via S. Francesco&#39;),
+                (&#39;Civico&#39;, &#39;35&#39;),
+                (&#39;Comune&#39;, &#39;Riva del Garda&#39;),
+                (&#39;Cap&#39;, &#39;38066&#39;),
+                (&#39;Frazione/Località&#39;, &#39;&#39;),
+                (&#39;Note&#39;, &#39;&#39;),
+                (&#39;Categorie&#39;, &#39;[]&#39;)])
+</pre></div></div>
+</div>
+</section>
+</section>
+<section id="CSV-Air-quality">
+<h2>CSV Air quality<a class="headerlink" href="#CSV-Air-quality" title="Link to this heading">#</a></h2>
+<p>You will now analyze air_quality in Trentino. You are given a dataset which records various pollutants (‘Inquinante’) at various stations (<code class="docutils literal notranslate"><span class="pre">'Stazione'</span></code>) in Trentino. Pollutants values can be <code class="docutils literal notranslate"><span class="pre">'PM10'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Biossido</span> <span class="pre">Zolfo'</span></code>, and a few others. Each station records some set of pollutants. For each pollutant values are recorded (<code class="docutils literal notranslate"><span class="pre">'Valore'</span></code>) 24 times per day.</p>
+<p>Data provider: <a class="reference external" href="https://dati.trentino.it/dataset/qualita-dell-aria-rilevazioni-delle-stazioni-monitoraggio">dati.trentino.it</a></p>
+<section id="load_air_quality">
+<h3>load_air_quality<a class="headerlink" href="#load_air_quality" title="Link to this heading">#</a></h3>
+<p>Implement a function to load the dataset <a class="reference external" href="data/air-quality.csv">air-quality.csv</a></p>
+<ul class="simple">
+<li><p><strong>USE encoding</strong> <code class="docutils literal notranslate"><span class="pre">latin-1</span></code></p></li>
+</ul>
+<p>Expected output:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">load_air_quality</span><span class="p">(</span><span class="s1">&#39;data/air-quality.csv&#39;</span><span class="p">)</span>
+<span class="go">[</span>
+<span class="go">     OrderedDict([(&#39;Stazione&#39;, &#39;Parco S. Chiara&#39;),</span>
+<span class="go">                  (&#39;Inquinante&#39;, &#39;PM10&#39;),</span>
+<span class="go">                  (&#39;Data&#39;, &#39;2019-05-04&#39;),</span>
+<span class="go">                  (&#39;Ora&#39;, &#39;1&#39;),</span>
+<span class="go">                  (&#39;Valore&#39;, &#39;17&#39;),</span>
+<span class="go">                  (&#39;Unità di misura&#39;, &#39;µg/mc&#39;)]),</span>
+<span class="go">     OrderedDict([(&#39;Stazione&#39;, &#39;Parco S. Chiara&#39;),</span>
+<span class="go">                  (&#39;Inquinante&#39;, &#39;PM10&#39;),</span>
+<span class="go">                  (&#39;Data&#39;, &#39;2019-05-04&#39;),</span>
+<span class="go">                  (&#39;Ora&#39;, &#39;2&#39;),</span>
+<span class="go">                  (&#39;Valore&#39;, &#39;19&#39;),</span>
+<span class="go">                  (&#39;Unità di misura&#39;, &#39;µg/mc&#39;)]),</span>
+<span class="go">    .</span>
+<span class="go">    .</span>
+<span class="go">    .</span>
+<span class="go">]</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title"><strong>IMPORTANT 1</strong>: look at the dataset by yourself !</p>
+<p>Here we show only first rows, but to get a clear picture of the dataset you need to study it a bit by yourself</p>
+</div>
+<div class="admonition warning">
+<p><strong>IMPORTANT 2</strong>: EVERY field is a STRING, including <code class="docutils literal notranslate"><span class="pre">'Valore'</span></code> !</p>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">load_air_quality</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Loads file data and RETURN a list of dictionaries</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">load_air_quality</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Loads file data and RETURN a list of dictionaries</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;latin-1&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvfile</span><span class="p">:</span>
+        <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">csvfile</span><span class="p">)</span>
+        <span class="n">lst</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+            <span class="n">lst</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">lst</span>
+
+<span class="n">air_quality</span> <span class="o">=</span> <span class="n">load_air_quality</span><span class="p">(</span><span class="s1">&#39;data/air-quality.csv&#39;</span><span class="p">)</span>
+<span class="n">air_quality</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="calc_avg_pollution">
+<h3>calc_avg_pollution<a class="headerlink" href="#calc_avg_pollution" title="Link to this heading">#</a></h3>
+<p>Implement a function to RETURN a dictionary containing two elements tuples as keys:</p>
+<ul class="simple">
+<li><p>first tuple element is the station (‘Stazione’),</p></li>
+<li><p>second tuple element is the name of a pollutant (‘Inquinante’)</p></li>
+</ul>
+<p>To each tuple key, you must associate as value the average for that station <em>and</em> pollutant over all days.</p>
+<p>Expected output:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">calc_avg_pollution</span><span class="p">(</span><span class="n">air_quality</span><span class="p">)</span>
+<span class="go">{(&#39;Parco S. Chiara&#39;, &#39;PM10&#39;): 11.385752688172044,</span>
+<span class="go"> (&#39;Parco S. Chiara&#39;, &#39;PM2.5&#39;): 7.9471544715447155,</span>
+<span class="go"> (&#39;Parco S. Chiara&#39;, &#39;Biossido di Azoto&#39;): 20.828146143437078,</span>
+<span class="go"> (&#39;Parco S. Chiara&#39;, &#39;Ozono&#39;): 66.69541778975741,</span>
+<span class="go"> (&#39;Parco S. Chiara&#39;, &#39;Biossido Zolfo&#39;): 1.2918918918918918,</span>
+<span class="go"> (&#39;Via Bolzano&#39;, &#39;PM10&#39;): 12.526881720430108,</span>
+<span class="go"> (&#39;Via Bolzano&#39;, &#39;Biossido di Azoto&#39;): 29.28493894165536,</span>
+<span class="go"> (&#39;Via Bolzano&#39;, &#39;Ossido di Carbonio&#39;): 0.5964769647696474,</span>
+<span class="go"> (&#39;Piana Rotaliana&#39;, &#39;PM10&#39;): 9.728744939271255,</span>
+<span class="go"> (&#39;Piana Rotaliana&#39;, &#39;Biossido di Azoto&#39;): 15.170068027210885,</span>
+<span class="go"> (&#39;Piana Rotaliana&#39;, &#39;Ozono&#39;): 67.03633916554509,</span>
+<span class="go"> (&#39;Rovereto&#39;, &#39;PM10&#39;): 9.475806451612904,</span>
+<span class="go"> (&#39;Rovereto&#39;, &#39;PM2.5&#39;): 7.764784946236559,</span>
+<span class="go"> (&#39;Rovereto&#39;, &#39;Biossido di Azoto&#39;): 16.284167794316645,</span>
+<span class="go"> (&#39;Rovereto&#39;, &#39;Ozono&#39;): 70.54655870445345,</span>
+<span class="go"> (&#39;Borgo Valsugana&#39;, &#39;PM10&#39;): 11.819407008086253,</span>
+<span class="go"> (&#39;Borgo Valsugana&#39;, &#39;PM2.5&#39;): 7.413746630727763,</span>
+<span class="go"> (&#39;Borgo Valsugana&#39;, &#39;Biossido di Azoto&#39;): 15.73806275579809,</span>
+<span class="go"> (&#39;Borgo Valsugana&#39;, &#39;Ozono&#39;): 58.599730458221025,</span>
+<span class="go"> (&#39;Riva del Garda&#39;, &#39;PM10&#39;): 9.912398921832883,</span>
+<span class="go"> (&#39;Riva del Garda&#39;, &#39;Biossido di Azoto&#39;): 17.125845737483086,</span>
+<span class="go"> (&#39;Riva del Garda&#39;, &#39;Ozono&#39;): 68.38159675236807,</span>
+<span class="go"> (&#39;A22 (Avio)&#39;, &#39;PM10&#39;): 9.651821862348179,</span>
+<span class="go"> (&#39;A22 (Avio)&#39;, &#39;Biossido di Azoto&#39;): 33.0650406504065,</span>
+<span class="go"> (&#39;A22 (Avio)&#39;, &#39;Ossido di Carbonio&#39;): 0.4228848821081822,</span>
+<span class="go"> (&#39;Monte Gaza&#39;, &#39;PM10&#39;): 7.794520547945205,</span>
+<span class="go"> (&#39;Monte Gaza&#39;, &#39;Biossido di Azoto&#39;): 4.34412955465587,</span>
+<span class="go"> (&#39;Monte Gaza&#39;, &#39;Ozono&#39;): 99.0858310626703}</span>
+</pre></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><br/><span></span><span class="k">def</span><span class="w"> </span><span class="nf">calc_avg_pollution</span><span class="p">(</span><span class="n">db</span><span class="p">):</span>
+<span class="c1"># write here</span>
+</pre></div>
+</div>
+</div>
+<details class="solution"><summary><p>Show solution</p>
+</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><br/><span></span><span class="k">def</span><span class="w"> </span><span class="nf">calc_avg_pollution</span><span class="p">(</span><span class="n">db</span><span class="p">):</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">counts</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">diz</span> <span class="ow">in</span> <span class="n">db</span><span class="p">:</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="n">diz</span><span class="p">[</span><span class="s1">&#39;Stazione&#39;</span><span class="p">],</span> <span class="n">diz</span><span class="p">[</span><span class="s1">&#39;Inquinante&#39;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">ret</span><span class="p">:</span>
+            <span class="n">ret</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+=</span> <span class="nb">float</span><span class="p">(</span><span class="n">diz</span><span class="p">[</span><span class="s1">&#39;Valore&#39;</span><span class="p">])</span>
+            <span class="n">counts</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ret</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">diz</span><span class="p">[</span><span class="s1">&#39;Valore&#39;</span><span class="p">])</span>
+            <span class="n">counts</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">ret</span><span class="p">:</span>
+        <span class="n">ret</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">/=</span> <span class="n">counts</span><span class="p">[</span><span class="n">t</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">ret</span>
+
+<span class="n">calc_avg_pollution</span><span class="p">(</span><span class="n">air_quality</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+</section>
+<section id="Continue">
+<h2>Continue<a class="headerlink" href="#Continue" title="Link to this heading">#</a></h2>
+<p>Go on with <a class="reference internal" href="formats3-sol.html"><span class="doc">Loading Files 3 - JSON</span></a></p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="formats3-sol.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Loading Files 3 - JSON</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="formats1-sol.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Loading Files 1 - Text Files</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2026, Erich Robbi
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Loading Files 2 - CSV files</a><ul>
+<li><a class="reference internal" href="#Download-exercises-zip">Download exercises zip</a><ul>
+<li><a class="reference internal" href="#Why-parsing-a-CSV-?">Why parsing a CSV ?</a></li>
+<li><a class="reference internal" href="#Reading-a-CSV">Reading a CSV</a></li>
+<li><a class="reference internal" href="#What's-a-reader-?">What’s a reader ?</a></li>
+<li><a class="reference internal" href="#Consuming-a-file">Consuming a file</a></li>
+<li><a class="reference internal" href="#Reading-as-dictionaries">Reading as dictionaries</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#Writing-a-CSV">Writing a CSV</a></li>
+<li><a class="reference internal" href="#Reading-and-writing-a-CSV">Reading and writing a CSV</a></li>
+<li><a class="reference internal" href="#CSV-Botteghe-storiche">CSV Botteghe storiche</a><ul>
+<li><a class="reference internal" href="#Problem:-wrong-characters-??">Problem: wrong characters ??</a></li>
+<li><a class="reference internal" href="#Botteghe-storiche-in-Python">Botteghe storiche in Python</a></li>
+<li><a class="reference internal" href="#Botteghe-storiche---rank_categories">Botteghe storiche - rank_categories</a></li>
+<li><a class="reference internal" href="#Botteghe-storiche---enrich">Botteghe storiche - enrich</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#CSV-Air-quality">CSV Air quality</a><ul>
+<li><a class="reference internal" href="#load_air_quality">load_air_quality</a></li>
+<li><a class="reference internal" href="#calc_avg_pollution">calc_avg_pollution</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#Continue">Continue</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=d91ab2ad"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    </body>
+</html>
