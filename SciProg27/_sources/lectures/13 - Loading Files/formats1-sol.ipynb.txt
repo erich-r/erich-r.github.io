@@ -1172,13 +1172,138 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
+    "Given a PNG file as a .txt file:\n",
+    "\n",
+    "```\n",
+    "[Event \"ch-UZB 1st League 2014\"]\n",
+    "[Site \"Tashkent UZB\"]\n",
+    "[Date \"2014.03.01\"]\n",
+    "[Round \"1.5\"]\n",
+    "[White \"Abdusattorov,Nodirbek\"]\n",
+    "[Black \"Alikulov,Elbek\"]\n",
+    "[Result \"1-0\"]\n",
+    "[WhiteElo \"2024\"]\n",
+    "[BlackElo \"2212\"]\n",
+    "[ECO \"B28\"]\n",
+    "\n",
+    "1.e4 c5 2.Nf3 a6 3.d3 g6 4.g3 Bg7 5.Bg2 b5 6.O-O Bb7 7.c3 e5 8.a3 Ne7 9.b4 d6\n",
+    "10.Nbd2 O-O 11.Nb3 Nd7 12.Be3 Rc8 13.Rc1 h6 14.Nfd2 f5 15.f4 Kh7 16.Qe2 cxb4\n",
+    "17.axb4 exf4 18.Bxf4 Rxc3 19.Rxc3 Bxc3 20.Bxd6 Qb6+ 21.Bc5 Nxc5 22.bxc5 Qe6\n",
+    "23.d4 Rd8 24.Qd3 Bxd2 25.Nxd2 fxe4 26.Nxe4 Nf5 27.d5 Qe5 28.g4 Ne7 29.Rf7+ Kg8\n",
+    "30.Qf1 Nxd5 31.Rxb7 Qd4+ 32.Kh1 Rf8 33.Qg1 Ne3 34.Re7 a5 35.c6 a4 36.Qxe3 Qxe3\n",
+    "\n",
+    "```\n",
+    "\n",
+    "write a function ```parse_game(path)``` that would return the parsed chess game as a dictionary with this structure:\n",
+    "\n",
+    "```\n",
+    "{'Black': 'Alikulov,Elbek',\n",
+    " 'BlackElo': '2212',\n",
+    " 'Date': '2014.03.01',\n",
+    " 'ECO': 'B28',\n",
+    " 'Event': 'ch-UZB 1st League 2014',\n",
+    " 'Result': '1-0',\n",
+    " 'Round': '1.5',\n",
+    " 'Site': 'Tashkent UZB',\n",
+    " 'White': 'Abdusattorov,Nodirbek',\n",
+    " 'WhiteElo': '2024',\n",
+    " 'Moves': [...]\n",
+    " }\n",
+    "```"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# write here\n",
+    "\n",
+    "from pprint import pprint \n",
+    "pprint(load_chess_game(\"data/gamechess.txt\"))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<details class=\"solution\">\n<summary>Show solution</summary>"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def parse_Moves(line):\n",
+    "    moves = line.split(\" \")\n",
+    "    toRtn = []\n",
+    "    for move in moves:\n",
+    "        pointIdx = move.find(\".\")\n",
+    "        if pointIdx != -1:\n",
+    "            toRtn.append(move[pointIdx+1:].strip())\n",
+    "        else:\n",
+    "            toRtn.append(move.strip())\n",
+    "    return toRtn\n",
+    "\n",
+    "def extract_metadata(line,d):\n",
+    "    line = line[1:]\n",
+    "    line_split = line.split(\" \")\n",
+    "    metadata_title = line_split[0]\n",
+    "    \n",
+    "    #metadata_value = line_split[1][1:-2]\n",
+    "    double_quotes_idx = line.find('\"')\n",
+    "    metadata_value = line[double_quotes_idx+1:-3]\n",
+    "    d[metadata_title] = metadata_value\n",
+    "\n",
+    "def load_chess_game(path):\n",
+    "    print(f\"Loading chess game located at {path}\")\n",
+    "    \n",
+    "    moves = []\n",
+    "    data = {}\n",
+    "    with open(path,\"r\") as f:\n",
+    "        \n",
+    "        line = f.readline()\n",
+    "        \n",
+    "        while line != \"\":\n",
+    "            if line[0] == \"[\":\n",
+    "                extract_metadata(line,data)\n",
+    "                line = f.readline()\n",
+    "                continue \n",
+    "            \n",
+    "            point_idx = line.find(\".\")\n",
+    "            if line[:point_idx].isdigit():\n",
+    "                # we are parsing a series of moves\n",
+    "                moves.extend(parse_Moves(line))\n",
+    "            \n",
+    "            line = f.readline()\n",
+    "    data[\"moves\"] = moves\n",
+    "    return data\n",
+    "\n",
+    "from pprint import pprint \n",
+    "pprint(load_chess_game(\"data/gamechess.txt\"))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "</details>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
     "## Continue\n\nGo on with [Loading Files 2 - CSV files](formats2-sol.ipynb)"
    ]
   }
  ],
  "metadata": {
   "kernelspec": {
-   "display_name": "Python 3 (ipykernel)",
+   "display_name": "sciprog",
    "language": "python",
    "name": "python3"
   },
@@ -1192,7 +1317,7 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.7.10"
+   "version": "3.11.11"
   },
   "toc": {
    "base_numbering": 1,
