@@ -1,7 +1,7 @@
 ---
 sitemap: false
 item_id: 4
-name: Laboratory Instructor
+name: Teaching Fellow
 where: University of Trento
 city: Trento
 from: Sep 2026
