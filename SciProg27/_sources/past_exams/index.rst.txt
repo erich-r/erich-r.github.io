@@ -1,0 +1,11 @@
+Past Exams
+==========
+
+Download the zip archive, extract it and open the folder in your editor.
+Each archive contains the exam text (``manuscript.pdf``), the exercise files,
+the tests and the solutions.
+
+2026/2027
+---------
+
+* **Midterm simulation** (30 October 2026): :download:`midterm_simulation.zip <midterm_simulation.zip>`

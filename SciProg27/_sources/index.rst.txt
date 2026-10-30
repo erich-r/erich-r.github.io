@@ -95,6 +95,15 @@ Commandments
 
    commandments/commandments.ipynb
 
+Past Exams
+----------
+
+.. toctree::
+   :caption: Past Exams
+   :maxdepth: 1
+
+   past_exams/index
+
 Resources
 ---------
 

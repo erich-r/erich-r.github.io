@@ -303,6 +303,10 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../commandments/commandments.html">Rules You Shall Not Break</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">Past Exams</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../past_exams/index.html">Past Exams</a></li>
+</ul>
 
 </div>
 </div>
@@ -1589,9 +1593,15 @@ int
 </pre></div></div>
 </div>
 <p><strong>QUESTION</strong>: for each of the following expressions, try to guess which result it produces (or if it gives an error)</p>
-<ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">python</span>&#160;&#160;&#160;&#160; <span class="pre">'$£eat</span> <span class="pre">the</span> <span class="pre">rich£$'.replace('£','').replace('$','')</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">python</span>&#160;&#160;&#160;&#160; <span class="pre">'$£eat</span> <span class="pre">the</span> <span class="pre">rich£$'.strip('£').strip('$')</span></code></p></li>
+<ol class="arabic">
+<li><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;$£eat the rich£$&#39;</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;£&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;$&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;$£eat the rich£$&#39;</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;£&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;$&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
 </ol>
 <section id="Do-not-abuse-replace">
 <h3>Do not abuse replace<a class="headerlink" href="#Do-not-abuse-replace" title="Link to this heading">#</a></h3>

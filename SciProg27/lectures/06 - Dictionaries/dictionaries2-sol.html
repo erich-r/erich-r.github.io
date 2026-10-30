@@ -303,6 +303,10 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../commandments/commandments.html">Rules You Shall Not Break</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">Past Exams</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../past_exams/index.html">Past Exams</a></li>
+</ul>
 
 </div>
 </div>
@@ -600,14 +604,35 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">python</span>&#160;&#160;&#160;&#160; <span class="pre">kabbalah[0]</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">python</span>&#160;&#160;&#160;&#160; <span class="pre">kabbalah[1]</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">python</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">kabbalah[2]</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">python</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">kabbalah[3]</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">python</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">kabbalah[4]</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">python</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">kabbalah[5]</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">python</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">kabbalah[-1]</span></code></p></li>
+<ul>
+<li><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">kabbalah</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">kabbalah</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">kabbalah</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">kabbalah</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">kabbalah</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">kabbalah</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">kabbalah</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
 </ul>
 <p><strong>ANSWER</strong>: In the dictionary we have keys which are integer numbers: so we can use numbers among square brackets, which we will call <em>keys,</em> but not <em>positions.</em></p>
 <p>The unique expressions which will produce results are those for which the number specified among the square brackets is effectively present among the keys:</p>
@@ -2741,8 +2766,27 @@ d2= {&#39;a&#39;: [1, 2], &#39;b&#39;: [4, 5, 6]}
 </div>
 <p><strong>QUESTION</strong>: Look at the following code fragments, and for each try guessing which result it produces (or if it gives an error):</p>
 <ol class="arabic">
-<li><p><code class="docutils literal notranslate"><span class="pre">python</span>&#160;&#160;&#160;&#160; <span class="pre">diz1</span> <span class="pre">=</span> <span class="pre">{'a':[4,5],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">'b':[6,7]}</span>&#160;&#160;&#160;&#160; <span class="pre">diz2</span> <span class="pre">=</span> <span class="pre">dict(diz1)</span>&#160;&#160;&#160;&#160; <span class="pre">diz2['a']</span> <span class="pre">=</span> <span class="pre">diz1['b']</span>&#160;&#160;&#160;&#160; <span class="pre">diz2['b'][0]</span> <span class="pre">=</span> <span class="pre">9</span>&#160;&#160;&#160;&#160; <span class="pre">print(diz1</span> <span class="pre">==</span> <span class="pre">diz2)</span>&#160;&#160;&#160;&#160; <span class="pre">print(diz1)</span>&#160;&#160;&#160;&#160; <span class="pre">print(diz2)</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">python</span>&#160;&#160;&#160;&#160; <span class="pre">da</span> <span class="pre">=</span> <span class="pre">{'a':['x','y','z']}</span>&#160;&#160;&#160;&#160; <span class="pre">db</span> <span class="pre">=</span> <span class="pre">dict(da)</span>&#160;&#160;&#160;&#160; <span class="pre">db['a']</span> <span class="pre">=</span> <span class="pre">['w','t']</span>&#160;&#160;&#160;&#160; <span class="pre">dc</span> <span class="pre">=</span> <span class="pre">dict(db)</span>&#160;&#160;&#160;&#160; <span class="pre">print(da)</span>&#160;&#160;&#160;&#160; <span class="pre">print(db)</span>&#160;&#160;&#160;&#160; <span class="pre">print(dc)</span></code></p></li>
+<li><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">diz1</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span>
+        <span class="s1">&#39;b&#39;</span><span class="p">:[</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">]}</span>
+<span class="n">diz2</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">diz1</span><span class="p">)</span>
+<span class="n">diz2</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">diz1</span><span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">]</span>
+<span class="n">diz2</span><span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">diz1</span> <span class="o">==</span> <span class="n">diz2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">diz1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">diz2</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">da</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="s1">&#39;z&#39;</span><span class="p">]}</span>
+<span class="n">db</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">da</span><span class="p">)</span>
+<span class="n">db</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;w&#39;</span><span class="p">,</span><span class="s1">&#39;t&#39;</span><span class="p">]</span>
+<span class="n">dc</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">db</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">da</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">db</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dc</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
 <li><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">copy</span>
 
 <span class="n">la</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="s1">&#39;z&#39;</span><span class="p">]</span>

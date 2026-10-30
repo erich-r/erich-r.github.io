@@ -1,0 +1,43 @@
+===NEW GAME===
+[Event "Blitz Cup"]
+[Site "Oslo NOR"]
+[Date "2025.01.02"]
+[Round "1"]
+[White "Carlsen,M"]
+[Black "Roe,A"]
+[Result "1-0"]
+[WhiteElo "2830"]
+[BlackElo "2650"]
+[ECO "C50"]
+
+1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.Ng5 d5  1-0
+
+===NEW GAME===
+[Event "Titled Tue"]
+[Site "chess.com INT"]
+[Date "2025.01.07"]
+[Round "3"]
+[White "Doe,J"]
+[Black "Carlsen,M"]
+[Result "0-1"]
+[WhiteElo "2700"]
+[BlackElo "2831"]
+[ECO "A00"]
+
+1.g4 e5 2.f3 Qh4#  0-1
+
+===NEW GAME===
+[Event "Titled Tue"]
+[Site "chess.com INT"]
+[Date "2025.01.07"]
+[Round "4"]
+[White "Carlsen,M"]
+[Black "Boh,A"]
+[Result "1/2-1/2"]
+[WhiteElo "2831"]
+[BlackElo "2701"]
+[ECO "C50"]
+
+1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5
+4.O-O Nf6 5.d3 O-O 6.Re1+ d6 7.h8=Q  1/2-1/2
+
