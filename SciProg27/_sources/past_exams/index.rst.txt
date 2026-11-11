@@ -9,3 +9,4 @@ the tests and the solutions.
 ---------
 
 * **Midterm simulation** (30 October 2026): :download:`midterm_simulation.zip <midterm_simulation.zip>`
+* **Midterm** (06 November 2026): :download:`midterm.zip <midterm.zip>`
