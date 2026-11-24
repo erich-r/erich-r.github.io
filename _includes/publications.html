@@ -1,4 +1,4 @@
-<h2 class="section-title">Publications 🗞️</h2>
+{% unless include.hide_title %}<h2 class="section-title">Publications 🗞️</h2>{% endunless %}
 {% for group in site.data.publication_types %}
 {% assign pubs = site.publications | where: "type", group.key | sort: "publish_date" | reverse %}
 {% if pubs.size > 0 %}

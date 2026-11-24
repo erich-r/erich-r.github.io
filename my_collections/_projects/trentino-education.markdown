@@ -10,4 +10,4 @@ tags: [Python,SPARQL]
 ---
 
 During this course, we created a Knowledge Graph that assists parents and students in locating schools in the Trentino area by city, municipality, school type, course length, instructional activity schedules, contact information, and education metrics. 
-The project report is available at this [link](https://raw.githubusercontent.com/samuelebortolotti/Education-Trentino/main/Documentation/KGE_2022_Education_In_Trentino_Project_Report_Bortolotti_Samuele_Robbi_Erich.pdf).
+You can read the [project report](https://raw.githubusercontent.com/samuelebortolotti/Education-Trentino/main/Documentation/KGE_2022_Education_In_Trentino_Project_Report_Bortolotti_Samuele_Robbi_Erich.pdf) (PDF).

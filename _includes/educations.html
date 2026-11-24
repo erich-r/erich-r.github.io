@@ -13,7 +13,7 @@
             <p class="entry-note"><strong>Final grade</strong>: {{ education.grade }}</p>
         {% endif %}
     </div>
-    <span class="date">{{ education.from }}–{{ education.to }}</span>
+    {% if education.from %}<span class="date">{{ education.from }}{% if education.to %} – {{ education.to }}{% endif %}</span>{% endif %}
 </div>
 {% endfor %}
 </div>

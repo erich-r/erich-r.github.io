@@ -5,6 +5,7 @@ name: Generating and evaluating synthetic data in digital pathology through diff
 publish_date: 2024
 context: Scientific Reports - Nature
 type: journal
+selected: true
 link: https://www.nature.com/articles/s41598-024-79602-w
 ---
 

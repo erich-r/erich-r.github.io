@@ -13,8 +13,9 @@ layout: base
             <p>
                 👋 Hello! I'm a Ph.D. student at the University of Trento, in the
                 <a href="http://sml.disi.unitn.it/">Structured Machine Learning Group</a>,
-                working on the TANGO project under the supervision of
+                supervised by
                 <a href="https://disi.unitn.it/~passerini/index.html">Andrea Passerini</a>.
+                I work on medical image analysis: uncertainty-aware segmentation and high-stakes planning.
             </p>
         </div>
         <div class="hero-links">
@@ -27,7 +28,20 @@ layout: base
     </div>
 </section>
 
-<!-- {% assign recent_posts = site.posts | slice: 0, 3 %}
+{% assign selected_pubs = site.publications | where: "selected", true | sort: "publish_date" | reverse %}
+{% if selected_pubs.size > 0 %}
+<section class="section" id="publications">
+    <h2 class="section-title">Selected publications</h2>
+    <ul class="pub-list">
+        {% for pub in selected_pubs %}{% include publication-entry.html pub=pub %}{% endfor %}
+    </ul>
+    {% include more-link.html url="/publications/" label="All publications" %}
+</section>
+{% endif %}
+
+{% comment %} Hidden sections: move one out of this block to show it on the home page. {% endcomment %}
+{% comment %}
+{% assign recent_posts = site.posts | slice: 0, 3 %}
 {% if recent_posts.size > 0 %}
 <section class="section" id="blog">
     <h2 class="section-title">Latest posts 📝</h2>
@@ -36,23 +50,22 @@ layout: base
     </div>
     {% include more-link.html url="/blog/" label="Read the blog" %}
 </section>
-{% endif %} -->
+{% endif %}
 
-<!-- <section class="section" id="projects">
+<section class="section" id="projects">
     {% include projects.html %}
-</section> -->
-<!-- <section class="section" id="publications">
-    {% include publications.html %}
-</section> -->
+</section>
+<section class="section" id="teaching">
+    {% include teaching.html %}
+</section>
+{% endcomment %}
+
 <section class="section" id="education">
     {% include educations.html %}
 </section>
 <section class="section" id="experience">
     {% include work-experiences.html %}
 </section>
-<!-- <section class="section" id="teaching">
-    {% include teaching.html %}
-</section> -->
 <section class="section" id="talks">
     {% include talks.html %}
 </section>

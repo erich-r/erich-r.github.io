@@ -10,5 +10,5 @@
         {% if p.layout %}{{ p.summary | markdownify }}{% else %}{{ p.content | markdownify }}{% endif %}
     </div>
     {% endunless %}
-    {% if p.tags %}<p class="tag-line">{{ p.tags | join: " · " }}</p>{% endif %}
+    {% if p.tags and p.tags.size > 0 %}<p class="tag-line">{{ p.tags | join: " · " }}</p>{% endif %}
 {% if p.layout %}</a>{% else %}</div>{% endif %}

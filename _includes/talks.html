@@ -8,7 +8,7 @@
         <div class="entry-where">{{ talk.congress }}{% if talk.location %}, {{ talk.location }}{% endif %}</div>
         {% assign body = talk.content | strip %}{% if body != "" %}<div class="entry-text">{{ talk.content | markdownify }}</div>{% endif %}
     </div>
-    <span class="date">{{ talk.year }}</span>
+    {% if talk.year %}<span class="date">{{ talk.year }}</span>{% endif %}
 </div>
 {% endfor %}
 </div>

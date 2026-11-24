@@ -7,9 +7,9 @@
         <h3 class="entry-title">{{ work.name }}</h3>
         <div class="entry-where">{{ work.where }}{% if work.city %}, {{ work.city }}{% endif %}</div>
         {% assign body = work.content | strip %}{% if body != "" %}<div class="entry-text">{{ work.content | markdownify }}</div>{% endif %}
-        {% if work.tags %}<p class="tag-line">{{ work.tags | join: " · " }}</p>{% endif %}
+        {% if work.tags and work.tags.size > 0 %}<p class="tag-line">{{ work.tags | join: " · " }}</p>{% endif %}
     </div>
-    <span class="date">{{ work.from }} – {{ work.to }}</span>
+    {% if work.from %}<span class="date">{{ work.from }}{% if work.to %} – {{ work.to }}{% endif %}</span>{% endif %}
 </div>
 {% endfor %}
 </div>

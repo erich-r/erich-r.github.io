@@ -1,6 +1,8 @@
 <li>
-    <span class="pub-title">"{{ include.pub.name }}"</span>.
-    {% assign authors = include.pub.content | strip_html | strip %}{% if authors != "" %}{{ authors }}.{% endif %}
-    <span class="pub-venue">{{ include.pub.context }}</span>{% if include.pub.location %}, {{ include.pub.location }}{% endif %}, {{ include.pub.publish_date }}.
-    {% if include.pub.link %}<a href="{{ include.pub.link }}" class="accent-link" target="_blank" rel="noopener">[Paper]</a>{% endif %}
+    <span class="pub-title">{{ include.pub.name }}</span>
+    {% assign me = '<strong>' | append: site.author | append: '</strong>' %}{% assign authors = include.pub.content | strip_html | strip | replace: site.author, me %}{% if authors != "" %}<span class="pub-authors">{{ authors }}</span>{% endif %}
+    <span class="pub-venue-line">
+        <span class="pub-venue">{{ include.pub.context }}</span>{% if include.pub.location %}, {{ include.pub.location }}{% endif %} · {{ include.pub.publish_date }}
+        {% if include.pub.link %}<a href="{{ include.pub.link }}" class="accent-link" target="_blank" rel="noopener">[Paper]</a>{% endif %}
+    </span>
 </li>

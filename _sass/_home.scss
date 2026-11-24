@@ -187,7 +187,7 @@ a.card:hover .card-title {
   color: var(--text-muted);
 
   p + p { margin-top: .75em; }
-  a { color: var(--accent); &:hover { text-decoration: underline; } }
+  a { @extend %text-link; }
 }
 
 html.dark .card-text { color: var(--text-body); }
@@ -242,7 +242,7 @@ html.dark .card-text { color: var(--text-body); }
   li::marker { color: var(--marker); }
   p + p, p + ul, ul + p { margin-top: .5rem; }
   strong { color: var(--text-strong); }
-  a { color: var(--accent); &:hover { text-decoration: underline; } }
+  a { @extend %text-link; }
 }
 
 html.dark .entry-text { color: var(--text-body); }
@@ -265,13 +265,18 @@ html.dark .entry-text { color: var(--text-body); }
   color: var(--text-body);
 
   li { padding-left: .5rem; }
-  li + li { margin-top: .75rem; }
+  li + li { margin-top: 1.25rem; }
   li::marker { color: var(--marker); }
 }
 
+// Title / authors / venue each on their own line.
+.pub-title, .pub-authors, .pub-venue-line { display: block; }
 .pub-title { font-weight: 700; color: var(--text-strong); }
-.pub-venue { font-style: italic; }
-.pub-list .accent-link { font-size: 1rem; margin-left: .5rem; }
+.pub-authors { margin-top: .125rem; color: var(--text-soft); }
+.pub-list strong { font-weight: 700; color: var(--text-strong); }
+.pub-venue-line { margin-top: .125rem; color: var(--text-body); }
+.pub-venue { font-style: italic; font-weight: 600; color: var(--accent); }
+.pub-list .accent-link { font-size: .8125rem; margin-left: .25rem; white-space: nowrap; }
 
 // ---------- Project tag filter ----------
 .filter-bar {

@@ -5,6 +5,7 @@ name: "Ensuring reliable digital pathology: a comparative analysis of HistoQC an
 publish_date: 2026
 context: Physica Medica
 type: journal
+selected: false
 link: https://www.sciencedirect.com/science/article/pii/S1120179726000323
 ---
 

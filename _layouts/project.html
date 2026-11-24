@@ -26,7 +26,7 @@ layout: base
 
     {% if page.teaser and page.teaser_image %}
     <figure class="article-media">
-        <img src="{{ page.teaser_image | relative_url }}" width="50%" alt="{{ page.teaser_caption | default: page.title }}">
+        <img src="{{ page.teaser_image | relative_url }}" style="max-width: 50%;" alt="{{ page.teaser_caption | default: page.title }}">
         {% if page.teaser_caption %}<figcaption>{{ page.teaser_caption }}</figcaption>{% endif %}
     </figure>
     {% endif %}

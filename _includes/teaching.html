@@ -1,4 +1,4 @@
-<h2 class="section-title">Teaching</h2>
+{% unless include.hide_title %}<h2 class="section-title">Teaching</h2>{% endunless %}
 {% assign my_teaching = site.teaching | sort: "item_id" | reverse %}
 <div class="stack">
 {% for course in my_teaching %}

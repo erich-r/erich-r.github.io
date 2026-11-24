@@ -6,3 +6,4 @@ _site/
 .bundle/
 vendor/
 commands.txt
+.DS_Store

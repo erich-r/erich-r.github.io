@@ -6,9 +6,9 @@ where: University of Trento
 city: Trento
 from: Sep 2026
 to: Present
-tags: []
+tags: ["Python","Pandas","NumPy"]
 ---
 
-Assisting students with programming exercises during laboratory sessions and help manage exams and grading for the Scientific Programming course at the University of Trento.
+Assisting students with programming exercises during laboratory sessions and helping manage exams and grading for the Scientific Programming course at the University of Trento.
 
 

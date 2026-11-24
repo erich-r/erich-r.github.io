@@ -5,6 +5,7 @@ name: "Automatic CTA analysis for blood vessels and aneurysm features extraction
 publish_date: 2025
 context: Scientific Reports - Nature
 type: journal
+selected: true
 link: https://www.nature.com/articles/s41598-025-00484-7
 ---
 
