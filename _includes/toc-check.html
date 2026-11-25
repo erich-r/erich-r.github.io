@@ -1,0 +1,9 @@
+{% comment %}
+  Sets `show_toc` for the current page: true when the content has at least
+  two ## / ### headings. Set `toc: false` in front matter to turn it off.
+  Usage: {% include toc-check.html content=content %}
+{% endcomment %}
+{% assign toc_h2 = include.content | split: '<h2' | size | minus: 1 %}
+{% assign toc_h3 = include.content | split: '<h3' | size | minus: 1 %}
+{% assign toc_headings = toc_h2 | plus: toc_h3 %}
+{% if page.toc != false and toc_headings >= 2 %}{% assign show_toc = true %}{% else %}{% assign show_toc = false %}{% endif %}

@@ -7,6 +7,12 @@
         <h3 class="entry-title">{{ work.name }}</h3>
         <div class="entry-where">{{ work.where }}{% if work.city %}, {{ work.city }}{% endif %}</div>
         {% assign body = work.content | strip %}{% if body != "" %}<div class="entry-text">{{ work.content | markdownify }}</div>{% endif %}
+        {% if work.link %}
+        {% assign first_char = work.link | slice: 0 %}
+        <p class="entry-note">
+            {% if first_char == "/" %}<a href="{{ work.link | relative_url }}" class="accent-link">{% else %}<a href="{{ work.link }}" class="accent-link" target="_blank" rel="noopener">{% endif %}[{{ work.link_label | default: "Link" }}]</a>
+        </p>
+        {% endif %}
         {% if work.tags and work.tags.size > 0 %}<p class="tag-line">{{ work.tags | join: " · " }}</p>{% endif %}
     </div>
     {% if work.from %}<span class="date">{{ work.from }}{% if work.to %} – {{ work.to }}{% endif %}</span>{% endif %}

@@ -19,8 +19,8 @@ authors:
 course_name: Data Science Internship
 completition_date: 2023
 links:
-paper: "https://doi.org/10.3389/frai.2024.1346684"
-code: "https://github.com/erich-r/incremental-elicitation-choquet"
+  paper: "https://doi.org/10.3389/frai.2024.1346684"
+  code: "https://github.com/erich-r/incremental-elicitation-choquet"
 
 ---
 

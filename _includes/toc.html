@@ -1,0 +1,77 @@
+{% comment %}
+  Table of contents sidebar, used by the post and project layouts.
+  Must be placed inside `.post-body`, next to the `.prose` div.
+  The list is built in the browser from the h2/h3 headings of the content.
+{% endcomment %}
+<aside class="toc" id="toc" hidden>
+    <details class="toc-details">
+        <summary class="toc-title">On this page</summary>
+        <nav aria-label="Table of contents">
+            <ol class="toc-list"></ol>
+        </nav>
+        <a href="#top" class="toc-top">Back to top ↑</a>
+    </details>
+</aside>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var toc = document.getElementById('toc');
+    var headings = document.querySelectorAll('.post-body .prose h2[id], .post-body .prose h3[id]');
+    if (!toc || headings.length < 2) return;
+
+    // Build the list: ### headings nest under the preceding ## heading.
+    var list = toc.querySelector('.toc-list');
+    var links = [];
+    var sublist = null;
+    Array.prototype.forEach.call(headings, function (h) {
+        var li = document.createElement('li');
+        var a = document.createElement('a');
+        a.href = '#' + h.id;
+        a.textContent = h.textContent;
+        li.appendChild(a);
+        if (h.tagName === 'H3' && list.lastElementChild) {
+            if (!sublist) {
+                sublist = document.createElement('ol');
+                list.lastElementChild.appendChild(sublist);
+            }
+            sublist.appendChild(li);
+        } else {
+            sublist = null;
+            list.appendChild(li);
+        }
+        links.push(a);
+    });
+
+    // Sidebar (always open) on wide screens, collapsible box on small ones.
+    var details = toc.querySelector('details');
+    var wide = window.matchMedia('(min-width: 1024px)');
+    function syncOpen() { details.open = wide.matches; }
+    syncOpen();
+    if (wide.addEventListener) wide.addEventListener('change', syncOpen); else wide.addListener(syncOpen);
+    toc.hidden = false;
+
+    // Highlight the section currently being read.
+    var OFFSET = 100;
+    var active = -1;
+    function update() {
+        var idx = 0;
+        for (var i = 0; i < headings.length; i++) {
+            if (headings[i].getBoundingClientRect().top - OFFSET <= 0) idx = i; else break;
+        }
+        var doc = document.documentElement;
+        if (window.innerHeight + window.scrollY >= doc.scrollHeight - 2) idx = headings.length - 1;
+        if (idx === active) return;
+        if (active >= 0) links[active].removeAttribute('aria-current');
+        links[idx].setAttribute('aria-current', 'true');
+        active = idx;
+    }
+    var ticking = false;
+    function schedule() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(function () { ticking = false; update(); });
+    }
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
+    update();
+});
+</script>

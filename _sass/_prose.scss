@@ -205,9 +205,11 @@
   border-radius: .5rem;
 }
 
-// ---------- Blog post: table of contents + older/newer links ----------
+// ---------- Blog posts and projects: table of contents + older/newer links ----------
 // Keep long-form text at a comfortable line length.
 .post-body > .prose { max-width: 46rem; }
+// Project pages without a table of contents keep the full width.
+.project-body:not(.has-toc) > .prose { max-width: none; }
 
 @media (min-width: 1024px) {
   .post-body.has-toc {

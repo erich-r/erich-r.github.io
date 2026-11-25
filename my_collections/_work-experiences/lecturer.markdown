@@ -7,6 +7,8 @@ city: Trento
 from: Sep 2026
 to: Present
 tags: ["Python","Pandas","NumPy"]
+link: /SciProg27/
+link_label: Course website
 ---
 
 Assisting students with programming exercises during laboratory sessions and helping manage exams and grading for the Scientific Programming course at the University of Trento.

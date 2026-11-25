@@ -1,14 +1,7 @@
 ---
 layout: base
 ---
-{% comment %}
-  A table of contents is shown when the post has at least two ## / ### headings.
-  Set `toc: false` in a post's front matter to turn it off.
-{% endcomment %}
-{% assign h2_count = content | split: '<h2' | size | minus: 1 %}
-{% assign h3_count = content | split: '<h3' | size | minus: 1 %}
-{% assign heading_count = h2_count | plus: h3_count %}
-{% if page.toc != false and heading_count >= 2 %}{% assign show_toc = true %}{% else %}{% assign show_toc = false %}{% endif %}
+{% include toc-check.html content=content %}
 {% assign word_count = content | strip_html | number_of_words %}
 {% assign read_minutes = word_count | divided_by: 200 | at_least: 1 %}
 <article>
@@ -21,17 +14,7 @@ layout: base
     </header>
     <hr class="article-rule">
     <div class="post-body{% if show_toc %} has-toc{% endif %}">
-        {% if show_toc %}
-        <aside class="toc" id="toc" hidden>
-            <details class="toc-details">
-                <summary class="toc-title">On this page</summary>
-                <nav aria-label="Table of contents">
-                    <ol class="toc-list"></ol>
-                </nav>
-                <a href="#top" class="toc-top">Back to top ↑</a>
-            </details>
-        </aside>
-        {% endif %}
+        {% if show_toc %}{% include toc.html %}{% endif %}
         <div class="prose">
             {{ content }}
         </div>
@@ -57,68 +40,3 @@ layout: base
     </footer>
 </article>
 
-{% if show_toc %}
-<script>
-(function () {
-    var toc = document.getElementById('toc');
-    var headings = document.querySelectorAll('.post-body .prose h2[id], .post-body .prose h3[id]');
-    if (!toc || headings.length < 2) return;
-
-    // Build the list: ### headings nest under the preceding ## heading.
-    var list = toc.querySelector('.toc-list');
-    var links = [];
-    var sublist = null;
-    Array.prototype.forEach.call(headings, function (h) {
-        var li = document.createElement('li');
-        var a = document.createElement('a');
-        a.href = '#' + h.id;
-        a.textContent = h.textContent;
-        li.appendChild(a);
-        if (h.tagName === 'H3' && list.lastElementChild) {
-            if (!sublist) {
-                sublist = document.createElement('ol');
-                list.lastElementChild.appendChild(sublist);
-            }
-            sublist.appendChild(li);
-        } else {
-            sublist = null;
-            list.appendChild(li);
-        }
-        links.push(a);
-    });
-
-    // Sidebar (always open) on wide screens, collapsible box on small ones.
-    var details = toc.querySelector('details');
-    var wide = window.matchMedia('(min-width: 1024px)');
-    function syncOpen() { details.open = wide.matches; }
-    syncOpen();
-    if (wide.addEventListener) wide.addEventListener('change', syncOpen); else wide.addListener(syncOpen);
-    toc.hidden = false;
-
-    // Highlight the section currently being read.
-    var OFFSET = 100;
-    var active = -1;
-    function update() {
-        var idx = 0;
-        for (var i = 0; i < headings.length; i++) {
-            if (headings[i].getBoundingClientRect().top - OFFSET <= 0) idx = i; else break;
-        }
-        var doc = document.documentElement;
-        if (window.innerHeight + window.scrollY >= doc.scrollHeight - 2) idx = headings.length - 1;
-        if (idx === active) return;
-        if (active >= 0) links[active].removeAttribute('aria-current');
-        links[idx].setAttribute('aria-current', 'true');
-        active = idx;
-    }
-    var ticking = false;
-    function schedule() {
-        if (ticking) return;
-        ticking = true;
-        requestAnimationFrame(function () { ticking = false; update(); });
-    }
-    window.addEventListener('scroll', schedule, { passive: true });
-    window.addEventListener('resize', schedule);
-    update();
-})();
-</script>
-{% endif %}

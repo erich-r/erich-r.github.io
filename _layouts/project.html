@@ -1,6 +1,7 @@
 ---
 layout: base
 ---
+{% include toc-check.html content=content %}
 <article>
     <header class="article-header">
         {% if page.venue %}<p class="article-kicker">{{ page.venue }}</p>{% endif %}
@@ -31,8 +32,11 @@ layout: base
     </figure>
     {% endif %}
 
-    <div class="prose">
-        {{ content }}
+    <div class="post-body project-body{% if show_toc %} has-toc{% endif %}">
+        {% if show_toc %}{% include toc.html %}{% endif %}
+        <div class="prose">
+            {{ content }}
+        </div>
     </div>
 
     <footer class="article-footer">

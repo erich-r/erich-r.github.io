@@ -1,5 +1,5 @@
 {% assign p = include.project %}
-{% if p.layout %}<a href="{{ p.url | relative_url }}" class="card" data-tags="{{ p.tags | join: '|' }}">{% else %}<div class="card" data-tags="{{ p.tags | join: '|' }}">{% endif %}
+{% if p.layout %}<a href="{{ p.url | relative_url }}" class="card project-card is-linked" data-tags="{{ p.tags | join: '|' }}">{% else %}<div class="card project-card" data-tags="{{ p.tags | join: '|' }}">{% endif %}
     <div class="card-head">
         <h3 class="card-title">{{ p.name }}</h3>
         {% if p.completition_date %}<span class="date">{{ p.completition_date }}</span>{% endif %}
@@ -11,4 +11,5 @@
     </div>
     {% endunless %}
     {% if p.tags and p.tags.size > 0 %}<p class="tag-line">{{ p.tags | join: " · " }}</p>{% endif %}
+    {% if p.layout %}<span class="card-cta">Read more <span class="card-cta-arrow" aria-hidden="true">→</span></span>{% endif %}
 {% if p.layout %}</a>{% else %}</div>{% endif %}

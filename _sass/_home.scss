@@ -195,6 +195,40 @@ html.dark .card-text { color: var(--text-body); }
   html:not(.light) .card-text { color: var(--text-body); }
 }
 
+// ---------- Project cards: make the ones with their own page look clickable ----------
+// All project cards share the same padding (pulled back with negative margins so
+// the text stays aligned with the page); only linked cards react on hover.
+.project-list > * + * { margin-top: .5rem; }
+
+.project-card {
+  margin-inline: -1.25rem;
+  padding: 1rem 1.25rem;
+  border-radius: .75rem;
+}
+
+.project-card.is-linked {
+  transition: background-color .15s ease;
+
+  &:hover { background-color: color-mix(in srgb, var(--accent) 7%, transparent); }
+  &:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  &:hover .card-title, &:focus-visible .card-title { color: var(--accent-hover); }
+}
+
+.card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: .375rem;
+  margin-top: .75rem;
+  font-size: .75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--accent);
+}
+
+.card-cta-arrow { transition: transform .15s ease; }
+.project-card.is-linked:hover .card-cta-arrow { transform: translateX(4px); }
+
 .tag-line {
   margin-top: .5rem;
   font-size: .75rem;
