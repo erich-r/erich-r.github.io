@@ -1,21 +1,23 @@
 // ---------- Hero ----------
 .hero {
   display: flex;
+  flex-direction: column;   // phones: photo on top, text below
   align-items: flex-start;
   gap: 1.5rem;
   margin-bottom: 4rem;
 
-  @media (min-width: 640px) { gap: 3rem; }
+  @media (min-width: 640px) { flex-direction: row; gap: 3rem; }
 }
 
 .hero-avatar {
   flex-shrink: 0;
-  width: 6rem;
-  height: 6rem;
+  width: 12rem;
+  height: 12rem;
   border-radius: 9999px;
   object-fit: cover;
+  margin: auto;
 
-  @media (min-width: 640px) { width: 10rem; height: 10rem; }
+  @media (min-width: 640px) { width: 10rem; height: 10rem; margin: auto; }
 }
 
 // Shown instead of a photo when `avatar` is not set in _config.yml.
