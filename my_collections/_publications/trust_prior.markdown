@@ -5,6 +5,7 @@ name: "Trust the Prior (or Not): Uncertainty-Aware Abdominal Aortic Aneurysm Seg
 publish_date: 2027
 context: The IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)
 type: conference
+location: "Orlando, USA"
 selected: true
 link: https://arxiv.org/pdf/2607.00201
 ---

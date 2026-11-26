@@ -1,8 +1,8 @@
-- key: journal
-  label: Journal Articles
-- key: conference
-  label: Conference Papers
-- key: poster
-  label: Posters
 - key: preprint
   label: Preprints
+- key: conference
+  label: Conference Papers
+- key: journal
+  label: Journal Articles
+- key: poster
+  label: Posters
